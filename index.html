@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Salud cercana | Bienestar y atención</title>
+  <meta name="description" content="Un espacio para conocer nuestra propuesta de atención, encontrar información útil y acercarte a los servicios de salud.">
+  <meta name="theme-color" content="#087f80">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Barra de aviso (se puede cerrar) -->
+<div class="announce" id="announce">
+  <p>Sitio informativo en preparación · Los datos oficiales se añadirán pronto.</p>
+  <button type="button" id="announceClose" aria-label="Cerrar aviso">×</button>
+</div>
+
+<!-- Encabezado -->
+<header class="site-header" id="top">
+  <div class="wrap header-inner">
+    <a class="logo" href="#top" aria-label="Salud cercana, inicio">
+      <span class="logo-mark" aria-hidden="true">+</span>saludcercana
+    </a>
+    <nav class="nav" id="nav" aria-label="Principal">
+      <a href="#para-quien">Para ti</a>
+      <a href="#beneficios">Beneficios</a>
+      <a href="#programas">Programas</a>
+      <a href="#guia">Encuentra tu servicio</a>
+      <a href="#faq">Preguntas</a>
+      <a href="#contacto">Contacto</a>
+      <a class="btn btn-primary nav-cta" href="#guia">Empezar</a>
+    </nav>
+    <button class="burger" id="burger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy reveal">
+        <span class="tag">Información y bienestar</span>
+        <h1>Tu bienestar merece <span class="hl">atención</span> y claridad.</h1>
+        <p class="lead">Un espacio para conocer nuestra propuesta de atención, encontrar información útil y acercarte a los servicios de salud, sin enredos.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#guia">Encuentra tu servicio →</a>
+          <a class="btn btn-ghost" href="#contacto">Hablar con alguien</a>
+        </div>
+        <p class="small-print">¿Ya eres parte de la comunidad? <a href="#contacto">Escríbenos</a>.</p>
+      </div>
+
+      <div class="hero-visual reveal" aria-hidden="true">
+        <div class="blob"></div>
+        <div class="float-card fc-1"><span class="fc-emoji">🩺</span><div><strong>Consulta general</strong><small>Información clara</small></div></div>
+        <div class="float-card fc-2"><span class="fc-emoji">💬</span><div><strong>Orientación 24/7</strong><small>Canales por confirmar</small></div></div>
+        <div class="float-card fc-3"><span class="fc-emoji">🌿</span><div><strong>Bienestar</strong><small>Hábitos y prevención</small></div></div>
+        <div class="hero-circle"><span>+</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Para quién (pestañas) -->
+  <section class="section" id="para-quien">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="tag">Para ti</span>
+        <h2>Una propuesta pensada para cada etapa.</h2>
+        <p class="lead">Elige quién eres y mira cómo podemos acompañarte.</p>
+      </div>
+
+      <div class="tabs reveal">
+        <div class="tab-list" role="tablist" aria-label="Perfiles" id="tabList"></div>
+        <div class="tab-panels" id="tabPanels"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Beneficios -->
+  <section class="section alt" id="beneficios">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="tag">Beneficios</span>
+        <h2>Todo lo bueno, en un solo lugar.</h2>
+        <p class="lead">Contenido demostrativo: reemplázalo con tus beneficios reales.</p>
+      </div>
+      <div class="benefits" id="benefits"></div>
+    </div>
+  </section>
+
+  <!-- Programas (carrusel con filtros) -->
+  <section class="section" id="programas">
+    <div class="wrap">
+      <div class="section-head split reveal">
+        <div>
+          <span class="tag">Nuestra propuesta</span>
+          <h2>Programas para necesidades específicas.</h2>
+          <p class="lead">Y para todos los demás también.</p>
+        </div>
+        <div class="car-controls">
+          <button type="button" class="round-btn" id="prev" aria-label="Anterior">←</button>
+          <button type="button" class="round-btn" id="next" aria-label="Siguiente">→</button>
+        </div>
+      </div>
+
+      <div class="chips reveal" id="chips" role="group" aria-label="Filtrar programas"></div>
+      <div class="track" id="track" tabindex="0" aria-label="Lista de programas"></div>
+      <p class="note">Contenido demostrativo. Los servicios y programas deberán verificarse antes de publicar la web como sitio oficial.</p>
+    </div>
+  </section>
+
+  <!-- Guía interactiva -->
+  <section class="section guide" id="guia">
+    <div class="wrap">
+      <div class="guide-box reveal">
+        <div class="guide-left">
+          <span class="tag light">Encuentra tu servicio</span>
+          <h2>¿Qué necesitas hoy?</h2>
+          <p>Responde dos preguntas rápidas y te orientamos hacia el área de información que mejor te encaja.</p>
+          <div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
+        </div>
+        <div class="guide-right" id="quiz" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonios -->
+  <section class="section alt" id="testimonios">
+    <div class="wrap narrow">
+      <div class="section-head center reveal">
+        <span class="tag">Testimonios</span>
+        <h2>Lo que dirán quienes ya nos conocen.</h2>
+      </div>
+      <div class="quotes reveal" id="quotes" aria-live="off">
+        <div class="quote-stage" id="quoteStage"></div>
+        <div class="dots" id="dots" role="tablist" aria-label="Testimonios"></div>
+      </div>
+      <p class="note center">Ejemplos ficticios. Sustitúyelos por testimonios reales con permiso de cada persona.</p>
+    </div>
+  </section>
+
+  <!-- Preguntas frecuentes -->
+  <section class="section" id="faq">
+    <div class="wrap narrow">
+      <div class="section-head center reveal">
+        <span class="tag">Información útil</span>
+        <h2>Entender también es parte de cuidarse.</h2>
+      </div>
+      <div class="faq-search reveal">
+        <input type="search" id="faqSearch" placeholder="Busca una pregunta…" aria-label="Buscar en preguntas frecuentes">
+      </div>
+      <div class="faq" id="faq-list"></div>
+      <p class="no-results" id="faqEmpty" hidden>No encontramos esa pregunta. Escríbenos y te ayudamos.</p>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section class="section alt" id="contacto">
+    <div class="wrap contact-grid">
+      <div class="reveal">
+        <span class="tag">Contacto</span>
+        <h2>Estamos preparando este espacio para ti.</h2>
+        <p class="lead">Déjanos tu mensaje. Los canales oficiales de contacto se añadirán cuando estén confirmados.</p>
+        <ul class="contact-list">
+          <li><span>📞</span> Teléfono: <em>por confirmar</em></li>
+          <li><span>✉️</span> Correo: <em>por confirmar</em></li>
+          <li><span>🕘</span> Horario: <em>por confirmar</em></li>
+        </ul>
+      </div>
+
+      <form class="form reveal" id="contactForm" novalidate>
+        <label>Nombre
+          <input type="text" name="nombre" required autocomplete="name" placeholder="Tu nombre">
+          <small class="err" data-for="nombre"></small>
+        </label>
+        <label>Correo
+          <input type="email" name="correo" required autocomplete="email" placeholder="tucorreo@ejemplo.com">
+          <small class="err" data-for="correo"></small>
+        </label>
+        <label>Tema
+          <select name="tema">
+            <option>Información general</option>
+            <option>Servicios médicos</option>
+            <option>Especialidades</option>
+            <option>Orientación</option>
+          </select>
+        </label>
+        <label>Mensaje
+          <textarea name="mensaje" rows="4" required placeholder="Cuéntanos en qué podemos ayudarte"></textarea>
+          <small class="err" data-for="mensaje"></small>
+        </label>
+        <button class="btn btn-primary" type="submit">Enviar mensaje</button>
+        <p class="form-status" id="formStatus" role="status"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-grid">
+    <div>
+      <a class="logo" href="#top"><span class="logo-mark" aria-hidden="true">+</span>saludcercana</a>
+      <p class="small-print">Sitio informativo en preparación.</p>
+    </div>
+    <div>
+      <h4>Explorar</h4>
+      <a href="#para-quien">Para ti</a>
+      <a href="#beneficios">Beneficios</a>
+      <a href="#programas">Programas</a>
+    </div>
+    <div>
+      <h4>Ayuda</h4>
+      <a href="#guia">Encuentra tu servicio</a>
+      <a href="#faq">Preguntas frecuentes</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </div>
+  <div class="wrap legal">
+    <p>© 2026 Salud cercana · Este contenido es informativo y no sustituye la orientación de un profesional de salud. En una emergencia, acude de inmediato al servicio de urgencias más cercano.</p>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" type="button" aria-label="Volver arriba">↑</button>
+
+<script src="script.js"></script>
+</body>
+</html>
