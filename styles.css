@@ -76,7 +76,7 @@ p{margin:0 0 1em;color:var(--text)}
 .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 /* Hero */
-.hero{background:linear-gradient(180deg,rgba(241,250,247,.94) 0%,rgba(241,250,247,.78) 62%,rgba(210,244,239,.25) 100%),url("workspace.svg") center bottom / 100% auto no-repeat,var(--mint);padding:clamp(48px,8vw,100px) 0 190px;overflow:hidden;position:relative}
+.hero{background:radial-gradient(ellipse at 14% 18%,rgba(255,255,255,.95),transparent 34%),radial-gradient(ellipse at 88% 78%,rgba(95,194,185,.24),transparent 38%),linear-gradient(135deg,#eaf8f5 0%,#dff3f0 52%,#f4fbf9 100%);padding:clamp(48px,8vw,100px) 0 190px;overflow:hidden;position:relative}
 .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
 .hero-visual{position:relative;min-height:420px}
 .blob{position:absolute;inset:6% 4%;background:linear-gradient(135deg,var(--primary),#2cb5a0);border-radius:42% 58% 55% 45%/48% 42% 58% 52%;animation:morph 12s ease-in-out infinite;box-shadow:var(--shadow)}
@@ -295,7 +295,7 @@ p{margin:0 0 1em;color:var(--text)}
 .hero{
   position:relative;
   isolation:isolate;
-  background:linear-gradient(180deg,rgba(241,250,247,.03),rgba(241,250,247,.02) 58%,rgba(241,250,247,.08)),url("workspace.svg") center center/cover no-repeat;
+  background:radial-gradient(ellipse at 12% 20%,rgba(255,255,255,.92),transparent 34%),radial-gradient(ellipse at 88% 78%,rgba(95,194,185,.24),transparent 38%),linear-gradient(135deg,#eaf8f5 0%,#dff3f0 52%,#f4fbf9 100%);
   padding:clamp(24px,3vw,38px) 0 54px;
 }
 .hero-showcase{position:relative;z-index:1;gap:17px}
@@ -306,3 +306,9 @@ p{margin:0 0 1em;color:var(--text)}
  .hero{background-position:center;background-size:cover;padding-top:22px}
  .hero-showcase{gap:14px}
 }
+
+/* Ajuste de portada: elimina el fondo vectorial sobredimensionado y mantiene una base limpia */
+.hero{background:radial-gradient(ellipse at 12% 18%,rgba(255,255,255,.92),transparent 34%),radial-gradient(ellipse at 88% 80%,rgba(91,190,181,.22),transparent 40%),linear-gradient(135deg,#eaf8f5,#dff3f0 55%,#f5fbf9)!important;padding-top:clamp(44px,5vw,64px)!important;padding-bottom:64px!important}
+.hero-showcase{gap:22px!important}
+.expert-card{animation-duration:7s!important}
+@media(max-width:560px){.hero{padding-top:34px!important;padding-bottom:46px!important}}
