@@ -1,50 +1,61 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 420">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 680">
 <defs>
- <linearGradient id="bg" x2="0" y2="1"><stop stop-color="#d8f4f1"/><stop offset=".55" stop-color="#a8e4df"/><stop offset="1" stop-color="#5abbb9"/></linearGradient>
- <linearGradient id="desk" x2="0" y2="1"><stop stop-color="#f4ffff" stop-opacity=".38"/><stop offset="1" stop-color="#3ab6b8" stop-opacity=".68"/></linearGradient>
- <linearGradient id="metal" x2="1" y2="1"><stop stop-color="#faffff"/><stop offset=".35" stop-color="#8ebfc5"/><stop offset=".65" stop-color="#efffff"/><stop offset="1" stop-color="#347b8b"/></linearGradient>
- <linearGradient id="screen" x2="1" y2="1"><stop stop-color="#173e52"/><stop offset=".55" stop-color="#2c8795"/><stop offset="1" stop-color="#9af4ed"/></linearGradient>
- <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12"/></filter>
- <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%"><feGaussianBlur stdDeviation="12"/></filter>
+ <linearGradient id="wall" x2="0" y2="1"><stop stop-color="#dff7f4"/><stop offset=".58" stop-color="#b9e7e4"/><stop offset="1" stop-color="#7dc9c8"/></linearGradient>
+ <linearGradient id="desk" x2="0" y2="1"><stop stop-color="#f4ffff"/><stop offset="1" stop-color="#75c5c6"/></linearGradient>
+ <linearGradient id="glass" x2="1" y2="1"><stop stop-color="#153e50"/><stop offset=".5" stop-color="#267b89"/><stop offset="1" stop-color="#8ce8e1"/></linearGradient>
+ <linearGradient id="silver" x2="1" y2="1"><stop stop-color="#ffffff"/><stop offset=".32" stop-color="#8cbec5"/><stop offset=".58" stop-color="#f4ffff"/><stop offset="1" stop-color="#397f8c"/></linearGradient>
+ <linearGradient id="book" x2="0" y2="1"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#b8e1e3"/></linearGradient>
+ <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="22"/></filter>
+ <filter id="drop" x="-30%" y="-30%" width="170%" height="180%"><feGaussianBlur stdDeviation="14"/></filter>
 </defs>
-<rect width="1600" height="420" fill="url(#bg)"/>
-<g opacity=".32" filter="url(#glow)" fill="#fff"><ellipse cx="210" cy="110" rx="170" ry="60"/><ellipse cx="1310" cy="70" rx="240" ry="85"/><ellipse cx="800" cy="340" rx="500" ry="45"/></g>
-<rect y="285" width="1600" height="135" fill="url(#desk)"/>
-<path d="M0 305 Q800 275 1600 305" fill="none" stroke="#fff" stroke-opacity=".95" stroke-width="3"/>
-<!-- books -->
-<g transform="translate(-30 240)">
- <rect x="0" y="76" width="390" height="54" rx="8" fill="#d6f2f2" stroke="#3d929d" stroke-width="6"/>
- <rect x="10" y="84" width="365" height="9" rx="4" fill="#56b6bd" opacity=".55"/>
- <rect x="25" y="22" width="345" height="58" rx="8" fill="#ffffff" stroke="#3d929d" stroke-width="5"/>
- <path d="M55 31h285M55 68h285" stroke="#8acbd0" stroke-width="3" opacity=".7"/>
+<rect width="1600" height="680" fill="url(#wall)"/>
+<!-- Ventana luminosa y reflejos -->
+<g opacity=".65">
+ <rect x="95" y="35" width="1410" height="290" rx="24" fill="#f8ffff" opacity=".45"/>
+ <path d="M430 35v290M790 35v290M1150 35v290" stroke="#ffffff" stroke-width="16" opacity=".38"/>
+ <path d="M95 190h1410" stroke="#ffffff" stroke-width="12" opacity=".25"/>
 </g>
-<!-- stethoscope -->
-<g fill="none" stroke="url(#metal)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round">
- <path d="M30 205 C20 130 120 110 160 178 C210 265 300 250 320 192"/>
- <path d="M320 192 C330 165 365 165 375 190"/>
+<ellipse cx="820" cy="590" rx="850" ry="90" fill="#ffffff" opacity=".30" filter="url(#soft)"/>
+<rect y="440" width="1600" height="240" fill="url(#desk)" opacity=".94"/>
+<path d="M0 456 Q780 425 1600 455" stroke="#ffffff" stroke-width="8" opacity=".72" fill="none"/>
+<!-- Libros médicos a la izquierda -->
+<g transform="translate(45 365)">
+ <ellipse cx="195" cy="215" rx="245" ry="32" fill="#286c78" opacity=".20" filter="url(#drop)"/>
+ <path d="M0 125Q190 102 390 125v76Q190 160 0 202Z" fill="#2d7f8b" stroke="#286a78" stroke-width="5"/>
+ <path d="M0 116Q190 93 390 116v76Q190 151 0 193Z" fill="url(#book)" stroke="#4d9aa4" stroke-width="5"/>
+ <path d="M25 126Q190 107 365 125" stroke="#ffffff" stroke-width="7" opacity=".9"/>
+ <path d="M20 158Q190 136 370 157" stroke="#a4d6d9" stroke-width="4"/>
+ <path d="M35 28Q190 8 355 30v84Q190 65 35 110Z" fill="#faffff" stroke="#6eafb7" stroke-width="5"/>
+ <path d="M55 43Q190 28 335 45" stroke="#b4dfe1" stroke-width="5"/>
+ <path d="M55 80Q190 61 335 82" stroke="#b4dfe1" stroke-width="5"/>
 </g>
-<g transform="translate(355 205) rotate(18)">
- <circle r="43" fill="url(#metal)" stroke="#4e8995" stroke-width="7"/>
- <circle r="27" fill="#dffcff" stroke="#fff" stroke-width="5"/>
- <circle r="13" fill="#7eb5bd"/>
+<!-- Estetoscopio grande y definido -->
+<g fill="none" stroke="#f7ffff" stroke-width="28" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M95 395C40 280 80 195 185 192C285 190 310 285 270 355C230 430 285 488 385 480"/>
 </g>
-<!-- laptop -->
-<g transform="translate(1190 65)">
- <path d="M80 0h270q20 0 20 20v205H60V22Q60 0 80 0Z" fill="#244f60" opacity=".22" filter="url(#shadow)"/>
- <path d="M80 0h270q20 0 20 20v205H60V22Q60 0 80 0Z" fill="url(#metal)" stroke="#286d7b" stroke-width="7"/>
- <rect x="76" y="17" width="278" height="187" rx="8" fill="url(#screen)"/>
- <path d="M92 185 Q190 80 340 45" fill="none" stroke="#b9fffa" stroke-opacity=".95" stroke-width="5"/>
- <path d="M25 224h410l-45 34H0Z" fill="url(#metal)" stroke="#4c8d9a" stroke-width="5"/>
- <path d="M165 232h125" stroke="#5d9da6" stroke-width="5" stroke-linecap="round"/>
- <path d="M0 258h390" stroke="#fff" stroke-opacity=".9" stroke-width="4"/>
+<g fill="none" stroke="#327b88" stroke-width="11" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M95 395C40 280 80 195 185 192C285 190 310 285 270 355C230 430 285 488 385 480"/>
 </g>
-<!-- clipboard and pen -->
-<g transform="translate(880 300) rotate(-4)">
- <rect x="0" y="20" width="520" height="120" rx="12" fill="#d9f4f6" stroke="#4b9eaa" stroke-width="6"/>
- <rect x="25" y="34" width="470" height="92" rx="5" fill="#ffffff"/>
- <path d="M55 65h330M55 88h260M55 110h350" stroke="#b7dce0" stroke-width="3"/>
- <rect x="205" y="7" width="115" height="24" rx="8" fill="url(#metal)" stroke="#5f9ca5" stroke-width="4"/>
- <g transform="translate(335 90) rotate(-10)"><rect x="0" y="0" width="260" height="16" rx="8" fill="#103f54"/><rect x="12" y="3" width="220" height="4" rx="2" fill="#a7f7f1"/><path d="M260 8l22-8v16Z" fill="#d9f6f7"/></g>
+<g transform="translate(390 480)"><circle r="51" fill="url(#silver)" stroke="#276b79" stroke-width="9"/><circle r="30" fill="#e8ffff" stroke="#ffffff" stroke-width="7"/><circle r="13" fill="#5eabb4"/></g>
+<!-- Laptop principal a la derecha -->
+<g transform="translate(970 95)">
+ <ellipse cx="260" cy="380" rx="330" ry="42" fill="#1b5b69" opacity=".23" filter="url(#drop)"/>
+ <path d="M85 0h360q28 0 28 28v290H55V30Q55 0 85 0Z" fill="url(#silver)" stroke="#2d7180" stroke-width="9"/>
+ <rect x="78" y="24" width="344" height="267" rx="12" fill="url(#glass)"/>
+ <path d="M95 255Q200 100 400 52" stroke="#d7ffff" stroke-width="9" opacity=".65" fill="none"/>
+ <path d="M105 230Q240 165 400 160" stroke="#6fe0d7" stroke-width="5" opacity=".65" fill="none"/>
+ <circle cx="250" cy="12" r="5" fill="#245c69"/>
+ <path d="M15 320h460l-55 56H-40Z" fill="url(#silver)" stroke="#286f7d" stroke-width="8"/>
+ <path d="M170 332h150l-14 20h-122Z" fill="#619ba5" opacity=".8"/>
+ <path d="M-20 375h435" stroke="#ffffff" stroke-width="8" opacity=".9"/>
 </g>
-<g fill="#fff" opacity=".7" filter="url(#glow)"><circle cx="480" cy="350" r="10"/><circle cx="760" cy="330" r="8"/><circle cx="1100" cy="385" r="8"/></g>
+<!-- Portapapeles y bolígrafo en primer plano -->
+<g transform="translate(570 485) rotate(-4)">
+ <ellipse cx="250" cy="115" rx="300" ry="28" fill="#286c78" opacity=".18" filter="url(#drop)"/>
+ <rect x="0" y="24" width="490" height="150" rx="16" fill="#c5e8eb" stroke="#4c9aa5" stroke-width="7"/>
+ <rect x="22" y="42" width="446" height="112" rx="8" fill="#ffffff"/>
+ <rect x="190" y="7" width="112" height="34" rx="9" fill="url(#silver)" stroke="#468d98" stroke-width="5"/>
+ <path d="M55 78h300M55 105h245M55 132h330" stroke="#b6dadd" stroke-width="5"/>
+ <g transform="translate(255 116) rotate(-9)"><rect width="270" height="19" rx="9" fill="#174b60"/><rect x="18" y="4" width="225" height="5" rx="3" fill="#a9f5ed"/><path d="M270 9l30-9v18Z" fill="#e9ffff"/></g>
+</g>
 </svg>
