@@ -291,14 +291,13 @@ p{margin:0 0 1em;color:var(--text)}
 }
 
 
-/* Fondo editorial de la sección de proyectos */
+/* Fondo editorial visible: escritorio médico, laptop y estetoscopio */
 .hero{
   position:relative;
   isolation:isolate;
-  background:linear-gradient(180deg,rgba(241,250,247,.88),rgba(241,250,247,.94)),url("assets/hero-medico.jpg") center 48%/cover no-repeat;
+  background:linear-gradient(180deg,rgba(241,250,247,.22),rgba(241,250,247,.10) 55%,rgba(241,250,247,.04)),url("workspace.svg") center center/100% 100% no-repeat;
 }
 .hero-showcase{position:relative;z-index:1}
-.expert-card{backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-@media(max-width:640px){.hero{background-position:center;background-image:linear-gradient(180deg,rgba(241,250,247,.91),rgba(241,250,247,.96)),url("assets/hero-medico.jpg")}}
-
-@media(max-width:700px){.hero{background-size:auto 210px;padding-bottom:150px}}
+.expert-card{background:rgba(255,255,255,.94);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+@media(max-width:640px){.hero{background-position:center;background-size:100% 100%}}
+@media(max-width:700px){.hero{padding-bottom:110px}}
