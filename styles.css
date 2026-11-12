@@ -308,7 +308,10 @@ p{margin:0 0 1em;color:var(--text)}
 }
 
 /* Ajuste de portada: elimina el fondo vectorial sobredimensionado y mantiene una base limpia */
-.hero{background:radial-gradient(ellipse at 12% 18%,rgba(255,255,255,.92),transparent 34%),radial-gradient(ellipse at 88% 80%,rgba(91,190,181,.22),transparent 40%),linear-gradient(135deg,#eaf8f5,#dff3f0 55%,#f5fbf9)!important;padding-top:clamp(44px,5vw,64px)!important;padding-bottom:64px!important}
+.hero{background-image:linear-gradient(180deg,rgba(235,249,246,.90) 0%,rgba(226,246,242,.72) 48%,rgba(213,239,235,.32) 100%),url("https://www.regione.lombardia.it/content/dam/rl/immagini/immagini-default/redazionale/sanita-cartella-medica.jpg")!important;background-size:cover!important;background-position:center 58%!important;background-repeat:no-repeat!important;padding-top:clamp(44px,5vw,64px)!important;padding-bottom:64px!important}
 .hero-showcase{gap:22px!important}
 .expert-card{animation-duration:7s!important}
 @media(max-width:560px){.hero{padding-top:34px!important;padding-bottom:46px!important}}
+
+/* La foto médica real debe verse detrás de la composición, no solo un degradado */
+.hero{background-color:#dff3f0!important}
