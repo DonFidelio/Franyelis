@@ -291,18 +291,18 @@ p{margin:0 0 1em;color:var(--text)}
 }
 
 
-/* Fondo editorial con más contraste y portada más compacta */
+/* Portada: fondo médico protagonista en una capa independiente */
 .hero{
   position:relative;
   isolation:isolate;
-  background:linear-gradient(180deg,rgba(241,250,247,.08),rgba(241,250,247,.03) 55%,rgba(241,250,247,.02)),url("workspace.svg") center center/100% 100% no-repeat;
-  padding:clamp(28px,3.8vw,48px) 0 66px;
+  background:linear-gradient(180deg,rgba(241,250,247,.03),rgba(241,250,247,.02) 58%,rgba(241,250,247,.08)),url("workspace.svg") center center/cover no-repeat;
+  padding:clamp(24px,3vw,38px) 0 54px;
 }
-.hero-showcase{position:relative;z-index:1;gap:20px}
-.hero-showcase .hero-copy .tag{margin-bottom:8px}
-.hero-showcase .lead{margin-top:10px}
-.expert-card{background:rgba(255,255,255,.96);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
+.hero-showcase{position:relative;z-index:1;gap:17px}
+.hero-showcase .hero-copy .tag{margin-bottom:6px}
+.hero-showcase .lead{margin-top:8px}
+.expert-card{background:rgba(255,255,255,.97);backdrop-filter:blur(1px);-webkit-backdrop-filter:blur(1px)}
 @media(max-width:640px){
-  .hero{background-position:center;background-size:100% 100%;padding-top:26px}
-  .hero-showcase{gap:16px}
+ .hero{background-position:center;background-size:cover;padding-top:22px}
+ .hero-showcase{gap:14px}
 }
