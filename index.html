@@ -584,35 +584,12 @@
     </span>
     <span class="visits-corner-copy">
       <span class="visits-corner-label">Visitas</span>
-      <span class="visits-corner-number" id="visitsCount" aria-live="polite">—</span>
+      <div class="visits-corner-number counterapi" id="visitsCount" key="franyelis-home" action="view" noCss="true" noIcon="true" noLink="true" aria-live="polite">Cargando…</div>
     </span>
     <a class="visits-corner-credit" href="https://counterapi.com/" target="_blank" rel="noopener noreferrer" aria-label="Servicio de contador CounterAPI">contador web</a>
   </div>
 
-  <script>
-    (function () {
-      const output = document.getElementById('visitsCount');
-      if (!output) return;
-
-      // Contabiliza las visitas de la portada del sitio.
-      fetch('https://counterapi.com/api/donfidelio.github.io/view/franyelis-home')
-        .then(response => {
-          if (!response.ok) throw new Error('No se pudo consultar el contador');
-          return response.json();
-        })
-        .then(data => {
-          if (typeof data.value === 'number') {
-            output.textContent = new Intl.NumberFormat('es-VE').format(data.value);
-          } else {
-            output.textContent = '—';
-          }
-        })
-        .catch(() => {
-          output.textContent = '—';
-          output.title = 'El contador no está disponible temporalmente';
-        });
-    })();
-  </script>
+  <script async src="https://counterapi.com/c.js?ns=donfidelio.github.io"></script>
 
 </body>
 </html>
