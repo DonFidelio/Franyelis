@@ -474,3 +474,9 @@ p,.lead,.project-topic,.experts-note,.tag{
 @media(max-width:560px){
   .hero-showcase{transform:translateY(48px)!important}
 }
+
+
+/* Tercer renglón de proyectos: una tarjeta centrada */
+.expert-row-extra{grid-template-columns:repeat(5,minmax(0,1fr))}
+.expert-row-extra .expert-card{grid-column:3}
+@media(max-width:980px){.expert-row-extra{grid-template-columns:repeat(2,minmax(0,1fr))}.expert-row-extra .expert-card{grid-column:1/-1;justify-self:center;width:min(100%,320px)}}
