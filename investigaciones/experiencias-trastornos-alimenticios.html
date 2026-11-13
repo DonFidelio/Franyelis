@@ -185,6 +185,8 @@
       color: var(--text-muted);
       max-width: 860px;
       margin-bottom: 2.5rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
     }
 
     .authors-grid {
@@ -199,7 +201,7 @@
       display: flex;
       align-items: center;
       gap: 1rem;
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.85);
       padding: 0.85rem 1rem;
       border-radius: 12px;
       border: 1px solid var(--card-border);
@@ -512,12 +514,32 @@
       font-size: 1.1rem;
       font-weight: 700;
       color: var(--text-main);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.65rem;
     }
 
-    .card-item p {
+    .card-item p, .card-item li {
       font-size: 0.95rem;
-      margin-bottom: 0;
+      color: var(--text-muted);
+    }
+
+    .card-sublist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .card-sublist li {
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .card-sublist li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent-violet);
+      font-weight: 800;
     }
 
     /* Estadísticas con Contadores Dinámicos */
@@ -571,7 +593,7 @@
       font-weight: 700;
     }
 
-    /* Pestañas Interactivas (Tipos de TCA y Contrastación) */
+    /* Pestañas Interactivas */
     .tabs-nav {
       display: flex;
       gap: 0.65rem;
@@ -676,13 +698,13 @@
     }
 
     .list-badge {
-      width: 26px;
-      height: 26px;
+      width: 28px;
+      height: 28px;
       border-radius: 8px;
       background: var(--accent-violet-soft);
       color: var(--accent-violet);
       font-weight: 800;
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -746,30 +768,30 @@
     <div class="toolbar-content">
       <a href="../index.html" class="brand-link">
         <span class="brand-badge">+</span>
-        <span>Tu espacio saludable · Dossier Académico LUZ</span>
+        <span>Tu espacio saludable · Proyectos</span>
       </a>
       <div class="search-box">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        <input type="text" id="docSearch" placeholder="Filtrar término (ej. anorexia, redes)...">
+        <input type="text" id="docSearch" placeholder="Filtrar término (ej. anorexia, OMS)...">
       </div>
     </div>
   </div>
 
-  <!-- Cabecera Principal -->
+  <!-- Cabecera Principal (Diapositiva 1) -->
   <header>
     <div class="header-container">
       <div class="header-meta">
         <span class="badge-project">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a8 8 0 0 0-8 8c0 5.4 7 11.5 7.3 11.8a1 1 0 0 0 1.4 0C13 21.5 20 15.4 20 10a8 8 0 0 0-8-8Z"/></svg>
-          Cátedra Ecológica Científica Tecnológica · 2026
+          Cátedra Ecológica Científica Tecnológica
         </span>
-        <span>Universidad del Zulia · Facultad de Medicina</span>
+        <span>República Bolivariana de Venezuela &bull; Universidad del Zulia &bull; Facultad de Medicina &bull; Escuela de Medicina</span>
       </div>
       <h1>
         Experiencias de los Jóvenes con <span>Trastornos Alimenticios</span>
       </h1>
       <p class="header-subtitle">
-        Abordaje cualitativo y psicosocial sobre la <span class="kw">percepción de la autoimagen</span>, las conductas alimentarias de riesgo y la influencia de las <span class="kw rose">redes sociales</span> en la juventud.
+        COMPRENSIÓN, APOYO Y ESPERANZA
       </p>
       
       <div class="authors-grid">
@@ -779,7 +801,7 @@
           </div>
           <div class="author-info">
             <span>Autora</span>
-            <span>Geovanna Govea (C.I. 32.973.652)</span>
+            <span>Geovanna Govea · C.I 32.973.652</span>
           </div>
         </div>
 
@@ -789,7 +811,7 @@
           </div>
           <div class="author-info">
             <span>Autora</span>
-            <span>Franyelis Hurtado (C.I. 32.376.896)</span>
+            <span>Franyelis Hurtado · C.I 32.376.896</span>
           </div>
         </div>
 
@@ -798,8 +820,8 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
           </div>
           <div class="author-info">
-            <span>Institución y Fecha</span>
-            <span>LUZ · Maracaibo, Septiembre 2026</span>
+            <span>Lugar y Fecha</span>
+            <span>Maracaibo, septiembre del 2026</span>
           </div>
         </div>
       </div>
@@ -809,24 +831,25 @@
   <!-- Layout Principal -->
   <div class="layout-container">
 
-    <!-- Índice Lateral Analítico -->
+    <!-- Índice Lateral -->
     <aside>
       <nav aria-label="Contenido del trabajo">
         <div class="toc-title">
-          <span>Índice Analítico</span>
-          <span>10 Secciones</span>
+          <span>Índice de Láminas</span>
+          <span>11 Diapositivas</span>
         </div>
         <ul class="toc-list">
           <li><a href="#sec-01">01. Portada institucional</a></li>
           <li><a href="#sec-02">02. Planteamiento del problema</a></li>
-          <li><a href="#sec-03">03. Objetivos de investigación</a></li>
-          <li><a href="#sec-04">04. Dimensiones social y humana</a></li>
-          <li><a href="#sec-05">05. Antecedentes científicos</a></li>
-          <li><a href="#sec-06">06. Tipos y factores de TCA</a></li>
-          <li><a href="#sec-07">07. Tipo y diseño metodológico</a></li>
-          <li><a href="#sec-08">08. Contrastación de hallazgos</a></li>
-          <li><a href="#sec-09">09. Conclusiones del estudio</a></li>
-          <li><a href="#sec-10">10. Recomendaciones y cierre</a></li>
+          <li><a href="#sec-03">03. Objetivos de la investigación</a></li>
+          <li><a href="#sec-04">04. Justificación de la investigación</a></li>
+          <li><a href="#sec-05">05. Antecedentes de la investigación</a></li>
+          <li><a href="#sec-06">06. Bases teóricas (TCA)</a></li>
+          <li><a href="#sec-07">07. Tipo de investigación</a></li>
+          <li><a href="#sec-08">08. Contrastación teórica</a></li>
+          <li><a href="#sec-09">09. Conclusiones de la investigación</a></li>
+          <li><a href="#sec-10">10. Recomendaciones</a></li>
+          <li><a href="#sec-11">11. Cierre y mensaje final</a></li>
         </ul>
       </nav>
     </aside>
@@ -834,229 +857,283 @@
     <!-- Contenido Dinámico -->
     <main id="mainContent">
 
-      <!-- SECCIÓN 01 -->
+      <!-- DIAPOSITIVA 01 -->
       <section id="sec-01">
         <div class="section-header">
           <div class="section-icon-wrap">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
           </div>
           <div>
-            <span class="section-tag">01 · Identificación Académica</span>
-            <h2>Portada y Presentación Institucional</h2>
+            <span class="section-tag">Diapositiva 01 · Portada</span>
+            <h2>Identificación Institucional</h2>
           </div>
         </div>
-        <p>
-          República Bolivariana de Venezuela &bull; <span class="kw">Universidad del Zulia (LUZ)</span> &bull; Facultad de Medicina &bull; Escuela de Medicina &bull; Cátedra Ecológica Científica Tecnológica. Presentado por <strong>Geovanna Govea</strong> y <strong>Franyelis Hurtado</strong> en Maracaibo, septiembre de 2026.
-        </p>
+        <ul class="styled-list">
+          <li>
+            <span class="list-badge">LUZ</span>
+            <div><strong>República Bolivariana de Venezuela</strong> &bull; Universidad del Zulia &bull; Facultad de Medicina &bull; Escuela de Medicina &bull; Cátedra Ecológica Científica Tecnológica.</div>
+          </li>
+          <li>
+            <span class="list-badge">✦</span>
+            <div><strong>Título:</strong> Experiencias de los jóvenes con trastornos alimenticios. <em>Comprensión, apoyo y esperanza.</em></div>
+          </li>
+          <li>
+            <span class="list-badge">✦</span>
+            <div><strong>Autores:</strong> Geovanna Govea (C.I 32.973.652) y Franyelis Hurtado (C.I 32.376.896). Maracaibo septiembre del 2026.</div>
+          </li>
+        </ul>
       </section>
 
-      <!-- SECCIÓN 02 -->
+      <!-- DIAPOSITIVA 02 -->
       <section id="sec-02">
         <div class="section-header">
           <div class="section-icon-wrap rose">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
           </div>
           <div>
-            <span class="section-tag rose">02 · El Problema de Investigación</span>
-            <h2>Contexto Global y Vacío de Relatos Vividos</h2>
+            <span class="section-tag rose">Diapositiva 02 · Planteamiento del Problema</span>
+            <h2>Planteamiento, Contexto Global y Formulación</h2>
           </div>
         </div>
-        <p>
-          Los trastornos alimenticios implican afecciones psicológicas complejas que alteran la autoestima, provocan ansiedad y fomentan el aislamiento, evidenciando un <span class="kw">vacío de relatos en primera persona</span> dentro de la literatura clínica.
-        </p>
 
         <div class="stats-grid">
           <div class="stat-box">
             <div class="stat-number rose count-up" data-target="70" data-suffix="%">0%</div>
-            <div class="stat-label">Jóvenes influenciados que desean un cuerpo más pequeño</div>
+            <div class="stat-label">Desean cuerpo más pequeño (Influencia entorno y redes sociales)</div>
           </div>
           <div class="stat-box">
             <div class="stat-number count-up" data-target="9" data-suffix="%">0%</div>
-            <div class="stat-label">Prevalencia mundial estimada (OMS)</div>
+            <div class="stat-label">Prevalencia mundial (OMS)</div>
           </div>
           <div class="stat-box">
             <div class="stat-number blue">10 : 1</div>
-            <div class="stat-label">Proporción de género (Mujeres / Hombres)</div>
+            <div class="stat-label">Proporción de género (mujeres / hombres)</div>
           </div>
           <div class="stat-box">
-            <div class="stat-number rose">&lt; 10%</div>
-            <div class="stat-label">Pacientes que reciben tratamiento activo</div>
+            <div class="stat-number rose">Menos del 10%</div>
+            <div class="stat-label">En tratamiento activo</div>
+          </div>
+        </div>
+
+        <div class="grid-cards">
+          <div class="card-item">
+            <div class="card-icon rose">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+            </div>
+            <h3>Planteamiento del Problema</h3>
+            <ul class="card-sublist">
+              <li><span class="kw">Afecciones psicológicas</span> y conductas alimentarias alteradas.</li>
+              <li>Impacto en la <span class="kw rose">autoestima, ansiedad y aislamiento</span>.</li>
+              <li>Influencia del entorno y redes sociales (70% desean cuerpo más pequeño).</li>
+            </ul>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <h3>Formulación del Problema</h3>
+            <ul class="card-sublist">
+              <li><span class="kw">Vacío en relatos</span> en primera persona.</li>
+              <li><span class="kw">Abordaje cualitativo</span> de la experiencia vivida.</li>
+            </ul>
           </div>
         </div>
 
         <div class="quote-box">
           <blockquote>
-            “¿Cuáles son las experiencias personales en la percepción de la autoimagen y los comportamientos de jóvenes con trastornos alimenticios?”
+            “¿Cuáles son las experiencias personales en la percepción de la autoimagen y el comportamiento alimentario en jóvenes con trastornos alimenticios?”
           </blockquote>
-          <p style="margin-bottom:0; color:var(--text-main); font-size: 0.9rem; font-weight: 700;">Pregunta Central de Investigación</p>
+          <p style="margin-bottom:0; color:var(--text-main); font-size: 0.9rem; font-weight: 700;">Pregunta Central</p>
         </div>
       </section>
 
-      <!-- SECCIÓN 03 -->
+      <!-- DIAPOSITIVA 03 -->
       <section id="sec-03">
         <div class="section-header">
           <div class="section-icon-wrap blue">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
           </div>
           <div>
-            <span class="section-tag blue">03 · Propósito del Estudio</span>
-            <h2>Objetivos de la Investigación</h2>
+            <span class="section-tag blue">Diapositiva 03 · Objetivos de la Investigación</span>
+            <h2>Objetivo General y Objetivos Específicos</h2>
           </div>
         </div>
-        <p>
-          <strong>Objetivo General:</strong> Analizar las experiencias personales y comportamientos de los jóvenes con trastornos alimenticios.
-        </p>
 
-        <div class="grid-cards">
-          <div class="card-item">
-            <div class="card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-            </div>
-            <h3>01. Comportamientos</h3>
-            <p>Reconocer las conductas alimentarias, rituales y señales de alerta en los jóvenes que padecen TCA.</p>
-          </div>
-
-          <div class="card-item">
-            <div class="card-icon rose">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
-            <h3>02. Entorno e Influencia</h3>
-            <p>Determinar el papel de las relaciones interpersonales (<span class="kw">familia, amistades y redes sociales</span>).</p>
-          </div>
-
-          <div class="card-item">
-            <div class="card-icon blue">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-            </div>
-            <h3>03. Dinámicas Cotidianas</h3>
-            <p>Describir las vivencias diarias en los entornos familiar, social, académico y laboral.</p>
-          </div>
+        <div class="quote-box" style="margin-top: 0;">
+          <blockquote>
+            “Analizar las experiencias personales y comportamientos de los jóvenes con trastornos alimenticios.”
+          </blockquote>
+          <p style="margin-bottom:0; color:var(--text-main); font-size: 0.9rem; font-weight: 700;">Objetivo General</p>
         </div>
+
+        <ul class="styled-list">
+          <li>
+            <span class="list-badge">1</span>
+            <div><span class="kw">Reconocer los comportamientos</span> de los jóvenes que padecen trastornos alimenticios.</div>
+          </li>
+          <li>
+            <span class="list-badge">2</span>
+            <div><span class="kw">Determinar la influencia</span> de las relaciones interpersonales (familia, amistades y redes sociales).</div>
+          </li>
+          <li>
+            <span class="list-badge">3</span>
+            <div><span class="kw">Describir las vivencias</span> y dinámicas cotidianas en los entornos familiar, social y académico/laboral.</div>
+          </li>
+        </ul>
       </section>
 
-      <!-- SECCIÓN 04 -->
+      <!-- DIAPOSITIVA 04 -->
       <section id="sec-04">
         <div class="section-header">
           <div class="section-icon-wrap emerald">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
           </div>
           <div>
-            <span class="section-tag">04 · Perspectiva Conceptual</span>
-            <h2>Dimensiones Social y Humana</h2>
+            <span class="section-tag">Diapositiva 04 · Justificación de la Investigación</span>
+            <h2>Dimensiones Social y Humana, Perspectiva Conceptual e Impacto</h2>
           </div>
         </div>
 
         <div class="grid-cards">
           <div class="card-item">
-            <div class="card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
-            </div>
-            <h3>Reconocimiento de la Voz Juvenil</h3>
-            <p>Visibiliza el <span class="kw">sufrimiento subjetivo</span> más allá de las etiquetas o criterios puramente diagnósticos.</p>
-          </div>
-
-          <div class="card-item">
             <div class="card-icon rose">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
             </div>
-            <h3>Mirada Empática y Sentido Humano</h3>
-            <p>Ofrece una comprensión profunda de las vivencias en familia, instituciones educativas y entornos digitales.</p>
+            <h3>Dimensiones Social y Humana</h3>
+            <ul class="card-sublist">
+              <li><strong>RECONOCIMIENTO DE LA VOZ JUVENIL:</strong> Visibiliza el sufrimiento subjetivo más allá del diagnóstico clínico.</li>
+              <li><strong>MIRADA EMPÁTICA:</strong> Ofrece comprensión de vivencias en familia, instituciones educativas y entornos digitales.</li>
+              <li><strong>SENTIDO HUMANO:</strong> Aborda la problemática creciente y su impacto en el bienestar integral.</li>
+            </ul>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z"/></svg>
+            </div>
+            <h3>Perspectiva Conceptual</h3>
+            <ul class="card-sublist">
+              <li><strong>PROFUNDIZACIÓN DE INTERACCIONES:</strong> Analiza percepción de autoimagen, conductas y relaciones interpersonales (familia, pares, redes).</li>
+              <li><strong>ENRIQUECIMIENTO DEL CONOCIMIENTO:</strong> Sistematiza experiencias psicosociales juveniles como antecedente para futuras indagaciones.</li>
+            </ul>
           </div>
 
           <div class="card-item">
             <div class="card-icon blue">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
             </div>
-            <h3>Impacto y Prevención Temprana</h3>
-            <p>Sistematiza experiencias para orientar a educadores, profesionales de salud y familias en el diseño de <span class="kw blue">entornos de apoyo efectivos</span>.</p>
+            <h3>Hallazgos e Impacto</h3>
+            <ul class="card-sublist">
+              <li><strong>INSUMOS VALIOSOS:</strong> Proporciona información para educadores, profesionales de salud, orientadores y familias.</li>
+              <li><strong>MEJORA DE ESTRATEGIAS:</strong> Facilita diseño de programas de prevención, acompañamiento temprano y entornos de apoyo efectivos.</li>
+            </ul>
           </div>
         </div>
       </section>
 
-      <!-- SECCIÓN 05 -->
+      <!-- DIAPOSITIVA 05 -->
       <section id="sec-05">
         <div class="section-header">
           <div class="section-icon-wrap blue">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
           </div>
           <div>
-            <span class="section-tag blue">05 · Marco Referencial</span>
-            <h2>Antecedentes Internacionales y Nacionales</h2>
+            <span class="section-tag blue">Diapositiva 05 · Antecedentes de la Investigación</span>
+            <h2>Antecedentes Internacionales y Nacionales (Venezuela)</h2>
           </div>
         </div>
 
-        <ul class="styled-list">
-          <li>
-            <span class="list-badge">INT</span>
-            <div><strong>Muñoz A. (2023 · Honduras):</strong> Analiza la educación alimentaria y la formación de hábitos saludables en el entorno socioeducativo.</div>
-          </li>
-          <li>
-            <span class="list-badge">INT</span>
-            <div><strong>Valdés, Pérez & Sánchez (2021):</strong> Evidencian la estrecha relación entre el uso de <span class="kw rose">redes sociales</span>, la presión familiar y la insatisfacción corporal.</div>
-          </li>
-          <li>
-            <span class="list-badge">VEN</span>
-            <div><strong>Ramírez & Zerpa (Fundación Ayúdate / USB):</strong> Documentan una prevalencia del <span class="kw rose">12,61% de conductas de riesgo</span> en jóvenes de Caracas.</div>
-          </li>
-          <li>
-            <span class="list-badge">VEN</span>
-            <div><strong>Rivero & Vivas (UCV):</strong> Estudian los trastornos alimenticios en población estudiantil universitaria, identificando riesgo y conductas de restricción.</div>
-          </li>
-        </ul>
+        <div class="grid-cards">
+          <div class="card-item">
+            <div class="card-icon blue">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <h3>ANTECEDENTES INTERNACIONALES</h3>
+            <ul class="card-sublist">
+              <li><strong>MUÑOZ A. (2023) - HONDURAS:</strong> Educación alimentaria y hábitos en el entorno socioeducativo.</li>
+              <li><strong>VALDÉS, P., PÉREZ, C. Y SÁNCHEZ, M. (2021):</strong> Influencia de redes sociales, presión familiar e insatisfacción corporal.</li>
+            </ul>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <h3>ANTECEDENTES NACIONALES (VENEZUELA)</h3>
+            <ul class="card-sublist">
+              <li><strong>RAMÍREZ, A. Y ZERPA, C.:</strong> Prevalencia del <span class="kw rose">12.61%</span> de conductas de riesgo en Caracas. FUNDACIÓN AYÚDATE / USB.</li>
+              <li><strong>RIVERO, L. Y VIVAS, E.:</strong> Trastornos en estudiantes: riesgo y conductas de restricción. Universidad Central de Venezuela (UCV).</li>
+            </ul>
+          </div>
+        </div>
       </section>
 
-      <!-- SECCIÓN 06 (INTERACTIVA CON PESTAÑAS) -->
+      <!-- DIAPOSITIVA 06 (INTERACTIVA CON PESTAÑAS) -->
       <section id="sec-06">
         <div class="section-header">
           <div class="section-icon-wrap">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
           </div>
           <div>
-            <span class="section-tag">06 · Bases Teóricas</span>
+            <span class="section-tag">Diapositiva 06 · Bases Teóricas</span>
             <h2>Trastornos de la Conducta Alimentaria (TCA)</h2>
           </div>
         </div>
-        <p>
-          Los TCA son afecciones biopsicosociales de salud mental que alteran la relación con la comida, el cuerpo y las emociones. Haz clic en cada pestaña para revisar sus manifestaciones principales:
-        </p>
 
         <div class="tabs-nav" role="tablist">
-          <button class="tab-btn active" data-tab="tca-anorexia">Anorexia Nerviosa</button>
-          <button class="tab-btn" data-tab="tca-bulimia">Bulimia Nerviosa</button>
-          <button class="tab-btn" data-tab="tca-atracon">Trastorno por Atracón</button>
-          <button class="tab-btn" data-tab="tca-factores">Factores Asociados</button>
+          <button class="tab-btn active" data-tab="tca-intro">Introducción y Contexto</button>
+          <button class="tab-btn" data-tab="tca-tipos">Principales Tipos de TCA</button>
+          <button class="tab-btn" data-tab="tca-riesgo">Factores de Riesgo y Origen</button>
+          <button class="tab-btn" data-tab="tca-alerta">Detección y Señales de Alerta</button>
         </div>
 
-        <div class="tab-panel active" id="tca-anorexia">
-          <h3 style="margin-bottom: 0.5rem; color: var(--text-main);">Anorexia Nerviosa</h3>
-          <p style="margin-bottom: 0;">Se caracteriza por una <span class="kw rose">restricción severa de la ingesta</span> alimentaria motivada por un temor intenso al aumento de peso y una marcada distorsión de la percepción corporal.</p>
+        <div class="tab-panel active" id="tca-intro">
+          <h3 style="margin-bottom: 0.65rem; color: var(--text-main);">INTRODUCCIÓN Y CONTEXTO</h3>
+          <ul class="card-sublist">
+            <li><strong>Trastornos de la Conducta Alimentaria (TCA):</strong> Afecciones de salud mental que afectan la relación con comida, cuerpo y emociones.</li>
+            <li><strong>Aspecto Biopsicosocial:</strong> Surgen de interacción entre factores biológicos, psicológicos y sociales.</li>
+            <li><strong>Impacto:</strong> Alteran salud física, bienestar emocional y rendimiento académico/social.</li>
+          </ul>
         </div>
 
-        <div class="tab-panel" id="tca-bulimia">
-          <h3 style="margin-bottom: 0.5rem; color: var(--text-main);">Bulimia Nerviosa</h3>
-          <p style="margin-bottom: 0;">Consiste en episodios recurrentes de ingesta voraz (<span class="kw rose">atracones</span>) seguidos de conductas compensatorias inapropiadas como purgas, ayunos prolongados o ejercicio físico excesivo.</p>
+        <div class="tab-panel" id="tca-tipos">
+          <h3 style="margin-bottom: 0.65rem; color: var(--text-main);">PRINCIPALES TIPOS DE TCA</h3>
+          <ul class="card-sublist">
+            <li><strong>Anorexia Nerviosa:</strong> Restricción severa de ingesta por temor a aumento de peso y distorsión corporal.</li>
+            <li><strong>Bulimia Nerviosa:</strong> Atracones seguidos de conductas compensatorias (purgas, ejercicio excesivo).</li>
+            <li><strong>Trastorno por Atracón:</strong> Ingesta compulsiva de grandes cantidades sin conductas compensatorias.</li>
+          </ul>
         </div>
 
-        <div class="tab-panel" id="tca-atracon">
-          <h3 style="margin-bottom: 0.5rem; color: var(--text-main);">Trastorno por Atracón</h3>
-          <p style="margin-bottom: 0;">Implica la <span class="kw">ingesta compulsiva</span> de grandes cantidades de alimentos en periodos cortos con sensación de pérdida de control, pero sin recurrir a conductas compensatorias posteriores.</p>
+        <div class="tab-panel" id="tca-riesgo">
+          <h3 style="margin-bottom: 0.65rem; color: var(--text-main);">FACTORES DE RIESGO Y ORIGEN</h3>
+          <ul class="card-sublist">
+            <li><strong>Psicológicos:</strong> Baja autoestima, perfeccionismo, ansiedad o necesidad de control.</li>
+            <li><strong>Sociales:</strong> Presión estética, estándares irrealistas en redes sociales y estigmatización.</li>
+            <li><strong>Biológicos y Familiares:</strong> Predisposición genética, dinámicas familiares y antecedentes de trauma.</li>
+          </ul>
         </div>
 
-        <div class="tab-panel" id="tca-factores">
-          <h3 style="margin-bottom: 0.5rem; color: var(--text-main);">Dimensiones Sintomáticas</h3>
-          <p style="margin-bottom: 0;"><strong>Psicológicos:</strong> Baja autoestima, perfeccionismo, ansiedad y necesidad de control.<br><strong>Sociales:</strong> Presión estética y estándares irrealistas.<br><strong>Conductuales y Físicos:</strong> Aislamiento al comer, conteo obsesivo de calorías y variaciones extremas de peso.</p>
+        <div class="tab-panel" id="tca-alerta">
+          <h3 style="margin-bottom: 0.65rem; color: var(--text-main);">DETECCIÓN Y SEÑALES DE ALERTA</h3>
+          <ul class="card-sublist">
+            <li><strong>Conductuales:</strong> Aislamiento social al comer, preocupación excesiva por calorías, cambios de hábitos.</li>
+            <li><strong>Físicos:</strong> Variaciones extremas de peso, fatiga, alteraciones gastrointestinales.</li>
+            <li><strong>Emocionales:</strong> Cambios de humor, culpa o vergüenza constante por la alimentación.</li>
+          </ul>
         </div>
       </section>
 
-      <!-- SECCIÓN 07 -->
+      <!-- DIAPOSITIVA 07 -->
       <section id="sec-07">
         <div class="section-header">
           <div class="section-icon-wrap blue">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
           </div>
           <div>
-            <span class="section-tag blue">07 · Metodología</span>
-            <h2>Enfoque y Diseño de Investigación</h2>
+            <span class="section-tag blue">Diapositiva 07 · Tipo de Investigación</span>
+            <h2>Enfoque, Diseño y Nivel de Profundidad</h2>
           </div>
         </div>
 
@@ -1065,47 +1142,519 @@
             <div class="card-icon blue">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
             </div>
-            <h3>Cualitativo - Documental</h3>
-            <p>Búsqueda y revisión crítica de fuentes secundarias, artículos científicos, relatos clínicos y testimonios sobre TCA (Arias, 2012; Alfonso, 1995).</p>
+            <h3>1. Enfoque y Diseño</h3>
+            <ul class="card-sublist">
+              <li><span class="kw blue">Cualitativo - Documental</span></li>
+              <li><strong>Proceso:</strong> Búsqueda y análisis de fuentes secundarias (Arias, 2012; Alfonso, 1995).</li>
+              <li><strong>Aplicación:</strong> Revisión crítica de artículos, relatos clínicos y testimonios sobre TCA.</li>
+            </ul>
           </div>
 
           <div class="card-item">
             <div class="card-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
             </div>
-            <h3>Descriptivo - Analítico</h3>
-            <p>Caracterización rigurosa de conductas e interpretación profunda de las dinámicas familiares e impacto digital en la literatura.</p>
+            <h3>2. Nivel de Profundidad</h3>
+            <ul class="card-sublist">
+              <li><span class="kw">Descriptivo - Analítico</span></li>
+              <li><strong>Nivel Descriptivo:</strong> Caracterización de conductas y estructura del fenómeno (Arias, 2012).</li>
+              <li><strong>Carácter Analítico:</strong> Interpretación de dinámicas familiares e impacto de redes sociales en la literatura.</li>
+            </ul>
           </div>
         </div>
       </section>
 
-      <!-- SECCIÓN 08 -->
+      <!-- DIAPOSITIVA 08 -->
       <section id="sec-08">
         <div class="section-header">
           <div class="section-icon-wrap">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>
           </div>
           <div>
-            <span class="section-tag">08 · Resultados · Contrastación Teórica</span>
-            <h2>Análisis de Categorías y Hallazgos</h2>
+            <span class="section-tag">Diapositiva 08 · Resultados de la Investigación</span>
+            <h2>Contrastación Teórica: Análisis de Hallazgos</h2>
           </div>
         </div>
+        <p>
+          <strong>Análisis de hallazgos mediante contrastación teórica</strong> (Confrontación de teorías, antecedentes e interpretación cualitativa):
+        </p>
 
         <div class="grid-cards">
           <div class="card-item">
             <div class="card-icon rose">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
             </div>
-            <h3>1. Manifestaciones de Riesgo</h3>
-            <p><strong>Teoría:</strong> DSM-5, Ogden (2010).<br><strong>Análisis:</strong> Aislamiento gradual y simulación; restricción enmascarada tras hábitos “saludables” que retrasan su detección.</p>
+            <h3>Categoría 1: Manifestaciones Alimentarias de Riesgo</h3>
+            <p style="font-size: 0.85rem; margin-bottom: 0.65rem;"><em>(Objetivo 1: Reconocer comportamientos)</em></p>
+            <ul class="card-sublist">
+              <li><strong>Fundamento Teórico:</strong> DSM-5, APA (2014), Ogden (2010): Restricción cognitiva, conductas compensatorias.</li>
+              <li><strong>Evidencia en Antecedentes:</strong> Ramírez/Zerpa (2020), Rava/Silber (2018), Rivero/Vivas: Aislamiento sutil, evitación social, conteo obsesivo.</li>
+              <li><strong>Análisis Interpretativo:</strong> Proceso gradual de aislamiento y simulación. Restricción enmascarada tras hábitos ‘saludables’, retrasando detección.</li>
+            </ul>
           </div>
 
           <div class="card-item">
             <div class="card-icon blue">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
             </div>
-            <h3>2. Influencia Socioafectiva y Digital</h3>
-            <p><strong>Teoría:</strong> Modelo Tripartito (Thompson), Festinger.<br><strong>Análisis:</strong> Instagram y TikTok potencian la comparación social; la familia actúa como <span class="kw">catalizador dual</span> (agravante o protector).</p>
+            <h3>Categoría 2: Influencia Socioafectiva y Digital</h3>
+          </div>
+          <div class="author-info">
+            <span>Autora</span>
+            <span>Geovanna Govea · C.I 32.973.652</span>
+          </div>
+        </div>
+
+        <div class="author-card">
+          <div class="author-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="author-info">
+            <span>Autora</span>
+            <span>Franyelis Hurtado · C.I 32.376.896</span>
+          </div>
+        </div>
+
+        <div class="author-card">
+          <div class="author-icon blue">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+          </div>
+          <div class="author-info">
+            <span>Lugar y Fecha</span>
+            <span>Maracaibo, septiembre del 2026</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Layout Principal -->
+  <div class="layout-container">
+
+    <!-- Índice Lateral -->
+    <aside>
+      <nav aria-label="Contenido del trabajo">
+        <div class="toc-title">
+          <span>Índice de Láminas</span>
+          <span>11 Diapositivas</span>
+        </div>
+        <ul class="toc-list">
+          <li><a href="#sec-01">01. Portada institucional</a></li>
+          <li><a href="#sec-02">02. Planteamiento del problema</a></li>
+          <li><a href="#sec-03">03. Objetivos de la investigación</a></li>
+          <li><a href="#sec-04">04. Justificación de la investigación</a></li>
+          <li><a href="#sec-05">05. Antecedentes de la investigación</a></li>
+          <li><a href="#sec-06">06. Bases teóricas (TCA)</a></li>
+          <li><a href="#sec-07">07. Tipo de investigación</a></li>
+          <li><a href="#sec-08">08. Contrastación teórica</a></li>
+          <li><a href="#sec-09">09. Conclusiones de la investigación</a></li>
+          <li><a href="#sec-10">10. Recomendaciones</a></li>
+          <li><a href="#sec-11">11. Cierre y mensaje final</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Contenido Dinámico -->
+    <main id="mainContent">
+
+      <!-- DIAPOSITIVA 01 -->
+      <section id="sec-01">
+        <div class="section-header">
+          <div class="section-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <div>
+            <span class="section-tag">Diapositiva 01 · Portada</span>
+            <h2>Identificación Institucional</h2>
+          </div>
+        </div>
+        <ul class="styled-list">
+          <li>
+            <span class="list-badge">LUZ</span>
+            <div><strong>República Bolivariana de Venezuela</strong> &bull; Universidad del Zulia &bull; Facultad de Medicina &bull; Escuela de Medicina &bull; Cátedra Ecológica Científica Tecnológica.</div>
+          </li>
+          <li>
+            <span class="list-badge">✦</span>
+            <div><strong>Título:</strong> Experiencias de los jóvenes con trastornos alimenticios. <em>Comprensión, apoyo y esperanza.</em></div>
+          </li>
+          <li>
+            <span class="list-badge">✦</span>
+            <div><strong>Autores:</strong> Geovanna Govea (C.I 32.973.652) y Franyelis Hurtado (C.I 32.376.896). Maracaibo septiembre del 2026.</div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- DIAPOSITIVA 02 -->
+      <section id="sec-02">
+        <div class="section-header">
+          <div class="section-icon-wrap rose">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
+          </div>
+          <div>
+            <span class="section-tag rose">Diapositiva 02 · Planteamiento del Problema</span>
+            <h2>Planteamiento, Contexto Global y Formulación</h2>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-number rose count-up" data-target="70" data-suffix="%">0%</div>
+            <div class="stat-label">Desean cuerpo más pequeño (Influencia entorno y redes sociales)</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number count-up" data-target="9" data-suffix="%">0%</div>
+            <div class="stat-label">Prevalencia mundial (OMS)</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number blue">10 : 1</div>
+            <div class="stat-label">Proporción de género (mujeres / hombres)</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number rose">Menos del 10%</div>
+            <div class="stat-label">En tratamiento activo</div>
+          </div>
+        </div>
+
+        <div class="grid-cards">
+          <div class="card-item">
+            <div class="card-icon rose">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+            </div>
+            <h3>Planteamiento del Problema</h3>
+            <ul class="card-sublist">
+              <li><span class="kw">Afecciones psicológicas</span> y conductas alimentarias alteradas.</li>
+              <li>Impacto en la <span class="kw rose">autoestima, ansiedad y aislamiento</span>.</li>
+              <li>Influencia del entorno y redes sociales (70% desean cuerpo más pequeño).</li>
+            </ul>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <h3>Formulación del Problema</h3>
+            <ul class="card-sublist">
+              <li><span class="kw">Vacío en relatos</span> en primera persona.</li>
+              <li><span class="kw">Abordaje cualitativo</span> de la experiencia vivida.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="quote-box">
+          <blockquote>
+            “¿Cuáles son las experiencias personales en la percepción de la autoimagen y el comportamiento alimentario en jóvenes con trastornos alimenticios?”
+          </blockquote>
+          <p style="margin-bottom:0; color:var(--text-main); font-size: 0.9rem; font-weight: 700;">Pregunta Central</p>
+        </div>
+      </section>
+
+      <!-- DIAPOSITIVA 03 -->
+      <section id="sec-03">
+        <div class="section-header">
+          <div class="section-icon-wrap blue">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+          <div>
+            <span class="section-tag blue">Diapositiva 03 · Objetivos de la Investigación</span>
+            <h2>Objetivo General y Objetivos Específicos</h2>
+          </div>
+        </div>
+
+        <div class="quote-box" style="margin-top: 0;">
+          <blockquote>
+            “Analizar las experiencias personales y comportamientos de los jóvenes con trastornos alimenticios.”
+          </blockquote>
+          <p style="margin-bottom:0; color:var(--text-main); font-size: 0.9rem; font-weight: 700;">Objetivo General</p>
+        </div>
+
+        <ul class="styled-list">
+          <li>
+            <span class="list-badge">1</span>
+            <div><span class="kw">Reconocer los comportamientos</span> de los jóvenes que padecen trastornos alimenticios.</div>
+          </li>
+          <li>
+            <span class="list-badge">2</span>
+            <div><span class="kw">Determinar la influencia</span> de las relaciones interpersonales (familia, amistades y redes sociales).</div>
+          </li>
+          <li>
+            <span class="list-badge">3</span>
+            <div><span class="kw">Describir las vivencias</span> y dinámicas cotidianas en los entornos familiar, social y académico/laboral.</div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- DIAPOSITIVA 04 -->
+      <section id="sec-04">
+        <div class="section-header">
+          <div class="section-icon-wrap emerald">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          </div>
+          <div>
+            <span class="section-tag">Diapositiva 04 · Justificación de la Investigación</span>
+            <h2>Dimensiones Social y Humana, Perspectiva Conceptual e Impacto</h2>
+          </div>
+        </div>
+
+        <div class="grid-cards">
+          <div class="card-item">
+            <div class="card-icon rose">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <h3>Dimensiones Social y Humana</h3>
+            <ul class="card-sublist">
+              <li><strong>RECONOCIMIENTO DE LA VOZ JUVENIL:</strong> Visibiliza el sufrimiento subjetivo más allá del diagnóstico clínico.</li>
+              <li><strong>MIRADA EMPÁTICA:</strong> Ofrece comprensión de vivencias en familia, instituciones educativas y entornos digitales.</li>
+              <li><strong>SENTIDO HUMANO:</strong> Aborda la problemática creciente y su impacto en el bienestar integral.</li>
+            </ul>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z"/></svg>
+            </div>
+            <h3>Perspectiva Conceptual</h3>
+            <ul class="card-sublist">
+              <li><strong>PROFUNDIZACIÓN DE INTERACCIONES:</strong> Analiza percepción de autoimagen, conductas y relaciones interpersonales (familia, pares, redes).</li>
+              <li><strong>ENRIQUECIMIENTO DEL CONOCIMIENTO:</strong> Sistematiza experiencias psicosociales juveniles como antecedente para futuras indagaciones.</li>
+            </ul>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon blue">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+            </div>
+            <h3>Hallazgos e Impacto</h3>
+            <ul class="card-sublist">
+              <li><strong>INSUMOS VALIOSOS:</strong> Proporciona información para educadores, profesionales de salud, orientadores y familias.</li>
+              <li><strong>MEJORA DE ESTRATEGIAS:</strong> Facilita diseño de programas de prevención, acompañamiento temprano y entornos de apoyo efectivos.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- DIAPOSITIVA 05 -->
+      <section id="sec-05">
+        <div class="section-header">
+          <div class="section-icon-wrap blue">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div>
+            <span class="section-tag blue">Diapositiva 05 · Antecedentes de la Investigación</span>
+            <h2>Antecedentes Internacionales y Nacionales (Venezuela)</h2>
+          </div>
+        </div>
+
+        <div class="grid-cards">
+          <div class="card-item">
+            <div class="card-icon blue">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <h3>ANTECEDENTES INTERNACIONALES</h3>
+            <ul class="card-sublist">
+              <li><strong>MUÑOZ A. (2023) - HONDURAS:</strong> Educación alimentaria y hábitos en el entorno socioeducativo.</li>
+              <li><strong>VALDÉS, P., PÉREZ, C. Y SÁNCHEZ, M. (2021):</strong> Influencia de redes sociales, presión familiar e insatisfacción corporal.</li>
+            </ul>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <h3>ANTECEDENTES NACIONALES (VENEZUELA)</h3>
+            <ul class="card-sublist">
+              <li><strong>RAMÍREZ, A. Y ZERPA, C.:</strong> Prevalencia del <span class="kw rose">12.61%</span> de conductas de riesgo en Caracas. FUNDACIÓN AYÚDATE / USB.</li>
+              <li><strong>RIVERO, L. Y VIVAS, E.:</strong> Trastornos en estudiantes: riesgo y conductas de restricción. Universidad Central de Venezuela (UCV).</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- DIAPOSITIVA 06 (INTERACTIVA CON PESTAÑAS) -->
+      <section id="sec-06">
+        <div class="section-header">
+          <div class="section-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          </div>
+          <div>
+            <span class="section-tag">Diapositiva 06 · Bases Teóricas</span>
+            <h2>Trastornos de la Conducta Alimentaria (TCA)</h2>
+          </div>
+        </div>
+
+        <div class="tabs-nav" role="tablist">
+          <button class="tab-btn active" data-tab="tca-intro">Introducción y Contexto</button>
+          <button class="tab-btn" data-tab="tca-tipos">Principales Tipos de TCA</button>
+          <button class="tab-btn" data-tab="tca-riesgo">Factores de Riesgo y Origen</button>
+          <button class="tab-btn" data-tab="tca-alerta">Detección y Señales de Alerta</button>
+        </div>
+
+        <div class="tab-panel active" id="tca-intro">
+          <h3 style="margin-bottom: 0.65rem; color: var(--text-main);">INTRODUCCIÓN Y CONTEXTO</h3>
+          <ul class="card-sublist">
+            <li><strong>Trastornos de la Conducta Alimentaria (TCA):</strong> Afecciones de salud mental que afectan la relación con comida, cuerpo y emociones.</li>
+            <li><strong>Aspecto Biopsicosocial:</strong> Surgen de interacción entre factores biológicos, psicológicos y sociales.</li>
+            <li><strong>Impacto:</strong> Alteran salud física, bienestar emocional y rendimiento académico/social.</li>
+          </ul>
+        </div>
+
+        <div class="tab-panel" id="tca-tipos">
+          <h3 style="margin-bottom: 0.65rem; color: var(--text-main);">PRINCIPALES TIPOS DE TCA</h3>
+          <ul class="card-sublist">
+            <li><strong>Anorexia Nerviosa:</strong> Restricción severa de ingesta por temor a aumento de peso y distorsión corporal.</li>
+            <li><strong>Bulimia Nerviosa:</strong> Atracones seguidos de conductas compensatorias (purgas, ejercicio excesivo).</li>
+            <li><strong>Trastorno por Atracón:</strong> Ingesta compulsiva de grandes cantidades sin conductas compensatorias.</li>
+          </ul>
+        </div>
+
+        <div class="tab-panel" id="tca-riesgo">
+          <h3 style="margin-bottom: 0.65rem; color: var(--text-main);">FACTORES DE RIESGO Y ORIGEN</h3>
+          <ul class="card-sublist">
+            <li><strong>Psicológicos:</strong> Baja autoestima, perfeccionismo, ansiedad o necesidad de control.</li>
+            <li><strong>Sociales:</strong> Presión estética, estándares irrealistas en redes sociales y estigmatización.</li>
+            <li><strong>Biológicos y Familiares:</strong> Predisposición genética, dinámicas familiares y antecedentes de trauma.</li>
+          </ul>
+        </div>
+
+        <div class="tab-panel" id="tca-alerta">
+          <h3 style="margin-bottom: 0.65rem; color: var(--text-main);">DETECCIÓN Y SEÑALES DE ALERTA</h3>
+          <ul class="card-sublist">
+            <li><strong>Conductuales:</strong> Aislamiento social al comer, preocupación excesiva por calorías, cambios de hábitos.</li>
+            <li><strong>Físicos:</strong> Variaciones extremas de peso, fatiga, alteraciones gastrointestinales.</li>
+            <li><strong>Emocionales:</strong> Cambios de humor, culpa o vergüenza constante por la alimentación.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- DIAPOSITIVA 07 -->
+      <section id="sec-07">
+        <div class="section-header">
+          <div class="section-icon-wrap blue">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <div>
+            <span class="section-tag blue">Diapositiva 07 · Tipo de Investigación</span>
+            <h2>Enfoque, Diseño y Nivel de Profundidad</h2>
+          </div>
+        </div>
+
+        <div class="grid-cards">
+          <div class="card-item">
+            <div class="card-icon blue">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+            </div>
+            <h3>1. Enfoque y Diseño</h3>
+            <ul class="card-sublist">
+              <li><span class="kw blue">Cualitativo - Documental</span></li>
+              <li><strong>Proceso:</strong> Búsqueda y análisis de fuentes secundarias (Arias, 2012; Alfonso, 1995).</li>
+              <li><strong>Aplicación:</strong> Revisión crítica de artículos, relatos clínicos y testimonios sobre TCA.</li>
+            </ul>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            </div>
+            <h3>2. Nivel de Profundidad</h3>
+            <ul class="card-sublist">
+              <li><span class="kw">Descriptivo - Analítico</span></li>
+              <li><strong>Nivel Descriptivo:</strong> Caracterización de conductas y estructura del fenómeno (Arias, 2012).</li>
+              <li><strong>Carácter Analítico:</strong> Interpretación de dinámicas familiares e impacto de redes sociales en la literatura.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- DIAPOSITIVA 08 -->
+      <section id="sec-08">
+        <div class="section-header">
+          <div class="section-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>
+          </div>
+          <div>
+            <span class="section-tag">Diapositiva 08 · Resultados de la Investigación</span>
+            <h2>Contrastación Teórica: Análisis de Hallazgos</h2>
+          </div>
+        </div>
+        <p>
+          <strong>Análisis de hallazgos mediante contrastación teórica</strong> (Confrontación de teorías, antecedentes e interpretación cualitativa):
+        </p>
+
+        <div class="grid-cards">
+          <div class="card-item">
+            <div class="card-icon rose">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+            </div>
+            <h3>Categoría 1: Manifestaciones Alimentarias de Riesgo</h3>
+            <p style="font-size: 0.85rem; margin-bottom: 0.65rem;"><em>(Objetivo 1: Reconocer comportamientos)</em></p>
+            <ul class="card-sublist">
+              <li><strong>Fundamento Teórico:</strong> DSM-5, APA (2014), Ogden (2010): Restricción cognitiva, conductas compensatorias.</li>
+              <li><strong>Evidencia en Antecedentes:</strong> Ramírez/Zerpa (2020), Rava/Silber (2018), Rivero/Vivas: Aislamiento sutil, evitación social, conteo obsesivo.</li>
+              <li><strong>Análisis Interpretativo:</strong> Proceso gradual de aislamiento y simulación. Restricción enmascarada tras hábitos ‘saludables’, retrasando detección.</li>
+            </ul>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon blue">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+            </div>
+            <h3>Categoría 2: Influencia Socioafectiva y Digital</h3>
+            <p style="font-size: 0.85rem; margin-bottom: 0.65rem;"><em>(Objetivo 2: Determinar influencia)</em></p>
+            <ul class="card-sublist">
+              <li><strong>Fundamento Teórico:</strong> Thompson et al. (1999) - Modelo Tripartito; Festinger (1954) - Comparación Social.</li>
+              <li><strong>Evidencia en Antecedentes:</strong> Valdés et al. (2021), Arias (2021): Instagram, TikTok, comentarios familiares/pares, insatisfacción corporal.</li>
+              <li><strong>Análisis Interpretativo:</strong> Redes sociales potencian la presión. Estándares estéticos inalcanzables. Familia es catalizador dual: agravante o protector.</li>
+            </ul>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2a8 8 0 0 0-8 8c0 5.4 7 11.5 7.3 11.8a1 1 0 0 0 1.4 0C13 21.5 20 15.4 20 10a8 8 0 0 0-8-8Z"/></svg>
+            </div>
+            <h3>Categoría 3: Vivencias Cotidianas y Autoimagen</h3>
+            <p style="font-size: 0.85rem; margin-bottom: 0.65rem;"><em>(Objetivo 3: Describir vivencias)</em></p>
+            <ul class="card-sublist">
+              <li><strong>Fundamento Teórico:</strong> Cash y Pruzinsky (2002): Autoimagen multidimensional, insatisfacción afecta autoeficacia.</li>
+              <li><strong>Evidencia en Antecedentes:</strong> Testimonios, Rava/Silber (2018): Fatiga emocional, bajo rendimiento académico/laboral, agotamiento cognitivo.</li>
+              <li><strong>Análisis Interpretativo:</strong> Trastorno satura capacidad cognitiva. Vivencia marcada por culpa y miedo. Valor personal supeditado a patrones estéticos.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- DIAPOSITIVA 09 -->
+      <section id="sec-09">
+        <div class="section-header">
+          <div class="section-icon-wrap emerald">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div>
+            <span class="section-tag">Diapositiva 09 · Conclusiones de la Investigación</span>
+            <h2>Síntesis por Dimensiones y Conclusión General</h2>
+          </div>
+        </div>
+
+        <div class="grid-cards">
+          <div class="card-item">
+            <div class="card-icon rose">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" x2="23" y1="1" y2="23"/></svg>
+            </div>
+            <h3>1. Manifestaciones y Comportamientos</h3>
+            <ul class="card-sublist">
+              <li>Inicio paulatino y encubierto.</li>
+              <li>Ocultamiento y aislamiento al comer.</li>
+              <li>Control obsesivo de porciones.</li>
+            </ul>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon blue">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+            </div>
+            <h3>2. Entorno Socioafectivo y Digital</h3>
+            <ul class="card-sublist">
+              <li>Impacto de redes sociales (TikTok e Instagram) en la comparación social.</li>
+              <li>Dinámica familiar: Críticas intensifican riesgo; escucha empática protege.</li>
+            </ul>
           </div>
 
           <div class="card-item">
@@ -1113,52 +1662,35 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2a8 8 0 0 0-8 8c0 5.4 7 11.5 7.3 11.8a1 1 0 0 0 1.4 0C13 21.5 20 15.4 20 10a8 8 0 0 0-8-8Z"/></svg>
             </div>
             <h3>3. Vivencias y Autoimagen</h3>
-            <p><strong>Teoría:</strong> Cash y Pruzinsky (2002).<br><strong>Análisis:</strong> El trastorno satura la capacidad cognitiva; vivencia marcada por culpa, agotamiento emocional y caída del rendimiento académico.</p>
+            <ul class="card-sublist">
+              <li>Distorsión del esquema corporal.</li>
+              <li>Agotamiento cognitivo y emocional.</li>
+              <li>Deterioro en rendimiento académico y social.</li>
+            </ul>
+          </div>
+
+          <div class="card-item" style="background: var(--accent-emerald-soft); border-color: rgba(5, 150, 105, 0.3);">
+            <div class="card-icon" style="color: var(--accent-emerald);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+            </div>
+            <h3>Conclusión General</h3>
+            <ul class="card-sublist">
+              <li>Fenómeno psicosocial complejo, no solo nutricional.</li>
+              <li>Interacción entre autoimagen, presión sociocultural y búsqueda de aceptación.</li>
+            </ul>
           </div>
         </div>
       </section>
 
-      <!-- SECCIÓN 09 -->
-      <section id="sec-09">
-        <div class="section-header">
-          <div class="section-icon-wrap emerald">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          </div>
-          <div>
-            <span class="section-tag">09 · Síntesis Final</span>
-            <h2>Conclusiones de la Investigación</h2>
-          </div>
-        </div>
-
-        <ul class="styled-list">
-          <li>
-            <span class="list-badge">1</span>
-            <div><strong>Manifestaciones Encubiertas:</strong> Inicio paulatino con ocultamiento, aislamiento al comer y control obsesivo de porciones.</div>
-          </li>
-          <li>
-            <span class="list-badge">2</span>
-            <div><strong>Entorno Digital y Familiar:</strong> TikTok e Instagram intensifican la comparación estética; mientras las críticas familiares aumentan el riesgo, la <span class="kw">escucha empática protege</span>.</div>
-          </li>
-          <li>
-            <span class="list-badge">3</span>
-            <div><strong>Impacto en Autoimagen:</strong> Distorsión corporal asociada a agotamiento cognitivo y deterioro académico y social.</div>
-          </li>
-          <li>
-            <span class="list-badge">★</span>
-            <div><strong>Conclusión General:</strong> Los TCA constituyen un <span class="kw rose">fenómeno psicosocial complejo</span> —no solo nutricional— nacido de la interacción entre autoimagen, presión sociocultural y búsqueda de aceptación.</div>
-          </li>
-        </ul>
-      </section>
-
-      <!-- SECCIÓN 10 -->
+      <!-- DIAPOSITIVA 10 -->
       <section id="sec-10">
         <div class="section-header">
           <div class="section-icon-wrap blue">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
           <div>
-            <span class="section-tag blue">10 · Propuestas de Acción</span>
-            <h2>Recomendaciones y Cierre</h2>
+            <span class="section-tag blue">Diapositiva 10 · Recomendaciones de la Investigación</span>
+            <h2>Líneas de Acción Institucional, Familiar y Científica</h2>
           </div>
         </div>
 
@@ -1167,32 +1699,54 @@
             <div class="card-icon blue">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
             </div>
-            <h3>Instituciones Educativas</h3>
-            <p>Implementar programas de <span class="kw blue">Educación Alimentaria Nutricional (EAN)</span> e imagen corporal, junto con protocolos de detección temprana sin estigma.</p>
+            <h3>A las Instituciones Educativas y Equipos de Orientación</h3>
+            <ul class="card-sublist">
+              <li><strong>Implementar programas de EAN e Imagen Corporal</strong> (Educación Alimentaria Nutricional y aceptación corporal).</li>
+              <li><strong>Crear protocolos de detección temprana y acompañamiento</strong> (identificar señales sutiles, brindar apoyo sin estigma).</li>
+            </ul>
           </div>
 
           <div class="card-item">
             <div class="card-icon rose">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
             </div>
-            <h3>Familias y Representantes</h3>
-            <p>Fomentar espacios de diálogo libres de juicios sobre el peso o la silueta y acompañar de forma crítica el uso de plataformas digitales.</p>
+            <h3>A las Familias y Representantes</h3>
+            <ul class="card-sublist">
+              <li><strong>Fomentar espacios de comunicación libres de juicios</strong> (evitar críticas sobre peso/silueta, fortalecer autoestima).</li>
+              <li><strong>Acompañar el uso responsable de plataformas digitales</strong> (diálogo sobre contenido, desmitificar filtros).</li>
+            </ul>
           </div>
 
           <div class="card-item">
             <div class="card-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
             </div>
-            <h3>Futuras Investigaciones</h3>
-            <p>Profundizar en estudios fenomenológicos de campo con historias de vida directas y explorar variables como el cyberbullying.</p>
+            <h3>A Futuras Investigaciones</h3>
+            <ul class="card-sublist">
+              <li><strong>Profundizar en abordajes cualitativos de campo</strong> (estudios fenomenológicos, historias de vida directas).</li>
+              <li><strong>Diversificar las variables de análisis</strong> (explorar dinámicas socioeconómicas y cyberbullying).</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- DIAPOSITIVA 11 -->
+      <section id="sec-11">
+        <div class="section-header">
+          <div class="section-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          </div>
+          <div>
+            <span class="section-tag">Diapositiva 11 · Cierre</span>
+            <h2>GRACIAS</h2>
           </div>
         </div>
 
-        <div class="quote-box" style="margin-top: 2rem; margin-bottom: 0;">
+        <div class="quote-box" style="margin-bottom: 0;">
           <blockquote>
-            “Cada testimonio es un paso hacia la comprensión, la escucha empática y el bienestar integral de nuestra juventud.”
+            “Por abrir espacios de escucha y visibilizar las complejas experiencias cotidianas de los jóvenes con trastornos alimenticios. Cada testimonio es un paso hacia la comprensión y el bienestar integral.”
           </blockquote>
-          <p style="margin-bottom:0; color:var(--text-main); font-size: 0.9rem; font-weight: 700;">Reflexión Final · Geovanna Govea y Franyelis Hurtado</p>
+          <p style="margin-bottom:0; color:var(--text-main); font-size: 0.9rem; font-weight: 700;">Geovanna Govea · Franyelis Hurtado</p>
         </div>
       </section>
 
@@ -1204,17 +1758,271 @@
     <div class="footer-content">
       <div class="footer-col">
         <h4>+ Tu espacio saludable</h4>
-        <p>Experiencias de los jóvenes con trastornos alimenticios · Dossier académico desarrollado en la Universidad del Zulia.</p>
+        <p>Experiencias de los jóvenes con trastornos alimenticios · Comprensión, apoyo y esperanza.</p>
       </div>
       <div class="footer-col">
-        <h4>Créditos Académicos</h4>
-        <p><strong>Autoras:</strong> Geovanna Govea · Franyelis Hurtado</p>
-        <p><strong>Cátedra:</strong> Ecológica Científica Tecnológica · Escuela de Medicina</p>
-        <p><strong>Institución:</strong> Universidad del Zulia (LUZ) · Septiembre 2026</p>
+        <h4>Créditos del Proyecto</h4>
+        <p><strong>Autores:</strong> Geovanna Govea (C.I 32.973.652) · Franyelis Hurtado (C.I 32.376.896)</p>
+        <p><strong>Cátedra:</strong> Ecológica Científica Tecnológica · Escuela de Medicina · Facultad de Medicina</p>
+        <p><strong>Institución:</strong> Universidad del Zulia · Maracaibo, septiembre del 2026</p>
       </div>
       <div class="footer-col">
-        <h4>Nota Sanitaria</h4>
-        <p>Este dossier tiene fines educativos y de concienciación en salud mental juvenil. No sustituye la orientación ni el diagnóstico de un profesional sanitario.</p>
+        <h4>Navegación</h4>
+        <p><a href="../index.html" style="color: var(--accent-violet); font-weight: 700; text-decoration: none;">← Volver a la portada</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts de Interactividad -->
+  <script>
+    // 1. Barra de progreso de lectura
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      document.getElementById('readingProgress').style.width = progress + '%';
+    });
+
+    // 2. Pestañas interactivas
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabPanels.forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    // 3. Animación de contadores numéricos
+    const animateCounters = (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseFloat(el.dataset.target);
+          const suffix = el.dataset.suffix || '';
+          const duration = 1200;
+          const startTime = performance.now();
+
+          const update = (now) => {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.round(target * eased);
+            el.textContent = current + suffix;
+            if (progress < 1) requestAnimationFrame(update);
+          };
+          requestAnimationFrame(update);
+          observer.unobserve(el);
+        }
+      });
+    };
+
+    const counterObserver = new IntersectionObserver(animateCounters, { threshold: 0.35 });
+    document.querySelectorAll('.count-up').forEach(el => counterObserver.observe(el));
+
+    // 4. Buscador interactivo en tiempo real
+    const searchInput = document.getElementById('docSearch');
+    const sections = document.querySelectorAll('main section');
+    searchInput.addEventListener('input', (e) => {
+      const term = e.target.value.toLowerCase().trim();
+      sections.forEach(sec => {
+        if (!term || sec.textContent.toLowerCase().includes(term)) {
+          sec.classList.remove('hidden-by-search');
+        } else {
+          sec.classList.add('hidden-by-search');
+        }
+      });
+    });
+
+    // 5. Resaltado activo en el índice lateral
+    const navLinks = document.querySelectorAll('.toc-list a');
+    window.addEventListener('scroll', () => {
+      let currentId = '';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 140;
+        if (window.scrollY >= top) currentId = sec.getAttribute('id');
+      });
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+      });
+    });
+  </script>
+
+</body>
+</html>
+            <p style="font-size: 0.85rem; margin-bottom: 0.65rem;"><em>(Objetivo 2: Determinar influencia)</em></p>
+            <ul class="card-sublist">
+              <li><strong>Fundamento Teórico:</strong> Thompson et al. (1999) - Modelo Tripartito; Festinger (1954) - Comparación Social.</li>
+              <li><strong>Evidencia en Antecedentes:</strong> Valdés et al. (2021), Arias (2021): Instagram, TikTok, comentarios familiares/pares, insatisfacción corporal.</li>
+              <li><strong>Análisis Interpretativo:</strong> Redes sociales potencian la presión. Estándares estéticos inalcanzables. Familia es catalizador dual: agravante o protector.</li>
+            </ul>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2a8 8 0 0 0-8 8c0 5.4 7 11.5 7.3 11.8a1 1 0 0 0 1.4 0C13 21.5 20 15.4 20 10a8 8 0 0 0-8-8Z"/></svg>
+            </div>
+            <h3>Categoría 3: Vivencias Cotidianas y Autoimagen</h3>
+            <p style="font-size: 0.85rem; margin-bottom: 0.65rem;"><em>(Objetivo 3: Describir vivencias)</em></p>
+            <ul class="card-sublist">
+              <li><strong>Fundamento Teórico:</strong> Cash y Pruzinsky (2002): Autoimagen multidimensional, insatisfacción afecta autoeficacia.</li>
+              <li><strong>Evidencia en Antecedentes:</strong> Testimonios, Rava/Silber (2018): Fatiga emocional, bajo rendimiento académico/laboral, agotamiento cognitivo.</li>
+              <li><strong>Análisis Interpretativo:</strong> Trastorno satura capacidad cognitiva. Vivencia marcada por culpa y miedo. Valor personal supeditado a patrones estéticos.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- DIAPOSITIVA 09 -->
+      <section id="sec-09">
+        <div class="section-header">
+          <div class="section-icon-wrap emerald">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div>
+            <span class="section-tag">Diapositiva 09 · Conclusiones de la Investigación</span>
+            <h2>Síntesis por Dimensiones y Conclusión General</h2>
+          </div>
+        </div>
+
+        <div class="grid-cards">
+          <div class="card-item">
+            <div class="card-icon rose">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" x2="23" y1="1" y2="23"/></svg>
+            </div>
+            <h3>1. Manifestaciones y Comportamientos</h3>
+            <ul class="card-sublist">
+              <li>Inicio paulatino y encubierto.</li>
+              <li>Ocultamiento y aislamiento al comer.</li>
+              <li>Control obsesivo de porciones.</li>
+            </ul>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon blue">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+            </div>
+            <h3>2. Entorno Socioafectivo y Digital</h3>
+            <ul class="card-sublist">
+              <li>Impacto de redes sociales (TikTok e Instagram) en la comparación social.</li>
+              <li>Dinámica familiar: Críticas intensifican riesgo; escucha empática protege.</li>
+            </ul>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2a8 8 0 0 0-8 8c0 5.4 7 11.5 7.3 11.8a1 1 0 0 0 1.4 0C13 21.5 20 15.4 20 10a8 8 0 0 0-8-8Z"/></svg>
+            </div>
+            <h3>3. Vivencias y Autoimagen</h3>
+            <ul class="card-sublist">
+              <li>Distorsión del esquema corporal.</li>
+              <li>Agotamiento cognitivo y emocional.</li>
+              <li>Deterioro en rendimiento académico y social.</li>
+            </ul>
+          </div>
+
+          <div class="card-item" style="background: var(--accent-emerald-soft); border-color: rgba(5, 150, 105, 0.3);">
+            <div class="card-icon" style="color: var(--accent-emerald);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+            </div>
+            <h3>Conclusión General</h3>
+            <ul class="card-sublist">
+              <li>Fenómeno psicosocial complejo, no solo nutricional.</li>
+              <li>Interacción entre autoimagen, presión sociocultural y búsqueda de aceptación.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- DIAPOSITIVA 10 -->
+      <section id="sec-10">
+        <div class="section-header">
+          <div class="section-icon-wrap blue">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <span class="section-tag blue">Diapositiva 10 · Recomendaciones de la Investigación</span>
+            <h2>Líneas de Acción Institucional, Familiar y Científica</h2>
+          </div>
+        </div>
+
+        <div class="grid-cards">
+          <div class="card-item">
+            <div class="card-icon blue">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </div>
+            <h3>A las Instituciones Educativas y Equipos de Orientación</h3>
+            <ul class="card-sublist">
+              <li><strong>Implementar programas de EAN e Imagen Corporal</strong> (Educación Alimentaria Nutricional y aceptación corporal).</li>
+              <li><strong>Crear protocolos de detección temprana y acompañamiento</strong> (identificar señales sutiles, brindar apoyo sin estigma).</li>
+            </ul>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon rose">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <h3>A las Familias y Representantes</h3>
+            <ul class="card-sublist">
+              <li><strong>Fomentar espacios de comunicación libres de juicios</strong> (evitar críticas sobre peso/silueta, fortalecer autoestima).</li>
+              <li><strong>Acompañar el uso responsable de plataformas digitales</strong> (diálogo sobre contenido, desmitificar filtros).</li>
+            </ul>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            </div>
+            <h3>A Futuras Investigaciones</h3>
+            <ul class="card-sublist">
+              <li><strong>Profundizar en abordajes cualitativos de campo</strong> (estudios fenomenológicos, historias de vida directas).</li>
+              <li><strong>Diversificar las variables de análisis</strong> (explorar dinámicas socioeconómicas y cyberbullying).</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- DIAPOSITIVA 11 -->
+      <section id="sec-11">
+        <div class="section-header">
+          <div class="section-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          </div>
+          <div>
+            <span class="section-tag">Diapositiva 11 · Cierre</span>
+            <h2>GRACIAS</h2>
+          </div>
+        </div>
+
+        <div class="quote-box" style="margin-bottom: 0;">
+          <blockquote>
+            “Por abrir espacios de escucha y visibilizar las complejas experiencias cotidianas de los jóvenes con trastornos alimenticios. Cada testimonio es un paso hacia la comprensión y el bienestar integral.”
+          </blockquote>
+          <p style="margin-bottom:0; color:var(--text-main); font-size: 0.9rem; font-weight: 700;">Geovanna Govea · Franyelis Hurtado</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Footer Institucional -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-col">
+        <h4>+ Tu espacio saludable</h4>
+        <p>Experiencias de los jóvenes con trastornos alimenticios · Comprensión, apoyo y esperanza.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Créditos del Proyecto</h4>
+        <p><strong>Autores:</strong> Geovanna Govea (C.I 32.973.652) · Franyelis Hurtado (C.I 32.376.896)</p>
+        <p><strong>Cátedra:</strong> Ecológica Científica Tecnológica · Escuela de Medicina · Facultad de Medicina</p>
+        <p><strong>Institución:</strong> Universidad del Zulia · Maracaibo, septiembre del 2026</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <p><a href="../index.html" style="color: var(--accent-violet); font-weight: 700; text-decoration: none;">← Volver a la portada</a></p>
       </div>
     </div>
   </footer>
