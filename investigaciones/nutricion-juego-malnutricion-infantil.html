@@ -1,1 +1,1644 @@
 <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nutrición en Juego: Hábitos Alimentarios y Riesgo de Malnutrición Infantil · LUZ</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --card-border: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --accent-green: #16a34a;
+      --accent-green-soft: #dcfce7;
+      --accent-orange: #ea580c;
+      --accent-orange-soft: #ffedd5;
+      --accent-blue: #0284c7;
+      --accent-blue-soft: #e0f2fe;
+      --accent-amber: #d97706;
+      --accent-amber-soft: #fef3c7;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-serif: 'Newsreader', Georgia, serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Barra de Progreso Superior */
+    .reading-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--accent-green), var(--accent-amber), var(--accent-blue));
+      z-index: 200;
+      transition: width 0.12s ease-out;
+    }
+
+    /* Barra Superior */
+    .toolbar {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0.75rem 2rem;
+    }
+
+    .toolbar-content {
+      max-width: 1260px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 0.95rem;
+    }
+
+    .brand-badge {
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+      background: var(--accent-green-soft);
+      color: var(--accent-green);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .toolbar-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .read-pill {
+      background: var(--accent-blue-soft);
+      color: var(--accent-blue);
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid rgba(2, 132, 199, 0.2);
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: #f1f5f9;
+      border: 1px solid var(--card-border);
+      border-radius: 999px;
+      padding: 0.35rem 0.9rem;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+    }
+
+    .search-box:focus-within {
+      background: #ffffff;
+      border-color: var(--accent-green);
+      box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.14);
+    }
+
+    .search-box input {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      color: var(--text-main);
+      width: 230px;
+    }
+
+    /* Header Principal */
+    header {
+      background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 50%, #fffbeb 100%);
+      border-bottom: 1px solid var(--card-border);
+      padding: 3.75rem 2rem 3.25rem;
+    }
+
+    .header-container {
+      max-width: 1260px;
+      margin: 0 auto;
+    }
+
+    .header-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .header-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.4rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .badge-project {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: var(--accent-green-soft);
+      color: var(--accent-green);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-weight: 800;
+      border: 1px solid rgba(22, 163, 74, 0.25);
+    }
+
+    h1 {
+      font-size: clamp(2rem, 3.8vw, 3.15rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.15rem;
+      letter-spacing: -0.025em;
+    }
+
+    h1 span {
+      color: var(--accent-green);
+    }
+
+    .header-subtitle {
+      font-size: 0.96rem;
+      color: var(--text-muted);
+      max-width: 880px;
+      margin-bottom: 2rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .png-badge-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 0.85rem;
+      box-shadow: 0 12px 26px -8px rgba(15, 23, 42, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .png-badge-card img {
+      width: 116px;
+      height: 116px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .authors-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid var(--card-border);
+    }
+
+    .author-card {
+      display: flex;
+      align-items: center;
+      gap: 0.95rem;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 0.85rem 1rem;
+      border-radius: 14px;
+      border: 1px solid var(--card-border);
+      transition: transform 0.2s ease;
+    }
+
+    .author-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .author-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--accent-green-soft);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-green);
+      flex-shrink: 0;
+    }
+
+    .author-icon.blue {
+      background: var(--accent-blue-soft);
+      color: var(--accent-blue);
+    }
+
+    .author-icon.orange {
+      background: var(--accent-orange-soft);
+      color: var(--accent-orange);
+    }
+
+    .author-info span:first-child {
+      display: block;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 700;
+    }
+
+    .author-info span:last-child {
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    /* Cajitas y Subrayados Dinámicos en Palabras Clave */
+    .kw-underline {
+      color: var(--text-main);
+      font-weight: 700;
+      display: inline;
+      padding: 1px 3px;
+      background: linear-gradient(120deg, rgba(22, 163, 74, 0.2) 0%, rgba(22, 163, 74, 0.2) 100%);
+      background-repeat: no-repeat;
+      background-size: 100% 38%;
+      background-position: 0 90%;
+      border-radius: 3px;
+      transition: background-size 0.25s ease, color 0.25s ease;
+    }
+
+    .kw-underline:hover {
+      background-size: 100% 100%;
+      color: #14532d;
+    }
+
+    .kw-underline.orange {
+      background: linear-gradient(120deg, rgba(234, 88, 12, 0.18) 0%, rgba(234, 88, 12, 0.18) 100%);
+      background-repeat: no-repeat;
+      background-size: 100% 38%;
+      background-position: 0 90%;
+    }
+
+    .kw-underline.orange:hover {
+      background-size: 100% 100%;
+      color: #7c2d12;
+    }
+
+    .kw-underline.blue {
+      background: linear-gradient(120deg, rgba(2, 132, 199, 0.18) 0%, rgba(2, 132, 199, 0.18) 100%);
+      background-repeat: no-repeat;
+      background-size: 100% 38%;
+      background-position: 0 90%;
+    }
+
+    .kw-underline.blue:hover {
+      background-size: 100% 100%;
+      color: #0c4a6e;
+    }
+
+    .kw-box {
+      display: inline-block;
+      padding: 0.08rem 0.5rem;
+      margin: 0 0.1rem;
+      border-radius: 7px;
+      font-weight: 800;
+      font-size: 0.92em;
+      background: var(--accent-green-soft);
+      color: #15803d;
+      border: 1px solid rgba(22, 163, 74, 0.28);
+      box-shadow: 0 2px 4px rgba(22, 163, 74, 0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .kw-box:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(22, 163, 74, 0.14);
+    }
+
+    .kw-box.orange {
+      background: var(--accent-orange-soft);
+      color: #c2410c;
+      border-color: rgba(234, 88, 12, 0.28);
+    }
+
+    .kw-box.blue {
+      background: var(--accent-blue-soft);
+      color: #0369a1;
+      border-color: rgba(2, 132, 199, 0.28);
+    }
+
+    .kw-box.amber {
+      background: var(--accent-amber-soft);
+      color: #b45309;
+      border-color: rgba(217, 119, 6, 0.28);
+    }
+
+    /* Layout Principal */
+    .layout-container {
+      max-width: 1260px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 3rem;
+      padding: 3rem 2rem;
+    }
+
+    /* Índice Lateral con Barra de Progreso Interna */
+    aside {
+      position: sticky;
+      top: 5.25rem;
+      height: calc(100vh - 6.5rem);
+      overflow-y: auto;
+      padding-right: 0.75rem;
+    }
+
+    .toc-progress-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 1rem;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
+    }
+
+    .toc-progress-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 0.45rem;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .toc-list a {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.5rem 0.75rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      border-left: 3px solid transparent;
+      font-weight: 500;
+    }
+
+    .toc-list a:hover, .toc-list a.active {
+      color: var(--accent-green);
+      background: #ffffff;
+      border-left-color: var(--accent-green);
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+      transform: translateX(3px);
+      font-weight: 700;
+    }
+
+    /* Cuerpo del Documento */
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      min-width: 0;
+    }
+
+    section {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 2.5rem;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.02);
+      transition: all 0.3s ease;
+    }
+
+    section:hover {
+      border-color: rgba(22, 163, 74, 0.35);
+      box-shadow: 0 12px 24px -6px rgba(15, 23, 42, 0.06);
+    }
+
+    .section-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .section-icon-wrap {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: var(--accent-green-soft);
+      color: var(--accent-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+
+    .section-icon-wrap.orange {
+      background: var(--accent-orange-soft);
+      color: var(--accent-orange);
+    }
+
+    .section-icon-wrap.blue {
+      background: var(--accent-blue-soft);
+      color: var(--accent-blue);
+    }
+
+    .section-icon-wrap.amber {
+      background: var(--accent-amber-soft);
+      color: var(--accent-amber);
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-green);
+      margin-bottom: 0.3rem;
+    }
+
+    .section-tag.orange { color: var(--accent-orange); }
+    .section-tag.blue { color: var(--accent-blue); }
+    .section-tag.amber { color: var(--accent-amber); }
+
+    h2 {
+      font-size: 1.72rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      line-height: 1.25;
+    }
+
+    p {
+      color: var(--text-muted);
+      font-size: 1.03rem;
+      line-height: 1.75;
+      margin-bottom: 1.15rem;
+    }
+
+    .png-mini {
+      width: 84px;
+      height: 84px;
+      border-radius: 16px;
+      background: #f8fafc;
+      border: 1px solid var(--card-border);
+      padding: 6px;
+      object-fit: contain;
+      flex-shrink: 0;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.04);
+      transition: transform 0.25s ease;
+    }
+
+    section:hover .png-mini {
+      transform: scale(1.06) rotate(-2deg);
+    }
+
+    /* Barras de Progreso Animadas */
+    .progress-block {
+      background: #f8fafc;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 1.15rem 1.35rem;
+      margin: 1.15rem 0;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+      gap: 0.75rem;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 11px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent-green), #22c55e);
+      transition: width 1.15s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .progress-fill.orange {
+      background: linear-gradient(90deg, var(--accent-orange), #f97316);
+    }
+
+    .progress-fill.blue {
+      background: linear-gradient(90deg, var(--accent-blue), #38bdf8);
+    }
+
+    .progress-fill.amber {
+      background: linear-gradient(90deg, var(--accent-amber), #fbbf24);
+    }
+
+    /* Tarjetas Estadísticas con Números que se Mueven */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
+      gap: 1.25rem;
+      margin: 1.25rem 0;
+    }
+
+    .stat-box {
+      background: #f8fafc;
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.45rem 1.2rem;
+      text-align: center;
+      transition: all 0.25s ease;
+    }
+
+    .stat-box:hover {
+      transform: translateY(-4px);
+      background: #ffffff;
+      border-color: var(--accent-green);
+      box-shadow: 0 10px 20px -6px rgba(22, 163, 74, 0.14);
+    }
+
+    .stat-number {
+      font-size: 2.35rem;
+      font-weight: 800;
+      color: var(--accent-green);
+      line-height: 1.15;
+      margin-bottom: 0.35rem;
+      letter-spacing: -0.03em;
+    }
+
+    .stat-number.orange { color: var(--accent-orange); }
+    .stat-number.blue { color: var(--accent-blue); }
+    .stat-number.amber { color: var(--accent-amber); }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+
+    /* Tarjetas con Iconos */
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.35rem;
+      margin-top: 1.25rem;
+    }
+
+    .card-item {
+      background: #f8fafc;
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-item:hover {
+      transform: translateY(-4px);
+      background: #ffffff;
+      border-color: var(--accent-green);
+      box-shadow: 0 12px 24px -8px rgba(22, 163, 74, 0.14);
+    }
+
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 11px;
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.85rem;
+      color: var(--accent-green);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+    }
+
+    .card-icon.orange { color: var(--accent-orange); }
+    .card-icon.blue { color: var(--accent-blue); }
+    .card-icon.amber { color: var(--accent-amber); }
+
+    .card-item h3 {
+      font-size: 1.06rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.55rem;
+    }
+
+    .card-item p {
+      font-size: 0.94rem;
+      color: var(--text-muted);
+      margin-bottom: 0;
+    }
+
+    /* Pestañas Interactivas */
+    .tabs-nav {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.35rem;
+    }
+
+    .tab-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.55rem 1rem;
+      border-radius: 10px;
+      border: 1px solid var(--card-border);
+      background: #f8fafc;
+      color: var(--text-muted);
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 0.86rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn.active {
+      background: var(--accent-green);
+      color: #ffffff;
+      border-color: var(--accent-green);
+      box-shadow: 0 4px 12px rgba(22, 163, 74, 0.25);
+    }
+
+    .tab-panel {
+      display: none;
+      background: #f8fafc;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 1.65rem;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    /* Caja de Cita */
+    .quote-box {
+      background: linear-gradient(135deg, #f0fdf4 0%, #eff6ff 100%);
+      border-left: 4px solid var(--accent-green);
+      padding: 1.75rem;
+      border-radius: 0 16px 16px 0;
+      margin: 1.35rem 0;
+    }
+
+    .quote-box blockquote {
+      font-family: var(--font-serif);
+      font-size: 1.28rem;
+      font-style: italic;
+      color: var(--text-main);
+      line-height: 1.45;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Listas Estilizadas */
+    ul.styled-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      margin-top: 1.15rem;
+    }
+
+    ul.styled-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      color: var(--text-muted);
+      font-size: 1rem;
+      background: #f8fafc;
+      padding: 0.95rem 1.2rem;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    ul.styled-list li:hover {
+      transform: translateX(4px);
+      background: #ffffff;
+      border-color: var(--accent-green);
+    }
+
+    .list-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--accent-green-soft);
+      color: var(--accent-green);
+      font-weight: 800;
+      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .list-badge.orange {
+      background: var(--accent-orange-soft);
+      color: var(--accent-orange);
+    }
+
+    .list-badge.blue {
+      background: var(--accent-blue-soft);
+      color: var(--accent-blue);
+    }
+
+    /* Sopa de Letras de la Página 10 */
+    .wordsearch-container {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1.75rem;
+      align-items: center;
+      background: #f8fafc;
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin: 1.25rem 0;
+    }
+
+    .ws-grid {
+      display: grid;
+      grid-template-columns: repeat(15, 1fr);
+      gap: 3px;
+      max-width: 460px;
+      font-family: monospace;
+      font-weight: 800;
+      font-size: 0.82rem;
+    }
+
+    .ws-cell {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      color: var(--text-main);
+    }
+
+    .ws-cell.hl {
+      background: #93c5fd;
+      color: #0f172a;
+      border-color: #3b82f6;
+    }
+
+    .ws-words {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    /* Footer */
+    footer {
+      background: #f1f5f9;
+      border-top: 1px solid var(--card-border);
+      padding: 4rem 2rem;
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      max-width: 1260px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .footer-col h4 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin-bottom: 0.85rem;
+      color: var(--text-main);
+    }
+
+    .footer-col p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .hidden-by-search {
+      display: none !important;
+    }
+
+    @media (max-width: 920px) {
+      .layout-container {
+        grid-template-columns: 1fr;
+      }
+      aside {
+        display: none;
+      }
+      .header-hero-grid, .wordsearch-container {
+        grid-template-columns: 1fr;
+      }
+      section {        padding: 1.85rem 1.35rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra de progreso de lectura -->
+  <div class="reading-progress" id="readingProgress"></div>
+
+  <!-- Barra Superior -->
+  <div class="toolbar">
+    <div class="toolbar-content">
+      <a href="../index.html" class="brand-link">
+        <span class="brand-badge">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/><path d="M10 2c1 .5 2 2 2 5"/></svg>
+        </span>
+        <span>LA UNIVERSIDAD DEL ZULIA · FACULTAD DE MEDICINA</span>
+      </a>
+      <div class="toolbar-right">
+        <span class="read-pill">Progreso de lectura: <span id="readPercentText">0</span>%</span>
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" id="docSearch" placeholder="Filtrar término (ej. lúdica, sopa de letras)...">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cabecera Principal (Página 1) -->
+  <header>
+    <div class="header-container">
+      <div class="header-meta">
+        <span class="badge-project">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/></svg>
+          ESCUELA DE MEDICINA
+        </span>
+        <span>REPÚBLICA BOLIVARIANA DE VENEZUELA &bull; MINISTERIO DEL PODER POPULAR PARA LA EDUCACIÓN UNIVERSITARIA</span>
+      </div>
+
+      <div class="header-hero-grid">
+        <div>
+          <h1>
+            <span>NUTRICIÓN EN JUEGO:</span> HÁBITOS ALIMENTARIOS Y RIESGO DE MALNUTRICIÓN INFANTIL.
+          </h1>
+          <p class="header-subtitle">
+            LA UNIVERSIDAD DEL ZULIA &bull; FACULTAD DE MEDICINA &bull; ESCUELA DE MEDICINA
+          </p>
+        </div>
+        <div class="png-badge-card" title="Ilustración PNG: Alimentación saludable infantil">
+          <img id="png-hero" alt="Ilustración PNG sobre alimentación infantil saludable">
+        </div>
+      </div>
+
+      <div class="authors-grid">
+        <div class="author-card">
+          <div class="author-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="author-info">
+            <span>Autora</span>
+            <span>Valeria Guerrero. C.I: 32.794.818.</span>
+          </div>
+        </div>
+
+        <div class="author-card">
+          <div class="author-icon blue">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="author-info">
+            <span>Autora</span>
+            <span>Kimberly Hernandez. C.I: 33.193.892.</span>
+          </div>
+        </div>
+
+        <div class="author-card">
+          <div class="author-icon orange">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+          </div>
+          <div class="author-info">
+            <span>Lugar y Fecha</span>
+            <span>Maracaibo, Octubre 2026.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Layout Principal -->
+  <div class="layout-container">
+
+    <!-- Índice Lateral -->
+    <aside>
+      <div class="toc-progress-card">
+        <div class="toc-progress-header">
+          <span>Avance del documento</span>
+          <span><span class="count-up" data-target="12">0</span> páginas</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="asideProgressFill" style="width: 10%;"></div>
+        </div>
+      </div>
+
+      <nav aria-label="Contenido del proyecto">
+        <ul class="toc-list">
+          <li><a href="#sec-problematica">Pág. 02 · Problemática encontrada</a></li>
+          <li><a href="#sec-proposito">Pág. 03 · Propósito de la sistematización</a></li>
+          <li><a href="#sec-justificacion">Pág. 04 · Justificación y Tipo de investigación</a></li>
+          <li><a href="#sec-objetivos-gral">Pág. 05 · Objetivo General y Patrón</a></li>
+          <li><a href="#sec-obj-1">Págs. 06-07 · Objetivo específico N°1</a></li>
+          <li><a href="#sec-obj-2">Págs. 08-09 · Objetivo específico N°2</a></li>
+          <li><a href="#sec-obj-3">Págs. 10-11 · Objetivo específico N°3</a></li>
+          <li><a href="#sec-cierre">Pág. 12 · Cierre y Proverbios 3:16</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Contenido -->
+    <main id="mainContent">
+
+      <!-- PÁGINA 02: PROBLEMÁTICA ENCONTRADA -->
+      <section id="sec-problematica">
+        <div class="section-top-row">
+          <div class="section-header">
+            <div class="section-icon-wrap orange">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
+            </div>
+            <div>
+              <span class="section-tag orange">Página 2 · DIAGNÓSTICO INICIAL</span>
+              <h2>Problemática encontrada.</h2>
+            </div>
+          </div>
+          <img id="png-problema" class="png-mini" alt="PNG Doble carga nutricional">
+        </div>
+
+        <div class="quote-box" style="margin-top: 0;">
+          <p style="margin-bottom: 0; color: var(--text-main);">
+            <span class="kw-box orange">La malnutrición infantil y la doble carga nutricional</span> Coexistencia de <span class="kw-underline orange">déficits y excesos nutricionales</span> en la infancia debido a <span class="kw-underline">hábitos alimentarios inadecuados</span>, caracterizados por el bajo consumo de alimentos nutritivos y una alta exposición a <span class="kw-box orange">productos ultraprocesados</span>.
+          </p>
+        </div>
+
+        <div class="tabs-nav" role="tablist">
+          <button class="tab-btn active" data-tab="prob-causas">Causas (<span class="count-up" data-target="3">0</span>)</button>
+          <button class="tab-btn" data-tab="prob-sintomas">Síntomas (<span class="count-up" data-target="3">0</span>)</button>
+          <button class="tab-btn" data-tab="prob-pronostico">Pronóstico y Control</button>
+        </div>
+
+        <div class="tab-panel active" id="prob-causas">
+          <ul class="styled-list" style="margin-top: 0;">
+            <li>
+              <span class="list-badge orange">1</span>
+              <div><strong>Inadecuados hábitos alimentarios:</strong> Alta ingesta de <span class="kw-box orange">productos ultraprocesados</span>, <span class="kw-underline orange">bebidas azucaradas, golosinas y comida rápida</span> en lugar de <span class="kw-box">frutas, verduras, legumbres, proteínas y agua</span>.</div>
+            </li>
+            <li>
+              <span class="list-badge orange">2</span>
+              <div><strong>Factores del entorno:</strong> Modelado de hábitos inadecuados en el <span class="kw-underline">hogar, la escuela y el entorno social</span>.</div>
+            </li>
+            <li>
+              <span class="list-badge orange">3</span>
+              <div><strong>Falla en la enseñanza tradicional:</strong> Estrategias educativas de nutrición que resultan <span class="kw-underline orange">teóricas, rígidas y poco atractivas</span> para los niños.</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="tab-panel" id="prob-sintomas">
+          <ul class="styled-list" style="margin-top: 0;">
+            <li>
+              <span class="list-badge orange">1</span>
+              <div><strong>Desnutrición:</strong> Por <span class="kw-box orange">déficit de nutrientes esenciales</span>.</div>
+            </li>
+            <li>
+              <span class="list-badge orange">2</span>
+              <div><strong>Sobrepeso u Obesidad:</strong> Por <span class="kw-box orange">exceso calórico</span> y baja calidad nutricional.</div>
+            </li>
+            <li>
+              <span class="list-badge orange">3</span>
+              <div><span class="kw-underline orange">Bajo rendimiento escolar y compromiso en el desarrollo cognitivo</span>.</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="tab-panel" id="prob-pronostico">
+          <div class="grid-cards" style="margin-top: 0;">
+            <div class="card-item" style="background: #ffffff;">
+              <div class="card-icon orange">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg>
+              </div>
+              <h3>Pronóstico</h3>
+              <p>• Deterioro de la <span class="kw-underline orange">calidad de vida</span>.<br>• Consecuencias físicas y mentales.<br>• Persistencia de conductas no saludables.</p>
+            </div>
+            <div class="card-item" style="background: #ffffff;">
+              <div class="card-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="6" x2="10" y1="12" y2="12"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="15" x2="15.01" y1="13" y2="13"/><line x1="18" x2="18.01" y1="11" y2="11"/><rect width="20" height="12" x="2" y="6" rx="2"/></svg>
+              </div>
+              <h3>Control de pronóstico</h3>
+              <p>Se propuso elaborar un <span class="kw-box">juego didáctico</span>.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PÁGINA 03: PROPÓSITO DE LA SISTEMATIZACIÓN -->
+      <section id="sec-proposito">
+        <div class="section-top-row">
+          <div class="section-header">
+            <div class="section-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            </div>
+            <div>
+              <span class="section-tag">Página 3 · ENFOQUE LÚDICO</span>
+              <h2>Propósito de la sistematización.</h2>
+            </div>
+          </div>
+          <img id="png-proposito" class="png-mini" alt="PNG Dinámicas lúdicas y nutrición">
+        </div>
+
+        <p style="margin-bottom: 1.25rem;">
+          El desarrollo de este <span class="kw-box">juego didáctico</span> surge con el propósito de <span class="kw-underline">capacitar activamente a la población infantil</span> sobre la <span class="kw-box orange">malnutrición</span>. A través de <span class="kw-box blue">dinámicas lúdicas</span>, se busca que los niños reconozcan los <span class="kw-underline">alimentos nutritivos</span>, identifiquen los riesgos de un consumo inadecuado y comprendan de forma vivencial la importancia de mantener una <span class="kw-box">nutrición balanceada</span>.
+        </p>
+
+        <div class="progress-block">
+          <div class="progress-meta">
+            <span>Capacitación vivencial mediante dinámicas lúdicas (3 metas clave)</span>
+            <span><span class="count-up" data-target="100">0</span>%</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" data-width="100"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PÁGINA 04: JUSTIFICACIÓN Y TIPO DE INVESTIGACIÓN -->
+      <section id="sec-justificacion">
+        <div class="section-top-row">
+          <div class="section-header">
+            <div class="section-icon-wrap blue">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+            </div>
+            <div>
+              <span class="section-tag blue">Página 4 · FUNDAMENTACIÓN</span>
+              <h2>Justificación y Tipo de investigación.</h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-cards" style="margin-top: 0;">
+          <div class="card-item">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+            <h3>Teórica</h3>
+            <p>Desde la perspectiva teórica, este estudio encuentra su fundamento en la articulación entre la <span class="kw-box">educación para la salud</span>, la <span class="kw-underline">teoría del aprendizaje significativo</span> y la <span class="kw-box blue">lúdica pedagógica</span>. La investigación aporta valor conceptual al explorar cómo el <span class="kw-underline">juego actúa como un mediador efectivo</span> para la aprehensión de conceptos nutricionales complejos en las etapas iniciales del desarrollo.</p>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon blue">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+            </div>
+            <h3>Metodológica</h3>
+            <p>Desde el punto de vista metodológico, la relevancia de este trabajo radica en su contribución directa al <span class="kw-box blue">bienestar, el rendimiento escolar y la calidad de vida</span> de la población infantil.</p>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon orange">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/></svg>
+            </div>
+            <h3>Práctica</h3>
+            <p>En el ámbito práctico, el proyecto responde de manera directa a las carencias identificadas en los entornos escolares y familiares, donde con frecuencia se carece de <span class="kw-underline orange">recursos didácticos atractivos</span> para motivar la selección de <span class="kw-box">alimentos nutritivos</span> frente al alto consumo de <span class="kw-box orange">productos ultraprocesados</span>.</p>
+          </div>
+        </div>
+
+        <div class="quote-box" style="margin-top: 1.5rem; margin-bottom: 0;">
+          <p style="margin-bottom: 0; color: var(--text-main);">
+            <strong>Tipo de investigación:</strong> El <span class="kw-box blue">enfoque cuantitativo</span> utiliza la recolección de datos para probar hipótesis con base en la <span class="kw-underline blue">medición numérica y el análisis estadístico</span>, con el fin de establecer pautas de comportamiento y probar teorías.
+          </p>
+        </div>
+      </section>
+
+      <!-- PÁGINA 05: OBJETIVOS DE LA INVESTIGACIÓN -->
+      <section id="sec-objetivos-gral">
+        <div class="section-top-row">
+          <div class="section-header">
+            <div class="section-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div>
+              <span class="section-tag">Página 5 · HORIZONTE DEL PROYECTO</span>
+              <h2>Objetivos de la investigación.</h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote-box" style="margin-top: 0;">
+          <blockquote>
+            “Objetivo General: Diseñar un juego didáctico para promover hábitos alimentarios saludables y reducir el riesgo de malnutrición infantil.”
+          </blockquote>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-number count-up" data-target="3">0</div>
+            <div class="stat-label">Objetivos específicos cumplidos</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number orange count-up" data-target="4">0</div>
+            <div class="stat-label">Hábitos alimentarios de malnutrición</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number blue count-up" data-target="5">0</div>
+            <div class="stat-label">Factores de riesgo identificados</div>
+          </div>
+        </div>
+
+        <p>
+          Se presupone que los niños pertenecientes a la población de estudio presentan un <span class="kw-box orange">patrón alimentario desequilibrado</span> e inadecuado para sus necesidades de desarrollo, caracterizado por:
+        </p>
+
+        <ul class="styled-list" style="margin-top: 0;">
+          <li>
+            <span class="list-badge orange">1</span>
+            <div><strong>Alta ingesta de productos nocivos:</strong> Frecuente consumo de <span class="kw-box orange">productos ultraprocesados</span>, bebidas azucaradas, golosinas y frituras, caracterizados por una <span class="kw-underline orange">elevada densidad calórica</span> pero muy bajo valor nutricional.</div>
+          </li>
+          <li>
+            <span class="list-badge orange">2</span>
+            <div><strong>Desestructuración de horarios y rutinas:</strong> <span class="kw-underline orange">Omisión recurrente de comidas principales</span>.</div>
+          </li>
+          <li>
+            <span class="list-badge blue">3</span>
+            <div><strong>Insuficiente consumo de agua potable:</strong> Preferencia por <span class="kw-underline blue">jugos pasteurizados o gaseosas</span> para la hidratación cotidiana.</div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- PÁGINAS 06-07: OBJETIVO ESPECÍFICO N°1 -->
+      <section id="sec-obj-1">
+        <div class="section-top-row">
+          <div class="section-header">
+            <div class="section-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/></svg>
+            </div>
+            <div>
+              <span class="section-tag">Páginas 6 - 7 · OBJETIVO ESPECÍFICO N°1</span>
+              <h2>Objetivo específico N°1: Determinar los hábitos alimentarios de malnutrición.</h2>
+            </div>
+          </div>
+          <img id="png-habitos" class="png-mini" alt="PNG Hábitos alimentarios">
+        </div>
+
+        <p>
+          <strong>Hábitos Alimentarios de la Población Infantil:</strong><br>
+          <strong>Bajo consumo de alimentos protectores y nutritivos:</strong> Deficiente ingesta diaria de <span class="kw-box">verduras, frutas frescas, legumbres y fuentes de proteína de alto valor biológico</span>, limitando el aporte de <span class="kw-underline">micronutrientes esenciales (vitaminas, minerales y fibra)</span>.
+        </p>
+
+        <div class="progress-block">
+          <div class="progress-meta">
+            <span>Conclusión · Se lograron determinar <strong class="count-up" data-target="4">0</strong> hábitos alimentarios de malnutrición</span>
+            <span><span class="count-up" data-target="4">0</span> / 4</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" data-width="100"></div>
+          </div>
+        </div>
+
+        <h3 style="font-size: 1.12rem; margin-top: 1.35rem;">Recomendación (Objetivo N°1)</h3>
+        <div class="grid-cards">
+          <div class="card-item">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/></svg>
+            </div>
+            <h3><span class="kw-box">AUMENTAR EL CONSUMO NUTRITIVO</span></h3>
+            <p>Fomentar el consumo diario de frutas, verduras y proteínas esenciales en el hogar y la escuela.</p>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon orange">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="4.93" x2="19.07" y1="4.93" y2="19.07"/></svg>
+            </div>
+            <h3><span class="kw-box orange">REDUCIR ULTRAPROCESADOS</span></h3>
+            <p>Sustituir golosinas, frituras y bebidas azucaradas por meriendas naturales.</p>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon amber">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h3><span class="kw-box amber">ESTRUCTURAR HORARIOS</span></h3>
+            <p>Promover la importancia del desayuno y la regularidad en los tiempos de comida.</p>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon blue">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+            </div>
+            <h3><span class="kw-box blue">PROMOVER LA HIDRATACIÓN ADECUADA</span></h3>
+            <p>Incentivar el consumo continuo de agua potable en lugar de bebidas azucaradas.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PÁGINAS 08-09: OBJETIVO ESPECÍFICO N°2 -->
+      <section id="sec-obj-2">
+        <div class="section-top-row">
+          <div class="section-header">
+            <div class="section-icon-wrap orange">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <span class="section-tag orange">Páginas 8 - 9 · OBJETIVO ESPECÍFICO N°2</span>
+              <h2>Objetivo específico N°2: Identificar los factores de riesgo de malnutrición.</h2>
+            </div>
+          </div>
+        </div>
+
+        <p>
+          <strong>Factores de Riesgo de Malnutrición Infantil:</strong> La vulnerabilidad a la malnutrición (manifestada tanto por <span class="kw-underline orange">déficit de nutrientes</span> como por <span class="kw-underline orange">sobrepeso u obesidad</span>) responde a la interacción de múltiples factores de riesgo contextuales y comportamentales:
+        </p>
+
+        <div class="grid-cards">
+          <div class="card-item">
+            <div class="card-icon blue">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </div>
+            <h3>Factores Educativos y Pedagógicos</h3>
+            <p>• Escasa educación nutricional en la infancia y falta de <span class="kw-underline blue">herramientas didácticas dinámicas</span> en el aula.<br>• Desconocimiento o bajo nivel de <span class="kw-box blue">alfabetización nutricional</span> en los padres o cuidadores principales.</p>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon orange">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            </div>
+            <h3>Factores del Entorno Social y Familiar</h3>
+            <p>• Modificación de los patrones de consumo en el hogar por imitación de hábitos adultos no saludables.<br>• Exposición constante e indiscriminada a la <span class="kw-underline orange">publicidad y mercadeo de comida rápida</span> y productos ultraprocesados.</p>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon amber">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>
+            </div>
+            <h3>Factores Socioeconómicos y de Accesibilidad</h3>
+            <p>• Limitaciones económicas familiares que favorecen la compra de <span class="kw-underline amber">alimentos económicos hipercalóricos</span> frente a alimentos frescos de mayor costo.<br>• Facilidad de acceso y alta disponibilidad de comida chatarra en los entornos cercanos al hogar y la escuela.</p>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <h3>Factores Conductuales e Individuales</h3>
+            <p>• <span class="kw-box orange">Estilos de vida sedentarios</span> impulsados por el uso excesivo de pantallas y la falta de actividad física recreativa o deportiva.</p>
+          </div>
+        </div>
+
+        <div class="progress-block" style="margin-top: 1.5rem;">
+          <div class="progress-meta">
+            <span>Conclusión · Se lograron identificar <strong class="count-up" data-target="5">0</strong> factores que pueden ocasionar riesgo de malnutrición</span>
+            <span><span class="count-up" data-target="5">0</span> / 5</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill orange" data-width="100"></div>
+          </div>
+        </div>
+
+        <h3 style="font-size: 1.12rem; margin-top: 1.35rem;">Recomendación (Objetivo N°2)</h3>
+        <ul class="styled-list">
+          <li>
+            <span class="list-badge">1</span>
+            <div><span class="kw-box">APLICAR DIDÁCTICAS LÚDICAS</span> Utilizar juegos en el aula para enseñar nutrición de forma atractiva y vivencial.</div>
+          </li>
+          <li>
+            <span class="list-badge blue">2</span>
+            <div><span class="kw-box blue">TALLERES PARA REPRESENTANTES</span> Capacitar a las familias en alfabetización nutricional y opciones económicas saludables.</div>
+          </li>
+          <li>
+            <span class="list-badge">3</span>
+            <div><span class="kw-box">ENTORNOS ESCOLARES SALUDABLES</span> Promover la regulación de la venta de comida chatarra en áreas escolares.</div>
+          </li>
+          <li>
+            <span class="list-badge orange">4</span>
+            <div><span class="kw-box orange">IMPULSAR EL JUEGO ACTIVO</span> Fomentar actividades recreativas y deportivas para disminuir el sedentarismo digital.</div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- PÁGINAS 10-11: OBJETIVO ESPECÍFICO N°3 -->
+      <section id="sec-obj-3">
+        <div class="section-top-row">
+          <div class="section-header">
+            <div class="section-icon-wrap blue">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="6" x2="10" y1="12" y2="12"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="15" x2="15.01" y1="13" y2="13"/><line x1="18" x2="18.01" y1="11" y2="11"/><rect width="20" height="12" x="2" y="6" rx="2"/></svg>
+            </div>
+            <div>
+              <span class="section-tag blue">Páginas 10 - 11 · OBJETIVO ESPECÍFICO N°3</span>
+              <h2>Objetivo específico N°3: Elaborar juego didáctico.</h2>
+            </div>
+          </div>
+          <img id="png-juego" class="png-mini" alt="PNG Sopa de letras didáctica">
+        </div>
+
+        <h3 style="text-align: center; font-size: 1.25rem; margin-bottom: 0.5rem;">LA MALNUTRICIÓN INFANTIL.</h3>
+
+        <!-- Sopa de Letras fiel de la Página 10 -->
+        <div class="wordsearch-container">
+          <div class="ws-grid" id="wordsearchGrid" aria-label="Sopa de letras La Malnutrición Infantil"></div>
+          <div class="ws-words">
+            <span class="kw-box">• MALNUTRICIÓN INFANTIL.</span>
+            <span class="kw-box blue">• ALIMENTOS.</span>
+            <span class="kw-box orange">• DESNUTRICIÓN.</span>
+            <span class="kw-box orange">• SOBREPESO.</span>
+            <span class="kw-box orange">• OBESIDAD.</span>
+            <span class="kw-box">• HÁBITOS ALIMENTARIOS.</span>
+            <span class="kw-box amber">• RIESGO.</span>
+          </div>
+        </div>
+
+        <div class="progress-block">
+          <div class="progress-meta">
+            <span>Conclusión · Se finalizó con la elaboración exitosa del juego didáctico</span>
+            <span><span class="count-up" data-target="100">0</span>%</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill blue" data-width="100"></div>
+          </div>
+        </div>
+
+        <p>
+          Dicho juego repercutirá en una <span class="kw-underline">mejora nutritiva y de conocimiento de malnutrición</span>. Con base en la elaboración y aplicación de la <span class="kw-box blue">sopa de letras</span> como recurso didáctico, se recomienda:
+        </p>
+
+        <ul class="styled-list">
+          <li>
+            <span class="list-badge blue">1</span>
+            <div><strong>Replicar y diversificar el juego didáctico:</strong> Extender el uso de la <span class="kw-underline blue">sopa de letras</span> y desarrollar otros juegos complementarios.</div>
+          </li>
+          <li>
+            <span class="list-badge">2</span>
+            <div><strong>Integrar el juego en el currículo escolar:</strong> Sugerir a los docentes el uso regular de <span class="kw-box">dinámicas lúdicas</span> en las asignaturas de educación para la salud.</div>
+          </li>
+          <li>
+            <span class="list-badge orange">3</span>
+            <div><strong>Promover el juego en la rutina familiar:</strong> Entregar versiones impresas del juego para llevar al hogar, involucrando a los <span class="kw-underline">padres y representantes</span> en la resolución de las dinámicas para consolidar el mensaje educativo en la familia.</div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- PÁGINA 12: CIERRE Y PROVERBIOS 3:16 -->
+      <section id="sec-cierre">
+        <div class="section-top-row">
+          <div class="section-header">
+            <div class="section-icon-wrap amber">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <span class="section-tag amber">Página 12 · CIERRE DE PRESENTACIÓN</span>
+              <h2>¡Muchas gracias por su atención!</h2>
+            </div>
+          </div>
+          <img id="png-cierre" class="png-mini" alt="PNG Hábitos saludables">
+        </div>
+
+        <div class="quote-box" style="margin-bottom: 0; text-align: center;">
+          <blockquote style="font-size: 1.45rem;">
+            “Pon todo lo que hagas en las manos del Señor, y tus planes tendrán éxito.”
+          </blockquote>
+          <p style="margin-bottom:0; color:var(--text-main); font-size: 0.95rem; font-weight: 800;">Proverbios 3:16.</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-col">
+        <h4>Proyecto</h4>
+        <p>NUTRICIÓN EN JUEGO: HÁBITOS ALIMENTARIOS Y RIESGO DE MALNUTRICIÓN INFANTIL.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Autores e Institución</h4>
+        <p><strong>Autores:</strong> Valeria Guerrero. C.I: 32.794.818. · Kimberly Hernandez. C.I: 33.193.892.</p>
+        <p><strong>Institución:</strong> República Bolivariana de Venezuela. Ministerio del Poder Popular para la Educación Universitaria. La Universidad del Zulia. Facultad de Medicina. Escuela de Medicina. Maracaibo, Octubre 2026.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <p><a href="../index.html" style="color: var(--accent-green); font-weight: 700; text-decoration: none;">← Volver a la portada</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 1. Generación de pequeñas imágenes PNG ilustrativas
+    function makePng(kind) {
+      const c = document.createElement('canvas');
+      c.width = 160; c.height = 160;
+      const ctx = c.getContext('2d');
+      ctx.fillStyle = kind === 'problema' ? '#ffedd5' : kind === 'juego' ? '#e0f2fe' : '#dcfce7';
+      ctx.beginPath(); ctx.roundRect(8, 8, 144, 144, 28); ctx.fill();
+
+      if (kind === 'hero' || kind === 'habitos') {
+        // Manzana saludable
+        ctx.fillStyle = '#ef4444';
+        ctx.beginPath(); ctx.arc(70, 88, 28, 0, Math.PI * 2); ctx.arc(92, 88, 28, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#16a34a';
+        ctx.beginPath(); ctx.ellipse(94, 52, 16, 8, -0.5, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = '#78350f'; ctx.lineWidth = 4;
+        ctx.beginPath(); ctx.moveTo(81, 64); ctx.lineTo(81, 44); ctx.stroke();
+      } else if (kind === 'problema') {
+        // Balanza / alerta
+        ctx.fillStyle = '#ea580c';
+        ctx.beginPath(); ctx.moveTo(80, 34); ctx.lineTo(126, 118); ctx.lineTo(34, 118); ctx.closePath(); ctx.fill();
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(76, 62, 8, 28);
+        ctx.beginPath(); ctx.arc(80, 102, 5, 0, Math.PI * 2); ctx.fill();
+      } else if (kind === 'proposito') {
+        // Diana / objetivo lúdico
+        ['#16a34a', '#ffffff', '#0284c7', '#ffffff', '#ea580c'].forEach((col, i) => {
+          ctx.fillStyle = col;
+          ctx.beginPath(); ctx.arc(80, 80, 46 - i * 9, 0, Math.PI * 2); ctx.fill();
+        });
+      } else {
+        // Cuadrícula sopa de letras
+        for (let r = 0; r < 3; r++) {
+          for (let col = 0; col < 3; col++) {
+            ctx.fillStyle = (r === col) ? '#0284c7' : '#ffffff';
+            ctx.beginPath(); ctx.roundRect(42 + col * 26, 42 + r * 26, 22, 22, 5); ctx.fill();
+          }
+        }
+      }
+      return c.toDataURL('image/png');
+    }
+
+    document.getElementById('png-hero').src = makePng('hero');
+    document.getElementById('png-problema').src = makePng('problema');
+    document.getElementById('png-proposito').src = makePng('proposito');
+    document.getElementById('png-habitos').src = makePng('habitos');
+    document.getElementById('png-juego').src = makePng('juego');
+    document.getElementById('png-cierre').src = makePng('hero');
+
+    // 2. Renderizado exacto de la Sopa de Letras de la Página 10
+    const wsRows = [
+      "AFLSOBREPESOWQMYRGÓJ",
+      "RXSFCOVOLULJWUSAVFED",
+      "HÁBITOSALIMENTARIOSS",
+      "LNEDRAGABTEXOIEEFCXA",
+      "IPFNHPSLVEXEZMDIDARS",
+      "MALNUTRICIÓNINFANTIL",
+      "ENFANTIMSFESALDCTREN",
+      "NJSUGDSEVLOOMIVIOASU",
+      "TREVILNNSTYCSIWTNUGA",
+      "OAWSAMPTUETETEYCINOI",
+      "SIELIRPORSBYPENHTMDE",
+      "GBIRPSMSEOTRKRNECATU",
+      "OCZMRAWNEBEFAXUSAÍOF",
+      "DESNUTRICIÓNUMBALYOA"
+    ];
+    const wsGridEl = document.getElementById('wordsearchGrid');
+    wsGridEl.style.gridTemplateColumns = 'repeat(20, 1fr)';
+    wsRows.forEach((row, rIdx) => {
+      [...row].forEach((ch, cIdx) => {
+        const cell = document.createElement('div');
+        cell.className = 'ws-cell';
+        if (
+          (rIdx === 0 && cIdx >= 3 && cIdx <= 11) ||
+          (rIdx === 2 && cIdx >= 0 && cIdx <= 6) ||
+          (rIdx === 5 && cIdx <= 19) ||
+          (rIdx === 13 && cIdx <= 11) ||
+          (cIdx === 7 && rIdx >= 3 && rIdx <= 11) ||
+          (cIdx === 18 && rIdx >= 4 && rIdx <= 9)
+        ) {
+          cell.classList.add('hl');
+        }
+        cell.textContent = ch;
+        wsGridEl.appendChild(cell);
+      });
+    });
+
+    // 3. Barra de progreso superior + lateral
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? Math.min(100, Math.round((scrollTop / docHeight) * 100)) : 0;
+      document.getElementById('readingProgress').style.width = progress + '%';
+      document.getElementById('readPercentText').textContent = progress;
+      document.getElementById('asideProgressFill').style.width = Math.max(10, progress) + '%';
+    });
+
+    // 4. Animación de barras de progreso y números que se mueven
+    const animObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        if (el.classList.contains('count-up')) {
+          const target = parseInt(el.dataset.target, 10);
+          const start = performance.now();
+          const tick = (now) => {
+            const p = Math.min((now - start) / 1100, 1);
+            el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+            if (p < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        } else if (el.classList.contains('progress-fill')) {
+          el.style.width = el.dataset.width + '%';
+        }
+        observer.unobserve(el);
+      });
+    }, { threshold: 0.25 });
+
+    document.querySelectorAll('.count-up, .progress-fill').forEach(el => animObserver.observe(el));
+
+    // 5. Pestañas interactivas
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabPanels.forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    // 6. Buscador en tiempo real
+    const searchInput = document.getElementById('docSearch');
+    const sections = document.querySelectorAll('main section');
+    searchInput.addEventListener('input', (e) => {
+      const term = e.target.value.toLowerCase().trim();
+      sections.forEach(sec => {
+        sec.classList.toggle('hidden-by-search', term && !sec.textContent.toLowerCase().includes(term));
+      });
+    });
+
+    // 7. Índice activo
+    const navLinks = document.querySelectorAll('.toc-list a');
+    window.addEventListener('scroll', () => {
+      let currentId = '';
+      sections.forEach(sec => {
+        if (window.scrollY >= sec.offsetTop - 140) currentId = sec.getAttribute('id');
+      });
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+      });
+    });
+  </script>
+
+</body>
+</html>
