@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nutrición en juego | Tu espacio saludable</title>
+<meta name="description" content="Proyecto de Valeria Guerrero y Kimberly Hernández sobre hábitos alimentarios y riesgo de malnutrición infantil.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#17363a;--muted:#617d7e;--teal:#078789;--mint:#eaf7f4;--line:#d8eae6;--paper:#fff;--gold:#d99a48;--shadow:0 16px 42px rgba(20,74,76,.09)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f7fbfa;color:var(--ink);font-family:"DM Sans",sans-serif;line-height:1.7}
+.top{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.93);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:14px max(5vw,22px);display:flex;justify-content:space-between;align-items:center;gap:16px}
+.brand{font:800 16px "Manrope",sans-serif;text-decoration:none;color:var(--teal);letter-spacing:-.04em}.brand i{font-style:normal;display:inline-grid;place-items:center;width:29px;height:29px;border-radius:9px;background:var(--teal);color:white;margin-right:9px}.back{color:var(--muted);font-size:13px;text-decoration:none}
+main{width:min(1080px,90vw);margin:auto;padding:56px 0 84px}.hero{padding:clamp(26px,5vw,56px);border-radius:30px;background:linear-gradient(135deg,#f9f0df,#fffaf0 52%,#e8f6f0);border:1px solid #eee4d3;position:relative;overflow:hidden}.hero:after{content:"N";position:absolute;right:4%;top:-13%;font:800 clamp(150px,22vw,250px) "Manrope";color:rgba(7,135,137,.06);pointer-events:none}
+.kicker{color:var(--teal);font:800 11px "Manrope";letter-spacing:.16em;text-transform:uppercase;margin:0 0 14px}.authors{font-size:13px;color:var(--muted);margin:0 0 22px}.authors strong{color:var(--ink)}
+h1,h2,h3{font-family:"Manrope",sans-serif;letter-spacing:-.04em;line-height:1.18}h1{font-size:clamp(36px,5.4vw,62px);max-width:850px;margin:0 0 17px}h2{font-size:clamp(25px,3vw,35px);margin:0 0 14px}h3{font-size:19px;margin:0 0 8px}.lead{font-size:clamp(17px,2vw,20px);color:#526f70;max-width:800px;margin:0}.pills{display:flex;flex-wrap:wrap;gap:9px;margin-top:25px}.pill{border:1px solid rgba(7,135,137,.18);background:rgba(255,255,255,.78);border-radius:99px;padding:7px 13px;font-size:12px;color:#42686b}
+.contents{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0 46px}.contents a{font-size:12px;color:var(--teal);text-decoration:none;background:white;border:1px solid var(--line);border-radius:99px;padding:8px 12px}
+.section{margin:50px 0}.head{margin-bottom:20px}.head p:last-child{color:var(--muted);max-width:820px;margin:0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.card{padding:24px;border-radius:19px;background:white;border:1px solid var(--line);box-shadow:var(--shadow)}.card p{margin:0;color:var(--muted)}.wide{grid-column:1/-1}.num{font:800 11px "Manrope";color:var(--teal);letter-spacing:.13em;margin-bottom:11px}
+.callout{padding:22px 25px;border-left:4px solid var(--gold);background:#fff8ed;border-radius:0 16px 16px 0;font:700 19px "Manrope";line-height:1.5}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.step{padding:21px;border-radius:18px;background:var(--mint);border:1px solid var(--line)}.step p{font-size:14px;color:var(--muted);margin:0}
+.list{padding-left:20px;color:var(--muted)}.list li{margin:0 0 9px}.note{margin-top:42px;padding:17px 19px;border-radius:14px;background:#f1f7f6;border:1px solid var(--line);color:#597477;font-size:13px}
+footer{padding:23px max(5vw,22px);border-top:1px solid var(--line);color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media(max-width:700px){main{padding:32px 0 55px}.grid,.steps{grid-template-columns:1fr}.wide{grid-column:auto}.hero{padding:24px}.top{align-items:flex-start}.back{white-space:nowrap}}
+</style>
+</head>
+<body>
+<header class="top"><a class="brand" href="../index.html"><i>+</i>Tu espacio saludable</a><a class="back" href="../index.html">← Volver a la portada</a></header>
+<main>
+<section class="hero" id="inicio">
+<p class="kicker">Proyecto de investigación · Universidad del Zulia</p>
+<p class="authors"><strong>Autoras:</strong> Valeria Guerrero · Kimberly Hernández<br>Facultad de Medicina · Escuela de Medicina · Maracaibo, octubre de 2026</p>
+<h1>Nutrición en juego</h1>
+<p class="lead">Hábitos alimentarios y riesgo de malnutrición infantil.</p>
+<div class="pills"><span class="pill">Educación para la salud</span><span class="pill">Hábitos alimentarios</span><span class="pill">Juego didáctico</span></div>
+</section>
+<nav class="contents" aria-label="Contenido del proyecto"><a href="#problema">Problemática</a><a href="#proposito">Propósito</a><a href="#objetivos">Objetivo</a><a href="#habitos">Hábitos</a><a href="#factores">Factores de riesgo</a><a href="#juego">Juego didáctico</a><a href="#cierre">Conclusiones</a></nav>
+
+<section class="section" id="problema">
+<div class="head"><p class="kicker">01 · Situación planteada</p><h2>La malnutrición infantil y la doble carga nutricional</h2><p>La presentación define la doble carga nutricional como la coexistencia de déficits y excesos nutricionales en la infancia, relacionada con hábitos alimentarios inadecuados, bajo consumo de alimentos nutritivos y alta exposición a productos ultraprocesados.</p></div>
+<div class="grid">
+<article class="card"><div class="num">CAUSA 01</div><h3>Hábitos alimentarios inadecuados</h3><p>Alta ingesta de productos ultraprocesados, bebidas azucaradas, golosinas y comida rápida en lugar de frutas, verduras, legumbres, proteínas y agua.</p></article>
+<article class="card"><div class="num">CAUSA 02</div><h3>Factores del entorno</h3><p>Modelado de hábitos inadecuados en el hogar, la escuela y el entorno social.</p></article>
+<article class="card wide"><div class="num">CAUSA 03</div><h3>Enseñanza tradicional</h3><p>Estrategias educativas de nutrición teóricas, rígidas y poco atractivas para los niños.</p></article>
+</div>
+</section>
+
+<section class="section">
+<div class="head"><p class="kicker">02 · Manifestaciones y pronóstico</p><h2>Consecuencias descritas en el proyecto</h2></div>
+<div class="grid">
+<article class="card"><h3>Desnutrición</h3><p>Déficit de nutrientes esenciales.</p></article>
+<article class="card"><h3>Sobrepeso u obesidad</h3><p>Exceso calórico y baja calidad nutricional.</p></article>
+<article class="card wide"><h3>Desarrollo y aprendizaje</h3><p>Bajo rendimiento escolar y compromiso del desarrollo cognitivo.</p></article>
+</div>
+<p style="color:var(--muted);margin-top:16px">El pronóstico señalado incluye deterioro de la calidad de vida, consecuencias físicas y mentales, y persistencia de conductas no saludables.</p>
+</section>
+
+<section class="section" id="proposito">
+<div class="head"><p class="kicker">03 · Propósito de la sistematización</p><h2>Aprender jugando</h2></div>
+<div class="callout">Capacitar activamente a la población infantil sobre la malnutrición mediante dinámicas lúdicas.</div>
+<p style="color:var(--muted)">El juego busca que los niños reconozcan los alimentos nutritivos, identifiquen los riesgos de un consumo inadecuado y comprendan de forma vivencial la importancia de mantener una nutrición balanceada.</p>
+</section>
+
+<section class="section" id="objetivos">
+<div class="head"><p class="kicker">04 · Objetivo de investigación</p><h2>La meta central</h2></div>
+<div class="card"><div class="num">OBJETIVO GENERAL</div><p style="font:700 21px Manrope;color:var(--ink)">Diseñar un juego didáctico para promover hábitos alimentarios saludables y reducir el riesgo de malnutrición infantil.</p></div>
+</section>
+
+<section class="section" id="habitos">
+<div class="head"><p class="kicker">05 · Objetivo específico 1</p><h2>Hábitos alimentarios de la población infantil</h2><p>La presentación identifica cuatro patrones que pueden contribuir a la malnutrición:</p></div>
+<div class="grid">
+<article class="card"><div class="num">01</div><h3>Alta ingesta de productos nocivos</h3><p>Consumo frecuente de ultraprocesados, bebidas azucaradas, golosinas y frituras, con alta densidad calórica y bajo valor nutricional.</p></article>
+<article class="card"><div class="num">02</div><h3>Bajo consumo de alimentos protectores</h3><p>Ingesta deficiente de verduras, frutas frescas, legumbres y proteínas de alto valor biológico, limitando el aporte de vitaminas, minerales y fibra.</p></article>
+<article class="card"><div class="num">03</div><h3>Horarios y rutinas desestructurados</h3><p>Omisión recurrente de comidas principales.</p></article>
+<article class="card"><div class="num">04</div><h3>Hidratación insuficiente</h3><p>Preferencia por jugos pasteurizados o gaseosas en lugar de agua potable para la hidratación cotidiana.</p></article>
+</div>
+<div class="card" style="margin-top:15px"><h3>Conclusión y recomendaciones presentadas</h3><p>El equipo señala que logró determinar cuatro hábitos alimentarios de malnutrición. Recomienda aumentar el consumo de frutas, verduras y proteínas esenciales; reducir ultraprocesados; estructurar horarios de comida y promover la hidratación con agua potable.</p></div>
+</section>
+
+<section class="section" id="factores">
+<div class="head"><p class="kicker">06 · Objetivo específico 2</p><h2>Factores de riesgo de malnutrición infantil</h2><p>El proyecto organiza los factores identificados en cuatro ámbitos:</p></div>
+<div class="grid">
+<article class="card"><div class="num">01 · EDUCATIVOS Y PEDAGÓGICOS</div><h3>Alfabetización nutricional</h3><p>Escasa educación nutricional en la infancia, falta de herramientas didácticas dinámicas y desconocimiento de padres o cuidadores.</p></article>
+<article class="card"><div class="num">02 · SOCIALES Y FAMILIARES</div><h3>Entorno cotidiano</h3><p>Imitación de hábitos adultos no saludables y exposición constante a publicidad de comida rápida y ultraprocesados.</p></article>
+<article class="card"><div class="num">03 · SOCIOECONÓMICOS</div><h3>Acceso a alimentos</h3><p>Limitaciones económicas que favorecen alimentos hipercalóricos de menor costo y alta disponibilidad de comida chatarra cerca del hogar y la escuela.</p></article>
+<article class="card"><div class="num">04 · CONDUCTUALES E INDIVIDUALES</div><h3>Sedentarismo</h3><p>Estilos de vida sedentarios impulsados por el uso excesivo de pantallas y la falta de actividad física recreativa o deportiva.</p></article>
+</div>
+<div class="card" style="margin-top:15px"><h3>Conclusión y recomendaciones presentadas</h3><p>El equipo indica que identificó cinco factores de riesgo. Recomienda aplicar didácticas lúdicas, realizar talleres para representantes, promover entornos escolares saludables e impulsar el juego activo.</p></div>
+</section>
+
+<section class="section" id="juego">
+<div class="head"><p class="kicker">07 · Objetivo específico 3</p><h2>Elaboración del juego didáctico</h2><p>El tercer objetivo específico se centra en elaborar un juego didáctico. En el cierre, la presentación identifica el recurso desarrollado como una sopa de letras.</p></div>
+<div class="steps">
+<article class="step"><h3>Aprender</h3><p>Reconocer alimentos nutritivos y conceptos relacionados con la alimentación.</p></article>
+<article class="step"><h3>Participar</h3><p>Usar una dinámica lúdica para facilitar el aprendizaje vivencial.</p></article>
+<article class="step"><h3>Reforzar</h3><p>Consolidar mensajes educativos mediante actividades en el aula y el hogar.</p></article>
+</div>
+<div class="card" style="margin-top:15px"><h3>Recomendaciones para su uso</h3><ul class="list"><li>Replicar y diversificar el juego didáctico con otras actividades complementarias.</li><li>Integrar dinámicas lúdicas en el currículo escolar y en educación para la salud.</li><li>Entregar versiones impresas para el hogar e involucrar a padres y representantes.</li></ul></div>
+</section>
+
+<section class="section" id="cierre">
+<div class="head"><p class="kicker">08 · Cierre del proyecto</p><h2>Conclusión del equipo</h2></div>
+<div class="callout">La presentación señala que se finalizó con la elaboración de la sopa de letras como recurso didáctico y plantea que su uso puede repercutir en una mejora nutricional y en el conocimiento sobre la malnutrición.</div>
+</section>
+
+<aside class="note"><strong>Nota de fidelidad académica:</strong> Esta página organiza el contenido disponible en las 12 diapositivas recibidas. No se añadieron referencias bibliográficas ni datos de población, muestra o resultados que no estuvieran especificados en el material.</aside>
+</main>
+<footer><span>Tu espacio saludable · Proyectos de investigación</span><a href="../index.html">Volver a la portada ↑</a></footer>
+</body></html>
