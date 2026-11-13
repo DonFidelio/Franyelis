@@ -122,13 +122,28 @@ addEventListener('scroll',()=>{let max=document.documentElement.scrollHeight-inn
 const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const counter=document.querySelector('.count'),meter=document.getElementById('impactMeter');
 let counted=false;
-const animateImpact=()=>{if(counted||!counter||!meter)return;counted=true;const target=Number(counter.dataset.target)||20;if(reduceMotion){counter.textContent=target;meter.style.width='100%';return}
-const start=performance.now(),duration=2100;counter.classList.add('counting');
-function tick(now){const t=Math.min((now-start)/duration,1),ease=1-Math.pow(1-t,4);counter.textContent=Math.min(target,Math.floor(target*ease));meter.style.width=(ease*100)+'%';if(t<1)requestAnimationFrame(tick);else{counter.textContent=target;counter.classList.remove('counting');counter.classList.add('counted')}}
-requestAnimationFrame(tick)};
-const impactSection=document.getElementById('impact');
-if('IntersectionObserver' in window){const impactObserver=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){animateImpact();impactObserver.disconnect()}},{threshold:0.01,rootMargin:'0px 0px -12% 0px'});impactObserver.observe(impactSection)}
-else{const checkImpact=()=>{const r=impactSection.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0){animateImpact();removeEventListener('scroll',checkImpact)}};addEventListener('scroll',checkImpact,{passive:true});checkImpact()}
+function animateImpact(){
+ if(counted||!counter||!meter)return;
+ counted=true;
+ const target=Number(counter.getAttribute('data-target'))||20;
+ counter.textContent='0';
+ meter.style.width='0%';
+ if(reduceMotion){counter.textContent=String(target);meter.style.width='100%';return}
+ const start=performance.now(),duration=2600;
+ counter.classList.add('counting');
+ function tick(now){
+  const t=Math.min((now-start)/duration,1);
+  const ease=1-Math.pow(1-t,3);
+  counter.textContent=String(Math.min(target,Math.floor(target*ease)));
+  meter.style.width=(ease*100)+'%';
+  if(t<1)requestAnimationFrame(tick);
+  else{counter.textContent=String(target);meter.style.width='100%';counter.classList.remove('counting');counter.classList.add('counted')}
+ }
+ requestAnimationFrame(()=>requestAnimationFrame(tick));
+}
+// El contador arranca al cargar la página: no depende del scroll ni de observadores.
+if(document.readyState==='complete')setTimeout(animateImpact,350);
+else window.addEventListener('load',()=>setTimeout(animateImpact,350),{once:true});
 if('IntersectionObserver' in window){const revealObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');revealObserver.unobserve(e.target)}}),{threshold:.04,rootMargin:'0px 0px 30px 0px'});
 document.querySelectorAll('.topic').forEach(el=>{el.classList.add('reveal');if(reduceMotion)el.classList.add('in');else revealObserver.observe(el)})}
 else document.querySelectorAll('.topic').forEach(el=>el.classList.add('in'));
