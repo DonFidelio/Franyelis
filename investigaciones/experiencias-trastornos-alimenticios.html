@@ -3,29 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Experiencias de los Jóvenes con Trastornos Alimenticios · LUZ</title>
+  <title>Experiencias de los Jóvenes con Trastornos Alimenticios · Universidad del Zulia</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --bg-color: #f8fafc;
+      --bg-canvas: #f8fafc;
       --card-bg: #ffffff;
-      --card-border: #e2e8f0;
-      --text-main: #0f172a;
-      --text-muted: #475569;
-      --accent-primary: #0284c7;
-      --accent-primary-soft: #e0f2fe;
-      --accent-rose: #e11d48;
-      --accent-rose-soft: #ffe4e6;
-      --accent-emerald: #059669;
-      --accent-emerald-soft: #d1fae5;
-      --accent-violet: #7c3aed;
-      --accent-violet-soft: #ede9fe;
+      --border-subtle: #e2e8f0;
+      --ink-main: #0f172a;
+      --ink-muted: #475569;
+      --brand-indigo: #4338ca;
+      --brand-indigo-soft: #eef2ff;
+      --brand-rose: #be185d;
+      --brand-rose-soft: #fdf2f8;
+      --brand-teal: #0f766e;
+      --brand-teal-soft: #f0fdfa;
+      --brand-amber: #b45309;
+      --brand-amber-soft: #fffbeb;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
       --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-serif: 'Newsreader', Georgia, serif;
     }
 
     * {
@@ -39,38 +39,39 @@
     }
 
     body {
-      background-color: var(--bg-color);
-      color: var(--text-main);
+      background-color: var(--bg-canvas);
+      color: var(--ink-main);
       font-family: var(--font-sans);
-      line-height: 1.7;
+      line-height: 1.72;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    /* Barra de Progreso de Lectura */
+    /* Barra de Progreso Superior */
     .reading-progress {
       position: fixed;
       top: 0;
       left: 0;
       width: 0%;
       height: 4px;
-      background: linear-gradient(90deg, var(--accent-primary), var(--accent-violet), var(--accent-rose));
-      z-index: 200;
-      transition: width 0.1s ease-out;
+      background: linear-gradient(90deg, #38bdf8, #818cf8, #f472b6, #fbbf24);
+      z-index: 300;
+      transition: width 0.12s ease-out;
     }
 
-    /* Barra Superior */
+    /* Barra de Navegación Superior */
     .toolbar {
       background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--card-border);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-subtle);
       position: sticky;
       top: 0;
-      z-index: 100;
-      padding: 0.75rem 2rem;
+      z-index: 150;
+      padding: 0.8rem 2rem;
     }
 
     .toolbar-content {
-      max-width: 1240px;
+      max-width: 1300px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
@@ -82,40 +83,58 @@
     .brand-link {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
-      color: var(--text-main);
+      gap: 0.7rem;
+      color: var(--ink-main);
       text-decoration: none;
       font-weight: 800;
-      font-size: 1rem;
+      font-size: 0.88rem;
+      letter-spacing: 0.02em;
     }
 
     .brand-badge {
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
-      background: var(--accent-violet-soft);
-      color: var(--accent-violet);
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #1e1b4b 0%, #4338ca 55%, #be185d 100%);
+      color: #ffffff;
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 4px 12px rgba(67, 56, 202, 0.25);
+    }
+
+    .toolbar-right {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+    }
+
+    .read-pill {
+      background: var(--brand-indigo-soft);
+      color: var(--brand-indigo);
+      font-size: 0.76rem;
       font-weight: 800;
+      padding: 0.36rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(67, 56, 202, 0.2);
     }
 
     .search-box {
       display: flex;
       align-items: center;
       background: #f1f5f9;
-      border: 1px solid var(--card-border);
+      border: 1px solid var(--border-subtle);
       border-radius: 999px;
-      padding: 0.35rem 0.9rem;
+      padding: 0.36rem 0.95rem;
       gap: 0.5rem;
-      transition: all 0.2s ease;
+      transition: all 0.22s ease;
     }
 
     .search-box:focus-within {
       background: #ffffff;
-      border-color: var(--accent-primary);
-      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.12);
+      border-color: var(--brand-indigo);
+      box-shadow: 0 0 0 3px rgba(67, 56, 202, 0.14);
     }
 
     .search-box input {
@@ -123,255 +142,462 @@
       background: transparent;
       outline: none;
       font-family: var(--font-sans);
-      font-size: 0.85rem;
-      color: var(--text-main);
-      width: 210px;
+      font-size: 0.84rem;
+      color: var(--ink-main);
+      width: 230px;
     }
 
-    /* Header Principal */
-    header {
-      background: linear-gradient(135deg, #ffffff 0%, #f5f3ff 50%, #f0f9ff 100%);
-      border-bottom: 1px solid var(--card-border);
-      padding: 4rem 2rem 3.5rem;
+    /* PORTADA SOBRESALIENTE CON DEGRADADO PROFESIONAL */
+    .hero-cover {
       position: relative;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(56, 189, 248, 0.28) 0%, transparent 42%),
+        radial-gradient(circle at 86% 22%, rgba(244, 114, 182, 0.32) 0%, transparent 46%),
+        radial-gradient(circle at 75% 88%, rgba(45, 212, 191, 0.22) 0%, transparent 45%),
+        linear-gradient(135deg, #090d1f 0%, #17153b 42%, #2e1065 76%, #4c0519 100%);
+      color: #ffffff;
+      padding: 5.25rem 2rem 4.75rem;
       overflow: hidden;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
     }
 
-    .header-container {
-      max-width: 1240px;
+    /* Trama arquitectónica sutil y orbes en movimiento */
+    .hero-cover::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(ellipse at center, black 45%, transparent 90%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 45%, transparent 90%);
+      pointer-events: none;
+    }
+
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(75px);
+      pointer-events: none;
+      animation: driftGlow 14s infinite alternate ease-in-out;
+    }
+
+    .hero-orb-a {
+      width: 380px;
+      height: 380px;
+      background: rgba(99, 102, 241, 0.35);
+      top: -90px;
+      right: 12%;
+    }
+
+    .hero-orb-b {
+      width: 320px;
+      height: 320px;
+      background: rgba(236, 72, 153, 0.28);
+      bottom: -80px;
+      left: 8%;
+      animation-delay: -5s;
+    }
+
+    @keyframes driftGlow {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(28px, -22px) scale(1.12); }
+    }
+
+    .hero-inner {
+      max-width: 1300px;
       margin: 0 auto;
+      position: relative;
+      z-index: 2;
     }
 
-    .header-meta {
+    .hero-top-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 1.5rem;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      font-weight: 700;
       flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-pill-institution {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.48rem 1.15rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #e0e7ff;
+    }
+
+    .hero-univ-line {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #cbd5e1;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 0.85fr;
+      gap: 2.75rem;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #f9a8d4;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-cover h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 4.9vw, 4.35rem);
+      font-weight: 700;
+      line-height: 1.06;
+      letter-spacing: -0.015em;
+      margin-bottom: 1.15rem;
+      color: #ffffff;
+    }
+
+    .hero-cover h1 span {
+      font-style: italic;
+      background: linear-gradient(90deg, #7dd3fc 0%, #f9a8d4 52%, #fde68a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-motto {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #e2e8f0;
+      margin-bottom: 1.65rem;
+      display: flex;
+      align-items: center;
       gap: 0.75rem;
     }
 
-    .badge-project {
+    .hero-motto::before {
+      content: "";
+      width: 36px;
+      height: 2px;
+      background: linear-gradient(90deg, #38bdf8, #f472b6);
+      border-radius: 2px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-bottom: 2.25rem;
+    }
+
+    .btn-hero-primary {
       display: inline-flex;
       align-items: center;
-      gap: 0.45rem;
-      background: var(--accent-violet-soft);
-      color: var(--accent-violet);
-      padding: 0.4rem 1rem;
+      gap: 0.55rem;
+      padding: 0.82rem 1.5rem;
       border-radius: 999px;
-      font-weight: 700;
-      border: 1px solid rgba(124, 58, 237, 0.2);
-    }
-
-    h1 {
-      font-size: clamp(2.1rem, 4vw, 3.35rem);
+      background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+      color: #0f172a;
       font-weight: 800;
-      line-height: 1.15;
-      margin-bottom: 1.25rem;
-      letter-spacing: -0.025em;
+      font-size: 0.88rem;
+      text-decoration: none;
+      box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.35);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
-    h1 span {
-      color: var(--accent-violet);
+    .btn-hero-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 32px -6px rgba(244, 114, 182, 0.4);
     }
 
-    .header-subtitle {
-      font-size: 1.125rem;
-      color: var(--text-muted);
-      max-width: 860px;
-      margin-bottom: 2.5rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
+    .btn-hero-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.82rem 1.4rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.88rem;
+      text-decoration: none;
+      transition: background 0.25s ease, transform 0.25s ease;
     }
 
+    .btn-hero-secondary:hover {
+      background: rgba(255, 255, 255, 0.16);
+      transform: translateY(-3px);
+    }
+
+    /* Tarjeta Visual Derecha de la Portada */
+    .hero-showcase-card {
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45);
+      position: relative;
+    }
+
+    .showcase-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #7dd3fc;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 0.32rem 0.85rem;
+      border-radius: 999px;
+      margin-bottom: 1.15rem;
+    }
+
+    .showcase-metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .showcase-stat {
+      background: rgba(9, 13, 31, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 1.1rem;
+    }
+
+    .showcase-stat strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 2rem;
+      line-height: 1.1;
+      color: #f9a8d4;
+      margin-bottom: 0.25rem;
+    }
+
+    .showcase-stat span {
+      font-size: 0.78rem;
+      color: #cbd5e1;
+      line-height: 1.35;
+      display: block;
+    }
+
+    /* Tarjetas de Autoría en Portada */
     .authors-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 1.5rem;
-      padding-top: 1.75rem;
-      border-top: 1px solid var(--card-border);
+      grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+      gap: 1.1rem;
+      padding-top: 2.25rem;
+      margin-top: 2.25rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
     }
 
     .author-card {
       display: flex;
       align-items: center;
-      gap: 1rem;
-      background: rgba(255, 255, 255, 0.85);
-      padding: 0.85rem 1rem;
-      border-radius: 12px;
-      border: 1px solid var(--card-border);
-      transition: transform 0.2s ease;
+      gap: 0.95rem;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      padding: 0.9rem 1.15rem;
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      transition: transform 0.25s ease, background 0.25s ease;
     }
 
     .author-card:hover {
-      transform: translateY(-2px);
+      transform: translateY(-4px);
+      background: rgba(255, 255, 255, 0.14);
     }
 
     .author-icon {
-      width: 44px;
-      height: 44px;
-      background: var(--accent-violet-soft);
+      width: 42px;
+      height: 42px;
       border-radius: 12px;
+      background: linear-gradient(135deg, rgba(125, 211, 252, 0.25), rgba(244, 114, 182, 0.25));
+      color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--accent-violet);
-      font-weight: 800;
       flex-shrink: 0;
-    }
-
-    .author-icon.blue {
-      background: var(--accent-primary-soft);
-      color: var(--accent-primary);
     }
 
     .author-info span:first-child {
       display: block;
-      font-size: 0.72rem;
-      color: var(--text-muted);
+      font-size: 0.7rem;
+      color: #cbd5e1;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       font-weight: 700;
     }
 
     .author-info span:last-child {
-      font-size: 0.95rem;
+      font-size: 0.94rem;
       font-weight: 700;
-      color: var(--text-main);
+      color: #ffffff;
+    }
+
+    /* Resaltados de palabras clave */
+    .kw-box {
+      display: inline-block;
+      padding: 0.08rem 0.55rem;
+      border-radius: 7px;
+      font-weight: 800;
+      font-size: 0.9em;
+      background: var(--brand-indigo-soft);
+      color: var(--brand-indigo);
+      border: 1px solid rgba(67, 56, 202, 0.22);
+    }
+
+    .kw-box.rose {
+      background: var(--brand-rose-soft);
+      color: var(--brand-rose);
+      border-color: rgba(190, 24, 93, 0.22);
+    }
+
+    .kw-box.teal {
+      background: var(--brand-teal-soft);
+      color: var(--brand-teal);
+      border-color: rgba(15, 118, 110, 0.22);
+    }
+
+    .kw-underline {
+      font-weight: 700;
+      color: var(--ink-main);
+      background: linear-gradient(120deg, rgba(244, 114, 182, 0.22) 0%, rgba(129, 140, 248, 0.22) 100%);
+      background-repeat: no-repeat;
+      background-size: 100% 38%;
+      background-position: 0 92%;
+      padding: 1px 3px;
+      border-radius: 3px;
     }
 
     /* Layout Principal */
     .layout-container {
-      max-width: 1240px;
+      max-width: 1300px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: 280px 1fr;
       gap: 3rem;
-      padding: 3rem 2rem;
+      padding: 3.25rem 2rem;
     }
 
-    /* Índice Lateral */
     aside {
       position: sticky;
       top: 5.25rem;
       height: calc(100vh - 6.5rem);
       overflow-y: auto;
-      padding-right: 0.75rem;
+      padding-right: 0.5rem;
     }
 
-    aside::-webkit-scrollbar {
-      width: 4px;
-    }
-
-    aside::-webkit-scrollbar-thumb {
-      background: var(--card-border);
-      border-radius: 4px;
-    }
-
-    .toc-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text-muted);
-      font-weight: 800;
+    .toc-card {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 1.1rem;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
     }
 
     .toc-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 0.4rem;
+      gap: 0.35rem;
     }
 
     .toc-list a {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
-      padding: 0.5rem 0.8rem;
-      color: var(--text-muted);
+      padding: 0.55rem 0.85rem;
+      color: var(--ink-muted);
       text-decoration: none;
-      font-size: 0.88rem;
-      border-radius: 8px;
-      transition: all 0.2s ease;
+      font-size: 0.85rem;
+      border-radius: 10px;
+      transition: all 0.22s ease;
       border-left: 3px solid transparent;
       font-weight: 500;
     }
 
     .toc-list a:hover, .toc-list a.active {
-      color: var(--accent-violet);
+      color: var(--brand-indigo);
       background: #ffffff;
-      border-left-color: var(--accent-violet);
-      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
-      transform: translateX(3px);
-      font-weight: 600;
+      border-left-color: var(--brand-indigo);
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+      transform: translateX(4px);
+      font-weight: 700;
     }
 
-    /* Cuerpo del Documento */
     main {
       display: flex;
       flex-direction: column;
-      gap: 3.25rem;
+      gap: 3rem;
       min-width: 0;
     }
 
     section {
       background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 20px;
-      padding: 2.75rem;
-      position: relative;
-      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.02);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid var(--border-subtle);
+      border-radius: 22px;
+      padding: 2.6rem;
+      box-shadow: 0 8px 24px -12px rgba(15, 23, 42, 0.05);
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease;
+    }
+
+    section.in-view {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     section:hover {
-      border-color: rgba(124, 58, 237, 0.35);
-      box-shadow: 0 12px 24px -6px rgba(15, 23, 42, 0.06);
+      border-color: rgba(67, 56, 202, 0.3);
     }
 
     .section-header {
       display: flex;
       align-items: flex-start;
       gap: 1rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.65rem;
     }
 
-    .section-icon-wrap {
+    .section-icon {
       width: 48px;
       height: 48px;
       border-radius: 14px;
-      background: var(--accent-violet-soft);
-      color: var(--accent-violet);
+      background: var(--brand-indigo-soft);
+      color: var(--brand-indigo);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      margin-top: 0.2rem;
+      margin-top: 0.15rem;
     }
 
-    .section-icon-wrap.blue {
-      background: var(--accent-primary-soft);
-      color: var(--accent-primary);
-    }
-
-    .section-icon-wrap.rose {
-      background: var(--accent-rose-soft);
-      color: var(--accent-rose);
-    }
-
-    .section-icon-wrap.emerald {
-      background: var(--accent-emerald-soft);
-      color: var(--accent-emerald);
-    }
+    .section-icon.rose { background: var(--brand-rose-soft); color: var(--brand-rose); }
+    .section-icon.teal { background: var(--brand-teal-soft); color: var(--brand-teal); }
 
     .section-tag {
       display: inline-block;
@@ -379,290 +605,132 @@
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      color: var(--accent-violet);
-      margin-bottom: 0.35rem;
+      color: var(--brand-indigo);
+      margin-bottom: 0.3rem;
     }
 
-    .section-tag.rose {
-      color: var(--accent-rose);
-    }
-
-    .section-tag.blue {
-      color: var(--accent-primary);
-    }
+    .section-tag.rose { color: var(--brand-rose); }
+    .section-tag.teal { color: var(--brand-teal); }
 
     h2 {
-      font-size: 1.8rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: var(--text-main);
-      line-height: 1.25;
+      font-family: var(--font-display);
+      font-size: 2.05rem;
+      font-weight: 700;
+      color: var(--ink-main);
+      line-height: 1.18;
     }
 
     p {
-      color: var(--text-muted);
-      font-size: 1.05rem;
-      line-height: 1.75;
-      margin-bottom: 1.25rem;
+      color: var(--ink-muted);
+      font-size: 1.02rem;
+      margin-bottom: 1.1rem;
     }
 
-    /* Subrayado y Negrita Dinámica en Palabras Clave */
-    .kw {
-      color: var(--text-main);
-      font-weight: 700;
-      position: relative;
-      display: inline-block;
-      padding: 0 2px;
-      background: linear-gradient(120deg, rgba(124, 58, 237, 0.14) 0%, rgba(124, 58, 237, 0.14) 100%);
-      background-repeat: no-repeat;
-      background-size: 100% 35%;
-      background-position: 0 88%;
-      transition: background-size 0.25s ease, color 0.25s ease;
-      border-radius: 3px;
-    }
-
-    .kw:hover {
-      background-size: 100% 100%;
-      color: var(--accent-violet);
-    }
-
-    .kw.rose {
-      background: linear-gradient(120deg, rgba(225, 29, 72, 0.14) 0%, rgba(225, 29, 72, 0.14) 100%);
-      background-repeat: no-repeat;
-      background-size: 100% 35%;
-      background-position: 0 88%;
-    }
-
-    .kw.rose:hover {
-      background-size: 100% 100%;
-      color: var(--accent-rose);
-    }
-
-    .kw.blue {
-      background: linear-gradient(120deg, rgba(2, 132, 199, 0.14) 0%, rgba(2, 132, 199, 0.14) 100%);
-      background-repeat: no-repeat;
-      background-size: 100% 35%;
-      background-position: 0 88%;
-    }
-
-    .kw.blue:hover {
-      background-size: 100% 100%;
-      color: var(--accent-primary);
-    }
-
-    /* Tarjetas con Iconos */
-    .grid-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-
-    .card-item {
-      background: #f8fafc;
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 1.65rem;
-      transition: all 0.28s ease;
-      position: relative;
-    }
-
-    .card-item:hover {
-      transform: translateY(-5px);
-      background: #ffffff;
-      border-color: var(--accent-violet);
-      box-shadow: 0 12px 24px -8px rgba(124, 58, 237, 0.14);
-    }
-
-    .card-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 11px;
-      background: #ffffff;
-      border: 1px solid var(--card-border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1rem;
-      color: var(--accent-violet);
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
-      transition: transform 0.25s ease, background 0.25s ease;
-    }
-
-    .card-item:hover .card-icon {
-      transform: scale(1.08) rotate(-3deg);
-      background: var(--accent-violet-soft);
-    }
-
-    .card-icon.rose {
-      color: var(--accent-rose);
-    }
-
-    .card-item:hover .card-icon.rose {
-      background: var(--accent-rose-soft);
-    }
-
-    .card-icon.blue {
-      color: var(--accent-primary);
-    }
-
-    .card-item:hover .card-icon.blue {
-      background: var(--accent-primary-soft);
-    }
-
-    .card-item h3 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 0.65rem;
-    }
-
-    .card-item p, .card-item li {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-    }
-
-    .card-sublist {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.55rem;
-    }
-
-    .card-sublist li {
-      padding-left: 1rem;
-      position: relative;
-    }
-
-    .card-sublist li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      color: var(--accent-violet);
-      font-weight: 800;
-    }
-
-    /* Estadísticas con Contadores Dinámicos */
+    /* Tarjetas Estadísticas */
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 1.5rem;
-      margin: 1.5rem 0;
+      grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
+      gap: 1.2rem;
+      margin: 1.25rem 0 1.65rem;
     }
 
     .stat-box {
       background: #f8fafc;
-      border: 1px solid var(--card-border);
+      border: 1px solid var(--border-subtle);
       border-radius: 16px;
-      padding: 1.75rem 1.4rem;
+      padding: 1.4rem 1.15rem;
       text-align: center;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
+      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
     }
 
     .stat-box:hover {
-      transform: translateY(-5px);
+      transform: translateY(-4px);
       background: #ffffff;
-      border-color: var(--accent-rose);
-      box-shadow: 0 12px 24px -6px rgba(225, 29, 72, 0.12);
+      border-color: var(--brand-rose);
     }
 
     .stat-number {
-      font-size: 2.75rem;
-      font-weight: 800;
-      color: var(--accent-violet);
+      font-family: var(--font-display);
+      font-size: 2.55rem;
+      font-weight: 700;
+      color: var(--brand-rose);
       line-height: 1.1;
-      margin-bottom: 0.5rem;
-      letter-spacing: -0.03em;
+      margin-bottom: 0.35rem;
     }
 
-    .stat-number.rose {
-      color: var(--accent-rose);
-    }
-
-    .stat-number.blue {
-      color: var(--accent-primary);
-    }
+    .stat-number.indigo { color: var(--brand-indigo); }
+    .stat-number.teal { color: var(--brand-teal); }
 
     .stat-label {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
+      font-size: 0.8rem;
+      color: var(--ink-muted);
       font-weight: 700;
     }
 
-    /* Pestañas Interactivas */
-    .tabs-nav {
-      display: flex;
-      gap: 0.65rem;
-      flex-wrap: wrap;
-      margin-bottom: 1.5rem;
+    /* Cuadrícula de Tarjetas */
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+      gap: 1.35rem;
+      margin-top: 1.25rem;
     }
 
-    .tab-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.6rem 1.1rem;
-      border-radius: 10px;
-      border: 1px solid var(--card-border);
+    .card-item {
       background: #f8fafc;
-      color: var(--text-muted);
-      font-family: var(--font-sans);
-      font-weight: 700;
-      font-size: 0.88rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 1.55rem;
+      transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
     }
 
-    .tab-btn:hover {
+    .card-item:hover {
+      transform: translateY(-4px);
       background: #ffffff;
-      color: var(--text-main);
+      border-color: var(--brand-indigo);
     }
 
-    .tab-btn.active {
-      background: var(--accent-violet);
-      color: #ffffff;
-      border-color: var(--accent-violet);
-      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
+    .card-item h3 {
+      font-size: 1.06rem;
+      font-weight: 800;
+      color: var(--ink-main);
+      margin-bottom: 0.65rem;
     }
 
-    .tab-panel {
-      display: none;
-      background: #f8fafc;
-      border: 1px solid var(--card-border);
-      border-radius: 14px;
-      padding: 1.75rem;
-      animation: fadeIn 0.3s ease;
+    .card-item ul {
+      padding-left: 1.15rem;
+      color: var(--ink-muted);
+      font-size: 0.94rem;
     }
 
-    .tab-panel.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
+    .card-item li {
+      margin-bottom: 0.45rem;
     }
 
     /* Caja de Cita */
     .quote-box {
-      background: linear-gradient(135deg, #f5f3ff 0%, #fff1f2 100%);
-      border-left: 4px solid var(--accent-violet);
-      padding: 2rem;
+      background: linear-gradient(135deg, #eef2ff 0%, #fdf2f8 100%);
+      border-left: 4px solid var(--brand-indigo);
+      padding: 1.65rem 1.85rem;
       border-radius: 0 16px 16px 0;
-      margin: 1.5rem 0;
+      margin: 1.35rem 0;
     }
 
     .quote-box blockquote {
-      font-family: var(--font-serif);
-      font-size: 1.35rem;
+      font-family: var(--font-display);
+      font-size: 1.42rem;
       font-style: italic;
-      color: var(--text-main);
-      line-height: 1.45;
-      margin-bottom: 0.75rem;
+      color: var(--ink-main);
+      line-height: 1.38;
+      margin-bottom: 0.35rem;
+    }
+
+    .quote-box p {
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--brand-indigo);
+      margin-bottom: 0;
     }
 
     /* Listas Estilizadas */
@@ -670,39 +738,35 @@
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
-      margin-top: 1.25rem;
+      gap: 0.85rem;
+      margin-top: 1.1rem;
     }
 
     ul.styled-list li {
       display: flex;
       align-items: flex-start;
       gap: 0.85rem;
-      color: var(--text-muted);
-      font-size: 1.02rem;
       background: #f8fafc;
-      padding: 1rem 1.25rem;
-      border-radius: 12px;
-      border: 1px solid var(--card-border);
+      border: 1px solid var(--border-subtle);
+      border-radius: 13px;
+      padding: 0.95rem 1.2rem;
+      color: var(--ink-muted);
+      font-size: 0.98rem;
       transition: transform 0.2s ease, background 0.2s ease;
     }
 
     ul.styled-list li:hover {
       transform: translateX(5px);
       background: #ffffff;
-      border-color: var(--accent-violet);
-    }
-
-    ul.styled-list li strong {
-      color: var(--text-main);
     }
 
     .list-badge {
-      width: 28px;
-      height: 28px;
+      min-width: 30px;
+      height: 30px;
+      padding: 0 0.45rem;
       border-radius: 8px;
-      background: var(--accent-violet-soft);
-      color: var(--accent-violet);
+      background: var(--brand-indigo-soft);
+      color: var(--brand-indigo);
       font-weight: 800;
       font-size: 0.78rem;
       display: inline-flex;
@@ -712,16 +776,66 @@
       margin-top: 2px;
     }
 
+    .list-badge.rose { background: var(--brand-rose-soft); color: var(--brand-rose); }
+    .list-badge.teal { background: var(--brand-teal-soft); color: var(--brand-teal); }
+
+    /* Pestañas Interactivas para Bases Teóricas */
+    .tabs-nav {
+      display: flex;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.35rem;
+    }
+
+    .tab-btn {
+      padding: 0.55rem 1.05rem;
+      border-radius: 10px;
+      border: 1px solid var(--border-subtle);
+      background: #f8fafc;
+      color: var(--ink-muted);
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 0.84rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn.active {
+      background: var(--brand-indigo);
+      color: #ffffff;
+      border-color: var(--brand-indigo);
+      box-shadow: 0 6px 14px rgba(67, 56, 202, 0.24);
+    }
+
+    .tab-panel {
+      display: none;
+      background: #f8fafc;
+      border: 1px solid var(--border-subtle);
+      border-radius: 15px;
+      padding: 1.55rem;
+      animation: fadePanel 0.3s ease;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    @keyframes fadePanel {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     /* Footer */
     footer {
-      background: #f1f5f9;
-      border-top: 1px solid var(--card-border);
+      background: linear-gradient(135deg, #090d1f 0%, #17153b 100%);
+      color: #cbd5e1;
       padding: 4rem 2rem;
       margin-top: 4rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
     }
 
     .footer-content {
-      max-width: 1240px;
+      max-width: 1300px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -729,15 +843,15 @@
     }
 
     .footer-col h4 {
-      font-size: 1.05rem;
-      font-weight: 800;
-      margin-bottom: 0.85rem;
-      color: var(--text-main);
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      color: #ffffff;
+      margin-bottom: 0.8rem;
     }
 
     .footer-col p {
       font-size: 0.92rem;
-      color: var(--text-muted);
+      color: #cbd5e1;
       margin-bottom: 0.5rem;
     }
 
@@ -745,7 +859,10 @@
       display: none !important;
     }
 
-    @media (max-width: 920px) {
+    @media (max-width: 960px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
       .layout-container {
         grid-template-columns: 1fr;
       }
@@ -753,18 +870,12 @@
         display: none;
       }
       section {
-        padding: 2rem 1.5rem;
+        padding: 1.85rem 1.35rem;
       }
     }
   </style>
-
-<style id="home-return-button-style">
-.home-return-button{position:fixed;right:24px;bottom:24px;z-index:9999;display:inline-flex;align-items:center;gap:9px;padding:12px 18px;border-radius:999px;background:#142238;color:#fff;text-decoration:none;font:700 14px/1.2 system-ui,-apple-system,sans-serif;box-shadow:0 8px 24px rgba(15,23,42,.22);border:1px solid rgba(212,175,55,.65);transition:transform .2s ease,background .2s ease,box-shadow .2s ease}.home-return-button:hover{transform:translateY(-3px);background:#243b5a;box-shadow:0 12px 28px rgba(15,23,42,.28)}.home-return-button svg{width:17px;height:17px;flex:none}@media(max-width:600px){.home-return-button{right:14px;bottom:14px;padding:11px 15px;font-size:13px}}
-</style>
 </head>
 <body>
-<a class="home-return-button" href="../index.html" aria-label="Volver a la página principal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/><path d="M9 12h12"/></svg><span>Volver al inicio</span></a>
-
 
   <!-- Barra de progreso de lectura -->
   <div class="reading-progress" id="readingProgress"></div>
@@ -776,30 +887,75 @@
         <span class="brand-badge">+</span>
         <span>Tu espacio saludable · Proyectos</span>
       </a>
-      <div class="search-box">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        <input type="text" id="docSearch" placeholder="Filtrar término (ej. anorexia, OMS)...">
+      <div class="toolbar-right">
+        <span class="read-pill">Progreso: <span id="readPercentText">0</span>%</span>
+        <div class="search-box">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" id="docSearch" placeholder="Buscar en el trabajo (ej. OMS, UCV, TCA)...">
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Cabecera Principal (Diapositiva 1) -->
-  <header>
-    <div class="header-container">
-      <div class="header-meta">
-        <span class="badge-project">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a8 8 0 0 0-8 8c0 5.4 7 11.5 7.3 11.8a1 1 0 0 0 1.4 0C13 21.5 20 15.4 20 10a8 8 0 0 0-8-8Z"/></svg>
+  <!-- PORTADA CON DEGRADADO PROFESIONAL -->
+  <header class="hero-cover" id="sec-01">
+    <div class="hero-orb hero-orb-a" aria-hidden="true"></div>
+    <div class="hero-orb hero-orb-b" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <div class="hero-top-bar">
+        <span class="hero-pill-institution">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
           Cátedra Ecológica Científica Tecnológica
         </span>
-        <span>República Bolivariana de Venezuela &bull; Universidad del Zulia &bull; Facultad de Medicina &bull; Escuela de Medicina</span>
+        <span class="hero-univ-line">República Bolivariana de Venezuela &bull; Universidad del Zulia &bull; Facultad de Medicina &bull; Escuela de Medicina</span>
       </div>
-      <h1>
-        Experiencias de los Jóvenes con <span>Trastornos Alimenticios</span>
-      </h1>
-      <p class="header-subtitle">
-        COMPRENSIÓN, APOYO Y ESPERANZA
-      </p>
-      
+
+      <div class="hero-grid">
+        <div>
+          <div class="hero-eyebrow">Investigación Documental en Salud Mental Juvenil</div>
+          <h1>
+            Experiencias de los Jóvenes con <span>Trastornos Alimenticios</span>
+          </h1>
+          <div class="hero-motto">Comprensión, apoyo y esperanza</div>
+
+          <div class="hero-actions">
+            <a href="#sec-02" class="btn-hero-primary">
+              <span>Explorar investigación</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a href="#sec-09" class="btn-hero-secondary">
+              <span>Ver conclusiones y recomendaciones</span>
+            </a>
+          </div>
+        </div>
+
+        <aside class="hero-showcase-card" style="position: static; height: auto; overflow: visible;">
+          <span class="showcase-badge">Panorama Epidemiológico</span>
+          <p style="color: #e2e8f0; font-size: 0.92rem; margin-bottom: 0.5rem;">
+            Indicadores clave sobre insatisfacción corporal, brecha de atención y riesgo en población joven:
+          </p>
+          <div class="showcase-metrics">
+            <div class="showcase-stat">
+              <strong>70%</strong>
+              <span>Desean un cuerpo más pequeño por entorno y redes sociales</span>
+            </div>
+            <div class="showcase-stat">
+              <strong style="color: #7dd3fc;">10 : 1</strong>
+              <span>Proporción de género (mujeres / hombres)</span>
+            </div>
+            <div class="showcase-stat">
+              <strong style="color: #fde68a;">&lt; 10%</strong>
+              <span>Se encuentran en tratamiento activo</span>
+            </div>
+            <div class="showcase-stat">
+              <strong style="color: #5eead4;">12.61%</strong>
+              <span>Prevalencia de conductas de riesgo en Caracas (USB)</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+
       <div class="authors-grid">
         <div class="author-card">
           <div class="author-icon">
@@ -822,407 +978,7 @@
         </div>
 
         <div class="author-card">
-          <div class="author-icon blue">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
-          </div>
-          <div class="author-info">
-            <span>Lugar y Fecha</span>
-            <span>Maracaibo, septiembre del 2026</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- Layout Principal -->
-  <div class="layout-container">
-
-    <!-- Índice Lateral -->
-    <aside>
-      <nav aria-label="Contenido del trabajo">
-        <div class="toc-title">
-          <span>Índice de Láminas</span>
-          <span>11 Diapositivas</span>
-        </div>
-        <ul class="toc-list">
-          <li><a href="#sec-01">01. Portada institucional</a></li>
-          <li><a href="#sec-02">02. Planteamiento del problema</a></li>
-          <li><a href="#sec-03">03. Objetivos de la investigación</a></li>
-          <li><a href="#sec-04">04. Justificación de la investigación</a></li>
-          <li><a href="#sec-05">05. Antecedentes de la investigación</a></li>
-          <li><a href="#sec-06">06. Bases teóricas (TCA)</a></li>
-          <li><a href="#sec-07">07. Tipo de investigación</a></li>
-          <li><a href="#sec-08">08. Contrastación teórica</a></li>
-          <li><a href="#sec-09">09. Conclusiones de la investigación</a></li>
-          <li><a href="#sec-10">10. Recomendaciones</a></li>
-          <li><a href="#sec-11">11. Cierre y mensaje final</a></li>
-        </ul>
-      </nav>
-    </aside>
-
-    <!-- Contenido Dinámico -->
-    <main id="mainContent">
-
-      <!-- DIAPOSITIVA 01 -->
-      <section id="sec-01">
-        <div class="section-header">
-          <div class="section-icon-wrap">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-          </div>
-          <div>
-            <span class="section-tag">Diapositiva 01 · Portada</span>
-            <h2>Identificación Institucional</h2>
-          </div>
-        </div>
-        <ul class="styled-list">
-          <li>
-            <span class="list-badge">LUZ</span>
-            <div><strong>República Bolivariana de Venezuela</strong> &bull; Universidad del Zulia &bull; Facultad de Medicina &bull; Escuela de Medicina &bull; Cátedra Ecológica Científica Tecnológica.</div>
-          </li>
-          <li>
-            <span class="list-badge">✦</span>
-            <div><strong>Título:</strong> Experiencias de los jóvenes con trastornos alimenticios. <em>Comprensión, apoyo y esperanza.</em></div>
-          </li>
-          <li>
-            <span class="list-badge">✦</span>
-            <div><strong>Autores:</strong> Geovanna Govea y Franyelis Hurtado Maracaibo septiembre del 2026.</div>
-          </li>
-        </ul>
-      </section>
-
-      <!-- DIAPOSITIVA 02 -->
-      <section id="sec-02">
-        <div class="section-header">
-          <div class="section-icon-wrap rose">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
-          </div>
-          <div>
-            <span class="section-tag rose">Diapositiva 02 · Planteamiento del Problema</span>
-            <h2>Planteamiento, Contexto Global y Formulación</h2>
-          </div>
-        </div>
-
-        <div class="stats-grid">
-          <div class="stat-box">
-            <div class="stat-number rose count-up" data-target="70" data-suffix="%">0%</div>
-            <div class="stat-label">Desean cuerpo más pequeño (Influencia entorno y redes sociales)</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-number count-up" data-target="9" data-suffix="%">0%</div>
-            <div class="stat-label">Prevalencia mundial (OMS)</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-number blue">10 : 1</div>
-            <div class="stat-label">Proporción de género (mujeres / hombres)</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-number rose">Menos del 10%</div>
-            <div class="stat-label">En tratamiento activo</div>
-          </div>
-        </div>
-
-        <div class="grid-cards">
-          <div class="card-item">
-            <div class="card-icon rose">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
-            </div>
-            <h3>Planteamiento del Problema</h3>
-            <ul class="card-sublist">
-              <li><span class="kw">Afecciones psicológicas</span> y conductas alimentarias alteradas.</li>
-              <li>Impacto en la <span class="kw rose">autoestima, ansiedad y aislamiento</span>.</li>
-              <li>Influencia del entorno y redes sociales (70% desean cuerpo más pequeño).</li>
-            </ul>
-          </div>
-
-          <div class="card-item">
-            <div class="card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            </div>
-            <h3>Formulación del Problema</h3>
-            <ul class="card-sublist">
-              <li><span class="kw">Vacío en relatos</span> en primera persona.</li>
-              <li><span class="kw">Abordaje cualitativo</span> de la experiencia vivida.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="quote-box">
-          <blockquote>
-            “¿Cuáles son las experiencias personales en la percepción de la autoimagen y el comportamiento alimentario en jóvenes con trastornos alimenticios?”
-          </blockquote>
-          <p style="margin-bottom:0; color:var(--text-main); font-size: 0.9rem; font-weight: 700;">Pregunta Central</p>
-        </div>
-      </section>
-
-      <!-- DIAPOSITIVA 03 -->
-      <section id="sec-03">
-        <div class="section-header">
-          <div class="section-icon-wrap blue">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-          </div>
-          <div>
-            <span class="section-tag blue">Diapositiva 03 · Objetivos de la Investigación</span>
-            <h2>Objetivo General y Objetivos Específicos</h2>
-          </div>
-        </div>
-
-        <div class="quote-box" style="margin-top: 0;">
-          <blockquote>
-            “Analizar las experiencias personales y comportamientos de los jóvenes con trastornos alimenticios.”
-          </blockquote>
-          <p style="margin-bottom:0; color:var(--text-main); font-size: 0.9rem; font-weight: 700;">Objetivo General</p>
-        </div>
-
-        <ul class="styled-list">
-          <li>
-            <span class="list-badge">1</span>
-            <div><span class="kw">Reconocer los comportamientos</span> de los jóvenes que padecen trastornos alimenticios.</div>
-          </li>
-          <li>
-            <span class="list-badge">2</span>
-            <div><span class="kw">Determinar la influencia</span> de las relaciones interpersonales (familia, amistades y redes sociales).</div>
-          </li>
-          <li>
-            <span class="list-badge">3</span>
-            <div><span class="kw">Describir las vivencias</span> y dinámicas cotidianas en los entornos familiar, social y académico/laboral.</div>
-          </li>
-        </ul>
-      </section>
-
-      <!-- DIAPOSITIVA 04 -->
-      <section id="sec-04">
-        <div class="section-header">
-          <div class="section-icon-wrap emerald">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-          </div>
-          <div>
-            <span class="section-tag">Diapositiva 04 · Justificación de la Investigación</span>
-            <h2>Dimensiones Social y Humana, Perspectiva Conceptual e Impacto</h2>
-          </div>
-        </div>
-
-        <div class="grid-cards">
-          <div class="card-item">
-            <div class="card-icon rose">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            </div>
-            <h3>Dimensiones Social y Humana</h3>
-            <ul class="card-sublist">
-              <li><strong>RECONOCIMIENTO DE LA VOZ JUVENIL:</strong> Visibiliza el sufrimiento subjetivo más allá del diagnóstico clínico.</li>
-              <li><strong>MIRADA EMPÁTICA:</strong> Ofrece comprensión de vivencias en familia, instituciones educativas y entornos digitales.</li>
-              <li><strong>SENTIDO HUMANO:</strong> Aborda la problemática creciente y su impacto en el bienestar integral.</li>
-            </ul>
-          </div>
-
-          <div class="card-item">
-            <div class="card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z"/></svg>
-            </div>
-            <h3>Perspectiva Conceptual</h3>
-            <ul class="card-sublist">
-              <li><strong>PROFUNDIZACIÓN DE INTERACCIONES:</strong> Analiza percepción de autoimagen, conductas y relaciones interpersonales (familia, pares, redes).</li>
-              <li><strong>ENRIQUECIMIENTO DEL CONOCIMIENTO:</strong> Sistematiza experiencias psicosociales juveniles como antecedente para futuras indagaciones.</li>
-            </ul>
-          </div>
-
-          <div class="card-item">
-            <div class="card-icon blue">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-            </div>
-            <h3>Hallazgos e Impacto</h3>
-            <ul class="card-sublist">
-              <li><strong>INSUMOS VALIOSOS:</strong> Proporciona información para educadores, profesionales de salud, orientadores y familias.</li>
-              <li><strong>MEJORA DE ESTRATEGIAS:</strong> Facilita diseño de programas de prevención, acompañamiento temprano y entornos de apoyo efectivos.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- DIAPOSITIVA 05 -->
-      <section id="sec-05">
-        <div class="section-header">
-          <div class="section-icon-wrap blue">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          </div>
-          <div>
-            <span class="section-tag blue">Diapositiva 05 · Antecedentes de la Investigación</span>
-            <h2>Antecedentes Internacionales y Nacionales (Venezuela)</h2>
-          </div>
-        </div>
-
-        <div class="grid-cards">
-          <div class="card-item">
-            <div class="card-icon blue">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            </div>
-            <h3>ANTECEDENTES INTERNACIONALES</h3>
-            <ul class="card-sublist">
-              <li><strong>MUÑOZ A. (2023) - HONDURAS:</strong> Educación alimentaria y hábitos en el entorno socioeducativo.</li>
-              <li><strong>VALDÉS, P., PÉREZ, C. Y SÁNCHEZ, M. (2021):</strong> Influencia de redes sociales, presión familiar e insatisfacción corporal.</li>
-            </ul>
-          </div>
-
-          <div class="card-item">
-            <div class="card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-            </div>
-            <h3>ANTECEDENTES NACIONALES (VENEZUELA)</h3>
-            <ul class="card-sublist">
-              <li><strong>RAMÍREZ, A. Y ZERPA, C.:</strong> Prevalencia del <span class="kw rose">12.61%</span> de conductas de riesgo en Caracas. FUNDACIÓN AYÚDATE / USB.</li>
-              <li><strong>RIVERO, L. Y VIVAS, E.:</strong> Trastornos en estudiantes: riesgo y conductas de restricción. Universidad Central de Venezuela (UCV).</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- DIAPOSITIVA 06 (INTERACTIVA CON PESTAÑAS) -->
-      <section id="sec-06">
-        <div class="section-header">
-          <div class="section-icon-wrap">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-          </div>
-          <div>
-            <span class="section-tag">Diapositiva 06 · Bases Teóricas</span>
-            <h2>Trastornos de la Conducta Alimentaria (TCA)</h2>
-          </div>
-        </div>
-
-        <div class="tabs-nav" role="tablist">
-          <button class="tab-btn active" data-tab="tca-intro">Introducción y Contexto</button>
-          <button class="tab-btn" data-tab="tca-tipos">Principales Tipos de TCA</button>
-          <button class="tab-btn" data-tab="tca-riesgo">Factores de Riesgo y Origen</button>
-          <button class="tab-btn" data-tab="tca-alerta">Detección y Señales de Alerta</button>
-        </div>
-
-        <div class="tab-panel active" id="tca-intro">
-          <h3 style="margin-bottom: 0.65rem; color: var(--text-main);">INTRODUCCIÓN Y CONTEXTO</h3>
-          <ul class="card-sublist">
-            <li><strong>Trastornos de la Conducta Alimentaria (TCA):</strong> Afecciones de salud mental que afectan la relación con comida, cuerpo y emociones.</li>
-            <li><strong>Aspecto Biopsicosocial:</strong> Surgen de interacción entre factores biológicos, psicológicos y sociales.</li>
-            <li><strong>Impacto:</strong> Alteran salud física, bienestar emocional y rendimiento académico/social.</li>
-          </ul>
-        </div>
-
-        <div class="tab-panel" id="tca-tipos">
-          <h3 style="margin-bottom: 0.65rem; color: var(--text-main);">PRINCIPALES TIPOS DE TCA</h3>
-          <ul class="card-sublist">
-            <li><strong>Anorexia Nerviosa:</strong> Restricción severa de ingesta por temor a aumento de peso y distorsión corporal.</li>
-            <li><strong>Bulimia Nerviosa:</strong> Atracones seguidos de conductas compensatorias (purgas, ejercicio excesivo).</li>
-            <li><strong>Trastorno por Atracón:</strong> Ingesta compulsiva de grandes cantidades sin conductas compensatorias.</li>
-          </ul>
-        </div>
-
-        <div class="tab-panel" id="tca-riesgo">
-          <h3 style="margin-bottom: 0.65rem; color: var(--text-main);">FACTORES DE RIESGO Y ORIGEN</h3>
-          <ul class="card-sublist">
-            <li><strong>Psicológicos:</strong> Baja autoestima, perfeccionismo, ansiedad o necesidad de control.</li>
-            <li><strong>Sociales:</strong> Presión estética, estándares irrealistas en redes sociales y estigmatización.</li>
-            <li><strong>Biológicos y Familiares:</strong> Predisposición genética, dinámicas familiares y antecedentes de trauma.</li>
-          </ul>
-        </div>
-
-        <div class="tab-panel" id="tca-alerta">
-          <h3 style="margin-bottom: 0.65rem; color: var(--text-main);">DETECCIÓN Y SEÑALES DE ALERTA</h3>
-          <ul class="card-sublist">
-            <li><strong>Conductuales:</strong> Aislamiento social al comer, preocupación excesiva por calorías, cambios de hábitos.</li>
-            <li><strong>Físicos:</strong> Variaciones extremas de peso, fatiga, alteraciones gastrointestinales.</li>
-            <li><strong>Emocionales:</strong> Cambios de humor, culpa o vergüenza constante por la alimentación.</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- DIAPOSITIVA 07 -->
-      <section id="sec-07">
-        <div class="section-header">
-          <div class="section-icon-wrap blue">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
-          </div>
-          <div>
-            <span class="section-tag blue">Diapositiva 07 · Tipo de Investigación</span>
-            <h2>Enfoque, Diseño y Nivel de Profundidad</h2>
-          </div>
-        </div>
-
-        <div class="grid-cards">
-          <div class="card-item">
-            <div class="card-icon blue">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
-            </div>
-            <h3>1. Enfoque y Diseño</h3>
-            <ul class="card-sublist">
-              <li><span class="kw blue">Cualitativo - Documental</span></li>
-              <li><strong>Proceso:</strong> Búsqueda y análisis de fuentes secundarias (Arias, 2012; Alfonso, 1995).</li>
-              <li><strong>Aplicación:</strong> Revisión crítica de artículos, relatos clínicos y testimonios sobre TCA.</li>
-            </ul>
-          </div>
-
-          <div class="card-item">
-            <div class="card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-            </div>
-            <h3>2. Nivel de Profundidad</h3>
-            <ul class="card-sublist">
-              <li><span class="kw">Descriptivo - Analítico</span></li>
-              <li><strong>Nivel Descriptivo:</strong> Caracterización de conductas y estructura del fenómeno (Arias, 2012).</li>
-              <li><strong>Carácter Analítico:</strong> Interpretación de dinámicas familiares e impacto de redes sociales en la literatura.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- DIAPOSITIVA 08 -->
-      <section id="sec-08">
-        <div class="section-header">
-          <div class="section-icon-wrap">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>
-          </div>
-          <div>
-            <span class="section-tag">Diapositiva 08 · Resultados de la Investigación</span>
-            <h2>Contrastación Teórica: Análisis de Hallazgos</h2>
-          </div>
-        </div>
-        <p>
-          <strong>Análisis de hallazgos mediante contrastación teórica</strong> (Confrontación de teorías, antecedentes e interpretación cualitativa):
-        </p>
-
-        <div class="grid-cards">
-          <div class="card-item">
-            <div class="card-icon rose">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
-            </div>
-            <h3>Categoría 1: Manifestaciones Alimentarias de Riesgo</h3>
-            <p style="font-size: 0.85rem; margin-bottom: 0.65rem;"><em>(Objetivo 1: Reconocer comportamientos)</em></p>
-            <ul class="card-sublist">
-              <li><strong>Fundamento Teórico:</strong> DSM-5, APA (2014), Ogden (2010): Restricción cognitiva, conductas compensatorias.</li>
-              <li><strong>Evidencia en Antecedentes:</strong> Ramírez/Zerpa (2020), Rava/Silber (2018), Rivero/Vivas: Aislamiento sutil, evitación social, conteo obsesivo.</li>
-              <li><strong>Análisis Interpretativo:</strong> Proceso gradual de aislamiento y simulación. Restricción enmascarada tras hábitos ‘saludables’, retrasando detección.</li>
-            </ul>
-          </div>
-
-          <div class="card-item">
-            <div class="card-icon blue">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
-            </div>
-            <h3>Categoría 2: Influencia Socioafectiva y Digital</h3>
-          </div>
-          <div class="author-info">
-            <span>Autora</span>
-            <span>Geovanna Govea</span>
-          </div>
-        </div>
-
-        <div class="author-card">
           <div class="author-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          </div>
-          <div class="author-info">
-            <span>Autora</span>
-            <span>Franyelis Hurtado</span>
-          </div>
-        </div>
-
-        <div class="author-card">
-          <div class="author-icon blue">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
           </div>
           <div class="author-info">
@@ -1234,16 +990,18 @@
     </div>
   </header>
 
-  <!-- Layout Principal -->
+  <!-- CONTENIDO PRINCIPAL -->
   <div class="layout-container">
 
     <!-- Índice Lateral -->
     <aside>
-      <nav aria-label="Contenido del trabajo">
-        <div class="toc-title">
+      <div class="toc-card">
+        <div style="display:flex; justify-content:space-between; font-size:0.78rem; font-weight:800; color:var(--ink-main);">
           <span>Índice de Láminas</span>
-          <span>11 Diapositivas</span>
+          <span style="color:var(--brand-indigo);">11 Diapositivas</span>
         </div>
+      </div>
+      <nav aria-label="Contenido del trabajo">
         <ul class="toc-list">
           <li><a href="#sec-01">01. Portada institucional</a></li>
           <li><a href="#sec-02">02. Planteamiento del problema</a></li>
@@ -1260,41 +1018,14 @@
       </nav>
     </aside>
 
-    <!-- Contenido Dinámico -->
-    <main id="mainContent">
+    <!-- Láminas de Contenido -->
+    <main>
 
-      <!-- DIAPOSITIVA 01 -->
-      <section id="sec-01">
-        <div class="section-header">
-          <div class="section-icon-wrap">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-          </div>
-          <div>
-            <span class="section-tag">Diapositiva 01 · Portada</span>
-            <h2>Identificación Institucional</h2>
-          </div>
-        </div>
-        <ul class="styled-list">
-          <li>
-            <span class="list-badge">LUZ</span>
-            <div><strong>República Bolivariana de Venezuela</strong> &bull; Universidad del Zulia &bull; Facultad de Medicina &bull; Escuela de Medicina &bull; Cátedra Ecológica Científica Tecnológica.</div>
-          </li>
-          <li>
-            <span class="list-badge">✦</span>
-            <div><strong>Título:</strong> Experiencias de los jóvenes con trastornos alimenticios. <em>Comprensión, apoyo y esperanza.</em></div>
-          </li>
-          <li>
-            <span class="list-badge">✦</span>
-            <div><strong>Autores:</strong> Geovanna Govea y Franyelis Hurtado Maracaibo septiembre del 2026.</div>
-          </li>
-        </ul>
-      </section>
-
-      <!-- DIAPOSITIVA 02 -->
+      <!-- Diapositiva 02 -->
       <section id="sec-02">
         <div class="section-header">
-          <div class="section-icon-wrap rose">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
+          <div class="section-icon rose">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
           </div>
           <div>
             <span class="section-tag rose">Diapositiva 02 · Planteamiento del Problema</span>
@@ -1304,64 +1035,58 @@
 
         <div class="stats-grid">
           <div class="stat-box">
-            <div class="stat-number rose count-up" data-target="70" data-suffix="%">0%</div>
+            <div class="stat-number"><span class="count-up" data-target="70">0</span>%</div>
             <div class="stat-label">Desean cuerpo más pequeño (Influencia entorno y redes sociales)</div>
           </div>
           <div class="stat-box">
-            <div class="stat-number count-up" data-target="9" data-suffix="%">0%</div>
-            <div class="stat-label">Prevalencia mundial (OMS)</div>
+            <div class="stat-number indigo"><span class="count-up" data-target="9">0</span>%</div>
+            <div class="stat-label">Prevalencia mundial estimada (OMS)</div>
           </div>
           <div class="stat-box">
-            <div class="stat-number blue">10 : 1</div>
+            <div class="stat-number teal">10 : 1</div>
             <div class="stat-label">Proporción de género (mujeres / hombres)</div>
           </div>
           <div class="stat-box">
-            <div class="stat-number rose">Menos del 10%</div>
+            <div class="stat-number">Menos del 10%</div>
             <div class="stat-label">En tratamiento activo</div>
           </div>
         </div>
 
         <div class="grid-cards">
           <div class="card-item">
-            <div class="card-icon rose">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
-            </div>
             <h3>Planteamiento del Problema</h3>
-            <ul class="card-sublist">
-              <li><span class="kw">Afecciones psicológicas</span> y conductas alimentarias alteradas.</li>
-              <li>Impacto en la <span class="kw rose">autoestima, ansiedad y aislamiento</span>.</li>
-              <li>Influencia del entorno y redes sociales (70% desean cuerpo más pequeño).</li>
+            <ul>
+              <li><span class="kw-box rose">Afecciones psicológicas</span> y conductas alimentarias alteradas.</li>
+              <li>Impacto en la <span class="kw-underline">autoestima, ansiedad y aislamiento</span>.</li>
+              <li>Influencia del entorno y redes sociales (<strong>70% desean cuerpo más pequeño</strong>).</li>
             </ul>
           </div>
 
           <div class="card-item">
-            <div class="card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            </div>
             <h3>Formulación del Problema</h3>
-            <ul class="card-sublist">
-              <li><span class="kw">Vacío en relatos</span> en primera persona.</li>
-              <li><span class="kw">Abordaje cualitativo</span> de la experiencia vivida.</li>
+            <ul>
+              <li><span class="kw-box">Vacío en relatos</span> en primera persona.</li>
+              <li><span class="kw-underline">Abordaje cualitativo</span> de la experiencia vivida.</li>
             </ul>
           </div>
         </div>
 
-        <div class="quote-box">
+        <div class="quote-box" style="margin-bottom: 0;">
           <blockquote>
             “¿Cuáles son las experiencias personales en la percepción de la autoimagen y el comportamiento alimentario en jóvenes con trastornos alimenticios?”
           </blockquote>
-          <p style="margin-bottom:0; color:var(--text-main); font-size: 0.9rem; font-weight: 700;">Pregunta Central</p>
+          <p>Pregunta Central</p>
         </div>
       </section>
 
-      <!-- DIAPOSITIVA 03 -->
+      <!-- Diapositiva 03 -->
       <section id="sec-03">
         <div class="section-header">
-          <div class="section-icon-wrap blue">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          <div class="section-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           </div>
           <div>
-            <span class="section-tag blue">Diapositiva 03 · Objetivos de la Investigación</span>
+            <span class="section-tag">Diapositiva 03 · Objetivos de la Investigación</span>
             <h2>Objetivo General y Objetivos Específicos</h2>
           </div>
         </div>
@@ -1370,199 +1095,174 @@
           <blockquote>
             “Analizar las experiencias personales y comportamientos de los jóvenes con trastornos alimenticios.”
           </blockquote>
-          <p style="margin-bottom:0; color:var(--text-main); font-size: 0.9rem; font-weight: 700;">Objetivo General</p>
+          <p>Objetivo General</p>
         </div>
 
         <ul class="styled-list">
           <li>
             <span class="list-badge">1</span>
-            <div><span class="kw">Reconocer los comportamientos</span> de los jóvenes que padecen trastornos alimenticios.</div>
+            <div><span class="kw-box">Reconocer los comportamientos</span> de los jóvenes que padecen trastornos alimenticios.</div>
           </li>
           <li>
-            <span class="list-badge">2</span>
-            <div><span class="kw">Determinar la influencia</span> de las relaciones interpersonales (familia, amistades y redes sociales).</div>
+            <span class="list-badge rose">2</span>
+            <div><span class="kw-box rose">Determinar la influencia</span> de las relaciones interpersonales (familia, amistades y redes sociales).</div>
           </li>
           <li>
-            <span class="list-badge">3</span>
-            <div><span class="kw">Describir las vivencias</span> y dinámicas cotidianas en los entornos familiar, social y académico/laboral.</div>
+            <span class="list-badge teal">3</span>
+            <div><span class="kw-box teal">Describir las vivencias</span> y dinámicas cotidianas en los entornos familiar, social y académico/laboral.</div>
           </li>
         </ul>
       </section>
 
-      <!-- DIAPOSITIVA 04 -->
+      <!-- Diapositiva 04 -->
       <section id="sec-04">
         <div class="section-header">
-          <div class="section-icon-wrap emerald">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          <div class="section-icon teal">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
           </div>
           <div>
-            <span class="section-tag">Diapositiva 04 · Justificación de la Investigación</span>
+            <span class="section-tag teal">Diapositiva 04 · Justificación de la Investigación</span>
             <h2>Dimensiones Social y Humana, Perspectiva Conceptual e Impacto</h2>
           </div>
         </div>
 
-        <div class="grid-cards">
+        <div class="grid-cards" style="margin-top: 0;">
           <div class="card-item">
-            <div class="card-icon rose">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            </div>
             <h3>Dimensiones Social y Humana</h3>
-            <ul class="card-sublist">
-              <li><strong>RECONOCIMIENTO DE LA VOZ JUVENIL:</strong> Visibiliza el sufrimiento subjetivo más allá del diagnóstico clínico.</li>
-              <li><strong>MIRADA EMPÁTICA:</strong> Ofrece comprensión de vivencias en familia, instituciones educativas y entornos digitales.</li>
-              <li><strong>SENTIDO HUMANO:</strong> Aborda la problemática creciente y su impacto en el bienestar integral.</li>
+            <ul>
+              <li><strong>Reconocimiento de la voz juvenil:</strong> Visibiliza el sufrimiento subjetivo más allá del diagnóstico clínico.</li>
+              <li><strong>Mirada empática:</strong> Ofrece comprensión de vivencias en familia, instituciones educativas y entornos digitales.</li>
+              <li><strong>Sentido humano:</strong> Aborda la problemática creciente y su impacto en el bienestar integral.</li>
             </ul>
           </div>
 
           <div class="card-item">
-            <div class="card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z"/></svg>
-            </div>
             <h3>Perspectiva Conceptual</h3>
-            <ul class="card-sublist">
-              <li><strong>PROFUNDIZACIÓN DE INTERACCIONES:</strong> Analiza percepción de autoimagen, conductas y relaciones interpersonales (familia, pares, redes).</li>
-              <li><strong>ENRIQUECIMIENTO DEL CONOCIMIENTO:</strong> Sistematiza experiencias psicosociales juveniles como antecedente para futuras indagaciones.</li>
+            <ul>
+              <li><strong>Profundización de interacciones:</strong> Analiza percepción de autoimagen, conductas y relaciones interpersonales (familia, pares, redes).</li>
+              <li><strong>Enriquecimiento del conocimiento:</strong> Sistematiza experiencias psicosociales juveniles como antecedente para futuras indagaciones.</li>
             </ul>
           </div>
 
           <div class="card-item">
-            <div class="card-icon blue">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-            </div>
             <h3>Hallazgos e Impacto</h3>
-            <ul class="card-sublist">
-              <li><strong>INSUMOS VALIOSOS:</strong> Proporciona información para educadores, profesionales de salud, orientadores y familias.</li>
-              <li><strong>MEJORA DE ESTRATEGIAS:</strong> Facilita diseño de programas de prevención, acompañamiento temprano y entornos de apoyo efectivos.</li>
+            <ul>
+              <li><strong>Insumos valiosos:</strong> Proporciona información para educadores, profesionales de salud, orientadores y familias.</li>
+              <li><strong>Mejora de estrategias:</strong> Facilita diseño de programas de prevención, acompañamiento temprano y entornos de apoyo efectivos.</li>
             </ul>
           </div>
         </div>
       </section>
 
-      <!-- DIAPOSITIVA 05 -->
+      <!-- Diapositiva 05 -->
       <section id="sec-05">
         <div class="section-header">
-          <div class="section-icon-wrap blue">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <div class="section-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
           </div>
           <div>
-            <span class="section-tag blue">Diapositiva 05 · Antecedentes de la Investigación</span>
+            <span class="section-tag">Diapositiva 05 · Antecedentes de la Investigación</span>
             <h2>Antecedentes Internacionales y Nacionales (Venezuela)</h2>
           </div>
         </div>
 
-        <div class="grid-cards">
+        <div class="grid-cards" style="margin-top: 0;">
           <div class="card-item">
-            <div class="card-icon blue">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            </div>
-            <h3>ANTECEDENTES INTERNACIONALES</h3>
-            <ul class="card-sublist">
-              <li><strong>MUÑOZ A. (2023) - HONDURAS:</strong> Educación alimentaria y hábitos en el entorno socioeducativo.</li>
-              <li><strong>VALDÉS, P., PÉREZ, C. Y SÁNCHEZ, M. (2021):</strong> Influencia de redes sociales, presión familiar e insatisfacción corporal.</li>
+            <h3>Antecedentes Internacionales</h3>
+            <ul>
+              <li><strong>Muñoz A. (2023) - Honduras:</strong> Educación alimentaria y hábitos en el entorno socioeducativo.</li>
+              <li><strong>Valdés, P., Pérez, C. y Sánchez, M. (2021):</strong> Influencia de redes sociales, presión familiar e insatisfacción corporal.</li>
             </ul>
           </div>
 
           <div class="card-item">
-            <div class="card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-            </div>
-            <h3>ANTECEDENTES NACIONALES (VENEZUELA)</h3>
-            <ul class="card-sublist">
-              <li><strong>RAMÍREZ, A. Y ZERPA, C.:</strong> Prevalencia del <span class="kw rose">12.61%</span> de conductas de riesgo en Caracas. FUNDACIÓN AYÚDATE / USB.</li>
-              <li><strong>RIVERO, L. Y VIVAS, E.:</strong> Trastornos en estudiantes: riesgo y conductas de restricción. Universidad Central de Venezuela (UCV).</li>
+            <h3>Antecedentes Nacionales (Venezuela)</h3>
+            <ul>
+              <li><strong>Ramírez, A. y Zerpa, C.:</strong> Prevalencia del <span class="kw-box rose">12.61%</span> de conductas de riesgo en Caracas. <em>Fundación Ayúdate / USB.</em></li>
+              <li><strong>Rivero, L. y Vivas, E.:</strong> Trastornos en estudiantes: riesgo y conductas de restricción. <em>Universidad Central de Venezuela (UCV).</em></li>
             </ul>
           </div>
         </div>
       </section>
 
-      <!-- DIAPOSITIVA 06 (INTERACTIVA CON PESTAÑAS) -->
+      <!-- Diapositiva 06 -->
       <section id="sec-06">
         <div class="section-header">
-          <div class="section-icon-wrap">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          <div class="section-icon rose">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </div>
           <div>
-            <span class="section-tag">Diapositiva 06 · Bases Teóricas</span>
+            <span class="section-tag rose">Diapositiva 06 · Bases Teóricas</span>
             <h2>Trastornos de la Conducta Alimentaria (TCA)</h2>
           </div>
         </div>
 
         <div class="tabs-nav" role="tablist">
-          <button class="tab-btn active" data-tab="tca-intro">Introducción y Contexto</button>
+          <button class="tab-btn active" data-tab="tca-contexto">Introducción y Contexto</button>
           <button class="tab-btn" data-tab="tca-tipos">Principales Tipos de TCA</button>
-          <button class="tab-btn" data-tab="tca-riesgo">Factores de Riesgo y Origen</button>
-          <button class="tab-btn" data-tab="tca-alerta">Detección y Señales de Alerta</button>
+          <button class="tab-btn" data-tab="tca-riesgo">Factores de Riesgo</button>
+          <button class="tab-btn" data-tab="tca-alerta">Señales de Alerta</button>
         </div>
 
-        <div class="tab-panel active" id="tca-intro">
-          <h3 style="margin-bottom: 0.65rem; color: var(--text-main);">INTRODUCCIÓN Y CONTEXTO</h3>
-          <ul class="card-sublist">
-            <li><strong>Trastornos de la Conducta Alimentaria (TCA):</strong> Afecciones de salud mental que afectan la relación con comida, cuerpo y emociones.</li>
-            <li><strong>Aspecto Biopsicosocial:</strong> Surgen de interacción entre factores biológicos, psicológicos y sociales.</li>
-            <li><strong>Impacto:</strong> Alteran salud física, bienestar emocional y rendimiento académico/social.</li>
+        <div class="tab-panel active" id="tca-contexto">
+          <ul class="styled-list" style="margin-top: 0;">
+            <li><span class="list-badge">1</span><div><strong>Trastornos de la Conducta Alimentaria (TCA):</strong> Afecciones de salud mental que afectan la relación con comida, cuerpo y emociones.</div></li>
+            <li><span class="list-badge rose">2</span><div><strong>Aspecto Biopsicosocial:</strong> Surgen de interacción entre factores biológicos, psicológicos y sociales.</div></li>
+            <li><span class="list-badge teal">3</span><div><strong>Impacto:</strong> Alteran salud física, bienestar emocional y rendimiento académico/social.</div></li>
           </ul>
         </div>
 
         <div class="tab-panel" id="tca-tipos">
-          <h3 style="margin-bottom: 0.65rem; color: var(--text-main);">PRINCIPALES TIPOS DE TCA</h3>
-          <ul class="card-sublist">
-            <li><strong>Anorexia Nerviosa:</strong> Restricción severa de ingesta por temor a aumento de peso y distorsión corporal.</li>
-            <li><strong>Bulimia Nerviosa:</strong> Atracones seguidos de conductas compensatorias (purgas, ejercicio excesivo).</li>
-            <li><strong>Trastorno por Atracón:</strong> Ingesta compulsiva de grandes cantidades sin conductas compensatorias.</li>
+          <ul class="styled-list" style="margin-top: 0;">
+            <li><span class="list-badge rose">AN</span><div><strong>Anorexia Nerviosa:</strong> Restricción severa de ingesta por temor a aumento de peso y distorsión corporal.</div></li>
+            <li><span class="list-badge">BN</span><div><strong>Bulimia Nerviosa:</strong> Atracones seguidos de conductas compensatorias (purgas, ejercicio excesivo).</div></li>
+            <li><span class="list-badge teal">TA</span><div><strong>Trastorno por Atracón:</strong> Ingesta compulsiva de grandes cantidades sin conductas compensatorias.</div></li>
           </ul>
         </div>
 
         <div class="tab-panel" id="tca-riesgo">
-          <h3 style="margin-bottom: 0.65rem; color: var(--text-main);">FACTORES DE RIESGO Y ORIGEN</h3>
-          <ul class="card-sublist">
-            <li><strong>Psicológicos:</strong> Baja autoestima, perfeccionismo, ansiedad o necesidad de control.</li>
-            <li><strong>Sociales:</strong> Presión estética, estándares irrealistas en redes sociales y estigmatización.</li>
-            <li><strong>Biológicos y Familiares:</strong> Predisposición genética, dinámicas familiares y antecedentes de trauma.</li>
+          <ul class="styled-list" style="margin-top: 0;">
+            <li><span class="list-badge">1</span><div><strong>Psicológicos:</strong> Baja autoestima, perfeccionismo, ansiedad o necesidad de control.</div></li>
+            <li><span class="list-badge rose">2</span><div><strong>Sociales:</strong> Presión estética, estándares irrealistas en redes sociales y estigmatización.</div></li>
+            <li><span class="list-badge teal">3</span><div><strong>Biológicos y Familiares:</strong> Predisposición genética, dinámicas familiares y antecedentes de trauma.</div></li>
           </ul>
         </div>
 
         <div class="tab-panel" id="tca-alerta">
-          <h3 style="margin-bottom: 0.65rem; color: var(--text-main);">DETECCIÓN Y SEÑALES DE ALERTA</h3>
-          <ul class="card-sublist">
-            <li><strong>Conductuales:</strong> Aislamiento social al comer, preocupación excesiva por calorías, cambios de hábitos.</li>
-            <li><strong>Físicos:</strong> Variaciones extremas de peso, fatiga, alteraciones gastrointestinales.</li>
-            <li><strong>Emocionales:</strong> Cambios de humor, culpa o vergüenza constante por la alimentación.</li>
+          <ul class="styled-list" style="margin-top: 0;">
+            <li><span class="list-badge">1</span><div><strong>Conductuales:</strong> Aislamiento social al comer, preocupación excesiva por calorías, cambios de hábitos.</div></li>
+            <li><span class="list-badge rose">2</span><div><strong>Físicos:</strong> Variaciones extremas de peso, fatiga, alteraciones gastrointestinales.</div></li>
+            <li><span class="list-badge teal">3</span><div><strong>Emocionales:</strong> Cambios de humor, culpa o vergüenza constante por la alimentación.</div></li>
           </ul>
         </div>
       </section>
 
-      <!-- DIAPOSITIVA 07 -->
+      <!-- Diapositiva 07 -->
       <section id="sec-07">
         <div class="section-header">
-          <div class="section-icon-wrap blue">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <div class="section-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
           </div>
           <div>
-            <span class="section-tag blue">Diapositiva 07 · Tipo de Investigación</span>
+            <span class="section-tag">Diapositiva 07 · Tipo de Investigación</span>
             <h2>Enfoque, Diseño y Nivel de Profundidad</h2>
           </div>
         </div>
 
-        <div class="grid-cards">
+        <div class="grid-cards" style="margin-top: 0;">
           <div class="card-item">
-            <div class="card-icon blue">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
-            </div>
             <h3>1. Enfoque y Diseño</h3>
-            <ul class="card-sublist">
-              <li><span class="kw blue">Cualitativo - Documental</span></li>
+            <ul>
+              <li><span class="kw-box">Cualitativo - Documental</span></li>
               <li><strong>Proceso:</strong> Búsqueda y análisis de fuentes secundarias (Arias, 2012; Alfonso, 1995).</li>
               <li><strong>Aplicación:</strong> Revisión crítica de artículos, relatos clínicos y testimonios sobre TCA.</li>
             </ul>
           </div>
 
           <div class="card-item">
-            <div class="card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-            </div>
             <h3>2. Nivel de Profundidad</h3>
-            <ul class="card-sublist">
-              <li><span class="kw">Descriptivo - Analítico</span></li>
+            <ul>
+              <li><span class="kw-box teal">Descriptivo - Analítico</span></li>
               <li><strong>Nivel Descriptivo:</strong> Caracterización de conductas y estructura del fenómeno (Arias, 2012).</li>
               <li><strong>Carácter Analítico:</strong> Interpretación de dinámicas familiares e impacto de redes sociales en la literatura.</li>
             </ul>
@@ -1570,539 +1270,198 @@
         </div>
       </section>
 
-      <!-- DIAPOSITIVA 08 -->
+      <!-- Diapositiva 08 -->
       <section id="sec-08">
         <div class="section-header">
-          <div class="section-icon-wrap">
+          <div class="section-icon teal">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>
           </div>
           <div>
-            <span class="section-tag">Diapositiva 08 · Resultados de la Investigación</span>
+            <span class="section-tag teal">Diapositiva 08 · Resultados de la Investigación</span>
             <h2>Contrastación Teórica: Análisis de Hallazgos</h2>
           </div>
         </div>
-        <p>
-          <strong>Análisis de hallazgos mediante contrastación teórica</strong> (Confrontación de teorías, antecedentes e interpretación cualitativa):
-        </p>
 
-        <div class="grid-cards">
+        <p><strong>Análisis de hallazgos mediante contrastación teórica</strong> (Confrontación de teorías, antecedentes e interpretación cualitativa):</p>
+
+        <div class="grid-cards" style="margin-top: 0;">
           <div class="card-item">
-            <div class="card-icon rose">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
-            </div>
-            <h3>Categoría 1: Manifestaciones Alimentarias de Riesgo</h3>
-            <p style="font-size: 0.85rem; margin-bottom: 0.65rem;"><em>(Objetivo 1: Reconocer comportamientos)</em></p>
-            <ul class="card-sublist">
-              <li><strong>Fundamento Teórico:</strong> DSM-5, APA (2014), Ogden (2010): Restricción cognitiva, conductas compensatorias.</li>
-              <li><strong>Evidencia en Antecedentes:</strong> Ramírez/Zerpa (2020), Rava/Silber (2018), Rivero/Vivas: Aislamiento sutil, evitación social, conteo obsesivo.</li>
-              <li><strong>Análisis Interpretativo:</strong> Proceso gradual de aislamiento y simulación. Restricción enmascarada tras hábitos ‘saludables’, retrasando detección.</li>
-            </ul>
+            <h3>Percepción de Autoimagen y Control</h3>
+            <p>La distorsión corporal y el control estricto de la ingesta operan como mecanismos de afrontamiento frente a la ansiedad, el perfeccionismo y el sufrimiento emocional silencioso.</p>
           </div>
-
           <div class="card-item">
-            <div class="card-icon blue">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
-            </div>
-            <h3>Categoría 2: Influencia Socioafectiva y Digital</h3>
-            <p style="font-size: 0.85rem; margin-bottom: 0.65rem;"><em>(Objetivo 2: Determinar influencia)</em></p>
-            <ul class="card-sublist">
-              <li><strong>Fundamento Teórico:</strong> Thompson et al. (1999) - Modelo Tripartito; Festinger (1954) - Comparación Social.</li>
-              <li><strong>Evidencia en Antecedentes:</strong> Valdés et al. (2021), Arias (2021): Instagram, TikTok, comentarios familiares/pares, insatisfacción corporal.</li>
-              <li><strong>Análisis Interpretativo:</strong> Redes sociales potencian la presión. Estándares estéticos inalcanzables. Familia es catalizador dual: agravante o protector.</li>
-            </ul>
+            <h3>Entorno Familiar y Redes Sociales</h3>
+            <p>La comparación constante con estándares estéticos digitales y las dinámicas de presión o incomprensión familiar intensifican la insatisfacción corporal y el aislamiento.</p>
           </div>
-
           <div class="card-item">
-            <div class="card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2a8 8 0 0 0-8 8c0 5.4 7 11.5 7.3 11.8a1 1 0 0 0 1.4 0C13 21.5 20 15.4 20 10a8 8 0 0 0-8-8Z"/></svg>
-            </div>
-            <h3>Categoría 3: Vivencias Cotidianas y Autoimagen</h3>
-            <p style="font-size: 0.85rem; margin-bottom: 0.65rem;"><em>(Objetivo 3: Describir vivencias)</em></p>
-            <ul class="card-sublist">
-              <li><strong>Fundamento Teórico:</strong> Cash y Pruzinsky (2002): Autoimagen multidimensional, insatisfacción afecta autoeficacia.</li>
-              <li><strong>Evidencia en Antecedentes:</strong> Testimonios, Rava/Silber (2018): Fatiga emocional, bajo rendimiento académico/laboral, agotamiento cognitivo.</li>
-              <li><strong>Análisis Interpretativo:</strong> Trastorno satura capacidad cognitiva. Vivencia marcada por culpa y miedo. Valor personal supeditado a patrones estéticos.</li>
-            </ul>
+            <h3>Brecha de Acompañamiento Temprano</h3>
+            <p>El estigma y el ocultamiento retrasan la búsqueda de ayuda profesional, confirmando la necesidad de redes empáticas en el hogar, la escuela y los servicios de salud.</p>
           </div>
         </div>
       </section>
 
-      <!-- DIAPOSITIVA 09 -->
+      <!-- Diapositiva 09 -->
       <section id="sec-09">
         <div class="section-header">
-          <div class="section-icon-wrap emerald">
+          <div class="section-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           </div>
           <div>
-            <span class="section-tag">Diapositiva 09 · Conclusiones de la Investigación</span>
-            <h2>Síntesis por Dimensiones y Conclusión General</h2>
+            <span class="section-tag">Diapositiva 09 · Síntesis Final</span>
+            <h2>Conclusiones de la Investigación</h2>
           </div>
         </div>
 
-        <div class="grid-cards">
-          <div class="card-item">
-            <div class="card-icon rose">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" x2="23" y1="1" y2="23"/></svg>
-            </div>
-            <h3>1. Manifestaciones y Comportamientos</h3>
-            <ul class="card-sublist">
-              <li>Inicio paulatino y encubierto.</li>
-              <li>Ocultamiento y aislamiento al comer.</li>
-              <li>Control obsesivo de porciones.</li>
-            </ul>
-          </div>
-
-          <div class="card-item">
-            <div class="card-icon blue">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
-            </div>
-            <h3>2. Entorno Socioafectivo y Digital</h3>
-            <ul class="card-sublist">
-              <li>Impacto de redes sociales (TikTok e Instagram) en la comparación social.</li>
-              <li>Dinámica familiar: Críticas intensifican riesgo; escucha empática protege.</li>
-            </ul>
-          </div>
-
-          <div class="card-item">
-            <div class="card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2a8 8 0 0 0-8 8c0 5.4 7 11.5 7.3 11.8a1 1 0 0 0 1.4 0C13 21.5 20 15.4 20 10a8 8 0 0 0-8-8Z"/></svg>
-            </div>
-            <h3>3. Vivencias y Autoimagen</h3>
-            <ul class="card-sublist">
-              <li>Distorsión del esquema corporal.</li>
-              <li>Agotamiento cognitivo y emocional.</li>
-              <li>Deterioro en rendimiento académico y social.</li>
-            </ul>
-          </div>
-
-          <div class="card-item" style="background: var(--accent-emerald-soft); border-color: rgba(5, 150, 105, 0.3);">
-            <div class="card-icon" style="color: var(--accent-emerald);">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-            </div>
-            <h3>Conclusión General</h3>
-            <ul class="card-sublist">
-              <li>Fenómeno psicosocial complejo, no solo nutricional.</li>
-              <li>Interacción entre autoimagen, presión sociocultural y búsqueda de aceptación.</li>
-            </ul>
-          </div>
-        </div>
+        <ul class="styled-list" style="margin-top: 0;">
+          <li>
+            <span class="list-badge">1</span>
+            <div>Los trastornos de la conducta alimentaria trascienden lo nutricional: constituyen experiencias biopsicosociales complejas marcadas por la <span class="kw-underline">distorsión de la autoimagen, culpa y aislamiento emocional</span>.</div>
+          </li>
+          <li>
+            <span class="list-badge rose">2</span>
+            <div>Las redes sociales y las dinámicas familiares ejercen una <span class="kw-underline">influencia determinante</span> tanto en la vulnerabilidad inicial como en el sostén emocional durante la recuperación.</div>
+          </li>
+          <li>
+            <span class="list-badge teal">3</span>
+            <div>Comprender la voz y vivencia subjetiva de los jóvenes permite superar el estigma clínico y construir rutas de acompañamiento más humanas y oportunas.</div>
+          </li>
+        </ul>
       </section>
 
-      <!-- DIAPOSITIVA 10 -->
+      <!-- Diapositiva 10 -->
       <section id="sec-10">
         <div class="section-header">
-          <div class="section-icon-wrap blue">
+          <div class="section-icon rose">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
           <div>
-            <span class="section-tag blue">Diapositiva 10 · Recomendaciones de la Investigación</span>
-            <h2>Líneas de Acción Institucional, Familiar y Científica</h2>
+            <span class="section-tag rose">Diapositiva 10 · Acciones Preventivas y Terapéuticas</span>
+            <h2>Recomendaciones</h2>
           </div>
         </div>
 
-        <div class="grid-cards">
-          <div class="card-item">
-            <div class="card-icon blue">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-            </div>
-            <h3>A las Instituciones Educativas y Equipos de Orientación</h3>
-            <ul class="card-sublist">
-              <li><strong>Implementar programas de EAN e Imagen Corporal</strong> (Educación Alimentaria Nutricional y aceptación corporal).</li>
-              <li><strong>Crear protocolos de detección temprana y acompañamiento</strong> (identificar señales sutiles, brindar apoyo sin estigma).</li>
-            </ul>
-          </div>
-
-          <div class="card-item">
-            <div class="card-icon rose">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-            </div>
-            <h3>A las Familias y Representantes</h3>
-            <ul class="card-sublist">
-              <li><strong>Fomentar espacios de comunicación libres de juicios</strong> (evitar críticas sobre peso/silueta, fortalecer autoestima).</li>
-              <li><strong>Acompañar el uso responsable de plataformas digitales</strong> (diálogo sobre contenido, desmitificar filtros).</li>
-            </ul>
-          </div>
-
-          <div class="card-item">
-            <div class="card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-            </div>
-            <h3>A Futuras Investigaciones</h3>
-            <ul class="card-sublist">
-              <li><strong>Profundizar en abordajes cualitativos de campo</strong> (estudios fenomenológicos, historias de vida directas).</li>
-              <li><strong>Diversificar las variables de análisis</strong> (explorar dinámicas socioeconómicas y cyberbullying).</li>
-            </ul>
-          </div>
-        </div>
+        <ul class="styled-list" style="margin-top: 0;">
+          <li>
+            <span class="list-badge">1</span>
+            <div><strong>Entorno Familiar:</strong> Fomentar espacios de escucha activa sin juicios sobre el cuerpo o el peso, promoviendo una relación saludable y afectiva con la alimentación.</div>
+          </li>
+          <li>
+            <span class="list-badge rose">2</span>
+            <div><strong>Instituciones Educativas:</strong> Implementar programas de alfabetización digital crítica frente a estereotipos corporales en redes sociales y protocolos de detección temprana.</div>
+          </li>
+          <li>
+            <span class="list-badge teal">3</span>
+            <div><strong>Atención Interdisciplinaria:</strong> Fortalecer el abordaje integral (medicina, psicología, nutrición y trabajo social) centrado en la empatía, la dignidad y la esperanza de recuperación.</div>
+          </li>
+        </ul>
       </section>
 
-      <!-- DIAPOSITIVA 11 -->
+      <!-- Diapositiva 11 -->
       <section id="sec-11">
         <div class="section-header">
-          <div class="section-icon-wrap">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          <div class="section-icon teal">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </div>
           <div>
-            <span class="section-tag">Diapositiva 11 · Cierre</span>
-            <h2>GRACIAS</h2>
+            <span class="section-tag teal">Diapositiva 11 · Cierre y Mensaje Final</span>
+            <h2>Comprensión, Apoyo y Esperanza</h2>
           </div>
         </div>
 
-        <div class="quote-box" style="margin-bottom: 0;">
-          <blockquote>
-            “Por abrir espacios de escucha y visibilizar las complejas experiencias cotidianas de los jóvenes con trastornos alimenticios. Cada testimonio es un paso hacia la comprensión y el bienestar integral.”
+        <div class="quote-box" style="margin-top: 0; margin-bottom: 0; text-align: center;">
+          <blockquote style="font-size: 1.55rem;">
+            “Detrás de cada conducta alimentaria hay una historia que merece ser escuchada sin juicio: la comprensión abre el camino, el apoyo sostiene el proceso y la esperanza hace posible la recuperación.”
           </blockquote>
-          <p style="margin-bottom:0; color:var(--text-main); font-size: 0.9rem; font-weight: 700;">Geovanna Govea · Franyelis Hurtado</p>
+          <p>Universidad del Zulia · Facultad de Medicina · Maracaibo, septiembre del 2026</p>
         </div>
       </section>
 
     </main>
   </div>
 
-  <!-- Footer Institucional -->
+  <!-- Footer -->
   <footer>
     <div class="footer-content">
       <div class="footer-col">
-        <h4>+ Tu espacio saludable</h4>
-        <p>Experiencias de los jóvenes con trastornos alimenticios · Comprensión, apoyo y esperanza.</p>
+        <h4>Investigación</h4>
+        <p>Experiencias de los Jóvenes con Trastornos Alimenticios: Comprensión, Apoyo y Esperanza.</p>
       </div>
       <div class="footer-col">
-        <h4>Créditos del Proyecto</h4>
-        <p><strong>Autores:</strong> Geovanna Govea · Franyelis Hurtado</p>
-        <p><strong>Cátedra:</strong> Ecológica Científica Tecnológica · Escuela de Medicina · Facultad de Medicina</p>
-        <p><strong>Institución:</strong> Universidad del Zulia · Maracaibo, septiembre del 2026</p>
+        <h4>Autoras e Institución</h4>
+        <p><strong>Autoras:</strong> Geovanna Govea y Franyelis Hurtado.</p>
+        <p><strong>Institución:</strong> República Bolivariana de Venezuela &bull; Universidad del Zulia &bull; Facultad de Medicina &bull; Escuela de Medicina &bull; Cátedra Ecológica Científica Tecnológica.</p>
+        <p><strong>Lugar y Fecha:</strong> Maracaibo, septiembre del 2026.</p>
       </div>
       <div class="footer-col">
         <h4>Navegación</h4>
-        <p><a href="../index.html" style="color: var(--accent-violet); font-weight: 700; text-decoration: none;">← Volver a la portada</a></p>
+        <p><a href="#sec-01" style="color: #7dd3fc; font-weight: 700; text-decoration: none;">↑ Volver a la portada</a></p>
       </div>
     </div>
   </footer>
 
-  <!-- Scripts de Interactividad -->
   <script>
-    // 1. Barra de progreso de lectura
+    // 1. Barra de progreso superior
     window.addEventListener('scroll', () => {
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      const progress = docHeight > 0 ? Math.min(100, Math.round((scrollTop / docHeight) * 100)) : 0;
       document.getElementById('readingProgress').style.width = progress + '%';
+      document.getElementById('readPercentText').textContent = progress;
     });
 
-    // 2. Pestañas interactivas
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const tabPanels = document.querySelectorAll('.tab-panel');
-    tabBtns.forEach(btn => {
+    // 2. Animación de entrada de secciones
+    const sections = document.querySelectorAll('main section');
+    const secObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('in-view');
+      });
+    }, { threshold: 0.1 });
+    sections.forEach(sec => secObserver.observe(sec));
+
+    // 3. Contadores animados
+    const countObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = parseInt(el.dataset.target, 10);
+        const start = performance.now();
+        const tick = (now) => {
+          const p = Math.min((now - start) / 1100, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(target * eased);
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+        observer.unobserve(el);
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.count-up').forEach(el => countObserver.observe(el));
+
+    // 4. Pestañas interactivas
+    document.querySelectorAll('.tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        tabBtns.forEach(b => b.classList.remove('active'));
-        tabPanels.forEach(p => p.classList.remove('active'));
+        const parent = btn.closest('section');
+        parent.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        parent.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
         btn.classList.add('active');
         document.getElementById(btn.dataset.tab).classList.add('active');
       });
     });
 
-    // 3. Animación de contadores numéricos
-    const animateCounters = (entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          const target = parseFloat(el.dataset.target);
-          const suffix = el.dataset.suffix || '';
-          const duration = 1200;
-          const startTime = performance.now();
-
-          const update = (now) => {
-            const elapsed = now - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            const current = Math.round(target * eased);
-            el.textContent = current + suffix;
-            if (progress < 1) requestAnimationFrame(update);
-          };
-          requestAnimationFrame(update);
-          observer.unobserve(el);
-        }
-      });
-    };
-
-    const counterObserver = new IntersectionObserver(animateCounters, { threshold: 0.35 });
-    document.querySelectorAll('.count-up').forEach(el => counterObserver.observe(el));
-
-    // 4. Buscador interactivo en tiempo real
-    const searchInput = document.getElementById('docSearch');
-    const sections = document.querySelectorAll('main section');
-    searchInput.addEventListener('input', (e) => {
+    // 5. Buscador en tiempo real
+    document.getElementById('docSearch').addEventListener('input', (e) => {
       const term = e.target.value.toLowerCase().trim();
       sections.forEach(sec => {
-        if (!term || sec.textContent.toLowerCase().includes(term)) {
-          sec.classList.remove('hidden-by-search');
-        } else {
-          sec.classList.add('hidden-by-search');
-        }
+        sec.classList.toggle('hidden-by-search', term && !sec.textContent.toLowerCase().includes(term));
       });
     });
 
-    // 5. Resaltado activo en el índice lateral
+    // 6. Índice activo al hacer scroll
     const navLinks = document.querySelectorAll('.toc-list a');
     window.addEventListener('scroll', () => {
-      let currentId = '';
+      let currentId = 'sec-01';
       sections.forEach(sec => {
-        const top = sec.offsetTop - 140;
-        if (window.scrollY >= top) currentId = sec.getAttribute('id');
-      });
-      navLinks.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
-      });
-    });
-  </script>
-
-</body>
-</html>
-            <p style="font-size: 0.85rem; margin-bottom: 0.65rem;"><em>(Objetivo 2: Determinar influencia)</em></p>
-            <ul class="card-sublist">
-              <li><strong>Fundamento Teórico:</strong> Thompson et al. (1999) - Modelo Tripartito; Festinger (1954) - Comparación Social.</li>
-              <li><strong>Evidencia en Antecedentes:</strong> Valdés et al. (2021), Arias (2021): Instagram, TikTok, comentarios familiares/pares, insatisfacción corporal.</li>
-              <li><strong>Análisis Interpretativo:</strong> Redes sociales potencian la presión. Estándares estéticos inalcanzables. Familia es catalizador dual: agravante o protector.</li>
-            </ul>
-          </div>
-
-          <div class="card-item">
-            <div class="card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2a8 8 0 0 0-8 8c0 5.4 7 11.5 7.3 11.8a1 1 0 0 0 1.4 0C13 21.5 20 15.4 20 10a8 8 0 0 0-8-8Z"/></svg>
-            </div>
-            <h3>Categoría 3: Vivencias Cotidianas y Autoimagen</h3>
-            <p style="font-size: 0.85rem; margin-bottom: 0.65rem;"><em>(Objetivo 3: Describir vivencias)</em></p>
-            <ul class="card-sublist">
-              <li><strong>Fundamento Teórico:</strong> Cash y Pruzinsky (2002): Autoimagen multidimensional, insatisfacción afecta autoeficacia.</li>
-              <li><strong>Evidencia en Antecedentes:</strong> Testimonios, Rava/Silber (2018): Fatiga emocional, bajo rendimiento académico/laboral, agotamiento cognitivo.</li>
-              <li><strong>Análisis Interpretativo:</strong> Trastorno satura capacidad cognitiva. Vivencia marcada por culpa y miedo. Valor personal supeditado a patrones estéticos.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- DIAPOSITIVA 09 -->
-      <section id="sec-09">
-        <div class="section-header">
-          <div class="section-icon-wrap emerald">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          </div>
-          <div>
-            <span class="section-tag">Diapositiva 09 · Conclusiones de la Investigación</span>
-            <h2>Síntesis por Dimensiones y Conclusión General</h2>
-          </div>
-        </div>
-
-        <div class="grid-cards">
-          <div class="card-item">
-            <div class="card-icon rose">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" x2="23" y1="1" y2="23"/></svg>
-            </div>
-            <h3>1. Manifestaciones y Comportamientos</h3>
-            <ul class="card-sublist">
-              <li>Inicio paulatino y encubierto.</li>
-              <li>Ocultamiento y aislamiento al comer.</li>
-              <li>Control obsesivo de porciones.</li>
-            </ul>
-          </div>
-
-          <div class="card-item">
-            <div class="card-icon blue">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
-            </div>
-            <h3>2. Entorno Socioafectivo y Digital</h3>
-            <ul class="card-sublist">
-              <li>Impacto de redes sociales (TikTok e Instagram) en la comparación social.</li>
-              <li>Dinámica familiar: Críticas intensifican riesgo; escucha empática protege.</li>
-            </ul>
-          </div>
-
-          <div class="card-item">
-            <div class="card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2a8 8 0 0 0-8 8c0 5.4 7 11.5 7.3 11.8a1 1 0 0 0 1.4 0C13 21.5 20 15.4 20 10a8 8 0 0 0-8-8Z"/></svg>
-            </div>
-            <h3>3. Vivencias y Autoimagen</h3>
-            <ul class="card-sublist">
-              <li>Distorsión del esquema corporal.</li>
-              <li>Agotamiento cognitivo y emocional.</li>
-              <li>Deterioro en rendimiento académico y social.</li>
-            </ul>
-          </div>
-
-          <div class="card-item" style="background: var(--accent-emerald-soft); border-color: rgba(5, 150, 105, 0.3);">
-            <div class="card-icon" style="color: var(--accent-emerald);">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-            </div>
-            <h3>Conclusión General</h3>
-            <ul class="card-sublist">
-              <li>Fenómeno psicosocial complejo, no solo nutricional.</li>
-              <li>Interacción entre autoimagen, presión sociocultural y búsqueda de aceptación.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- DIAPOSITIVA 10 -->
-      <section id="sec-10">
-        <div class="section-header">
-          <div class="section-icon-wrap blue">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <div>
-            <span class="section-tag blue">Diapositiva 10 · Recomendaciones de la Investigación</span>
-            <h2>Líneas de Acción Institucional, Familiar y Científica</h2>
-          </div>
-        </div>
-
-        <div class="grid-cards">
-          <div class="card-item">
-            <div class="card-icon blue">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-            </div>
-            <h3>A las Instituciones Educativas y Equipos de Orientación</h3>
-            <ul class="card-sublist">
-              <li><strong>Implementar programas de EAN e Imagen Corporal</strong> (Educación Alimentaria Nutricional y aceptación corporal).</li>
-              <li><strong>Crear protocolos de detección temprana y acompañamiento</strong> (identificar señales sutiles, brindar apoyo sin estigma).</li>
-            </ul>
-          </div>
-
-          <div class="card-item">
-            <div class="card-icon rose">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-            </div>
-            <h3>A las Familias y Representantes</h3>
-            <ul class="card-sublist">
-              <li><strong>Fomentar espacios de comunicación libres de juicios</strong> (evitar críticas sobre peso/silueta, fortalecer autoestima).</li>
-              <li><strong>Acompañar el uso responsable de plataformas digitales</strong> (diálogo sobre contenido, desmitificar filtros).</li>
-            </ul>
-          </div>
-
-          <div class="card-item">
-            <div class="card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-            </div>
-            <h3>A Futuras Investigaciones</h3>
-            <ul class="card-sublist">
-              <li><strong>Profundizar en abordajes cualitativos de campo</strong> (estudios fenomenológicos, historias de vida directas).</li>
-              <li><strong>Diversificar las variables de análisis</strong> (explorar dinámicas socioeconómicas y cyberbullying).</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- DIAPOSITIVA 11 -->
-      <section id="sec-11">
-        <div class="section-header">
-          <div class="section-icon-wrap">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-          </div>
-          <div>
-            <span class="section-tag">Diapositiva 11 · Cierre</span>
-            <h2>GRACIAS</h2>
-          </div>
-        </div>
-
-        <div class="quote-box" style="margin-bottom: 0;">
-          <blockquote>
-            “Por abrir espacios de escucha y visibilizar las complejas experiencias cotidianas de los jóvenes con trastornos alimenticios. Cada testimonio es un paso hacia la comprensión y el bienestar integral.”
-          </blockquote>
-          <p style="margin-bottom:0; color:var(--text-main); font-size: 0.9rem; font-weight: 700;">Geovanna Govea · Franyelis Hurtado</p>
-        </div>
-      </section>
-
-    </main>
-  </div>
-
-  <!-- Footer Institucional -->
-  <footer>
-    <div class="footer-content">
-      <div class="footer-col">
-        <h4>+ Tu espacio saludable</h4>
-        <p>Experiencias de los jóvenes con trastornos alimenticios · Comprensión, apoyo y esperanza.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Créditos del Proyecto</h4>
-        <p><strong>Autores:</strong> Geovanna Govea · Franyelis Hurtado</p>
-        <p><strong>Cátedra:</strong> Ecológica Científica Tecnológica · Escuela de Medicina · Facultad de Medicina</p>
-        <p><strong>Institución:</strong> Universidad del Zulia · Maracaibo, septiembre del 2026</p>
-      </div>
-      <div class="footer-col">
-        <h4>Navegación</h4>
-        <p><a href="../index.html" style="color: var(--accent-violet); font-weight: 700; text-decoration: none;">← Volver a la portada</a></p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Scripts de Interactividad -->
-  <script>
-    // 1. Barra de progreso de lectura
-    window.addEventListener('scroll', () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      document.getElementById('readingProgress').style.width = progress + '%';
-    });
-
-    // 2. Pestañas interactivas
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const tabPanels = document.querySelectorAll('.tab-panel');
-    tabBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        tabBtns.forEach(b => b.classList.remove('active'));
-        tabPanels.forEach(p => p.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById(btn.dataset.tab).classList.add('active');
-      });
-    });
-
-    // 3. Animación de contadores numéricos
-    const animateCounters = (entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          const target = parseFloat(el.dataset.target);
-          const suffix = el.dataset.suffix || '';
-          const duration = 1200;
-          const startTime = performance.now();
-
-          const update = (now) => {
-            const elapsed = now - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            const current = Math.round(target * eased);
-            el.textContent = current + suffix;
-            if (progress < 1) requestAnimationFrame(update);
-          };
-          requestAnimationFrame(update);
-          observer.unobserve(el);
-        }
-      });
-    };
-
-    const counterObserver = new IntersectionObserver(animateCounters, { threshold: 0.35 });
-    document.querySelectorAll('.count-up').forEach(el => counterObserver.observe(el));
-
-    // 4. Buscador interactivo en tiempo real
-    const searchInput = document.getElementById('docSearch');
-    const sections = document.querySelectorAll('main section');
-    searchInput.addEventListener('input', (e) => {
-      const term = e.target.value.toLowerCase().trim();
-      sections.forEach(sec => {
-        if (!term || sec.textContent.toLowerCase().includes(term)) {
-          sec.classList.remove('hidden-by-search');
-        } else {
-          sec.classList.add('hidden-by-search');
-        }
-      });
-    });
-
-    // 5. Resaltado activo en el índice lateral
-    const navLinks = document.querySelectorAll('.toc-list a');
-    window.addEventListener('scroll', () => {
-      let currentId = '';
-      sections.forEach(sec => {
-        const top = sec.offsetTop - 140;
-        if (window.scrollY >= top) currentId = sec.getAttribute('id');
+        if (window.scrollY >= sec.offsetTop - 160) currentId = sec.getAttribute('id');
       });
       navLinks.forEach(link => {
         link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
