@@ -56,6 +56,28 @@ section.topic:hover{transform:translateY(-3px);box-shadow:0 20px 48px #0d2e4014;
 .metric-copy{max-width:600px}.micro-label{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:#52817f;font-weight:700}
 .point{transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}.point:hover{transform:translateY(-4px);border-color:#a9d7ce;box-shadow:0 10px 24px #0d45400d}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* Microinteracciones adicionales: movimiento discreto, sin distraer la lectura */
+.metric{isolation:isolate;box-shadow:inset 0 1px 0 #ffffffb5,0 10px 28px #167c7410;transition:box-shadow .35s ease,transform .35s ease}
+.metric:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 #ffffffb5,0 16px 34px #167c741b}
+.metric:before{content:"";position:absolute;inset:-45% auto -45% -35%;width:28%;background:linear-gradient(90deg,transparent,#ffffff88,transparent);transform:skewX(-20deg);animation:metricShimmer 7s ease-in-out infinite;pointer-events:none}
+@keyframes metricShimmer{0%,55%,100%{left:-35%;opacity:0}65%{opacity:.8}85%{left:115%;opacity:0}}
+.count{display:inline-block;min-width:1.15em;transform-origin:50% 75%;font-variant-numeric:tabular-nums}
+.count.counting{animation:numberLift .55s ease-in-out infinite alternate}
+.count.counted{animation:numberPop .55s cubic-bezier(.2,.8,.2,1) both}
+@keyframes numberLift{from{transform:translateY(2px) scale(.98)}to{transform:translateY(-3px) scale(1.035)}}
+@keyframes numberPop{0%{transform:scale(.88)}65%{transform:scale(1.12)}100%{transform:scale(1)}}
+.meter{position:relative;box-shadow:inset 0 1px 2px #12334a16}
+.meter i{position:relative;overflow:hidden}
+.meter i:after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent,#ffffff9c,transparent);transform:translateX(-100%);animation:meterGlint 2.2s ease-in-out 1.9s 1}
+@keyframes meterGlint{to{transform:translateX(120%)}}
+.point:after{content:"";display:block;width:22px;height:2px;margin-top:12px;border-radius:4px;background:#9ed4c9;transition:width .3s ease}
+.point:hover:after{width:48px}
+.tools a,.tools button{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.tools a:hover,.tools button:hover{transform:translateY(-2px);box-shadow:0 5px 14px #12334a12}
+aside a{transition:background .2s ease,color .2s ease,transform .2s ease}
+aside a:hover{transform:translateX(3px)}
+
 </style></head>
 <body><div id="progress"></div>
 <header class="hero"><div class="floaters" aria-hidden="true"><span></span><span></span><span></span><span></span></div><div class="wrap"><div class="eyebrow">Universidad del Zulia · Proyecto de informática · Fases I a III</div><h1>Arquitectura de Información para la Divulgación Médica</h1><p class="subtitle">Estandarización visual y mitigación de la desinformación en redes sociales</p><p class="authors">Autoras: Br. Valeria García E. / Licda. Yamel García V. · Tutora: Dra. Roxy Fonseca</p></div></header>
@@ -97,12 +119,18 @@ let scale=1;document.getElementById('bigger').onclick=()=>{scale=Math.min(1.25,s
 document.getElementById('smaller').onclick=()=>{scale=Math.max(.9,scale-.05);document.querySelector('article').style.fontSize=(16*scale)+'px'};
 addEventListener('scroll',()=>{let max=document.documentElement.scrollHeight-innerHeight;document.getElementById('progress').style.width=(max?scrollY/max*100:0)+'%'},{passive:true});
 
-const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const counter=document.querySelector('.count'),meter=document.getElementById('impactMeter');
 let counted=false;
-const animateImpact=()=>{if(counted)return;counted=true;const target=Number(counter.dataset.target);if(reduceMotion){counter.textContent=target;meter.style.width=target+'%';return}const start=performance.now(),duration=1700;function tick(now){const t=Math.min((now-start)/duration,1),ease=1-Math.pow(1-t,3);counter.textContent=Math.round(target*ease);meter.style.width=(target*ease)+'%';if(t<1)requestAnimationFrame(tick)}requestAnimationFrame(tick)};
-const impactObserver=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){animateImpact();impactObserver.disconnect()}},{threshold:.45});impactObserver.observe(document.getElementById('impact'));
-const revealObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');revealObserver.unobserve(e.target)}}),{threshold:.08});
-document.querySelectorAll('.topic').forEach(el=>{el.classList.add('reveal');if(reduceMotion)el.classList.add('in');else revealObserver.observe(el)});
-const navLinks=[...document.querySelectorAll('aside a')];const sectionObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)navLinks.forEach(a=>{const active=a.hash==='#'+e.target.id;a.style.background=active?'#e7f4f1':'';a.style.color=active?'#168b88':'';a.style.fontWeight=active?'700':'400'})}),{rootMargin:'-25% 0px -65% 0px'});sections.forEach(s=>sectionObserver.observe(s));
+const animateImpact=()=>{if(counted||!counter||!meter)return;counted=true;const target=Number(counter.dataset.target)||20;if(reduceMotion){counter.textContent=target;meter.style.width='100%';return}
+const start=performance.now(),duration=2100;counter.classList.add('counting');
+function tick(now){const t=Math.min((now-start)/duration,1),ease=1-Math.pow(1-t,4);counter.textContent=Math.min(target,Math.floor(target*ease));meter.style.width=(ease*100)+'%';if(t<1)requestAnimationFrame(tick);else{counter.textContent=target;counter.classList.remove('counting');counter.classList.add('counted')}}
+requestAnimationFrame(tick)};
+const impactSection=document.getElementById('impact');
+if('IntersectionObserver' in window){const impactObserver=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){animateImpact();impactObserver.disconnect()}},{threshold:0.01,rootMargin:'0px 0px -12% 0px'});impactObserver.observe(impactSection)}
+else{const checkImpact=()=>{const r=impactSection.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0){animateImpact();removeEventListener('scroll',checkImpact)}};addEventListener('scroll',checkImpact,{passive:true});checkImpact()}
+if('IntersectionObserver' in window){const revealObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');revealObserver.unobserve(e.target)}}),{threshold:.04,rootMargin:'0px 0px 30px 0px'});
+document.querySelectorAll('.topic').forEach(el=>{el.classList.add('reveal');if(reduceMotion)el.classList.add('in');else revealObserver.observe(el)})}
+else document.querySelectorAll('.topic').forEach(el=>el.classList.add('in'));
+const navLinks=[...document.querySelectorAll('aside a')];if('IntersectionObserver' in window){const sectionObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)navLinks.forEach(a=>{const active=a.hash==='#'+e.target.id;a.style.background=active?'#e7f4f1':'';a.style.color=active?'#168b88':'';a.style.fontWeight=active?'700':'400'})}),{rootMargin:'-20% 0px -65% 0px'});sections.forEach(s=>sectionObserver.observe(s))}
 </script></body></html>
