@@ -230,9 +230,82 @@ p{color:#46556d}
 }
 @media(max-width:480px){.layout{padding:0 14px}.hero{min-height:490px}.authors{gap:12px}section.topic{padding:34px 8px}#problema,#conclusion{padding:28px 18px!important}}
 
+
+/* ===== Identidad visual trasladada del PowerPoint ===== */
+:root{--navy:#111c32;--blue:#0879a8;--cyan:#11a8d5;--pale:#eef6fc;--pale2:#e2f1fa;--orange:#f07835;--ink:#172338;--muted:#65758a;--line:#dce7f0;--paper:#f5f8fc;--teal:#0879a8;--mint:#eef6fc}
+html{scroll-padding-top:88px}
+body{background:#f4f7fb;color:var(--ink);font-family:"DM Sans",Arial,sans-serif;line-height:1.7}
+#progress{height:4px;background:linear-gradient(90deg,#13a9d6,#0879a8,#f07835)}
+.hero{min-height:560px;display:flex;align-items:center;padding:76px max(6vw,24px) 68px;color:#fff;background:linear-gradient(90deg,rgba(9,18,36,.88) 0%,rgba(9,23,43,.78) 48%,rgba(9,23,43,.32) 100%),url('../assets/hero-medico.jpg') center 43%/cover no-repeat;position:relative}
+.hero:after{content:"";position:absolute;inset:auto 0 0;height:7px;background:linear-gradient(90deg,#0aa4d2 0 68%,#f07835 68% 74%,#e8f5fb 74%)}
+.hero .wrap{max-width:1180px}
+.cover-mark{width:42px;height:42px;display:grid;place-items:center;border:1px solid #ffffff88;border-radius:50%;font-size:23px;color:#fff;margin-bottom:24px;background:#ffffff16}
+.eyebrow{color:#73d8f1;font-size:.75rem;letter-spacing:.2em;font-weight:800}
+h1{font-family:Manrope,"DM Sans",sans-serif;font-size:clamp(2.4rem,5.1vw,4.8rem);max-width:880px;line-height:1.08;letter-spacing:-.045em;margin:18px 0}
+.hero .subtitle{color:#e6f2fa;font-size:clamp(1.05rem,1.8vw,1.3rem);max-width:760px}
+.cover-meta{display:grid;grid-template-columns:1.3fr .8fr .8fr;gap:22px;max-width:930px;margin-top:44px;padding-top:18px;border-top:1px solid #ffffff55}
+.cover-meta p{margin:0;display:flex;flex-direction:column;gap:4px;color:#fff;font-size:.88rem}
+.cover-meta b{font-size:.68rem;letter-spacing:.16em;color:#79d9f0}
+.tools{background:#ffffffef;border-color:#dce7f0;box-shadow:0 8px 22px #142e4a0b}
+.tools a,.tools button{border-radius:8px;border-color:#d5e2ed;color:#14243d;font-weight:700}
+.tools a:hover,.tools button:hover{border-color:#0b9bc8;color:#0879a8;background:#eef8fc}
+.tools input{border-radius:8px;border-color:#d5e2ed;background:#f7fbfe}
+.layout{max-width:1280px;grid-template-columns:245px minmax(0,1fr);gap:30px;margin:42px auto}
+aside{border-radius:12px;border:1px solid #dce7f0;box-shadow:0 12px 30px #1c38500a;padding:18px}
+aside h2{font-family:Manrope;color:#14243d;font-size:.95rem}
+aside a{color:#566980;border-radius:7px;font-size:.84rem}
+aside a:hover{background:#eaf5fb;color:#0879a8}
+article{min-width:0}
+.intro{font-size:.98rem;color:#66768a;padding:0 6px 20px}
+section.topic{position:relative;background:#fff;border:1px solid #e0e9f1;border-radius:12px;padding:clamp(24px,3.6vw,42px);margin-bottom:22px;box-shadow:0 10px 30px #152f4b08;scroll-margin-top:90px}
+section.topic:before{top:28px;bottom:28px;width:4px;border-radius:0 4px 4px 0;background:linear-gradient(#11a8d5,#0879a8);opacity:1}
+.kicker{color:#e47736;font-size:.69rem;letter-spacing:.16em;font-weight:900}
+h2{font-family:Manrope;color:#111c32;font-size:clamp(1.5rem,2.7vw,2.15rem);font-weight:800;letter-spacing:-.035em;margin:9px 0 24px}
+h3{font-family:Manrope;color:#0879a8;font-weight:800}
+p{color:#3c4c61}
+.point{background:#f2f7fc;border:1px solid #e3edf5;border-radius:9px;padding:19px;box-shadow:none}
+.point b{color:#13233b}
+.points{gap:14px}
+.metric{background:#eff7fc;border:1px solid #dcebf5;border-radius:10px}
+.impact-image-section{padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important}
+.impact-image-section img{border-radius:10px;box-shadow:0 14px 34px #142e4a12}
+#problema{background:linear-gradient(110deg,#fff 0%,#f5f9fd 100%)}
+#problema p{padding:12px 14px;margin:10px 0;background:#f2f7fc;border-left:3px solid #10a6d2;border-radius:0 8px 8px 0}
+#problema .term{background:none;border:0;padding:0;color:#0879a8}
+#escenario .point:nth-child(3){border-top:3px solid #f07835}
+#danos p{padding:11px 14px;margin:9px 0;border-bottom:1px solid #e6edf4}
+#danos .term{border:0;background:none;padding:0;color:#0879a8}
+#pregunta{background:#edf6fc;border:1px solid #d7eaf6;text-align:center;padding:clamp(36px,6vw,70px)}
+#pregunta:after{content:"“";display:block;font-family:Georgia,serif;font-size:6rem;line-height:.55;color:#9bdcf0;order:-1}
+#pregunta p{font-family:Manrope;font-size:clamp(1.3rem,2.7vw,2.15rem);line-height:1.35;font-weight:800;color:#0879a8;max-width:850px;margin:0 auto 22px}
+#metas .point{position:relative;padding-top:25px}
+#metas .point:before{content:counter(goal);counter-increment:goal;position:absolute;top:-12px;left:16px;width:30px;height:30px;display:grid;place-items:center;background:#dff2fa;color:#0879a8;border-radius:6px;font-weight:900}
+#metas .points{counter-reset:goal}
+#dimensiones .point,#pilares .point{border-top:3px solid #15a6d0}
+#pilares .points{grid-template-columns:repeat(2,minmax(0,1fr))}
+#metodo .points{grid-template-columns:repeat(3,minmax(0,1fr))}
+#metodo .point:nth-child(1){border-top:3px solid #14a6d1}
+#metodo .point:nth-child(2){border-top:3px solid #25b69a}
+#metodo .point:nth-child(3){border-top:3px solid #f07835}
+#ruta .points{position:relative}
+#propuesta{background:#edf6fc}
+#propuesta .point{display:flex;flex-direction:column;border-left:4px solid #10a6d2}
+#conclusion{background:linear-gradient(110deg,#101c32 0%,#142c4c 68%,#0d607f 100%);color:#fff;border:0;min-height:290px}
+#conclusion:before{background:#13a9d6}
+#conclusion .kicker,#conclusion h2,#conclusion h3,#conclusion p{color:#fff}
+#conclusion p{color:#dbe8f3}
+#conclusion p:not(:first-of-type){padding:9px 12px;border-left:3px solid #11a8d5;background:#ffffff0c}
+.references p{border-bottom:1px solid #e7edf4;color:#526176}
+footer{color:#718096;border-top:1px solid #e2eaf2;background:#fff}
+footer a{color:#0879a8}
+.reveal{transition:opacity .55s ease,transform .55s ease}
+@media(max-width:900px){.layout{grid-template-columns:1fr;margin:24px auto}.cover-meta{grid-template-columns:1fr 1fr}.cover-meta p:first-child{grid-column:1/-1}aside{position:relative;top:auto;display:flex;flex-wrap:wrap;gap:4px}aside h2{width:100%}}
+@media(max-width:600px){.hero{min-height:570px;padding:62px 22px 56px;background-position:58% center}.cover-meta{grid-template-columns:1fr;gap:13px;margin-top:30px}.cover-meta p:first-child{grid-column:auto}.layout{padding:0 12px}.tools-inner{padding:10px 12px}#metodo .points,#pilares .points{grid-template-columns:1fr}section.topic{padding:24px 20px}#pregunta{padding:40px 22px}}
+@media(prefers-reduced-motion:reduce){.reveal{transition:none}}
+
 </style></head>
 <body><div id="progress"></div>
-<header class="hero"><div class="floaters" aria-hidden="true"><span></span><span></span><span></span><span></span></div><div class="wrap"><div class="eyebrow">Universidad del Zulia · Proyecto de informática · Fases I a III</div><h1>Arquitectura de Información para la Divulgación Médica</h1><p class="subtitle">Estandarización visual y mitigación de la desinformación en redes sociales</p><p class="authors">Autoras: Br. Valeria García E. / Licda. Yamel García V. · Tutora: Dra. Roxy Fonseca</p></div></header>
+<header class="hero"><div class="floaters" aria-hidden="true"><span></span><span></span><span></span><span></span></div><div class="wrap"><div class="cover-mark" aria-hidden="true">✚</div><div class="eyebrow">PROYECTO INFORMÁTICA · FASE I A III</div><h1>Arquitectura de Información para la Divulgación Médica</h1><p class="subtitle">Estandarización visual y mitigación de la desinformación en redes sociales</p><div class="cover-meta"><p><b>AUTORAS</b><span>Br. Valeria García E. / Licda. Yamel García V.</span></p><p><b>TUTORA</b><span>Dra. Roxy Fonseca</span></p><p><b>INSTITUCIÓN</b><span>Universidad del Zulia</span></p></div></div></header>
 <div class="tools"><div class="tools-inner"><a href="../index.html">← Volver a proyectos</a><input id="search" type="search" placeholder="Buscar dentro del trabajo…" aria-label="Buscar dentro del trabajo"><button id="bigger" type="button">Aumentar texto</button><button id="smaller" type="button">Reducir texto</button><button type="button" onclick="window.print()">Imprimir</button></div></div>
 <div class="layout"><aside><h2>Contenido del trabajo</h2><a href="#problema">Planteamiento del problema</a><a href="#impacto">Impacto clínico global</a><a href="#escenario">Escenario venezolano</a><a href="#danos">Daños a la salud pública</a><a href="#pregunta">Formulación del problema</a><a href="#metas">Metas y justificación</a><a href="#teoria">Bases teóricas</a><a href="#dimensiones">Dimensiones del sistema</a><a href="#pilares">Pilares de arquitectura</a><a href="#modelacion">Modelación del contenido</a><a href="#metodo">Diseño metodológico</a><a href="#ruta">Ruta de ejecución</a><a href="#propuesta">Propuesta operativa</a><a href="#conclusion">Conclusión</a><a href="#referencias">Referencias bibliográficas</a></aside>
 <article><p class="intro">Trabajo académico organizado para facilitar la lectura y consulta. El contenido textual se conserva en su formulación original; la portada de presentación no se repite dentro del desarrollo.</p>
