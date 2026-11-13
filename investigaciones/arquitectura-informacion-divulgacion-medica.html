@@ -85,6 +85,15 @@ aside a:hover{transform:translateX(3px)}
 .metric-copy{flex:1;min-width:0}
 .metric:before{display:none}
 @media(max-width:520px){.metric{gap:12px;padding:18px 14px}.metric>strong{flex-basis:90px;width:90px;min-width:90px;font-size:2.7rem}}
+
+/* Ajuste final del indicador: cifra y porcentaje siempre en una sola línea */
+.metric{display:flex;align-items:center;gap:clamp(18px,4vw,34px);min-width:0}
+.metric>strong{display:inline-flex!important;flex:0 0 auto;align-items:baseline;justify-content:flex-start;gap:2px;white-space:nowrap;min-width:max-content;line-height:1}
+.metric>strong .count,.metric>strong span:last-child{display:inline!important;white-space:nowrap;line-height:1}
+.metric>strong .count{min-width:0;font-variant-numeric:tabular-nums}
+.metric-copy{flex:1;min-width:0}
+@media(max-width:560px){.metric{gap:14px;padding:17px}.metric>strong{font-size:clamp(2.35rem,13vw,3.25rem)!important}}
+
 </style></head>
 <body><div id="progress"></div>
 <header class="hero"><div class="floaters" aria-hidden="true"><span></span><span></span><span></span><span></span></div><div class="wrap"><div class="eyebrow">Universidad del Zulia · Proyecto de informática · Fases I a III</div><h1>Arquitectura de Información para la Divulgación Médica</h1><p class="subtitle">Estandarización visual y mitigación de la desinformación en redes sociales</p><p class="authors">Autoras: Br. Valeria García E. / Licda. Yamel García V. · Tutora: Dra. Roxy Fonseca</p></div></header>
@@ -129,10 +138,10 @@ addEventListener('scroll',()=>{let max=document.documentElement.scrollHeight-inn
 (function(){
  const number=document.querySelector('.count'),bar=document.getElementById('impactMeter');
  if(!number||!bar)return;
- const target=20,duration=2400,start=performance.now();
+ const target=20,duration=1150,start=performance.now();
  number.textContent='0';bar.style.width='0%';number.classList.add('counting');
  function frame(now){
-  const p=Math.min(1,(now-start)/duration),e=1-Math.pow(1-p,3);
+  const p=Math.min(1,(now-start)/duration),e=1-Math.pow(1-p,2.2);
   number.textContent=String(Math.floor(target*e));bar.style.width=(e*100)+'%';
   if(p<1)requestAnimationFrame(frame);
   else{number.textContent='20';bar.style.width='100%';number.classList.remove('counting');number.classList.add('counted')}
