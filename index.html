@@ -230,5 +230,262 @@
 <button class="to-top" id="toTop" type="button" aria-label="Volver arriba">↑</button>
 
 <script src="script.js"></script>
+<!-- WIDGET QR FLOTANTE ARRIBA A LA DERECHA -->
+  <style>
+    .qr-corner-widget {
+      position: fixed;
+      top: 14px;
+      right: 16px;
+      z-index: 9999;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    }
+
+    .qr-corner-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid #cbd5e1;
+      border-radius: 14px;
+      padding: 6px 12px 6px 7px;
+      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.14);
+      cursor: pointer;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    }
+
+    .qr-corner-btn:hover {
+      transform: translateY(-2px);
+      border-color: #4338ca;
+      box-shadow: 0 14px 30px -5px rgba(67, 56, 202, 0.22);
+    }
+
+    .qr-mini-frame {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      background: #ffffff;
+      padding: 3px;
+      border: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .qr-mini-frame img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border-radius: 4px;
+    }
+
+    .qr-btn-text {
+      text-align: left;
+      line-height: 1.2;
+    }
+
+    .qr-btn-text strong {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .qr-btn-text span {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: #4338ca;
+    }
+
+    .qr-popover {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      width: 268px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 1.25rem;
+      text-align: center;
+      box-shadow: 0 24px 48px -12px rgba(15, 23, 42, 0.24);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px) scale(0.97);
+      transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .qr-popover.open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+
+    .qr-popover-title {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 0.2rem;
+    }
+
+    .qr-popover-sub {
+      font-size: 0.74rem;
+      color: #64748b;
+      margin-bottom: 0.9rem;
+    }
+
+    .qr-large-box {
+      background: linear-gradient(135deg, #eef2ff 0%, #fdf2f8 100%);
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 0.85rem;
+      display: inline-block;
+      margin-bottom: 0.85rem;
+    }
+
+    .qr-large-box img {
+      width: 176px;
+      height: 176px;
+      display: block;
+      border-radius: 10px;
+      background: #ffffff;
+      padding: 6px;
+    }
+
+    .qr-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+
+    .qr-action-btn {
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      color: #0f172a;
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 0.5rem 0.6rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .qr-action-btn:hover {
+      background: #eef2ff;
+      border-color: #4338ca;
+      color: #4338ca;
+    }
+
+    .qr-action-btn.primary {
+      background: #4338ca;
+      border-color: #4338ca;
+      color: #ffffff;
+    }
+
+    .qr-action-btn.primary:hover {
+      background: #3730a3;
+    }
+
+    @media (max-width: 640px) {
+      .qr-corner-widget {
+        top: auto;
+        bottom: 16px;
+        right: 16px;
+      }
+      .qr-popover {
+        top: auto;
+        bottom: calc(100% + 10px);
+        width: min(268px, calc(100vw - 32px));
+      }
+    }
+  </style>
+
+  <div class="qr-corner-widget" id="qrCornerWidget">
+    <button type="button" class="qr-corner-btn" id="qrToggleBtn" aria-expanded="false" aria-label="Mostrar código QR para compartir">
+      <div class="qr-mini-frame">
+        <img id="qrMiniImg" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&margin=4&color=0f172a&data=https%3A%2F%2Fdonfidelio.github.io%2FFranyelis%2Findex.html" alt="QR compartir página">
+      </div>
+      <div class="qr-btn-text">
+        <strong>Compartir</strong>
+        <span>Ver QR</span>
+      </div>
+    </button>
+
+    <div class="qr-popover" id="qrPopover" role="dialog" aria-label="Código QR de Tu espacio saludable">
+      <div class="qr-popover-title">Comparte este espacio</div>
+      <div class="qr-popover-sub">Escanea con la cámara de tu teléfono</div>
+      <div class="qr-large-box">
+        <img id="qrLargeImg" src="https://api.qrserver.com/v1/create-qr-code/?size=360x360&margin=8&color=0f172a&data=https%3A%2F%2Fdonfidelio.github.io%2FFranyelis%2Findex.html" alt="Código QR grande">
+      </div>
+      <div class="qr-actions">
+        <button type="button" class="qr-action-btn" id="qrCopyBtn">Copiar enlace</button>
+        <button type="button" class="qr-action-btn primary" id="qrDownloadBtn">Descargar QR</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const shareUrl = 'https://donfidelio.github.io/Franyelis/index.html';
+      const widget = document.getElementById('qrCornerWidget');
+      const toggleBtn = document.getElementById('qrToggleBtn');
+      const popover = document.getElementById('qrPopover');
+      const copyBtn = document.getElementById('qrCopyBtn');
+      const downloadBtn = document.getElementById('qrDownloadBtn');
+      const largeImg = document.getElementById('qrLargeImg');
+
+      if (!widget || !toggleBtn || !popover || !copyBtn || !downloadBtn || !largeImg) return;
+
+      toggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = popover.classList.toggle('open');
+        toggleBtn.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!widget.contains(e.target)) {
+          popover.classList.remove('open');
+          toggleBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          popover.classList.remove('open');
+          toggleBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      copyBtn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(shareUrl);
+          copyBtn.textContent = '¡Copiado!';
+          setTimeout(() => (copyBtn.textContent = 'Copiar enlace'), 1800);
+        } catch {
+          window.prompt('Copia este enlace:', shareUrl);
+        }
+      });
+
+      downloadBtn.addEventListener('click', async () => {
+        try {
+          const res = await fetch(largeImg.src);
+          if (!res.ok) throw new Error('No se pudo descargar el QR');
+          const blob = await res.blob();
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'qr-tu-espacio-saludable.png';
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          URL.revokeObjectURL(url);
+        } catch {
+          window.open(largeImg.src, '_blank', 'noopener');
+        }
+      });
+    })();
+  </script>
+
 </body>
 </html>
