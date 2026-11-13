@@ -1,134 +1,47 @@
-<!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Arquitectura de información para la divulgación médica | Tu espacio saludable</title>
-<meta name="description" content="Proyecto de Valeria García y Yamel García sobre estandarización visual y mitigación de la desinformación médica en redes sociales.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root{--ink:#102f34;--muted:#587579;--teal:#078789;--mint:#eaf7f4;--line:#d7eae6;--white:#fff;--shadow:0 16px 42px rgba(20,74,76,.09)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f7fbfa;color:var(--ink);font-family:"DM Sans",sans-serif;line-height:1.7}
-.top{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:15px max(5vw,22px);display:flex;justify-content:space-between;align-items:center;gap:16px}
-.brand{font:800 16px "Manrope",sans-serif;text-decoration:none;color:var(--teal);letter-spacing:-.04em}.brand i{font-style:normal;display:inline-grid;place-items:center;width:29px;height:29px;border-radius:9px;background:var(--teal);color:white;margin-right:9px}.back{color:var(--muted);font-size:13px;text-decoration:none}
-main{width:min(1080px,90vw);margin:auto;padding:62px 0 88px}.hero{padding:clamp(28px,5vw,58px);border-radius:30px;background:linear-gradient(135deg,#e7f6f2,#f5fbf9 65%,#dff1ed);border:1px solid var(--line);position:relative;overflow:hidden}.hero:after{content:"IA";position:absolute;right:4%;top:1%;font:800 clamp(90px,18vw,210px) "Manrope";color:rgba(7,135,137,.055);pointer-events:none}
-.kicker{color:var(--teal);font:800 11px "Manrope";letter-spacing:.16em;text-transform:uppercase;margin:0 0 15px}.names{font-size:13px;color:var(--muted);margin:0 0 22px}.names strong{color:var(--ink)}
-h1,h2,h3{font-family:"Manrope",sans-serif;letter-spacing:-.045em;line-height:1.15}h1{font-size:clamp(34px,5.4vw,62px);max-width:880px;margin:0 0 22px}h2{font-size:clamp(24px,3vw,34px);margin:0 0 15px}h3{font-size:19px;margin:0 0 9px}.lead{font-size:clamp(17px,2vw,20px);color:#45686c;max-width:800px;margin:0}.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}.pill{border:1px solid rgba(7,135,137,.18);background:rgba(255,255,255,.72);border-radius:99px;padding:7px 13px;font-size:12px;color:#42686b}
-nav.contents{display:flex;flex-wrap:wrap;gap:9px;margin:24px 0 48px}nav.contents a{font-size:12px;color:var(--teal);text-decoration:none;background:white;border:1px solid var(--line);border-radius:99px;padding:8px 12px}
-.section{margin:54px 0}.section-head{margin-bottom:22px}.section-head p{color:var(--muted);max-width:780px;margin:0}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{padding:25px;border-radius:20px;background:white;border:1px solid var(--line);box-shadow:var(--shadow)}.num{font:800 12px "Manrope";color:var(--teal);letter-spacing:.12em;margin-bottom:13px}.card p{margin:0;color:var(--muted)}.wide{grid-column:1/-1}
-.stat{display:flex;align-items:center;gap:20px;padding:25px;border-radius:20px;background:#10383d;color:white;margin:22px 0}.stat strong{font:800 clamp(38px,6vw,60px) "Manrope";color:#8fe0d1;line-height:1}.stat p{margin:0;color:#e4f4f1}
-.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.step{padding:22px;border-radius:18px;background:var(--mint);border:1px solid var(--line)}.step p{font-size:14px;color:var(--muted);margin:0}
-.quote{padding:24px 28px;border-left:4px solid var(--teal);background:#edf7f5;border-radius:0 16px 16px 0;font:700 19px "Manrope";line-height:1.45}
-.refs{padding-left:20px;color:var(--muted);font-size:13px}.refs li{margin:0 0 11px}.notice{margin-top:46px;padding:18px 20px;border-radius:14px;background:#fff8e9;border:1px solid #f0e1b8;color:#66532d;font-size:13px}
-footer{padding:24px max(5vw,22px);border-top:1px solid var(--line);color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-@media(max-width:700px){main{padding:34px 0 60px}.grid,.steps{grid-template-columns:1fr}.wide{grid-column:auto}.hero{padding:25px}.stat{align-items:flex-start;flex-direction:column}.top{align-items:flex-start}.back{white-space:nowrap}}
-</style>
-</head>
-<body>
-<header class="top"><a class="brand" href="../index.html"><i>+</i>Tu espacio saludable</a><a class="back" href="../index.html">← Volver a la portada</a></header>
-<main>
-<section class="hero" id="inicio">
-<p class="kicker">Proyecto de investigación · Informática · Fases I a III</p>
-<p class="names"><strong>Autoras:</strong> Br. Valeria García E. · Licda. Yamel García V. <span aria-hidden="true">|</span> <strong>Tutora:</strong> Dra. Roxy Fonseca</p>
-<h1>Arquitectura de información para la divulgación médica</h1>
-<p class="lead">Estandarización visual y mitigación de la desinformación en redes sociales.</p>
-<div class="meta"><span class="pill">Universidad del Zulia</span><span class="pill">Comunicación médica</span><span class="pill">Información verificable</span></div>
-</section>
-<nav class="contents" aria-label="Contenido del proyecto"><a href="#problema">Problema</a><a href="#objetivos">Metas</a><a href="#fundamento">Fundamento</a><a href="#arquitectura">Arquitectura</a><a href="#metodo">Metodología</a><a href="#propuesta">Propuesta</a><a href="#conclusion">Conclusión</a><a href="#referencias">Referencias</a></nav>
-
-<section class="section" id="problema">
-<div class="section-head"><p class="kicker">01 · Planteamiento</p><h2>El desafío de la infodemia digital</h2><p>La presentación describe un entorno en el que las redes sociales se han convertido en una fuente principal de información sobre salud, mientras los contenidos inexactos se propagan con rapidez y el rigor académico puede quedar relegado por la dinámica de los algoritmos.</p></div>
-<div class="grid">
-<article class="card"><div class="num">01 / MOTOR PRIMARIO</div><h3>Redes sociales</h3><p>Se utilizan como fuente principal para consultar información de salud.</p></article>
-<article class="card"><div class="num">02 / VIRALIDAD PERJUDICIAL</div><h3>Datos inexactos</h3><p>La difusión acelerada de información incorrecta puede confundir a la audiencia.</p></article>
-<article class="card wide"><div class="num">03 / CIENCIA INVISIBILIZADA</div><h3>Rigor académico frente a algoritmos</h3><p>La complejidad del contenido académico puede dificultar su visibilidad y circulación en plataformas sociales.</p></article>
-</div>
-<div class="stat"><strong>20%</strong><p>La presentación señala una caída en las tasas de intención de vacunación asociada al consumo directo de desinformación sanitaria. El dato se reproduce tal como aparece en la diapositiva de impacto clínico global.</p></div>
-<h3>El escenario venezolano</h3><div class="grid">
-<article class="card"><h3>Vacío oficial</h3><p>Ausencia de canales estatales fiables de divulgación.</p></article>
-<article class="card"><h3>Intrusismo digital</h3><p>Creadores sin aval emitiendo opiniones médicas.</p></article>
-<article class="card wide"><h3>Alerta COMEZU</h3><p>La presentación advierte sobre el peligro para el manejo de pacientes crónicos.</p></article>
-</div>
-</section>
-
-<section class="section" id="objetivos"><div class="section-head"><p class="kicker">02 · Formulación y metas</p><h2>La pregunta que guía el proyecto</h2><div class="quote">¿Cómo debe estructurarse la información médica digital para mitigar la desinformación en redes sociales?</div></div>
-<div class="steps">
-<article class="step"><div class="num">META 01</div><h3>Identificar patrones</h3><p>Analizar desajustes conceptuales en contenidos de salud virales.</p></article>
-<article class="step"><div class="num">META 02</div><h3>Definir pautas</h3><p>Establecer métodos de estandarización para evidencia científica.</p></article>
-<article class="step"><div class="num">META 03</div><h3>Diseñar esquema</h3><p>Crear una arquitectura validable para fuentes médicas en redes.</p></article>
-</div>
-</section>
-
-<section class="section" id="fundamento"><div class="section-head"><p class="kicker">03 · Justificación y bases teóricas</p><h2>Fundamento social y metodológico</h2></div>
-<div class="grid">
-<article class="card"><h3>Impacto social</h3><p>Aumento de la alfabetización digital poblacional y defensa cognitiva frente a remedios falsos.</p></article>
-<article class="card"><h3>Impacto metodológico</h3><p>Una guía estructurada para la traducción médica y mayor visibilidad algorítmica para contenido profesional.</p></article>
-<article class="card"><h3>Eysenbach (2020)</h3><p>Simplificación proactiva de evidencia frente a desmentidos pasivos.</p></article>
-<article class="card"><h3>Cinelli et al. (2020)</h3><p>La arquitectura interna de las redes condiciona la amplificación viral.</p></article>
-<article class="card"><h3>Artigas y Guallar (2022)</h3><p>La categorización visual clara y los parámetros estandarizados empoderan al usuario y limitan la desinformación.</p></article>
-<article class="card"><h3>OVFN (2021)</h3><p>La presentación recoge que las redes sociales operan como motores primarios de autodiagnóstico en Venezuela ante la opacidad oficial.</p></article>
-</div></section>
-
-<section class="section" id="arquitectura"><div class="section-head"><p class="kicker">04 · Profundización teórica</p><h2>¿Cómo se organiza la arquitectura de información?</h2><p>El modelo presentado reúne dimensiones, pilares y mecanismos para ordenar la información médica y hacerla más comprensible para la audiencia.</p></div>
-<div class="grid">
-<article class="card"><div class="num">DIMENSIÓN 01</div><h3>Contexto</h3><p>Alineación estructurada de los datos con los objetivos sanitarios e institucionales de divulgación.</p></article>
-<article class="card"><div class="num">DIMENSIÓN 02</div><h3>Contenido</h3><p>Estandarización del formato, rigor y verificabilidad de la evidencia médica que se hace pública.</p></article>
-<article class="card wide"><div class="num">DIMENSIÓN 03</div><h3>Usuarios</h3><p>Diseño del esquema informativo centrado en las necesidades operativas de la audiencia común.</p></article>
-</div>
-<h3 style="margin-top:30px">Los cuatro pilares</h3><div class="steps">
-<article class="step"><h3>Organización</h3><p>Agrupación categórica de datos clínicos.</p></article>
-<article class="step"><h3>Etiquetado</h3><p>Puente semántico hacia el lenguaje natural.</p></article>
-<article class="step"><h3>Navegación</h3><p>Desplazamiento fluido entre conceptos médicos.</p></article>
-</div><article class="card" style="margin-top:14px"><h3>Búsqueda</h3><p>Recuperación ágil de evidencia verificada.</p></article>
-<h3 style="margin-top:30px">Modelación del contenido</h3><div class="grid">
-<article class="card"><h3>Taxonomías</h3><p>Clasificación jerárquica de contenidos.</p></article>
-<article class="card"><h3>Metadatos</h3><p>Asignación de autoría y nivel de evidencia.</p></article>
-<article class="card wide"><h3>Traducción semántica</h3><p>Adaptación científica para público no experto.</p></article>
-</div></section>
-
-<section class="section" id="metodo"><div class="section-head"><p class="kicker">05 · Diseño metodológico</p><h2>Cómo se plantea el estudio</h2></div>
-<div class="grid">
-<article class="card"><h3>Tipo de estudio</h3><p>Proyecto factible: desarrollo de un modelo operativo viable y aplicable. Documental descriptiva: análisis de deficiencias en estructuras digitales actuales.</p></article>
-<article class="card"><h3>Técnicas</h3><p>Observación pasiva, sin participación directa en interacciones, y monitoreo focalizado de algoritmos en Instagram y TikTok.</p></article>
-<article class="card wide"><h3>Instrumentos</h3><p>Matrices de análisis para sistematizar patrones de desinformación y revisión sistemática para contrastar bibliografía con normativas de salud pública.</p></article>
-</div>
-<h3 style="margin-top:30px">Ruta de ejecución y hallazgos previstos</h3><div class="steps">
-<article class="step"><h3>Proyecto factible</h3><p>Diseño de un modelo operativo funcional.</p></article>
-<article class="step"><h3>Análisis documental</h3><p>Observación en Instagram, Facebook y TikTok.</p></article>
-<article class="step"><h3>Guía estructural</h3><p>Creación del modelo estandarizado final.</p></article>
-</div></section>
-
-<section class="section" id="propuesta"><div class="section-head"><p class="kicker">06 · Propuesta operativa</p><h2>Componentes del modelo estandarizado</h2><p>La propuesta reúne tres componentes para mejorar la presentación y comprensión pública de la información sanitaria.</p></div>
-<div class="grid">
-<article class="card"><div class="num">COMPONENTE 01</div><h3>Filiación y autoría médica</h3><p>Asignación explícita de credenciales verificables en cada pieza de contenido.</p></article>
-<article class="card"><div class="num">COMPONENTE 02</div><h3>Nivel de evidencia</h3><p>Indicadores visuales estandarizados que demuestran el respaldo científico de los datos.</p></article>
-<article class="card wide"><div class="num">COMPONENTE 03</div><h3>Taxonomía simplificada</h3><p>Clasificación de información compleja en un formato comprensible para los ciudadanos.</p></article>
-</div></section>
-
-<section class="section" id="conclusion"><div class="section-head"><p class="kicker">07 · Conclusión y siguientes pasos</p><h2>La información también forma parte del cuidado</h2></div>
-<div class="quote">La arquitectura informativa no es un recurso estético, es una necesidad sanitaria vital para recuperar la confianza del paciente.</div>
-<div class="steps" style="margin-top:20px">
-<article class="step"><h3>Capacitación</h3><p>Capacitación tecnológica gremial.</p></article>
-<article class="step"><h3>Adopción</h3><p>Adopción oficial por COMEZU.</p></article>
-<article class="step"><h3>Evaluación</h3><p>Evaluación de impacto en usuarios.</p></article>
-</div></section>
-
-<section class="section" id="referencias"><div class="section-head"><p class="kicker">08 · Bibliografía</p><h2>Referencias citadas en la presentación</h2></div>
-<ol class="refs">
-<li>Aghababaeian, H., et al. (2020). <em>Methanol poisoning as a new world challenge during the COVID-19 pandemic.</em> Disaster Medicine and Public Health Preparedness.</li>
-<li>Artigas, W. y Guallar, J. (2022). <em>Curación de contenidos científicos en medios sociales de revistas Iberoamericanas de Comunicación.</em> Revista de Comunicación, 21(2), 15-32.</li>
-<li>Cinelli, M., et al. (2020). <em>The COVID-19 infodemic: A comparative analysis of platforms.</em> Nature Human Behaviour, 4, 162-169.</li>
-<li>Colegio de Médicos del Estado Zulia. (2026). [Sobre el intrusismo médico…]. Publicación de Instagram.</li>
-<li>Eysenbach, G. (2020). <em>How to fight an infodemic: The four pillars of infodemic management.</em> Journal of Medical Internet Research.</li>
-<li>García, M., &amp; Gómez, A. (2022). <em>Competencias digitales del personal de salud en Latinoamérica: brechas en la divulgación científica.</em> Revista de Comunicación y Salud.</li>
-<li>Observatorio Venezolano de Fake News. (2021). <em>Desinformación y bulos en salud: El impacto de la infodemia en Venezuela.</em> Medianálisis.</li>
-<li>Organización Mundial de la Salud [OMS]. (2022). <em>Gestión de la infodemia: un marco para la comunicación de riesgos y la participación de la comunidad.</em></li>
-<li>Organización Panamericana de la Salud [OPS]. (2021). <em>Entender la infodemia y la desinformación en la lucha contra las emergencias sanitarias en las Américas.</em></li>
-<li>Stecula, D. A., Kuru, O., &amp; Jamieson, K. H. (2020). <em>How trust in experts and media use affect acceptance of common anti-vaccination claims.</em> Harvard Kennedy School Misinformation Review.</li>
-<li>Suárez-Lledó, V., &amp; Álvarez-Galvez, J. (2021). <em>Prevalence of Health Misinformation on Social Media: Systematic Review.</em> Journal of Medical Internet Research.</li>
-</ol></section>
-<aside class="notice"><strong>Nota académica:</strong> Esta página organiza el contenido de la presentación recibida. Las cifras, afirmaciones y referencias se muestran como fueron expuestas en el material y no se han verificado de forma independiente. El proyecto no sustituye orientación médica profesional.</aside>
-</main>
-<footer><span>Tu espacio saludable · Proyectos de investigación</span><a href="../index.html">Volver a la portada ↑</a></footer>
-</body></html>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Arquitectura de información para la divulgación médica | Tu espacio saludable</title><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"><style>body{margin:0;background:#f5faf8;color:#15363b;font:16px/1.7 'DM Sans',sans-serif}.top,footer{padding:16px 5vw;background:white;border-bottom:1px solid #d8eae6}.top a,footer a{color:#078789;text-decoration:none;font-weight:700}main{max-width:980px;width:90%;margin:40px auto}.hero,.slide{padding:28px;border-radius:22px;border:1px solid #d8eae6;background:white;margin:16px 0;box-shadow:0 12px 30px #1232380d}.hero{background:linear-gradient(130deg,#e4f5f1,#fff)}h1,h2{font-family:Manrope;line-height:1.2}h1{font-size:clamp(32px,5vw,56px)}h2{font-size:22px}.tag,.num{color:#078789;font-weight:700;letter-spacing:.12em;font-size:11px;text-transform:uppercase}.body{white-space:pre-line;color:#48676a}footer{border-top:1px solid #d8eae6;border-bottom:0;display:flex;justify-content:space-between}</style></head><body><header class="top"><a href="../index.html">＋ Tu espacio saludable</a>　<a href="../index.html">← Volver a los proyectos</a></header><main><section class="hero"><p class="tag">Transcripción del documento original · Universidad del Zulia</p><h1>Arquitectura de información para la divulgación médica</h1><p>Autoras: Br. Valeria García E. y Licda. Yamel García V. · Tutora: Dra. Roxy Fonseca · Universidad del Zulia</p><p>Contenido textual completo de las diapositivas recibidas, en su secuencia original. No se añadieron datos ajenos al documento.</p></section><section class="slide"><p class="num">Diapositiva 1 · Portada</p><h2>Portada</h2><div class="body">PROYECTO INFORMÁTICA - FASE I A III
+Arquitectura de Información para la Divulgación Médica
+Estandarización visual y mitigación de la desinformación en redes sociales
+AUTORAS: Br. Valeria García E. / Licda. Yamel García V.
+TUTORA: Dra. Roxy Fonseca
+INSTITUCIÓN: Universidad del Zulia</div></section><section class="slide"><p class="num">Diapositiva 2 · Planteamiento del problema</p><h2>Planteamiento del problema</h2><div class="body">La infodemia digital
+Motor primario: Redes sociales como fuente principal de salud.
+Viralidad perjudicial: Propagación acelerada de datos inexactos.
+Ciencia invisibilizada: El algoritmo penaliza el rigor académico complejo.</div></section><section class="slide"><p class="num">Diapositiva 3 · Impacto clínico global</p><h2>Impacto clínico global</h2><div class="body">20%
+Caída en las tasas de intención de vacunación debido al consumo directo de desinformación sanitaria.</div></section><section class="slide"><p class="num">Diapositiva 4 · El escenario venezolano</p><h2>El escenario venezolano</h2><div class="body">Vacío oficial: Ausencia de canales estatales fiables de divulgación.
+Intrusismo digital: Creadores sin aval emitiendo opiniones médicas.
+Alerta COMEZU: Peligro inminente para el manejo de pacientes crónicos.</div></section><section class="slide"><p class="num">Diapositiva 5 · Daños a la salud pública</p><h2>Daños a la salud pública</h2><div class="body">Impactos del intrusismo digital
+Rechazo preventivo: Caída documentada en la cobertura global de vacunación.
+Riesgo crónico: Abandono de terapias oncológicas, diabéticas y renales.
+Intoxicación aguda: Hospitalizaciones por consumo de remedios no verificados.
+Vulnerabilidad crítica: Desinformación focalizada en atención materno-infantil y ginecológica.</div></section><section class="slide"><p class="num">Diapositiva 6 · Formulación del problema</p><h2>Formulación del problema</h2><div class="body">¿Cómo debe estructurarse la información médica digital para mitigar la desinformación en redes sociales?</div></section><section class="slide"><p class="num">Diapositiva 7 · Metas de la investigación</p><h2>Metas de la investigación</h2><div class="body">Identificar Patrones: Analizar desajustes conceptuales en contenidos de salud virales.
+Definir Pautas: Establecer métodos de estandarización para evidencia científica.
+Diseñar Esquema: Crear arquitectura validable para fuentes médicas en redes.</div></section><section class="slide"><p class="num">Diapositiva 8 · Justificación del proyecto</p><h2>Justificación del proyecto</h2><div class="body">Impacto Social: Aumento de alfabetización digital poblacional. Defensa cognitiva contra remedios falsos.
+Impacto Metodológico: Guía estructurada para traducción médica. Mayor visibilidad algorítmica para contenido profesional.</div></section><section class="slide"><p class="num">Diapositiva 9 · Bases teóricas</p><h2>Bases teóricas</h2><div class="body">Eysenbach (2020): Simplificación proactiva de evidencia frente a desmentidos pasivos.
+Cinelli et al. (2020): La arquitectura interna de redes condiciona la amplificación viral.</div></section><section class="slide"><p class="num">Diapositiva 10 · Contexto regional y nacional</p><h2>Contexto regional y nacional</h2><div class="body">Artigas y Guallar (2022): Identifican que la categorización visual clara y los parámetros estandarizados empoderan al usuario y limitan la desinformación.
+OVFN (2021): Evidencia que en Venezuela las redes sociales operan como motores primarios de autodiagnóstico ante la opacidad oficial.</div></section><section class="slide"><p class="num">Diapositiva 11 · Dimensiones del sistema de información</p><h2>Dimensiones del sistema de información</h2><div class="body">1. Contexto: Alineación estructurada de los datos con los objetivos sanitarios e institucionales de divulgación.
+2. Contenido: Estandarización del formato, rigor y verificabilidad de la evidencia médica que se hace pública.
+3. Usuarios: Diseño del esquema informativo centrado puramente en las necesidades operativas de la audiencia común.</div></section><section class="slide"><p class="num">Diapositiva 12 · Pilares de la arquitectura de información</p><h2>Pilares de la arquitectura de información</h2><div class="body">1. Organización: Agrupación categórica de datos clínicos.
+2. Etiquetado: Puente semántico hacia lenguaje natural.
+3. Navegación: Desplazamiento fluido entre conceptos médicos.
+4. Búsqueda: Recuperación ágil de evidencia verificada.</div></section><section class="slide"><p class="num">Diapositiva 13 · Modelación del contenido</p><h2>Modelación del contenido</h2><div class="body">Taxonomías: Clasificación jerárquica de contenidos.
+Metadatos: Asignación de autoría y nivel de evidencia.
+Traducción Semántica: Adaptación científica para público no experto.</div></section><section class="slide"><p class="num">Diapositiva 14 · Diseño metodológico detallado</p><h2>Diseño metodológico detallado</h2><div class="body">Tipo de Estudio: Proyecto Factible: Desarrollo de un modelo operativo viable y aplicable. Documental Descriptiva: Análisis de deficiencias en estructuras digitales actuales.
+Técnicas: Observación pasiva: Recolección sin participación directa en interacciones. Monitoreo focalizado: Evaluación de algoritmos en Instagram y TikTok.
+Instrumentos: Matrices de análisis: Sistematización estructurada de patrones de desinformación. Revisión sistemática: Contraste bibliográfico con normativas de salud pública.</div></section><section class="slide"><p class="num">Diapositiva 15 · Ruta de ejecución y hallazgos</p><h2>Ruta de ejecución y hallazgos</h2><div class="body">Proyecto Factible: Diseño de modelo operativo funcional.
+Análisis Documental: Observación en Instagram, Facebook y TikTok.
+Guía Estructural: Creación del modelo estandarizado final.</div></section><section class="slide"><p class="num">Diapositiva 16 · Propuesta operativa</p><h2>Propuesta operativa</h2><div class="body">Componentes del modelo estandarizado
+Filiación y Autoría Médica: Asignación explícita de credenciales verificables en cada pieza de contenido.
+Nivel de Evidencia: Indicadores visuales estandarizados que demuestran el respaldo científico de los datos.
+Taxonomía Simplificada: Clasificación de información compleja a un formato comprensible para ciudadanos.</div></section><section class="slide"><p class="num">Diapositiva 17 · Conclusión y siguientes pasos</p><h2>Conclusión y siguientes pasos</h2><div class="body">La arquitectura informativa no es un recurso estético, es una necesidad sanitaria vital para recuperar la confianza del paciente.
+Capacitación tecnológica gremial.
+Adopción oficial por COMEZU.
+Evaluación de impacto en usuarios.</div></section><section class="slide"><p class="num">Diapositiva 18 · Referencias bibliográficas (1/2)</p><h2>Referencias bibliográficas (1/2)</h2><div class="body">Aghababaeian, H., et al. (2020). Methanol poisoning as a new world challenge during the COVID-19 pandemic. Disaster Medicine and Public Health Preparedness.
+Artigas, W. y Guallar, J. (2022). Curación de contenidos científicos en medios sociales de revistas Iberoamericanas de Comunicación. Revista de Comunicación, 21(2), 15-32.
+Cinelli, M., et al. (2020). The COVID-19 infodemic: A comparative analysis of platforms. Nature Human Behaviour, 4, 162-169.
+Colegio de Médicos del Estado Zulia. (2026). [Sobre el intrusismo médico…]. Publicación de Instagram.
+Eysenbach, G. (2020). How to fight an infodemic: The four pillars of infodemic management. Journal of Medical Internet Research.
+García, M., &amp; Gómez, A. (2022). Competencias digitales del personal de salud en Latinoamérica: brechas en la divulgación científica. Revista de Comunicación y Salud.
+Observatorio Venezolano de Fake News. (2021). Desinformación y bulos en salud: El impacto de la infodemia en Venezuela. Medianálisis.</div></section><section class="slide"><p class="num">Diapositiva 19 · Referencias bibliográficas (2/2)</p><h2>Referencias bibliográficas (2/2)</h2><div class="body">Organización Mundial de la Salud [OMS]. (2022). Gestión de la infodemia: un marco para la comunicación de riesgos y la participación de la comunidad.
+Organización Panamericana de la Salud [OPS]. (2021). Entender la infodemia y la desinformación en la lucha contra las emergencias sanitarias en las Américas.
+Stecula, D. A., Kuru, O., &amp; Jamieson, K. H. (2020). How trust in experts and media use affect acceptance of common anti-vaccination claims. Harvard Kennedy School Misinformation Review.
+Suárez-Lledó, V., &amp; Álvarez-Galvez, J. (2021). Prevalence of Health Misinformation on Social Media: Systematic Review. Journal of Medical Internet Research.</div></section></main><footer><span>Tu espacio saludable · Proyecto académico</span><a href="../index.html">Volver a la portada ↑</a></footer></body></html>
