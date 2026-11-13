@@ -3,22 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Impacto de la Privación del Sueño en Adolescentes · Investigación LUZ</title>
+  <title>Impacto de la privación del sueño en adolescentes de 13 a 15 años · Melanie Lugo</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --bg-color: #0f172a;
-      --card-bg: #1e293b;
-      --card-border: #334155;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --accent-primary: #38bdf8;
-      --accent-secondary: #f43f5e;
-      --accent-glow: rgba(56, 189, 248, 0.15);
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --card-border: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --accent-primary: #4f46e5;
+      --accent-primary-soft: #eef2ff;
+      --accent-teal: #0d9488;
+      --accent-teal-soft: #ccfbf1;
+      --accent-rose: #db2777;
+      --accent-rose-soft: #fce7f3;
+      --accent-blue: #2563eb;
+      --accent-blue-soft: #dbeafe;
       --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-serif: 'Newsreader', Georgia, serif;
     }
@@ -37,119 +42,25 @@
       background-color: var(--bg-color);
       color: var(--text-main);
       font-family: var(--font-sans);
-      line-height: 1.6;
+      line-height: 1.7;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Header Principal */
-    header {
-      background: linear-gradient(135deg, #090d16 0%, #1e293b 100%);
-      border-bottom: 1px solid var(--card-border);
-      padding: 4rem 2rem 3rem;
-      position: relative;
-      overflow: hidden;
+    /* Barra de Progreso */
+    .reading-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-teal), var(--accent-rose));
+      z-index: 200;
+      transition: width 0.1s ease-out;
     }
 
-    header::before {
-      content: '';
-      position: absolute;
-      top: -50px;
-      right: -50px;
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .header-container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .header-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1.5rem;
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .badge-project {
-      background: rgba(56, 189, 248, 0.1);
-      color: var(--accent-primary);
-      padding: 0.35rem 0.85rem;
-      border-radius: 999px;
-      font-weight: 600;
-      border: 1px solid rgba(56, 189, 248, 0.2);
-    }
-
-    h1 {
-      font-size: clamp(2.25rem, 4vw, 3.5rem);
-      font-weight: 800;
-      line-height: 1.15;
-      margin-bottom: 1.25rem;
-      letter-spacing: -0.02em;
-    }
-
-    h1 span {
-      color: var(--accent-primary);
-    }
-
-    .header-subtitle {
-      font-size: 1.15rem;
-      color: var(--text-muted);
-      max-width: 800px;
-      margin-bottom: 2.5rem;
-      font-weight: 400;
-    }
-
-    .authors-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--card-border);
-    }
-
-    .author-card {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .author-icon {
-      width: 40px;
-      height: 40px;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent-primary);
-      font-weight: 700;
-    }
-
-    .author-info span:first-child {
-      display: block;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .author-info span:last-child {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text-main);
-    }
-
-    /* Barra de Navegación Superior */
+    /* Barra Superior */
     .toolbar {
-      background: rgba(15, 23, 42, 0.9);
+      background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--card-border);
       position: sticky;
@@ -159,30 +70,228 @@
     }
 
     .toolbar-content {
-      max-width: 1200px;
+      max-width: 1260px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
 
     .brand-link {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.6rem;
       color: var(--text-main);
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 800;
       font-size: 0.95rem;
     }
 
-    .brand-link span {
+    .brand-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--accent-primary-soft);
+      color: var(--accent-primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: #f1f5f9;
+      border: 1px solid var(--card-border);
+      border-radius: 999px;
+      padding: 0.35rem 0.9rem;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+    }
+
+    .search-box:focus-within {
+      background: #ffffff;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+    }
+
+    .search-box input {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      color: var(--text-main);
+      width: 230px;
+    }
+
+    /* Header Principal */
+    header {
+      background: linear-gradient(135deg, #ffffff 0%, #eef2ff 55%, #f0fdfa 100%);
+      border-bottom: 1px solid var(--card-border);
+      padding: 4rem 2rem 3.5rem;
+    }
+
+    .header-container {
+      max-width: 1260px;
+      margin: 0 auto;
+    }
+
+    .header-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .header-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 700;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .badge-project {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: var(--accent-primary-soft);
+      color: var(--accent-primary);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-weight: 700;
+      border: 1px solid rgba(79, 70, 229, 0.2);
+    }
+
+    h1 {
+      font-size: clamp(2rem, 3.8vw, 3.1rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.025em;
+    }
+
+    h1 span {
       color: var(--accent-primary);
     }
 
-    /* Estructura Principal */
+    .header-subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 860px;
+      margin-bottom: 2rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    /* Pequeñas imágenes PNG ilustrativas */
+    .png-badge-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 0.85rem;
+      box-shadow: 0 10px 24px -8px rgba(15, 23, 42, 0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .png-badge-card img {
+      width: 112px;
+      height: 112px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .section-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .png-mini {
+      width: 84px;
+      height: 84px;
+      border-radius: 16px;
+      background: #f8fafc;
+      border: 1px solid var(--card-border);
+      padding: 6px;
+      object-fit: contain;
+      flex-shrink: 0;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.04);
+      transition: transform 0.25s ease;
+    }
+
+    section:hover .png-mini {
+      transform: scale(1.05) rotate(-2deg);
+    }
+
+    .authors-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid var(--card-border);
+    }
+
+    .author-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(255, 255, 255, 0.88);
+      padding: 0.85rem 1rem;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+    }
+
+    .author-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--accent-primary-soft);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-primary);
+      flex-shrink: 0;
+    }
+
+    .author-icon.teal {
+      background: var(--accent-teal-soft);
+      color: var(--accent-teal);
+    }
+
+    .author-info span:first-child {
+      display: block;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 700;
+    }
+
+    .author-info span:last-child {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    /* Layout Principal */
     .layout-container {
-      max-width: 1200px;
+      max-width: 1260px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: 280px 1fr;
@@ -193,10 +302,10 @@
     /* Índice Lateral */
     aside {
       position: sticky;
-      top: 5rem;
-      height: calc(100vh - 7rem);
+      top: 5.25rem;
+      height: calc(100vh - 6.5rem);
       overflow-y: auto;
-      padding-right: 1rem;
+      padding-right: 0.75rem;
     }
 
     aside::-webkit-scrollbar {
@@ -212,569 +321,1465 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 1.25rem;
-      font-size: 0.8rem;
+      margin-bottom: 1rem;
+      font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       color: var(--text-muted);
-      font-weight: 700;
+      font-weight: 800;
+    }
+
+    .toc-group-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-primary);
+      font-weight: 800;
+      margin: 0.9rem 0 0.35rem 0.75rem;
     }
 
     .toc-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 0.3rem;
     }
 
     .toc-list a {
-      display: block;
-      padding: 0.5rem 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.75rem;
       color: var(--text-muted);
       text-decoration: none;
-      font-size: 0.9rem;
-      border-radius: 6px;
+      font-size: 0.85rem;
+      border-radius: 8px;
       transition: all 0.2s ease;
-      border-left: 2px solid transparent;
+      border-left: 3px solid transparent;
+      font-weight: 500;
     }
 
     .toc-list a:hover, .toc-list a.active {
       color: var(--accent-primary);
-      background: var(--card-bg);
+      background: #ffffff;
       border-left-color: var(--accent-primary);
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+      transform: translateX(3px);
+      font-weight: 600;
     }
 
     /* Cuerpo del Documento */
     main {
       display: flex;
       flex-direction: column;
-      gap: 4rem;
+      gap: 3rem;
       min-width: 0;
     }
 
     section {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 16px;
+      border-radius: 20px;
       padding: 2.5rem;
       position: relative;
-      transition: border-color 0.3s ease;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.02);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     section:hover {
-      border-color: rgba(56, 189, 248, 0.4);
+      border-color: rgba(79, 70, 229, 0.35);
+      box-shadow: 0 12px 24px -6px rgba(15, 23, 42, 0.06);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .section-icon-wrap {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: var(--accent-primary-soft);
+      color: var(--accent-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+
+    .section-icon-wrap.teal {
+      background: var(--accent-teal-soft);
+      color: var(--accent-teal);
+    }
+
+    .section-icon-wrap.rose {
+      background: var(--accent-rose-soft);
+      color: var(--accent-rose);
     }
 
     .section-tag {
       display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 700;
+      font-size: 0.72rem;
+      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       color: var(--accent-primary);
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .section-tag.teal {
+      color: var(--accent-teal);
+    }
+
+    .section-tag.rose {
+      color: var(--accent-rose);
     }
 
     h2 {
-      font-size: 1.85rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      letter-spacing: -0.01em;
+      font-size: 1.72rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      line-height: 1.25;
     }
 
     p {
       color: var(--text-muted);
-      font-size: 1.05rem;
-      line-height: 1.7;
-      margin-bottom: 1.25rem;
+      font-size: 1.03rem;
+      line-height: 1.72;
+      margin-bottom: 1.15rem;
     }
 
-    /* Grid de Elementos */
-    .grid-3 {
+    /* Subrayado y Negrita en Palabras Clave */
+    .kw {
+      color: var(--text-main);
+      font-weight: 700;
+      display: inline-block;
+      padding: 0 2px;
+      background: linear-gradient(120deg, rgba(79, 70, 229, 0.14) 0%, rgba(79, 70, 229, 0.14) 100%);
+      background-repeat: no-repeat;
+      background-size: 100% 35%;
+      background-position: 0 88%;
+      border-radius: 3px;
+    }
+
+    .kw.teal {
+      background: linear-gradient(120deg, rgba(13, 148, 136, 0.14) 0%, rgba(13, 148, 136, 0.14) 100%);
+      background-repeat: no-repeat;
+      background-size: 100% 35%;
+      background-position: 0 88%;
+    }
+
+    /* Tarjetas con Iconos */
+    .grid-cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+      gap: 1.35rem;
+      margin-top: 1.35rem;
     }
 
     .card-item {
-      background: rgba(15, 23, 42, 0.6);
+      background: #f8fafc;
       border: 1px solid var(--card-border);
-      border-radius: 12px;
+      border-radius: 16px;
       padding: 1.5rem;
+      transition: all 0.25s ease;
+    }
+
+    .card-item:hover {
+      transform: translateY(-4px);
+      background: #ffffff;
+      border-color: var(--accent-primary);
+      box-shadow: 0 12px 24px -8px rgba(79, 70, 229, 0.14);
+    }
+
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 11px;
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.9rem;
+      color: var(--accent-primary);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+    }
+
+    .card-icon.teal {
+      color: var(--accent-teal);
+    }
+
+    .card-icon.rose {
+      color: var(--accent-rose);
     }
 
     .card-item h3 {
-      font-size: 1.1rem;
-      font-weight: 600;
+      font-size: 1.06rem;
+      font-weight: 700;
       color: var(--text-main);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.55rem;
     }
 
     .card-item p {
-      font-size: 0.95rem;
+      font-size: 0.94rem;
+      color: var(--text-muted);
       margin-bottom: 0;
     }
 
-    /* Cita / Pregunta Clave */
+    /* Estadísticas Destacadas */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+      gap: 1.25rem;
+      margin: 1.25rem 0;
+    }
+
+    .stat-box {
+      background: #f8fafc;
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.45rem 1.2rem;
+      text-align: center;
+      transition: all 0.25s ease;
+    }
+
+    .stat-box:hover {
+      transform: translateY(-4px);
+      background: #ffffff;
+      border-color: var(--accent-primary);
+    }
+
+    .stat-number {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--accent-primary);
+      line-height: 1.15;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.03em;
+    }
+
+    .stat-number.rose {
+      color: var(--accent-rose);
+    }
+
+    .stat-number.blue {
+      color: var(--accent-blue);
+    }
+
+    .stat-number.teal {
+      color: var(--accent-teal);
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+
+    /* Pestañas Interactivas */
+    .tabs-nav {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.35rem;
+    }
+
+    .tab-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.55rem 1rem;
+      border-radius: 10px;
+      border: 1px solid var(--card-border);
+      background: #f8fafc;
+      color: var(--text-muted);
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 0.86rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn.active {
+      background: var(--accent-primary);
+      color: #ffffff;
+      border-color: var(--accent-primary);
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+    }
+
+    .tab-panel {
+      display: none;
+      background: #f8fafc;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 1.65rem;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    /* Caja de Cita */
     .quote-box {
-      background: linear-gradient(135deg, rgba(56, 189, 248, 0.05) 0%, rgba(30, 41, 59, 0.8) 100%);
+      background: linear-gradient(135deg, #eef2ff 0%, #f0fdfa 100%);
       border-left: 4px solid var(--accent-primary);
-      padding: 2rem;
+      padding: 1.75rem;
       border-radius: 0 16px 16px 0;
-      margin: 1.5rem 0;
+      margin: 1.35rem 0;
     }
 
     .quote-box blockquote {
       font-family: var(--font-serif);
-      font-size: 1.35rem;
+      font-size: 1.3rem;
       font-style: italic;
       color: var(--text-main);
-      line-height: 1.4;
-      margin-bottom: 1rem;
-    }
-
-    /* Estadísticas */
-    .stats-highlight-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin: 1.5rem 0;
-    }
-
-    .stat-box {
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 1.5rem;
-      text-align: center;
-    }
-
-    .stat-number {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: var(--accent-primary);
-      line-height: 1.1;
+      line-height: 1.45;
       margin-bottom: 0.5rem;
     }
 
-    .stat-number.danger {
-      color: var(--accent-secondary);
+    /* Tablas */
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 1.25rem 0;
+      border-radius: 14px;
+      border: 1px solid var(--card-border);
     }
 
-    .stat-label {
-      font-size: 0.85rem;
-      color: var(--text-muted);
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.93rem;
+    }
+
+    thead {
+      background: #f1f5f9;
+    }
+
+    th, td {
+      padding: 0.85rem 1.1rem;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    th {
+      font-weight: 800;
+      color: var(--text-main);
+      font-size: 0.82rem;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
     }
 
-    /* Listas */
+    td {
+      color: var(--text-muted);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Listas Estilizadas */
     ul.styled-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
-      margin-top: 1rem;
+      gap: 0.9rem;
+      margin-top: 1.15rem;
     }
 
     ul.styled-list li {
       display: flex;
       align-items: flex-start;
-      gap: 0.75rem;
+      gap: 0.85rem;
       color: var(--text-muted);
-      font-size: 1.05rem;
+      font-size: 1rem;
+      background: #f8fafc;
+      padding: 0.95rem 1.2rem;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
     }
 
     ul.styled-list li strong {
       color: var(--text-main);
     }
 
-    ul.styled-list span.bullet {
+    .list-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--accent-primary-soft);
       color: var(--accent-primary);
-      font-weight: bold;
+      font-weight: 800;
+      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Gráficas del Capítulo 4 */
+    .chart-card {
+      background: #f8fafc;
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-top: 1.25rem;
+    }
+
+    .chart-legend {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .legend-dot {
+      display: inline-block;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      margin-right: 0.4rem;
+    }
+
+    .bars-grid {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 0.65rem;
+      align-items: flex-end;
+      height: 190px;
+      padding-top: 1.25rem;
+      border-bottom: 2px solid #cbd5e1;
+    }
+
+    .bars-grid.four-cols {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .bar-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      justify-content: flex-end;
+    }
+
+    .bar-pair {
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+      height: 155px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .bar {
+      width: 42%;
+      max-width: 24px;
+      border-radius: 6px 6px 0 0;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      transition: opacity 0.2s ease;
+    }
+
+    .bar:hover {
+      opacity: 0.85;
+    }
+
+    .bar.varon {
+      background: #2b6cb0;
+    }
+
+    .bar.hembra {
+      background: #e53e8c;
+    }
+
+    .bar span {
+      position: absolute;
+      top: -19px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .bar-axis-label {
+      margin-top: 0.45rem;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--text-muted);
     }
 
     /* Footer */
     footer {
-      background: #090d16;
+      background: #f1f5f9;
       border-top: 1px solid var(--card-border);
       padding: 4rem 2rem;
       margin-top: 4rem;
     }
 
     .footer-content {
-      max-width: 1200px;
+      max-width: 1260px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 3rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2.5rem;
     }
 
     .footer-col h4 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin-bottom: 0.85rem;
       color: var(--text-main);
     }
 
     .footer-col p {
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: var(--text-muted);
+      margin-bottom: 0.5rem;
     }
 
-    /* Responsive */
-    @media (max-width: 900px) {
-      .layout-container { grid-template-columns: 1fr; padding: 2rem 1.25rem; }
-      aside { display: none; }
-      header { padding: 3rem 1.25rem 2.5rem; }
-      .toolbar { padding: .75rem 1.25rem; }
+    .hidden-by-search {
+      display: none !important;
     }
-    @media (max-width: 560px) {
-      .header-meta { align-items: flex-start; flex-direction: column; gap: .75rem; }
-      h1 { font-size: clamp(2rem, 9vw, 2.7rem); }
-      section { padding: 1.5rem; }
-      .toolbar-content { align-items: flex-start; flex-direction: column; gap: .4rem; }
+
+    @media (max-width: 920px) {
+      .layout-container {
+        grid-template-columns: 1fr;
+      }
+      aside {
+        display: none;
+      }
+      .header-hero-grid {
+        grid-template-columns: 1fr;
+      }
+      section {
+        padding: 1.85rem 1.35rem;
+      }
     }
   </style>
 </head>
 <body>
 
+  <!-- Barra de progreso -->
+  <div class="reading-progress" id="readingProgress"></div>
+
   <!-- Barra Superior -->
   <div class="toolbar">
     <div class="toolbar-content">
       <a href="../index.html" class="brand-link">
-        <span>+</span> Tu espacio saludable <span>· Dossier Académico</span>
+        <span class="brand-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </span>
+        <span>LUZ · Facultad de Medicina · Cátedra de Informática</span>
       </a>
-      <div style="font-size: 0.85rem; color: var(--text-muted);">
-        Universidad del Zulia · Facultad de Medicina
+      <div class="search-box">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" id="docSearch" placeholder="Filtrar término (ej. FOMO, LOPNNA, 6,2 h)...">
       </div>
     </div>
   </div>
 
-  <!-- Cabecera -->
+  <!-- Cabecera Principal (Página 1) -->
   <header>
     <div class="header-container">
       <div class="header-meta">
-        <span class="badge-project">Investigación Académica · 2026</span>
-        <span>U.E.P. Colegio Santa Mariana de Jesús</span>
+        <span class="badge-project">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+          CÁTEDRA DE INFORMÁTICA
+        </span>
+        <span>REPÚBLICA BOLIVARIANA DE VENEZUELA &bull; UNIVERSIDAD DEL ZULIA &bull; FACULTAD DE MEDICINA &bull; ESCUELA DE MEDICINA</span>
       </div>
-      <h1>
-        Impacto de la Privación del Sueño en Adolescentes de 13 a 15 años: <span>Ansiedad por Conexión y Trastornos</span>
-      </h1>
-      <p class="header-subtitle">
-        Correlación entre el uso nocturno de dispositivos, la necesidad de estar conectado y su repercusión cognitiva y física.
-      </p>
-      
+
+      <div class="header-hero-grid">
+        <div>
+          <h1>
+            Impacto de la <span>privación del sueño</span> en adolescentes de 13 a 15 años: correlación entre la ansiedad por conexión y los trastornos del sueño
+          </h1>
+          <p class="header-subtitle">
+            REPÚBLICA BOLIVARIANA DE VENEZUELA &bull; UNIVERSIDAD DEL ZULIA &bull; FACULTAD DE MEDICINA &bull; ESCUELA DE MEDICINA &bull; CÁTEDRA DE INFORMÁTICA
+          </p>
+        </div>
+        <!-- Pequeña imagen PNG generada para reforzar el tema -->
+        <div class="png-badge-card" title="Ilustración PNG: Sueño y conexión nocturna">
+          <img id="png-hero" alt="Ilustración PNG sobre sueño y dispositivos en adolescentes">
+        </div>
+      </div>
+
       <div class="authors-grid">
         <div class="author-card">
-          <div class="author-icon">ML</div>
+          <div class="author-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
           <div class="author-info">
             <span>Autora</span>
-            <span>Melanie Lugo (C.I. 33.105.231)</span>
+            <span>Melanie Lugo, C.I.: 33.105.231</span>
           </div>
         </div>
 
         <div class="author-card">
-          <div class="author-icon">LUZ</div>
+          <div class="author-icon teal">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </div>
           <div class="author-info">
             <span>Institución</span>
-            <span>Escuela de Medicina · Maracaibo</span>
+            <span>U.E.P. Colegio Santa Mariana de Jesús</span>
           </div>
         </div>
 
         <div class="author-card">
-          <div class="author-icon">OCT</div>
+          <div class="author-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+          </div>
           <div class="author-info">
-            <span>Fecha de Presentación</span>
-            <span>Maracaibo, Octubre de 2026</span>
+            <span>Fecha y Lugar</span>
+            <span>Maracaibo, octubre de 2026</span>
           </div>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- Contenedor Principal -->
+  <!-- Layout Principal -->
   <div class="layout-container">
 
-    <!-- Índice Analítico / Sidebar -->
+    <!-- Índice Lateral -->
     <aside>
-      <nav aria-label="Contenido del trabajo">
+      <nav aria-label="Contenido del proyecto">
         <div class="toc-title">
-          <span>Índice Analítico</span>
-          <span>12 Secciones</span>
+          <span>Estructura</span>
+          <span>36 Páginas</span>
         </div>
+
+        <div class="toc-group-label">Capítulo 1 · El Problema</div>
         <ul class="toc-list">
-          <li><a href="#sec-01">01. Portada y presentación</a></li>
-          <li><a href="#sec-02">02. Planteamiento del problema</a></li>
-          <li><a href="#sec-03">03. Objetivos general y específicos</a></li>
-          <li><a href="#sec-04">04. Justificación y alcance</a></li>
-          <li><a href="#sec-05">05. Delimitación y limitaciones</a></li>
-          <li><a href="#sec-06">06. Antecedentes científicos</a></li>
-          <li><a href="#sec-07">07. Bases teóricas del sueño</a></li>
-          <li><a href="#sec-08">08. Ansiedad por conexión y sueño</a></li>
-          <li><a href="#sec-09">09. Marco metodológico y muestra</a></li>
-          <li><a href="#sec-10">10. Análisis de datos y encuestas</a></li>
-          <li><a href="#sec-11">11. Conclusiones y correlación</a></li>
-          <li><a href="#sec-12">12. Recomendaciones y cierre</a></li>
+          <li><a href="#sec-problema">Planteamiento del problema</a></li>
+          <li><a href="#sec-objetivos">Objetivo general y específicos</a></li>
+          <li><a href="#sec-justificacion">Justificación</a></li>
+          <li><a href="#sec-delimitacion">Delimitación y Limitaciones</a></li>
+        </ul>
+
+        <div class="toc-group-label">Capítulo 2 · Marco Teórico</div>
+        <ul class="toc-list">
+          <li><a href="#sec-antecedentes">Antecedentes</a></li>
+          <li><a href="#sec-bases-teoricas">Bases teóricas</a></li>
+          <li><a href="#sec-conexion-sueno">Ansiedad por conexión y sueño</a></li>
+          <li><a href="#sec-bases-legales">Bases legales (LOPNNA)</a></li>
+        </ul>
+
+        <div class="toc-group-label">Capítulo 3 · Marco Metodológico</div>
+        <ul class="toc-list">
+          <li><a href="#sec-metodologia">Tipo, Variables y Muestra</a></li>
+        </ul>
+
+        <div class="toc-group-label">Capítulo 4 · Análisis y Cierre</div>
+        <ul class="toc-list">
+          <li><a href="#sec-preguntas">Preguntas #1 a #9</a></li>
+          <li><a href="#sec-correlacion">Análisis de correlación</a></li>
+          <li><a href="#sec-resultados-finales">Resultados y Conclusiones</a></li>
+          <li><a href="#sec-recomendaciones">Recomendaciones y Cierre</a></li>
         </ul>
       </nav>
     </aside>
 
-    <!-- Contenido Detallado -->
-    <main>
+    <!-- Contenido -->
+    <main id="mainContent">
 
-      <!-- SECCIÓN 01 -->
-      <section id="sec-01">
-        <span class="section-tag">01 · Portada e Identificación</span>
-        <h2>Presentación Institucional</h2>
-        <p>
-          República Bolivariana de Venezuela &bull; Universidad del Zulia &bull; Facultad de Medicina &bull; Escuela de Medicina &bull; Cátedra de Informática. Estudio centrado en la población estudiantil de 13 a 15 años de la U.E.P. Colegio Santa Mariana de Jesús.
-        </p>
-        <div class="card-item" style="margin-top: 1rem;">
-          <h3>Ficha del Proyecto</h3>
-          <p><strong>Autora:</strong> Melanie Lugo (C.I. 33.105.231) &bull; <strong>Nivel:</strong> Educación Media General (1.° a 4.° año) &bull; <strong>Maracaibo, 2026.</strong></p>
+      <!-- CAPÍTULO 1: PLANTEAMIENTO DEL PROBLEMA (Págs. 2-3) -->
+      <section id="sec-problema">
+        <div class="section-top-row">
+          <div class="section-header">
+            <div class="section-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
+            </div>
+            <div>
+              <span class="section-tag">Capítulo 1 · EL PROBLEMA</span>
+              <h2>Planteamiento del problema</h2>
+            </div>
+          </div>
+          <img id="png-problema" class="png-mini" alt="PNG Privación del sueño en adolescentes">
         </div>
-      </section>
 
-      <!-- SECCIÓN 02 -->
-      <section id="sec-02">
-        <span class="section-tag">02 · Capítulo 1 · El Problema</span>
-        <h2>Planteamiento y Formulación</h2>
-        <p>
-          A nivel global, la privación del sueño en adolescentes es un problema en aumento debido al uso masivo de pantallas, la alta exigencia académica y el estrés social.
-        </p>
-        
-        <div class="quote-box">
+        <div class="grid-cards">
+          <div class="card-item">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+            </div>
+            <h3>A nivel mundial</h3>
+            <p>La <span class="kw">privación del sueño</span> en adolescentes es un problema creciente, influido por el uso excesivo de dispositivos, la presión académica y el estrés social.</p>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon rose">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+            </div>
+            <h3>Ansiedad por conexión</h3>
+            <p>La necesidad de seguir conectado, incluso al dormir, mantiene al adolescente en alerta y puede derivar en <span class="kw">trastornos del sueño</span>.</p>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon teal">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </div>
+            <h3>En el colegio</h3>
+            <p>En la U.E.P. Colegio Santa Mariana de Jesús, <strong>9 de cada 10 encuestados</strong> usa dispositivos antes de dormir y el <strong>53 %</strong> tiene dificultad para conciliar el sueño.</p>
+          </div>
+        </div>
+
+        <div class="quote-box" style="margin-bottom: 0;">
           <blockquote>
             “¿Cuál es el impacto de la privación del sueño en los adolescentes de 13 a 15 años y qué correlación existe entre la ansiedad por conexión y los trastornos del sueño?”
           </blockquote>
-          <p style="margin-bottom:0; color:var(--text-main); font-size: 0.9rem;">Pregunta rectora de la investigación en la institución.</p>
-        </div>
-
-        <div class="grid-3">
-          <div class="card-item">
-            <h3>Ansiedad por Conexión</h3>
-            <p>La necesidad permanente de seguir interactuando de noche mantiene al adolescente en estado de alerta constante.</p>
-          </div>
-          <div class="card-item">
-            <h3>Realidad Escolar</h3>
-            <p>En el Colegio Santa Mariana de Jesús, el <strong>91%</strong> usa dispositivos antes de dormir y el <strong>53%</strong> padece insomnio o dificultad para conciliar el sueño.</p>
-          </div>
-          <div class="card-item">
-            <h3>Factores Clave</h3>
-            <p>Convergencia entre pantallas nocturnas, pérdida de horas de descanso y rendimiento académico irregular.</p>
-          </div>
+          <p style="margin-bottom:0; color:var(--text-main); font-size: 0.88rem; font-weight: 700;">Formulación del problema</p>
         </div>
       </section>
 
-      <!-- SECCIÓN 03 -->
-      <section id="sec-03">
-        <span class="section-tag">03 · Metas del Estudio</span>
-        <h2>Objetivo General y Objetivos Específicos</h2>
-        <p><strong>Objetivo General:</strong> Determinar el impacto de la privación del sueño en adolescentes de 13 a 15 años y su correlación con la ansiedad por conexión en la U.E.P. Colegio Santa Mariana de Jesús.</p>
-        
-        <div class="grid-3" style="margin-top: 1.5rem;">
-          <div class="card-item">
-            <h3>Causas y Consecuencias</h3>
-            <p>Analizar el impacto de la falta de descanso en la salud física, mental y el rendimiento cognitivo.</p>
-          </div>
-          <div class="card-item">
-            <h3>Hábitos de Pantalla</h3>
-            <p>Indagar el promedio de horas de sueño e identificar la influencia del uso nocturno de dispositivos.</p>
-          </div>
-          <div class="card-item">
-            <h3>Socialización</h3>
-            <p>Transmitir a la comunidad educativa la importancia de cumplir con los ciclos de sueño adecuados.</p>
+      <!-- OBJETIVO GENERAL Y ESPECÍFICOS (Págs. 4-5) -->
+      <section id="sec-objetivos">
+        <div class="section-top-row">
+          <div class="section-header">
+            <div class="section-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            </div>
+            <div>
+              <span class="section-tag">Capítulo 1 · EL PROBLEMA</span>
+              <h2>Objetivo general y Objetivos específicos</h2>
+            </div>
           </div>
         </div>
-      </section>
 
-      <!-- SECCIÓN 04 -->
-      <section id="sec-04">
-        <span class="section-tag">04 · Relevancia</span>
-        <h2>Justificación y Aportes Clave</h2>
+        <div class="quote-box" style="margin-top: 0;">
+          <blockquote>
+            “Determinar el impacto de la privación del sueño en adolescentes de 13 a 15 años: correlación entre la ansiedad por conexión y los trastornos del sueño en la Unidad Educativa Privada Colegio Santa Mariana de Jesús.”
+          </blockquote>
+          <p style="margin-bottom:0; color:var(--text-main); font-size: 0.88rem; font-weight: 700;">Objetivo general</p>
+        </div>
+
+        <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Objetivos específicos</h3>
         <ul class="styled-list">
           <li>
-            <span class="bullet">✦</span>
-            <div><strong>Salud y Memoria:</strong> El sueño adecuado es esencial para la consolidación de la memoria, el equilibrio emocional y la regeneración celular.</div>
+            <span class="list-badge">1</span>
+            <div>Analizar las causas y consecuencias de la privación del sueño en adolescentes de 13 a 15 años y su impacto en la salud física, mental y el rendimiento académico.</div>
           </li>
           <li>
-            <span class="bullet">✦</span>
-            <div><strong>Desconexión Digital:</strong> Analiza cómo la hiperconectividad nocturna mantiene alerta al sistema nervioso de los jóvenes.</div>
+            <span class="list-badge">2</span>
+            <div>Indagar el promedio de horas de sueño e identificar los factores que influyen en su duración y calidad, entre ellos el uso de dispositivos antes de dormir.</div>
           </li>
           <li>
-            <span class="bullet">✦</span>
-            <div><strong>Acción Preventiva:</strong> Los resultados sirven de base para orientar talleres de higiene del sueño con docentes y representantes.</div>
+            <span class="list-badge">3</span>
+            <div>Identificar la presencia de ansiedad por conexión a partir del uso de dispositivos antes de dormir y la afectación percibida de la salud mental.</div>
+          </li>
+          <li>
+            <span class="list-badge">4</span>
+            <div>Examinar la correlación entre la ansiedad por conexión y los trastornos del sueño (dificultad para conciliar el sueño y reducción de las horas de descanso).</div>
+          </li>
+          <li>
+            <span class="list-badge">5</span>
+            <div>Socializar a la comunidad educativa la importancia de cumplir las horas adecuadas de sueño, promoviendo hábitos saludables.</div>
           </li>
         </ul>
       </section>
 
-      <!-- SECCIÓN 05 -->
-      <section id="sec-05">
-        <span class="section-tag">05 · Alcance y Límites</span>
-        <h2>Delimitación y Limitaciones del Estudio</h2>
-        <div class="grid-3">
-          <div class="card-item">
-            <h3>Ámbito Temporal</h3>
-            <p>Realizado entre junio y octubre de 2026 para recolección y procesamiento de datos.</p>
-          </div>
-          <div class="card-item">
-            <h3>Ámbito Espacial</h3>
-            <p>Maracaibo, Estado Zulia &bull; U.E.P. Colegio Santa Mariana de Jesús.</p>
-          </div>
-          <div class="card-item">
-            <h3>Limitaciones</h3>
-            <p>Muestra acotada por tiempos institucionales y uso de indicadores aproximados de ansiedad.</p>
+      <!-- JUSTIFICACIÓN (Pág. 6) -->
+      <section id="sec-justificacion">
+        <div class="section-top-row">
+          <div class="section-header">
+            <div class="section-icon-wrap teal">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <span class="section-tag teal">Capítulo 1 · EL PROBLEMA</span>
+              <h2>Justificación</h2>
+            </div>
           </div>
         </div>
-      </section>
-
-      <!-- SECCIÓN 06 -->
-      <section id="sec-06">
-        <span class="section-tag">06 · Marco Referencial</span>
-        <h2>Antecedentes Científicos</h2>
-        <ul class="styled-list">
+        <ul class="styled-list" style="margin-top: 0;">
           <li>
-            <span class="bullet">✦</span>
-            <div><strong>Müller Torres (2022):</strong> Halló una relación directa y significativa entre la mala calidad de sueño y el rendimiento escolar.</div>
+            <span class="list-badge">1</span>
+            <div>Un sueño adecuado es esencial para el aprendizaje y la memoria; su falta afecta la salud física y mental, el rendimiento y las relaciones.</div>
           </li>
           <li>
-            <span class="bullet">✦</span>
-            <div><strong>Ramírez & Bennasar (2024):</strong> Advierten que el uso excesivo de pantallas afecta la salud de los jóvenes en el ámbito municipal.</div>
+            <span class="list-badge">2</span>
+            <div>La conexión permanente a dispositivos y redes forma parte de la vida diaria de los adolescentes y puede mantenerlos en alerta de noche.</div>
           </li>
           <li>
-            <span class="bullet">✦</span>
-            <div><strong>Chirinos et al. (2020):</strong> Demuestran que en bachilleres venezolanos la deficiencia de descanso genera fatiga y somnolencia diurna.</div>
-          </li>
-          <li>
-            <span class="bullet">✦</span>
-            <div><strong>Woods & Scott (2016):</strong> Concluyen que el uso nocturno de redes sociales se asocia con mayor ansiedad y menor duración del sueño.</div>
+            <span class="list-badge">3</span>
+            <div>Los resultados orientan acciones de prevención en la institución y la desconexión digital antes de dormir entre docentes y representantes.</div>
           </li>
         </ul>
       </section>
 
-      <!-- SECCIÓN 07 -->
-      <section id="sec-07">
-        <span class="section-tag">07 · Sustento Teórico</span>
-        <h2>Fisiología del Sueño y Consecuencias</h2>
-        <p>Según Pinel (2007) y Walker (2017), el sueño es un estado de descanso periódico fundamental para restaurar el organismo, consolidar aprendizajes y regular las emociones.</p>
-        <div class="grid-3">
+      <!-- DELIMITACIÓN Y LIMITACIONES (Págs. 7-8) -->
+      <section id="sec-delimitacion">
+        <div class="section-top-row">
+          <div class="section-header">
+            <div class="section-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <span class="section-tag">Capítulo 1 · EL PROBLEMA</span>
+              <h2>Delimitación y Limitaciones</h2>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="font-size: 1.15rem; margin-bottom: 0.25rem;">Delimitación</h3>
+        <div class="grid-cards">
           <div class="card-item">
-            <h3>Causas de Alteración</h3>
-            <p>Estrés académico, horarios exigentes, ruido ambiental y uso desmedido de dispositivos antes de acostarse.</p>
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h3>Temporal</h3>
+            <p>Junio 2026 a Octubre 2026, periodo en que se recolectó y procesó la información.</p>
           </div>
           <div class="card-item">
-            <h3>Deterioro Cognitivo</h3>
-            <p>Problemas de atención, fallas de memoria a corto plazo, fatiga y vulnerabilidad a cuadros de ansiedad.</p>
+            <div class="card-icon teal">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <h3>Espacial</h3>
+            <p>Maracaibo, estado Zulia: U.E.P. Colegio Santa Mariana de Jesús.</p>
           </div>
           <div class="card-item">
-            <h3>Bases Legales (LOPNNA)</h3>
-            <p>Artículos 41, 42 y 43 sobre el derecho inviolable de los niños, niñas y adolescentes al más alto nivel de salud.</p>
+            <div class="card-icon rose">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3>Poblacional</h3>
+            <p>Adolescentes de 13 a 15 años que cursan de 1.° a 4.° año de educación media general.</p>
+          </div>
+        </div>
+
+        <h3 style="font-size: 1.15rem; margin-top: 2rem; margin-bottom: 0.25rem;">Limitaciones</h3>
+        <ul class="styled-list">
+          <li>
+            <span class="list-badge">•</span>
+            <div>Tiempo limitado para aplicar las encuestas a una muestra amplia y diversa.</div>
+          </li>
+          <li>
+            <span class="list-badge">•</span>
+            <div>Permisos institucionales e interrupciones de clases que afectan la planificación.</div>
+          </li>
+          <li>
+            <span class="list-badge">•</span>
+            <div>Posibles sesgos y límites para generalizar los resultados por el tamaño y la diversidad de la muestra.</div>
+          </li>
+          <li>
+            <span class="list-badge">•</span>
+            <div>Sin escala validada de ansiedad por conexión ni edad individual: la ansiedad se aborda de forma indirecta y la correlación es exploratoria.</div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- CAPÍTULO 2: ANTECEDENTES (Págs. 9-10) -->
+      <section id="sec-antecedentes">
+        <div class="section-top-row">
+          <div class="section-header">
+            <div class="section-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+            </div>
+            <div>
+              <span class="section-tag">Capítulo 2 · MARCO TEÓRICO</span>
+              <h2>Antecedentes</h2>
+            </div>
+          </div>
+          <img id="png-teoria" class="png-mini" alt="PNG Marco Teórico y Salud del Sueño">
+        </div>
+
+        <div class="grid-cards">
+          <div class="card-item">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg>
+            </div>
+            <h3>Müller Torres (2022) · Mundial</h3>
+            <p>Halló una relación significativa entre la calidad del sueño y el rendimiento académico.</p>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon teal">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </div>
+            <h3>Chirinos et al. (2020) · Nacional</h3>
+            <p>En bachilleres, la mala calidad del sueño se asoció con más somnolencia, fatiga y menor rendimiento.</p>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon rose">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <h3>Ramírez Rodríguez y Bennasar García (2024) · Municipal</h3>
+            <p>El uso excesivo de dispositivos afecta la salud de los jóvenes; urge gestionar pantallas y promover el sueño reparador.</p>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+            </div>
+            <h3>Woods y Scott (2016); Cain y Gradisar (2010) · Internacional</h3>
+            <p>El uso nocturno de redes y dispositivos se asocia con peor sueño, más ansiedad y menos horas de descanso.</p>
           </div>
         </div>
       </section>
 
-      <!-- SECCIÓN 08 -->
-      <section id="sec-08">
-        <span class="section-tag">08 · Eje Temático Central</span>
-        <h2>Ansiedad por Conexión y Ritmo Circadiano</h2>
-        <p>
-          El temor a perder información o interacciones sociales en línea (FOMO) genera una hipervigilancia nocturna. La luz azul de las pantallas suprime la melatonina y retrasa la fase circadiana natural del adolescente.
+      <!-- BASES TEÓRICAS (Págs. 11-13) -->
+      <section id="sec-bases-teoricas">
+        <div class="section-top-row">
+          <div class="section-header">
+            <div class="section-icon-wrap teal">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+            </div>
+            <div>
+              <span class="section-tag teal">Capítulo 2 · MARCO TEÓRICO</span>
+              <h2>Bases teóricas</h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="tabs-nav" role="tablist">
+          <button class="tab-btn active" data-tab="bt-sueno">¿Qué es el sueño? e Importancia</button>
+          <button class="tab-btn" data-tab="bt-causas">Causas y Consecuencias</button>
+          <button class="tab-btn" data-tab="bt-ansiedad">Ansiedad por conexión y Trastornos</button>
+        </div>
+
+        <div class="tab-panel active" id="bt-sueno">
+          <div class="grid-cards" style="margin-top: 0;">
+            <div class="card-item" style="background: #ffffff;">
+              <div class="card-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+              </div>
+              <h3>¿Qué es el sueño?</h3>
+              <p>Según Pinel (2007), es un estado de descanso natural y periódico del organismo, con menor actividad motora y reactividad sensorial. Es esencial para restaurar el cuerpo y la mente, consolidar la memoria y regular las emociones.</p>
+            </div>
+            <div class="card-item" style="background: #ffffff;">
+              <div class="card-icon teal">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <h3>Importancia</h3>
+              <p>Para López Martínez (2018), el sueño es vital para el bienestar: favorece la regeneración celular, la memoria, el equilibrio emocional y el sistema inmunológico. Su carencia afecta la salud física y mental.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="bt-causas">
+          <div class="grid-cards" style="margin-top: 0;">
+            <div class="card-item" style="background: #ffffff;">
+              <div class="card-icon rose">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
+              </div>
+              <h3>Causas</h3>
+              <p>Walker (2017) señala el estrés, los horarios exigentes, el uso excesivo de dispositivos antes de dormir, el ruido o la iluminación inadecuada, y problemas como el insomnio o la apnea del sueño.</p>
+            </div>
+            <div class="card-item" style="background: #ffffff;">
+              <div class="card-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+              </div>
+              <h3>Consecuencias</h3>
+              <p>Durmer y Dinges (2005): deterioro cognitivo, problemas de memoria y dificultad para concentrarse; también debilita el sistema inmunológico y puede conducir a ansiedad y depresión.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="bt-ansiedad">
+          <div class="grid-cards" style="margin-top: 0;">
+            <div class="card-item" style="background: #ffffff;">
+              <div class="card-icon rose">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+              </div>
+              <h3>Ansiedad por conexión</h3>
+              <p>Malestar o temor a perder información o interacciones cuando no se está conectado. Se vincula con el miedo a perderse algo (FOMO; Przybylski et al., 2013) y lleva a revisar el teléfono incluso al acostarse.</p>
+            </div>
+            <div class="card-item" style="background: #ffffff;">
+              <div class="card-icon teal">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <h3>Trastornos del sueño</h3>
+              <p>Alteraciones en la cantidad, calidad u horario del sueño que afectan el día (AASM, 2014), como el insomnio. En esta tesis se miden por la dificultad para conciliar el sueño y las horas de descanso.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ANSIEDAD POR CONEXIÓN Y SUEÑO (Pág. 14) -->
+      <section id="sec-conexion-sueno">
+        <div class="section-top-row">
+          <div class="section-header">
+            <div class="section-icon-wrap rose">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+            </div>
+            <div>
+              <span class="section-tag rose">Capítulo 2 · MARCO TEÓRICO</span>
+              <h2>Ansiedad por conexión y sueño</h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-cards">
+          <div class="card-item">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+            </div>
+            <h3>Conexión nocturna</h3>
+            <p>Desplaza el tiempo de sueño y mantiene la mente activa</p>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon rose">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+            </div>
+            <h3>Ansiedad por no desconectarse</h3>
+            <p>Necesidad de revisar el teléfono y las redes al acostarse</p>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon teal">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="5"/><line x1="12" x2="12" y1="1" y2="3"/><line x1="12" x2="12" y1="21" y2="23"/><line x1="4.22" x2="5.64" y1="4.22" y2="5.64"/><line x1="18.36" x2="19.78" y1="18.36" y2="19.78"/></svg>
+            </div>
+            <h3>Estado de alerta</h3>
+            <p>La luz de las pantallas altera el ritmo circadiano</p>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h3>Trastornos del sueño</h3>
+            <p>Dificultad para conciliar el sueño y menos horas de descanso</p>
+          </div>
+        </div>
+
+        <p style="margin-top: 1.35rem; margin-bottom: 0;">
+          Cain y Gradisar (2010) y Woods y Scott (2016) asocian el uso nocturno de dispositivos y redes con peor calidad del sueño y mayor ansiedad en adolescentes. Esta relación sustenta el análisis de correlación de la investigación.
         </p>
       </section>
 
-      <!-- SECCIÓN 09 -->
-      <section id="sec-09">
-        <span class="section-tag">09 · Metodología</span>
-        <h2>Diseño Metodológico y Muestra</h2>
-        <p>Investigación con enfoque cuali-cuantitativo y alcance descriptivo-correlacional.</p>
-        <div class="grid-3">
+      <!-- BASES LEGALES (Pág. 15) -->
+      <section id="sec-bases-legales">
+        <div class="section-top-row">
+          <div class="section-header">
+            <div class="section-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v18"/><path d="m16 7 4 8h-8l4-8Z"/><path d="m4 7 4 8H0l4-8Z"/></svg>
+            </div>
+            <div>
+              <span class="section-tag">Capítulo 2 · MARCO TEÓRICO · Ley Orgánica para la Protección de Niños, Niñas y Adolescentes (LOPNNA)</span>
+              <h2>Bases legales</h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-cards">
           <div class="card-item">
-            <h3>Población y Muestra</h3>
-            <p>Población total de 241 estudiantes de 1.° a 4.° año. Muestra representativa de <strong>160 alumnos</strong> (10 por cada sección y sexo).</p>
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <h3>Art. 41 · Derecho a la salud</h3>
+            <p>Todo niño, niña y adolescente tiene derecho al más alto nivel posible de salud física y mental.</p>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon teal">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            </div>
+            <h3>Art. 42 · Responsabilidad familiar</h3>
+            <p>Padres, madres y representantes son garantes inmediatos de la salud de los niños, niñas y adolescentes.</p>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon rose">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="16" y2="12"/><line x1="12" x2="12.01" y1="8" y2="8"/></svg>
+            </div>
+            <h3>Art. 43 · Derecho a información</h3>
+            <p>Tienen derecho a ser informados y educados sobre los principios básicos de prevención en salud.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CAPÍTULO 3: MARCO METODOLÓGICO (Págs. 16-20) -->
+      <section id="sec-metodologia">
+        <div class="section-top-row">
+          <div class="section-header">
+            <div class="section-icon-wrap teal">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+            </div>
+            <div>
+              <span class="section-tag teal">Capítulo 3 · MARCO METODOLÓGICO</span>
+              <h2>Tipo de investigación, Variables, Población y Técnica</h2>
+            </div>
+          </div>
+          <img id="png-metodologia" class="png-mini" alt="PNG Metodología y Muestra">
+        </div>
+
+        <div class="grid-cards" style="margin-top: 0;">
+          <div class="card-item">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg>
+            </div>
+            <h3>Enfoque cuali-cuantitativo</h3>
+            <p>Según Arias (2006), combina la comprensión en profundidad (cualitativo) con la medición numérica y estadística (cuantitativo).</p>
           </div>
           <div class="card-item">
+            <div class="card-icon teal">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            </div>
+            <h3>Alcance descriptivo-correlacional</h3>
+            <p>Describe los hábitos de sueño y el uso de dispositivos, y examina la relación entre la ansiedad por conexión y los trastornos del sueño, sin manipular variables.</p>
+          </div>
+        </div>
+
+        <h3 style="font-size: 1.15rem; margin-top: 2rem;">Variables e indicadores</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Variable</th>
+                <th>Indicador</th>
+                <th>Pregunta</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Privación del sueño</strong></td>
+                <td>Promedio de horas de sueño</td>
+                <td><strong>P9</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Ansiedad por conexión (indirecta)</strong></td>
+                <td>Uso de dispositivos antes de dormir y afectación percibida de la salud mental</td>
+                <td><strong>P2 y P5</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Trastornos del sueño</strong></td>
+                <td>Dificultad para conciliar el sueño</td>
+                <td><strong>P1</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size: 0.92rem; margin-top: 0.5rem;">Son indicadores aproximados: la encuesta no incluyó una escala validada de ansiedad por conexión.</p>
+
+        <h3 style="font-size: 1.15rem; margin-top: 2rem;">Población y muestra</h3>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-number count-up" data-target="241">0</div>
+            <div class="stat-label">Población: 241 estudiantes de 1.° a 4.° año</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number teal">n = <span class="count-up" data-target="160">0</span></div>
+            <div class="stat-label">Muestra: n = 160, con 10 estudiantes por sexo y sección (1A a 4B)</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number rose"><span class="count-up" data-target="13">0</span> – <span class="count-up" data-target="15">0</span> años</div>
+            <div class="stat-label">Adolescentes de 13 a 15 años (edad escolar esperada del nivel cursado)</div>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Año</th>
+                <th>Hembras</th>
+                <th>Varones</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1.°</td><td>35</td><td>23</td><td>58</td></tr>
+              <tr><td>2.°</td><td>18</td><td>34</td><td>52</td></tr>
+              <tr><td>3.°</td><td>28</td><td>25</td><td>53</td></tr>
+              <tr><td>4.°</td><td>42</td><td>36</td><td>78</td></tr>
+              <tr><td><strong>Total</strong></td><td><strong>123</strong></td><td><strong>118</strong></td><td><strong>241</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size: 0.94rem;"><strong>Selección:</strong> muestreo aleatorio (Chávez, 2007), con la fórmula de Sierra Bravo (1999).</p>
+
+        <h3 style="font-size: 1.15rem; margin-top: 2rem;">Técnica e instrumento</h3>
+        <div class="grid-cards">
+          <div class="card-item">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <h3>Técnica</h3>
+            <p>Observación mediante encuesta (Arias, 2006)</p>
+          </div>
+          <div class="card-item">
+            <div class="card-icon teal">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
             <h3>Instrumento</h3>
-            <p>Cuestionario estructurado de 9 preguntas cerradas aplicado por secciones y validado metodológicamente.</p>
+            <p>Cuestionario basado en Hernández, Fernández y Baptista (2006)</p>
+          </div>
+          <div class="card-item">
+            <div class="card-icon rose">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h3>Aplicación</h3>
+            <p>9 preguntas cerradas, analizadas por sección y sexo</p>
           </div>
         </div>
       </section>
 
-      <!-- SECCIÓN 10 -->
-      <section id="sec-10">
-        <span class="section-tag">10 · Resultados Principales</span>
-        <h2>Análisis de Datos y Hallazgos Estadísticos</h2>
-        <p>Resultados globales obtenidos de la aplicación del cuestionario en la institución:</p>
-        
-        <div class="stats-highlight-grid">
-          <div class="stat-box">
-            <div class="stat-number danger">91%</div>
-            <div class="stat-label">Usa dispositivos antes de dormir</div>
+      <!-- CAPÍTULO 4: ANÁLISIS DE DATOS - PREGUNTAS #1 A #9 (Págs. 21-30) -->
+      <section id="sec-preguntas">
+        <div class="section-top-row">
+          <div class="section-header">
+            <div class="section-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg>
+            </div>
+            <div>
+              <span class="section-tag">Capítulo 4 · ANÁLISIS DE DATOS</span>
+              <h2>Resultados por pregunta (Preguntas #1 a #9)</h2>
+            </div>
           </div>
-          <div class="stat-box">
-            <div class="stat-number danger">53%</div>
-            <div class="stat-label">Tiene dificultad para conciliar el sueño</div>
+          <img id="png-datos" class="png-mini" alt="PNG Análisis estadístico de datos">
+        </div>
+
+        <!-- Pregunta #1 -->
+        <div class="chart-card">
+          <h3 style="margin-bottom: 0.35rem;">Pregunta #1 · ¿Tienes problemas para conciliar el sueño?</h3>
+          <p style="margin-bottom: 0.75rem; font-size: 0.96rem;"><strong>53 %</strong> tiene problemas para conciliar el sueño &bull; Hembras 69 % &middot; Varones 38 %</p>
+          <div class="chart-legend">
+            <span><i class="legend-dot" style="background:#2b6cb0;"></i>Varones</span>
+            <span><i class="legend-dot" style="background:#e53e8c;"></i>Hembras</span>
           </div>
-          <div class="stat-box">
-            <div class="stat-number danger">6,2 h</div>
-            <div class="stat-label">Promedio real de sueño por noche</div>
+          <div class="bars-grid" data-chart="p1"></div>
+        </div>
+
+        <!-- Pregunta #2 -->
+        <div class="chart-card">
+          <h3 style="margin-bottom: 0.35rem;">Pregunta #2 · ¿Usas dispositivos electrónicos (teléfono, laptop, computadora, etc.) antes de dormir?</h3>
+          <p style="margin-bottom: 0.75rem; font-size: 0.96rem;"><strong>91 %</strong> usa dispositivos antes de dormir &bull; Varones 94 % &middot; Hembras 89 %</p>
+          <div class="chart-legend">
+            <span><i class="legend-dot" style="background:#2b6cb0;"></i>Varones</span>
+            <span><i class="legend-dot" style="background:#e53e8c;"></i>Hembras</span>
+          </div>
+          <div class="bars-grid" data-chart="p2"></div>
+        </div>
+
+        <!-- Pregunta #3 -->
+        <div class="chart-card">
+          <h3 style="margin-bottom: 0.35rem;">Pregunta #3 · ¿Has notado que la falta de sueño afecta tu concentración en clase?</h3>
+          <p style="margin-bottom: 0.75rem; font-size: 0.96rem;"><strong>55 %</strong> nota afectada su concentración &bull; Hembras 69 % &middot; Varones 41 %</p>
+          <div class="chart-legend">
+            <span><i class="legend-dot" style="background:#2b6cb0;"></i>Varones</span>
+            <span><i class="legend-dot" style="background:#e53e8c;"></i>Hembras</span>
+          </div>
+          <div class="bars-grid" data-chart="p3"></div>
+        </div>
+
+        <!-- Pregunta #4 -->
+        <div class="chart-card">
+          <h3 style="margin-bottom: 0.35rem;">Pregunta #4 · ¿Te resulta difícil recordar información que has estudiado cuando no has dormido bien?</h3>
+          <p style="margin-bottom: 0.75rem; font-size: 0.96rem;"><strong>52 %</strong> le cuesta recordar lo estudiado &bull; Hembras 65 % &middot; Varones 39 %</p>
+          <div class="chart-legend">
+            <span><i class="legend-dot" style="background:#2b6cb0;"></i>Varones</span>
+            <span><i class="legend-dot" style="background:#e53e8c;"></i>Hembras</span>
+          </div>
+          <div class="bars-grid" data-chart="p4"></div>
+        </div>
+
+        <!-- Pregunta #5 -->
+        <div class="chart-card">
+          <h3 style="margin-bottom: 0.35rem;">Pregunta #5 · ¿Consideras que la privación del sueño ha afectado tu salud mental?</h3>
+          <p style="margin-bottom: 0.75rem; font-size: 0.96rem;"><strong>41 %</strong> siente afectada su salud mental &bull; Hembras 46 % &middot; Varones 35 %</p>
+          <div class="chart-legend">
+            <span><i class="legend-dot" style="background:#2b6cb0;"></i>Varones</span>
+            <span><i class="legend-dot" style="background:#e53e8c;"></i>Hembras</span>
+          </div>
+          <div class="bars-grid" data-chart="p5"></div>
+        </div>
+
+        <!-- Pregunta #6 -->
+        <div class="chart-card">
+          <h3 style="margin-bottom: 0.35rem;">Pregunta #6 · ¿Tus hábitos de estudio cambian dependiendo de la cantidad de sueño que has tenido?</h3>
+          <p style="margin-bottom: 0.75rem; font-size: 0.96rem;"><strong>54 %</strong> cambia sus hábitos de estudio &bull; Hembras 61 % &middot; Varones 46 %</p>
+          <div class="chart-legend">
+            <span><i class="legend-dot" style="background:#2b6cb0;"></i>Varones</span>
+            <span><i class="legend-dot" style="background:#e53e8c;"></i>Hembras</span>
+          </div>
+          <div class="bars-grid" data-chart="p6"></div>
+        </div>
+
+        <!-- Pregunta #7 -->
+        <div class="chart-card">
+          <h3 style="margin-bottom: 0.35rem;">Pregunta #7 · ¿Sueles preferir estudiar de noche?</h3>
+          <p style="margin-bottom: 0.75rem; font-size: 0.96rem;"><strong>49 %</strong> prefiere estudiar de noche &bull; Varones 50 % &middot; Hembras 49 %</p>
+          <div class="chart-legend">
+            <span><i class="legend-dot" style="background:#2b6cb0;"></i>Varones</span>
+            <span><i class="legend-dot" style="background:#e53e8c;"></i>Hembras</span>
+          </div>
+          <div class="bars-grid" data-chart="p7"></div>
+        </div>
+
+        <!-- Pregunta #8 -->
+        <div class="chart-card">
+          <h3 style="margin-bottom: 0.35rem;">Pregunta #8 · ¿Cómo calificas tu rendimiento académico actual (bueno, regular o malo)?</h3>
+          <p style="margin-bottom: 0.75rem; font-size: 0.96rem;"><strong>47 %</strong> califica su rendimiento como bueno; <strong>46 %</strong> regular y <strong>7 %</strong> malo &bull; En 4.° año: 30 % varones &middot; 40 % hembras</p>
+          <div class="chart-legend">
+            <span><i class="legend-dot" style="background:#2b6cb0;"></i>Varones (% que lo califica como bueno)</span>
+            <span><i class="legend-dot" style="background:#e53e8c;"></i>Hembras (% que lo califica como bueno)</span>
+          </div>
+          <div class="bars-grid four-cols" data-chart="p8"></div>
+        </div>
+
+        <!-- Pregunta #9 -->
+        <div class="chart-card">
+          <h3 style="margin-bottom: 0.35rem;">Pregunta #9 · ¿Cuántas horas de sueño promedio tienes cada noche?</h3>
+          <p style="margin-bottom: 0.75rem; font-size: 0.96rem;"><strong>6,2 h</strong> de sueño por noche en promedio &bull; Varones 6,4 h &middot; Hembras 6,1 h</p>
+          <div class="chart-legend">
+            <span><i class="legend-dot" style="background:#2b6cb0;"></i>Varones (Horas de sueño)</span>
+            <span><i class="legend-dot" style="background:#e53e8c;"></i>Hembras (Horas de sueño)</span>
+          </div>
+          <div class="bars-grid" data-chart="p9"></div>
+        </div>
+      </section>
+
+      <!-- ANÁLISIS DE CORRELACIÓN (Pág. 31) -->
+      <section id="sec-correlacion">
+        <div class="section-top-row">
+          <div class="section-header">
+            <div class="section-icon-wrap rose">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+            </div>
+            <div>
+              <span class="section-tag rose">Capítulo 4 · ANÁLISIS DE DATOS</span>
+              <h2>Análisis de correlación</h2>
+            </div>
           </div>
         </div>
 
-        <div class="grid-3" style="margin-top: 1.5rem;">
-          <div class="card-item">
-            <h3>Concentración Afectada</h3>
-            <p>El <strong>55%</strong> de los alumnos reporta que la falta de sueño disminuye su atención en clase (69% en hembras).</p>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Serie</th>
+                <th>Coeficiente de correlación (rs)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1.0</td><td><strong>0.4</strong></td></tr>
+              <tr><td>2.0</td><td><strong>0.5</strong></td></tr>
+              <tr><td>3.0</td><td><strong>-0.2</strong></td></tr>
+              <tr><td>4.0</td><td><strong>0.2</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="quote-box" style="margin-bottom: 0;">
+          <blockquote>
+            “Tendencia positiva, no concluyente”
+          </blockquote>
+          <p style="margin-bottom:0; color:var(--text-main); font-size: 0.92rem; font-weight: 700;">Ningún coeficiente alcanza significancia al 5 %. Análisis exploratorio con n = 16 subgrupos de 10 estudiantes.</p>
+        </div>
+      </section>
+
+      <!-- RESULTADOS Y CONCLUSIONES (Págs. 32-33) -->
+      <section id="sec-resultados-finales">
+        <div class="section-top-row">
+          <div class="section-header">
+            <div class="section-icon-wrap teal">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div>
+              <span class="section-tag teal">Capítulo 4 · CIERRE DEL ESTUDIO</span>
+              <h2>Resultados y Conclusiones</h2>
+            </div>
           </div>
+          <img id="png-cierre" class="png-mini" alt="PNG Conclusiones del estudio">
+        </div>
+
+        <div class="quote-box" style="margin-top: 0;">
+          <p style="margin-bottom:0; color:var(--text-main); font-size: 1.02rem;">
+            <strong>Resultados:</strong> Se logró el último objetivo: socializar con la comunidad educativa y el personal docente la importancia del sueño adecuado y su impacto en el desarrollo académico y personal. Se realizaron charlas y posters informativos.
+          </p>
+        </div>
+
+        <h3 style="font-size: 1.15rem; margin-top: 1.5rem;">Conclusiones</h3>
+        <div class="grid-cards">
           <div class="card-item">
-            <h3>Retención y Memoria</h3>
-            <p>El <strong>52%</strong> experimenta dificultades para recordar lo estudiado por privación de descanso.</p>
+            <div class="card-icon rose">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z"/></svg>
+            </div>
+            <h3>Impacto</h3>
+            <p>La privación del sueño afecta la concentración, la memoria, la salud mental y el rendimiento; las hembras reportan más dificultad para conciliar el sueño.</p>
           </div>
+
           <div class="card-item">
-            <h3>Salud Mental</h3>
-            <p>El <strong>41%</strong> percibe afectación directa en su bienestar emocional debido al cansancio acumulado.</p>
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+            </div>
+            <h3>Dispositivos</h3>
+            <p>El 91 % usa dispositivos antes de dormir y el 53 % tiene dificultad para conciliar el sueño; el promedio es de 6,2 horas por noche.</p>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon teal">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/></svg>
+            </div>
+            <h3>Correlación</h3>
+            <p>Positiva pero no concluyente (rs = 0,36; p = 0,18 y rs = 0,47; p = 0,07). Falta verificarla con instrumentos específicos.</p>
+          </div>
+
+          <div class="card-item">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            </div>
+            <h3>Socialización</h3>
+            <p>Se cumplió el último objetivo con charlas y posters sobre la importancia del sueño adecuado.</p>
           </div>
         </div>
       </section>
 
-      <!-- SECCIÓN 11 -->
-      <section id="sec-11">
-        <span class="section-tag">11 · Conclusiones</span>
-        <h2>Conclusiones del Estudio</h2>
+      <!-- RECOMENDACIONES Y CIERRE (Págs. 34-36) -->
+      <section id="sec-recomendaciones">
+        <div class="section-top-row">
+          <div class="section-header">
+            <div class="section-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z"/></svg>
+            </div>
+            <div>
+              <span class="section-tag">Capítulo 4 · PROPUESTAS Y REFLEXIÓN FINAL</span>
+              <h2>Recomendaciones</h2>
+            </div>
+          </div>
+        </div>
+
         <ul class="styled-list">
           <li>
-            <span class="bullet">1.</span>
-            <div><strong>Impacto Cognitivo:</strong> La privación de sueño reduce marcadamente la concentración y la memoria, afectando con mayor intensidad a las hembras.</div>
+            <span class="list-badge">1</span>
+            <div>Aplicar encuestas periódicas y monitorear los hábitos de sueño de la comunidad educativa.</div>
           </li>
           <li>
-            <span class="bullet">2.</span>
-            <div><strong>El Factor Pantallas:</strong> El uso masivo de dispositivos móviles antes de acostarse (91%) es el motor primario del retraso en el descanso.</div>
+            <span class="list-badge">2</span>
+            <div>Analizar la efectividad de las estrategias de socialización ya realizadas.</div>
           </li>
           <li>
-            <span class="bullet">3.</span>
-            <div><strong>Correlación Exploratoria:</strong> Se observa una tendencia positiva entre ansiedad por conexión y déficit de sueño, sugiriendo futuras investigaciones con escalas clínicas validadas.</div>
+            <span class="list-badge">3</span>
+            <div>Extender entrevistas y cuestionarios al personal docente sobre su descanso.</div>
+          </li>
+          <li>
+            <span class="list-badge">4</span>
+            <div>Organizar charlas, talleres y campañas sobre higiene del sueño.</div>
+          </li>
+          <li>
+            <span class="list-badge">5</span>
+            <div>Sensibilizar sobre reducir los dispositivos antes de dormir: lectura, meditación o desconexión.</div>
+          </li>
+          <li>
+            <span class="list-badge">6</span>
+            <div>Futuras investigaciones: escalas validadas, edad individual y una muestra mayor.</div>
           </li>
         </ul>
-      </section>
 
-      <!-- SECCIÓN 12 -->
-      <section id="sec-12">
-        <span class="section-tag">12 · Recomendaciones y Cierre</span>
-        <h2>Propuestas e Higiene del Sueño</h2>
-        <div class="grid-3">
-          <div class="card-item">
-            <h3>Campañas Escolares</h3>
-            <p>Organizar charlas informativas y talleres prácticos sobre higiene del sueño en la comunidad educativa.</p>
-          </div>
-          <div class="card-item">
-            <h3>Desconexión Digital</h3>
-            <p>Fomentar hábitos alternativos previos al descanso nocturno, como lectura o meditación sin pantallas.</p>
-          </div>
-          <div class="card-item">
-            <h3>Monitoreo Continuo</h3>
-            <p>Extender encuestas periódicas de seguimiento sobre hábitos de descanso en los estudiantes y docentes.</p>
-          </div>
+        <div class="quote-box" style="margin-top: 2rem; margin-bottom: 0; text-align: center;">
+          <blockquote style="font-size: 1.45rem;">
+            “El descanso no es un lujo, sino una necesidad vital; su ausencia fragmenta la mente, el cuerpo y las relaciones, afectando cada rincón de nuestra vida.”
+          </blockquote>
+          <p style="margin-bottom:0; color:var(--text-main); font-size: 0.92rem; font-weight: 700;">Lugo, Melanie</p>
         </div>
       </section>
 
@@ -785,21 +1790,215 @@
   <footer>
     <div class="footer-content">
       <div class="footer-col">
-        <h4>+ Tu espacio saludable</h4>
-        <p>Impacto de la privación del sueño en adolescentes de 13 a 15 años. Investigación académica de rigor institucional.</p>
+        <h4>Investigación</h4>
+        <p>Impacto de la privación del sueño en adolescentes de 13 a 15 años: correlación entre la ansiedad por conexión y los trastornos del sueño.</p>
       </div>
       <div class="footer-col">
-        <h4>Créditos Académicos</h4>
-        <p><strong>Autora:</strong> Melanie Lugo (C.I. 33.105.231)</p>
-        <p><strong>Institución:</strong> U.E.P. Colegio Santa Mariana de Jesús</p>
-        <p><strong>Sede:</strong> Universidad del Zulia · Maracaibo, 2026</p>
+        <h4>Créditos</h4>
+        <p><strong>Autora:</strong> Melanie Lugo, C.I.: 33.105.231</p>
+        <p><strong>Institución:</strong> República Bolivariana de Venezuela · Universidad del Zulia · Facultad de Medicina · Escuela de Medicina · Cátedra de Informática · Maracaibo, octubre de 2026</p>
       </div>
       <div class="footer-col">
-        <h4>Nota Sanitaria</h4>
-        <p>Dossier académico informativo y de divulgación escolar. Promueve la salud mental y el bienestar integral de la juventud.</p>
+        <h4>Navegación</h4>
+        <p><a href="../index.html" style="color: var(--accent-primary); font-weight: 700; text-decoration: none;">← Volver a la portada</a></p>
       </div>
     </div>
   </footer>
+
+  <!-- Scripts: Generador de PNG ilustrativos + Gráficas + Interactividad -->
+  <script>
+    // 1. Generación de pequeñas imágenes PNG reales (data:image/png;base64)
+    function createPngIllustration(type) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 160;
+      canvas.height = 160;
+      const ctx = canvas.getContext('2d');
+
+      // Fondo suave redondeado
+      ctx.fillStyle = type === 'problema' ? '#eef2ff' : type === 'teoria' ? '#f0fdfa' : type === 'metodologia' ? '#fce7f3' : '#eff6ff';
+      ctx.beginPath();
+      ctx.roundRect(8, 8, 144, 144, 28);
+      ctx.fill();
+
+      if (type === 'hero' || type === 'problema') {
+        // Luna creciente + teléfono con alerta
+        ctx.fillStyle = '#4f46e5';
+        ctx.beginPath();
+        ctx.arc(62, 68, 30, 0.3 * Math.PI, 1.7 * Math.PI);
+        ctx.arc(76, 62, 24, 1.65 * Math.PI, 0.35 * Math.PI, true);
+        ctx.closePath();
+        ctx.fill();
+
+        // Estrellas
+        ctx.fillStyle = '#0d9488';
+        ctx.beginPath(); ctx.arc(42, 42, 4, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(92, 38, 3.5, 0, Math.PI * 2); ctx.fill();
+
+        // Smartphone
+        ctx.fillStyle = '#0f172a';
+        ctx.beginPath();
+        ctx.roundRect(86, 66, 38, 62, 8);
+        ctx.fill();
+        ctx.fillStyle = '#38bdf8';
+        ctx.beginPath();
+        ctx.roundRect(91, 74, 28, 44, 4);
+        ctx.fill();
+        // Punto notificación
+        ctx.fillStyle = '#e53e8c';
+        ctx.beginPath(); ctx.arc(118, 70, 7, 0, Math.PI * 2); ctx.fill();
+      } else if (type === 'teoria') {
+        // Libro + reloj circadiano
+        ctx.fillStyle = '#0d9488';
+        ctx.beginPath();
+        ctx.roundRect(34, 52, 92, 64, 10);
+        ctx.fill();
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.roundRect(42, 58, 36, 52, 4);
+        ctx.roundRect(82, 58, 36, 52, 4);
+        ctx.fill();
+        // Reloj superior
+        ctx.fillStyle = '#4f46e5';
+        ctx.beginPath(); ctx.arc(80, 44, 18, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 3;
+        ctx.beginPath(); ctx.moveTo(80, 44); ctx.lineTo(80, 34); ctx.moveTo(80, 44); ctx.lineTo(88, 44); ctx.stroke();
+      } else if (type === 'metodologia') {
+        // Hoja de encuesta con checks
+        ctx.fillStyle = '#ffffff';
+        ctx.strokeStyle = '#db2777';
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.roundRect(42, 32, 76, 96, 12);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.strokeStyle = '#0d9488';
+        ctx.lineWidth = 4;
+        [56, 80, 104].forEach(y => {
+          ctx.beginPath();
+          ctx.moveTo(56, y); ctx.lineTo(62, y + 6); ctx.lineTo(72, y - 6);
+          ctx.stroke();
+          ctx.fillStyle = '#cbd5e1';
+          ctx.fillRect(80, y - 3, 26, 6);
+        });
+      } else {
+        // Barras estadísticas + corazón/sueño
+        const colors = ['#2b6cb0', '#e53e8c', '#0d9488', '#4f46e5'];
+        const heights = [48, 76, 62, 86];
+        heights.forEach((h, i) => {
+          ctx.fillStyle = colors[i];
+          ctx.beginPath();
+          ctx.roundRect(36 + i * 24, 124 - h, 16, h, 5);
+          ctx.fill();
+        });
+      }
+
+      return canvas.toDataURL('image/png');
+    }
+
+    document.getElementById('png-hero').src = createPngIllustration('hero');
+    document.getElementById('png-problema').src = createPngIllustration('problema');
+    document.getElementById('png-teoria').src = createPngIllustration('teoria');
+    document.getElementById('png-metodologia').src = createPngIllustration('metodologia');
+    document.getElementById('png-datos').src = createPngIllustration('datos');
+    document.getElementById('png-cierre').src = createPngIllustration('hero');
+
+    // 2. Renderizado exacto de los datos de las Preguntas #1 a #9
+    const chartsData = {
+      p1: { max: 10, labels: ['1.0','2.0','3.0','4.0','5.0','6.0','7.0','8.0'], v: [3.0,3.0,6.0,6.0,1.0,0.0,4.0,7.0], h: [6.0,8.0,5.0,9.0,9.0,2.0,8.0,8.0] },
+      p2: { max: 10, labels: ['1.0','2.0','3.0','4.0','5.0','6.0','7.0','8.0'], v: [9.0,9.0,10.0,10.0,9.0,10.0,9.0,9.0], h: [7.0,9.0,9.0,10.0,10.0,7.0,9.0,10.0] },
+      p3: { max: 10, labels: ['1.0','2.0','3.0','4.0','5.0','6.0','7.0','8.0'], v: [4.0,2.0,6.0,6.0,3.0,4.0,3.0,5.0], h: [6.0,8.0,5.0,9.0,7.0,4.0,8.0,8.0] },
+      p4: { max: 10, labels: ['1.0','2.0','3.0','4.0','5.0','6.0','7.0','8.0'], v: [7.0,5.0,3.0,5.0,3.0,2.0,3.0,3.0], h: [6.0,8.0,6.0,8.0,5.0,6.0,7.0,6.0] },
+      p5: { max: 10, labels: ['1.0','2.0','3.0','4.0','5.0','6.0','7.0','8.0'], v: [5.0,3.0,3.0,3.0,2.0,2.0,4.0,6.0], h: [2.0,3.0,4.0,10.0,2.0,2.0,9.0,5.0] },
+      p6: { max: 10, labels: ['1.0','2.0','3.0','4.0','5.0','6.0','7.0','8.0'], v: [6.0,5.0,5.0,7.0,3.0,3.0,4.0,4.0], h: [6.0,7.0,4.0,8.0,3.0,6.0,7.0,8.0] },
+      p7: { max: 10, labels: ['1.0','2.0','3.0','4.0','5.0','6.0','7.0','8.0'], v: [2.0,5.0,5.0,9.0,3.0,8.0,4.0,4.0], h: [4.0,2.0,4.0,7.0,6.0,3.0,7.0,6.0] },
+      p8: { max: 100, labels: ['1.0','2.0','3.0','4.0'], v: [52.0,45.0,55.0,30.0], h: [62.0,46.5,44.5,40.0] },
+      p9: { max: 10, labels: ['1.0','2.0','3.0','4.0','5.0','6.0','7.0','8.0'], v: [7.3,8.0,5.1,6.5,6.2,6.0,6.4,5.5], h: [6.6,5.7,6.2,6.2,6.3,5.9,5.0,6.6] }
+    };
+
+    document.querySelectorAll('.bars-grid').forEach(container => {
+      const cfg = chartsData[container.dataset.chart];
+      if (!cfg) return;
+      cfg.labels.forEach((lbl, idx) => {
+        const vVal = cfg.v[idx];
+        const hVal = cfg.h[idx];
+        const vPct = (vVal / cfg.max) * 100;
+        const hPct = (hVal / cfg.max) * 100;
+        const group = document.createElement('div');
+        group.className = 'bar-group';
+        group.innerHTML = `
+          <div class="bar-pair">
+            <div class="bar varon" style="height:${vPct}%"><span>${vVal.toFixed(1)}</span></div>
+            <div class="bar hembra" style="height:${hPct}%"><span>${hVal.toFixed(1)}</span></div>
+          </div>
+          <div class="bar-axis-label">${lbl}</div>
+        `;
+        container.appendChild(group);
+      });
+    });
+
+    // 3. Barra de progreso
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      document.getElementById('readingProgress').style.width = progress + '%';
+    });
+
+    // 4. Pestañas interactivas
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabPanels.forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    // 5. Contadores animados
+    const counterObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseFloat(el.dataset.target);
+          const startTime = performance.now();
+          const update = (now) => {
+            const progress = Math.min((now - startTime) / 1000, 1);
+            el.textContent = Math.round(target * (1 - Math.pow(1 - progress, 3)));
+            if (progress < 1) requestAnimationFrame(update);
+          };
+          requestAnimationFrame(update);
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.35 });
+    document.querySelectorAll('.count-up').forEach(el => counterObserver.observe(el));
+
+    // 6. Buscador en tiempo real
+    const searchInput = document.getElementById('docSearch');
+    const sections = document.querySelectorAll('main section');
+    searchInput.addEventListener('input', (e) => {
+      const term = e.target.value.toLowerCase().trim();
+      sections.forEach(sec => {
+        sec.classList.toggle('hidden-by-search', term && !sec.textContent.toLowerCase().includes(term));
+      });
+    });
+
+    // 7. Índice activo
+    const navLinks = document.querySelectorAll('.toc-list a');
+    window.addEventListener('scroll', () => {
+      let currentId = '';
+      sections.forEach(sec => {
+        if (window.scrollY >= sec.offsetTop - 140) currentId = sec.getAttribute('id');
+      });
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+      });
+    });
+  </script>
 
 </body>
 </html>
