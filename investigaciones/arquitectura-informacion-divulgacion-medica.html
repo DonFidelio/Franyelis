@@ -1,366 +1,1427 @@
-<!doctype html>
-<html lang="es">
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#12334a">
-<title>Arquitectura de Información para la Divulgación Médica</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root{--navy:#132f46;--teal:#168b88;--mint:#e7f4f1;--paper:#f4f7f8;--ink:#183247;--muted:#607687;--line:#dce7eb;--scale:1}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.78 "DM Sans",sans-serif}
-#progress{position:fixed;z-index:20;inset:0 auto auto 0;height:4px;width:0;background:#34b7ad}
-.hero{color:#fff;background:radial-gradient(circle at 85% 20%,#2d8790 0,transparent 28%),linear-gradient(125deg,#10283f,#145c69);padding:clamp(52px,8vw,100px) max(6vw,22px) 64px}
-.wrap{max-width:1120px;margin:auto}.eyebrow{font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:#a9ded8;font-weight:700}
-h1,h2,h3{font-family:Manrope,sans-serif;line-height:1.2}h1{font-size:clamp(2.25rem,5vw,4.5rem);max-width:900px;margin:18px 0 16px;letter-spacing:-.04em}
-.hero .subtitle{font-size:clamp(1.05rem,2vw,1.3rem);max-width:780px;color:#d7e9ec}.authors{margin-top:28px;color:#c1dadd;font-size:.94rem}
-.tools{position:sticky;top:0;z-index:10;background:#ffffffed;backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-.tools-inner{max-width:1120px;margin:auto;padding:10px 20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.tools a,.tools button{border:1px solid var(--line);border-radius:30px;background:white;color:var(--navy);padding:8px 13px;text-decoration:none;font:600 .84rem "DM Sans";cursor:pointer}
-.tools a:hover,.tools button:hover{border-color:var(--teal);color:var(--teal)}
-.tools input{flex:1;min-width:180px;border:1px solid var(--line);border-radius:30px;padding:10px 15px;font:inherit;background:#f8fbfb}
-.layout{display:grid;grid-template-columns:245px minmax(0,1fr);gap:28px;max-width:1120px;margin:36px auto;padding:0 20px}
-aside{position:sticky;top:84px;align-self:start;background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 12px 30px #102d3b08}
-aside h2{font-size:1rem;margin:0 0 12px}aside a{display:block;text-decoration:none;color:#547082;font-size:.88rem;padding:7px 8px;border-radius:8px}aside a:hover{background:var(--mint);color:var(--teal)}
-article{min-width:0}.intro{padding:0 4px 18px;color:var(--muted)}
-section.topic{background:#fff;border:1px solid var(--line);border-radius:20px;padding:clamp(22px,4vw,42px);margin-bottom:18px;box-shadow:0 14px 36px #0d2e4009;scroll-margin-top:92px}
-.kicker{font-size:.74rem;font-weight:800;letter-spacing:.13em;color:var(--teal);text-transform:uppercase}
-h2{font-size:clamp(1.4rem,2.4vw,2rem);margin:9px 0 22px;letter-spacing:-.025em}
-h3{font-size:1.06rem;margin:22px 0 8px;color:#1b5260}
-p{margin:0 0 13px}.metric{display:flex;align-items:center;gap:18px;background:linear-gradient(120deg,#e9f5f2,#f5faf9);border-radius:16px;padding:20px;margin:18px 0}.metric strong{font:800 clamp(2.5rem,6vw,4rem) Manrope;color:var(--teal);line-height:1}
-.points{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:16px 0}.point{background:#f5f9fa;border:1px solid #e6eef0;border-radius:13px;padding:16px}.point b{display:block;color:#1a5360;margin-bottom:5px}
-.references p{padding:12px 0;border-bottom:1px solid #edf1f2;font-size:.94rem}.references p:last-child{border:0}
-.hidden{display:none!important}.empty{display:none;padding:20px;text-align:center;color:var(--muted)}
-footer{padding:30px 20px;text-align:center;color:var(--muted)}footer a{color:var(--teal);text-decoration:none;font-weight:700}
-@media(max-width:850px){.layout{grid-template-columns:1fr}aside{position:relative;top:auto;display:flex;flex-wrap:wrap;gap:4px}aside h2{width:100%}aside a{padding:6px 8px}}
-@media(max-width:560px){.tools-inner{gap:7px}.tools input{order:2;flex-basis:100%}.points{grid-template-columns:1fr}.layout{margin:20px auto;padding:0 12px}.hero{padding-left:22px;padding-right:22px}}
-@media print{.tools,aside,#progress{display:none}.layout{display:block;margin:0;max-width:none}.hero{background:white;color:#111;padding:20px}.hero .subtitle,.authors,.eyebrow{color:#333}.topic{break-inside:avoid;box-shadow:none!important}}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arquitectura de Información para la Divulgación Médica — UX Editorial de Lujo</title>
 
-.hero{position:relative;overflow:hidden}.hero .wrap{position:relative;z-index:1}
-.floaters{position:absolute;inset:0;overflow:hidden;pointer-events:none}
-.floaters span{position:absolute;display:block;border:1px solid #b9e8e344;background:#b9e8e30b;border-radius:9px;animation:drift 12s ease-in-out infinite}
-.floaters span:nth-child(1){width:58px;height:58px;right:10%;top:18%;transform:rotate(18deg)}
-.floaters span:nth-child(2){width:24px;height:24px;right:25%;top:66%;animation-delay:-3s}
-.floaters span:nth-child(3){width:86px;height:86px;right:3%;bottom:-30px;animation-delay:-6s}
-.floaters span:nth-child(4){width:34px;height:34px;left:6%;bottom:18%;animation-delay:-8s}
-@keyframes drift{0%,100%{translate:0 0;rotate:0deg}50%{translate:0 -18px;rotate:12deg}}
-section.topic{position:relative;overflow:hidden;transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}
-section.topic:before{content:"";position:absolute;left:0;top:28px;bottom:28px;width:3px;border-radius:0 5px 5px 0;background:linear-gradient(var(--teal),#b8e3d9);opacity:.8}
-section.topic:hover{transform:translateY(-3px);box-shadow:0 20px 48px #0d2e4014;border-color:#c4dfdc}
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}.reveal.in{opacity:1;transform:none}
-.keyword{font-weight:700;color:#145f65;text-decoration:underline;text-decoration-color:#91cfc2;text-decoration-thickness:3px;text-underline-offset:4px}
-.term{display:inline-block;padding:2px 9px;border:1px solid #b9ded8;border-radius:8px;background:#f0f8f6;color:#175d61;font-weight:700}
-.metric{position:relative;overflow:hidden}.metric:after{content:"";position:absolute;right:-32px;top:-42px;width:150px;height:150px;border:1px solid #168b8824;border-radius:28px;transform:rotate(28deg)}
-.metric strong{min-width:125px}.meter{height:7px;background:#d4e9e5;border-radius:20px;overflow:hidden;margin-top:12px;max-width:320px}
-.meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,#168b88,#62c8b6);border-radius:20px;transition:width 1.8s cubic-bezier(.2,.8,.2,1)}
-.metric-copy{max-width:600px}.micro-label{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:#52817f;font-weight:700}
-.point{transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}.point:hover{transform:translateY(-4px);border-color:#a9d7ce;box-shadow:0 10px 24px #0d45400d}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+  <!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-/* Microinteracciones adicionales: movimiento discreto, sin distraer la lectura */
-.metric{isolation:isolate;box-shadow:inset 0 1px 0 #ffffffb5,0 10px 28px #167c7410;transition:box-shadow .35s ease,transform .35s ease}
-.metric:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 #ffffffb5,0 16px 34px #167c741b}
-.metric:before{content:"";position:absolute;inset:-45% auto -45% -35%;width:28%;background:linear-gradient(90deg,transparent,#ffffff88,transparent);transform:skewX(-20deg);animation:metricShimmer 7s ease-in-out infinite;pointer-events:none}
-@keyframes metricShimmer{0%,55%,100%{left:-35%;opacity:0}65%{opacity:.8}85%{left:115%;opacity:0}}
-.count{display:inline-block;min-width:1.15em;transform-origin:50% 75%;font-variant-numeric:tabular-nums}
-.count.counting{animation:numberLift .55s ease-in-out infinite alternate}
-.count.counted{animation:numberPop .55s cubic-bezier(.2,.8,.2,1) both}
-@keyframes numberLift{from{transform:translateY(2px) scale(.98)}to{transform:translateY(-3px) scale(1.035)}}
-@keyframes numberPop{0%{transform:scale(.88)}65%{transform:scale(1.12)}100%{transform:scale(1)}}
-.meter{position:relative;box-shadow:inset 0 1px 2px #12334a16}
-.meter i{position:relative;overflow:hidden}
-.meter i:after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent,#ffffff9c,transparent);transform:translateX(-100%);animation:meterGlint 2.2s ease-in-out 1.9s 1}
-@keyframes meterGlint{to{transform:translateX(120%)}}
-.point:after{content:"";display:block;width:22px;height:2px;margin-top:12px;border-radius:4px;background:#9ed4c9;transition:width .3s ease}
-.point:hover:after{width:48px}
-.tools a,.tools button{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
-.tools a:hover,.tools button:hover{transform:translateY(-2px);box-shadow:0 5px 14px #12334a12}
-aside a{transition:background .2s ease,color .2s ease,transform .2s ease}
-aside a:hover{transform:translateX(3px)}
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-/* Corrección visual del porcentaje: cifra y símbolo en una sola línea */
-.metric{display:flex;align-items:center;gap:24px;min-height:126px;padding:22px 26px}
-.metric>strong{display:flex!important;flex:0 0 126px;width:126px;min-width:126px;align-items:center;justify-content:flex-start;flex-wrap:nowrap;white-space:nowrap;gap:0;font-size:3.7rem;line-height:1!important;letter-spacing:-.055em}
-.metric>strong .count,.metric>strong span:last-child{display:inline-block;white-space:nowrap;line-height:1}
-.metric-copy{flex:1;min-width:0}
-.metric:before{display:none}
-@media(max-width:520px){.metric{gap:12px;padding:18px 14px}.metric>strong{flex-basis:90px;width:90px;min-width:90px;font-size:2.7rem}}
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            petroleum: {
+              DEFAULT: '#087f80',
+              50: '#f0f9f9',
+              100: '#d9f2f2',
+              600: '#066364',
+              700: '#044c4d',
+              800: '#023839',
+            },
+            emeraldDark: {
+              DEFAULT: '#0b262b',
+              deep: '#071b1f',
+              surface: '#0f2e33'
+            },
+            champagne: {
+              DEFAULT: '#c5a059',
+              light: '#e6c88b',
+              dark: '#9a7936'
+            },
+            alabaster: {
+              DEFAULT: '#f4faf8',
+              pure: '#fbfdfc',
+              darker: '#e5f0ed'
+            }
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
 
-/* Ajuste final del indicador: cifra y porcentaje siempre en una sola línea */
-.metric{display:flex;align-items:center;gap:clamp(18px,4vw,34px);min-width:0}
-.metric>strong{display:inline-flex!important;flex:0 0 auto;align-items:baseline;justify-content:flex-start;gap:2px;white-space:nowrap;min-width:max-content;line-height:1}
-.metric>strong .count,.metric>strong span:last-child{display:inline!important;white-space:nowrap;line-height:1}
-.metric>strong .count{min-width:0;font-variant-numeric:tabular-nums}
-.metric-copy{flex:1;min-width:0}
-@media(max-width:560px){.metric{gap:14px;padding:17px}.metric>strong{font-size:clamp(2.35rem,13vw,3.25rem)!important}}
+  <style>
+    /* CSS Variables & Scaling */
+    :root {
+      --font-scale: 1;
+      --bg-main: #fbfdfc;
+      --bg-card: #ffffff;
+      --text-main: #0f2e33;
+      --text-muted: #4b6366;
+      --border-color: rgba(8, 127, 128, 0.15);
+      --gold-accent: #c5a059;
+      --petroleum: #087f80;
+    }
 
+    .dark {
+      --bg-main: #071b1f;
+      --bg-card: #0b262b;
+      --text-main: #f4faf8;
+      --text-muted: #95afb3;
+      --border-color: rgba(197, 160, 89, 0.25);
+    }
 
-/* Presentación editorial del impacto con ilustración médica integrada */
-.impact-showcase{display:grid!important;grid-template-columns:125px minmax(220px,1fr) minmax(250px,42%);align-items:center;gap:22px;padding:22px 24px!important;min-height:225px;background:linear-gradient(112deg,#e7f4f1 0%,#f4faf9 58%,#e4f3f1 100%)!important;border:1px solid #d4e9e5;box-shadow:inset 0 1px 0 #ffffff,0 16px 38px #0d4a4a0b}
-.impact-showcase:before{display:none}
-.impact-showcase:after{content:"";position:absolute;right:26%;top:-55px;width:190px;height:190px;border:1px solid #8bcfc522;border-radius:38px;transform:rotate(28deg);pointer-events:none}
-.impact-showcase>.impact-number{display:inline-flex!important;align-items:baseline;justify-content:flex-start;gap:1px;white-space:nowrap;min-width:max-content;font-size:clamp(2.8rem,5vw,4rem)!important;color:#118c88;z-index:1}
-.impact-showcase>.impact-number span{display:inline!important;white-space:nowrap}
-.impact-showcase .metric-copy{position:relative;z-index:1;max-width:440px}
-.impact-showcase .metric-copy p{font-size:.96rem;line-height:1.65;margin:7px 0 14px}
-.impact-showcase .meter{max-width:100%;margin-top:10px}
-.impact-art{position:relative;z-index:1;align-self:stretch;display:flex;align-items:center;justify-content:center;min-width:0}
-.impact-art svg{width:100%;max-width:440px;height:auto;max-height:225px;overflow:visible;filter:drop-shadow(0 12px 13px #0d4a4a18);animation:artFloat 6s ease-in-out infinite}
-@keyframes artFloat{0%,100%{transform:translateY(2px)}50%{transform:translateY(-5px)}}
-@media(max-width:760px){.impact-showcase{grid-template-columns:100px minmax(0,1fr);gap:14px;padding:19px!important}.impact-art{grid-column:1/-1;max-height:190px}.impact-art svg{max-height:190px;max-width:390px}.impact-showcase>.impact-number{font-size:clamp(2.5rem,10vw,3.4rem)!important}}
-@media(max-width:430px){.impact-showcase{grid-template-columns:1fr;gap:12px}.impact-showcase>.impact-number{font-size:3.2rem!important}.impact-art{grid-column:auto;max-height:175px}.impact-art svg{max-height:175px}}
-@media(prefers-reduced-motion:reduce){.impact-art svg{animation:none}}
+    body {
+      font-size: calc(1rem * var(--font-scale));
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      transition: background-color 0.4s ease, color 0.4s ease;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
 
+    /* Custom Subtle Levitation & Ambient Breathing Animation for Prototypic Card */
+    @keyframes subtleFloat {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-3.5px) rotate(0.15deg);
+      }
+    }
 
-/* Corrección de composición: reservar espacio real para la ilustración */
-.impact-showcase{display:grid!important;grid-template-columns:minmax(88px,19%) minmax(0,1fr) minmax(155px,32%)!important;gap:12px!important;align-items:center!important;padding:18px 16px!important;min-height:210px!important;overflow:hidden!important}
-.impact-showcase>.impact-number{width:auto!important;min-width:0!important;flex:none!important;font-size:clamp(2.35rem,5vw,3.5rem)!important;letter-spacing:-.06em}
-.impact-showcase .metric-copy{display:block!important;min-width:0!important;max-width:none!important}
-.impact-showcase .metric-copy p{font-size:.88rem!important;line-height:1.5!important;overflow-wrap:anywhere}
-.impact-showcase .meter{width:100%!important;max-width:100%!important}
-.impact-showcase .impact-art{display:flex!important;visibility:visible!important;opacity:1!important;position:relative!important;z-index:3!important;min-width:0!important;width:100%!important;height:100%!important;min-height:150px!important;align-items:center!important;justify-content:center!important;grid-column:auto!important}
-.impact-showcase .impact-art svg{display:block!important;visibility:visible!important;opacity:1!important;width:100%!important;height:auto!important;max-width:100%!important;max-height:205px!important;overflow:visible!important}
-@media(max-width:560px){.impact-showcase{grid-template-columns:88px minmax(0,1fr)!important;gap:12px!important;padding:16px!important}.impact-showcase .impact-art{grid-column:1/-1!important;min-height:150px!important;max-height:175px!important}.impact-showcase .impact-art svg{max-width:320px!important;max-height:175px!important}.impact-showcase>.impact-number{font-size:2.65rem!important}}
+    .ambient-float {
+      animation: subtleFloat 6.5s ease-in-out infinite;
+      will-change: transform;
+    }
 
+    .ambient-float:hover {
+      animation-play-state: paused;
+    }
 
-/* Imagen médica realista: integración limpia con el panel */
-.impact-showcase .impact-art{overflow:visible!important}
-.impact-showcase .impact-art img{display:block!important;width:100%!important;max-width:300px!important;height:auto!important;max-height:185px!important;object-fit:contain!important;border:0!important;border-radius:12px!important;mix-blend-mode:multiply;filter:drop-shadow(0 12px 13px #153f4a22);animation:photoFloat 7s ease-in-out infinite}
-@keyframes photoFloat{0%,100%{transform:translateY(2px)}50%{transform:translateY(-3px)}}
-@media(max-width:560px){.impact-showcase .impact-art img{max-width:260px!important;max-height:165px!important}}
-@media(prefers-reduced-motion:reduce){.impact-showcase .impact-art img{animation:none!important}}
+    /* Radial Sheen for 3D Prototypic Card */
+    .gold-radial-sheen {
+      background: radial-gradient(circle 320px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(197, 160, 89, 0.25), transparent 80%);
+      pointer-events: none;
+    }
 
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(8, 127, 128, 0.05);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #087f80;
+      border-radius: 3px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #c5a059;
+    }
 
-/* Ajuste definitivo de la fotografía: sin mezcla de color ni aspecto de icono */
-.impact-showcase{grid-template-columns:minmax(105px,18%) minmax(0,1fr) minmax(205px,36%)!important;gap:16px!important}
-.impact-showcase .impact-art{display:flex!important;align-items:center!important;justify-content:center!important;min-height:180px!important;overflow:visible!important}
-.impact-showcase .impact-art img{display:block!important;visibility:visible!important;opacity:1!important;width:100%!important;max-width:340px!important;height:auto!important;max-height:205px!important;object-fit:contain!important;object-position:center!important;border:0!important;border-radius:14px!important;mix-blend-mode:normal!important;background:transparent!important;filter:drop-shadow(0 12px 16px #153f4a20)!important;animation:photoFloat 7s ease-in-out infinite}
-@media(max-width:560px){.impact-showcase{grid-template-columns:88px minmax(0,1fr)!important}.impact-showcase .impact-art{grid-column:1/-1!important;min-height:165px!important}.impact-showcase .impact-art img{max-width:310px!important;max-height:180px!important}}
+    /* Medallion Icon Box */
+    .medallion {
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      border-radius: 50%;
+      border: 1px solid var(--gold-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, rgba(197, 160, 89, 0.12) 0%, rgba(8, 127, 128, 0.05) 100%);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-champagne selection:text-emeraldDark">
 
- .impact-image-section{padding:0!important;overflow:hidden!important;background:transparent!important;border:0!important;box-shadow:none!important}.impact-image-section:before{display:none!important}.impact-image-section img{display:block;width:100%;height:auto;border:0;border-radius:18px;object-fit:contain}@media(max-width:560px){.impact-image-section img{border-radius:12px}}
+  <!-- TOP STICKY BAR: Reading Progress, Search, Reading Mode, Font Scaling -->
+  <header class="sticky top-0 z-50 bg-alabaster-pure/90 dark:bg-emeraldDark-deep/90 backdrop-blur-md border-b border-petroleum/10 dark:border-champagne/20 transition-colors duration-300">
+    <!-- Reading Progress Indicator -->
+    <div id="scrollProgress" class="h-1 bg-gradient-to-r from-petroleum via-champagne to-petroleum w-0 transition-all duration-150"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      
+      <!-- Brand / Editorial Title -->
+      <div class="flex items-center gap-3">
+        <div class="medallion !w-10 !h-10 !min-w-[40px]">
+          <svg class="w-5 h-5 text-petroleum dark:text-champagne" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+          </svg>
+        </div>
+        <span class="font-serif font-bold text-sm sm:text-base tracking-wider text-emeraldDark dark:text-alabaster uppercase">
+          LUXURY EDITORIAL &bull; LUZ / LUZ-MED
+        </span>
+      </div>
 
-/* SISTEMA VISUAL DEL POWERPOINT — identidad aplicada a toda la experiencia web */
-:root{--navy:#14213d;--blue:#079bd3;--cyan:#13b8df;--pale:#eef7fc;--pale2:#f5f8fb;--orange:#ff5b16;--ink:#17243c;--muted:#64748b;--line:#e4ebf2;--teal:#079bd3}
-html{scroll-padding-top:100px}
-body{background:#fff;color:var(--ink);font-family:"DM Sans",Arial,sans-serif;line-height:1.62}
-h1,h2,h3,.hero h1{font-family:"Manrope","DM Sans",sans-serif;color:var(--navy);letter-spacing:-.035em}
-.hero{min-height:clamp(440px,58vw,680px);padding:clamp(52px,8vw,96px) 24px 46px;display:flex;align-items:center;background:linear-gradient(90deg,rgba(8,17,37,.88),rgba(8,17,37,.58)),url("../assets/hero-medico.jpg") center/cover no-repeat;color:#fff}
-.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(9,18,39,.52),transparent 55%);pointer-events:none}
-.hero .wrap{max-width:1120px;width:100%;z-index:2}
-.hero .eyebrow{color:#21c1ed;font-size:.76rem;font-weight:800;letter-spacing:.2em}
-.hero h1{color:#fff;max-width:880px;font-size:clamp(2.35rem,5.4vw,4.8rem);line-height:1.05;margin:18px 0}
-.hero .subtitle{color:#e5edf8;max-width:760px;font-size:clamp(1rem,2vw,1.3rem)}
-.authors{display:flex;gap:26px;flex-wrap:wrap;margin-top:42px;padding-top:20px;border-top:1px solid #ffffff4a;color:#e1eaf5}
-.tools{background:#101b32f5;border:0;box-shadow:0 8px 22px #101b321a}
-.tools-inner{max-width:1180px}
-.tools a,.tools button{background:transparent;color:#eaf4ff;border-color:#ffffff35}
-.tools input{background:#fff;color:var(--navy);border:0}
-.tools a:hover,.tools button:hover{color:#fff;background:#079bd3;border-color:#079bd3}
-.layout{display:block;max-width:1120px;margin:34px auto;padding:0 22px}
-aside{position:sticky;top:0;z-index:9;display:flex;align-items:center;gap:5px;flex-wrap:nowrap;overflow-x:auto;background:#fff;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:10px 0;box-shadow:none}
-aside h2{display:none}
-aside a{white-space:nowrap;font-size:.78rem;font-weight:700;color:#50627b;padding:8px 11px}
-aside a:hover{background:#eaf7fc;color:#078fc4;transform:none}
-article{max-width:100%;font-size:16px}
-.intro{max-width:800px;margin:10px auto 34px;text-align:center;color:#718096}
-section.topic{border:0;border-radius:0;padding:clamp(28px,5vw,64px) clamp(8px,2vw,24px);margin:0 0 18px;box-shadow:none;overflow:visible;background:#fff}
-section.topic:before{display:none}
-section.topic:nth-of-type(even){background:var(--pale2)}
-section.topic:hover{transform:none;box-shadow:none;border-color:transparent}
-.kicker{font-size:.72rem;letter-spacing:.18em;color:var(--orange);font-weight:900}
-h2{font-size:clamp(1.65rem,3vw,2.55rem);margin:9px 0 28px;line-height:1.13}
-h3{color:var(--navy)}
-p{color:#46556d}
-#problema{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,36%);gap:26px 44px;align-items:center;min-height:340px;background:#f1f6fb!important;padding:clamp(34px,5vw,64px)!important}
-#problema .kicker,#problema h2{grid-column:1}
-#problema p{grid-column:1;margin:0;padding:14px 16px;border-left:3px solid var(--blue);background:#fff;border-radius:0 12px 12px 0;font-size:.98rem}
-#problema p:nth-of-type(1):before{content:"↗";color:var(--blue);font-weight:900;margin-right:9px}
-#problema:after{content:"";grid-column:2;grid-row:1/6;min-height:260px;border-radius:16px;background:url("../assets/hero-medico.jpg") center/cover no-repeat;box-shadow:0 18px 42px #17243c1a}
-#impacto{background:#fff!important}
-#impacto img{width:100%;height:auto;display:block;border-radius:18px;box-shadow:0 18px 44px #14213d12}
-#escenario .points{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.point{background:#f5f8fb;border:0;border-top:4px solid var(--blue);border-radius:3px 3px 14px 14px;padding:24px;min-height:145px}
-.point b{color:var(--navy);font-size:1rem}
-#danos{display:grid;grid-template-columns:minmax(0,1fr) minmax(230px,38%);gap:12px 38px;align-items:center}
-#danos .kicker,#danos h2{grid-column:1}
-#danos p{grid-column:1;margin:0;padding:10px 0;border-bottom:1px solid var(--line)}
-#danos:after{content:"";grid-column:2;grid-row:1/8;min-height:340px;border-radius:14px;background:url("../assets/hero-medico.jpg") center/cover no-repeat}
-#pregunta{background:#eef8fd!important;text-align:center;padding:clamp(65px,9vw,110px) 9%!important}
-#pregunta:before{content:"“";display:block;color:#a8e2f5;font-size:6rem;line-height:.7;font-family:Georgia,serif}
-#pregunta p{max-width:880px;margin:20px auto;font-family:Manrope,sans-serif;font-weight:800;font-size:clamp(1.35rem,3vw,2.25rem);line-height:1.3;color:#087fb6}
-#metas .points{grid-template-columns:1fr;gap:12px;counter-reset:goal}
-#metas .point{display:grid;grid-template-columns:48px 1fr;align-items:center;min-height:unset;border:0;background:transparent;padding:12px 0;counter-increment:goal}
-#metas .point:before{content:counter(goal);display:grid;place-items:center;width:36px;height:36px;background:#dff3fc;color:#078fc4;font-weight:900;border-radius:4px}
-#metas .point b{margin:0}
-#metas .point:after{display:none}
-#metas{position:relative}
-#justificacion,#teoria,#escenario,#danos,#metas,#dimensiones,#pilares,#modelacion,#metodo,#ruta,#propuesta,#conclusion{scroll-margin-top:80px}
-#teoria .points,#dimensiones .points{grid-template-columns:repeat(2,minmax(0,1fr))}
-#teoria .point,#dimensiones .point{background:#fff;border-top:3px solid var(--blue);box-shadow:0 8px 25px #14213d0a}
-#dimensiones .point:nth-child(2){border-color:#12b886}
-#dimensiones .point:nth-child(3){border-color:var(--orange)}
-#pilares .points{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-#pilares .point{background:#fff;border:1px solid #edf1f5;border-top:0;min-height:130px}
-#modelacion .points{grid-template-columns:repeat(3,minmax(0,1fr))}
-#modelacion .point{background:transparent;border:0;border-top:3px solid var(--blue);padding:18px 8px}
-#metodo .points{grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
-#metodo .point{background:transparent;border:0;border-left:3px solid var(--blue);border-radius:0;padding:14px 20px;min-height:200px}
-#metodo .point:nth-child(2){border-color:#12b886}
-#metodo .point:nth-child(3){border-color:var(--orange)}
-#ruta .points{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-#ruta .point{position:relative;text-align:center;background:transparent;border:0;border-top:1px solid #cbd7e4;padding:34px 10px 12px;min-height:130px}
-#ruta .point:before{content:"";position:absolute;top:-10px;left:calc(50% - 10px);width:20px;height:20px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 6px #e3f5fc}
-#propuesta{background:#eef8fd!important}
-#propuesta .points{grid-template-columns:1fr;gap:10px}
-#propuesta .point{background:#fff;border:0;border-radius:10px;min-height:unset;padding:18px 22px;box-shadow:0 5px 18px #14213d09}
-#conclusion{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:25px;background:#111c34!important;color:#fff;padding:clamp(35px,6vw,70px)!important}
-#conclusion .kicker,#conclusion h2,#conclusion p{color:#fff}
-#conclusion p{border-left:2px solid var(--blue);padding-left:15px}
-#referencias{background:#fff!important}
-#referencias p{font-size:.86rem;padding:12px 0;border-bottom:1px solid #e7edf3}
-.footer{background:#101b32;color:#dce8f5}
-.footer a{color:#55c5ec}
-@media(max-width:760px){
- #problema,#danos,#conclusion{grid-template-columns:1fr}
- #problema:after,#danos:after{grid-column:1;grid-row:auto;min-height:210px}
- #escenario .points,#modelacion .points,#metodo .points,#ruta .points{grid-template-columns:1fr}
- #teoria .points,#dimensiones .points,#pilares .points{grid-template-columns:1fr}
- #metodo .point{min-height:unset}
- aside{margin:0 -10px;padding:8px 4px}
-}
-@media(max-width:480px){.layout{padding:0 14px}.hero{min-height:490px}.authors{gap:12px}section.topic{padding:34px 8px}#problema,#conclusion{padding:28px 18px!important}}
+      <!-- Center Search Input -->
+      <div class="hidden md:flex flex-1 max-w-md relative">
+        <input type="text" id="searchInput" placeholder="Buscar en la investigación (ej: infodemia, COMEZU, visual)..." 
+               class="w-full bg-alabaster dark:bg-emeraldDark-surface/80 text-xs sm:text-sm text-emeraldDark dark:text-alabaster pl-9 pr-4 py-2 rounded-full border border-petroleum/20 dark:border-champagne/30 focus:outline-none focus:ring-2 focus:ring-champagne transition-all" />
+        <svg class="w-4 h-4 text-petroleum dark:text-champagne absolute left-3 top-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+      </div>
 
+      <!-- Controls: Theme Toggle + Font Resizer -->
+      <div class="flex items-center gap-2 sm:gap-4">
+        <!-- Font Scaler -->
+        <div class="flex items-center bg-alabaster dark:bg-emeraldDark-surface border border-petroleum/20 dark:border-champagne/30 rounded-full px-2 py-1">
+          <button id="btnFontDec" class="px-2 py-0.5 text-xs font-semibold text-emeraldDark dark:text-alabaster hover:text-champagne transition" title="Reducir tamaño de letra">A-</button>
+          <span class="text-xs text-petroleum/40 dark:text-champagne/40">|</span>
+          <button id="btnFontReset" class="px-2 py-0.5 text-xs font-semibold text-emeraldDark dark:text-alabaster hover:text-champagne transition" title="Tamaño original">A</button>
+          <span class="text-xs text-petroleum/40 dark:text-champagne/40">|</span>
+          <button id="btnFontInc" class="px-2 py-0.5 text-xs font-semibold text-emeraldDark dark:text-alabaster hover:text-champagne transition" title="Aumentar tamaño de letra">A+</button>
+        </div>
 
-/* ===== Identidad visual trasladada del PowerPoint ===== */
-:root{--navy:#111c32;--blue:#0879a8;--cyan:#11a8d5;--pale:#eef6fc;--pale2:#e2f1fa;--orange:#f07835;--ink:#172338;--muted:#65758a;--line:#dce7f0;--paper:#f5f8fc;--teal:#0879a8;--mint:#eef6fc}
-html{scroll-padding-top:88px}
-body{background:#f4f7fb;color:var(--ink);font-family:"DM Sans",Arial,sans-serif;line-height:1.7}
-#progress{height:4px;background:linear-gradient(90deg,#13a9d6,#0879a8,#f07835)}
-.hero{min-height:560px;display:flex;align-items:center;padding:76px max(6vw,24px) 68px;color:#fff;background:linear-gradient(90deg,rgba(9,18,36,.88) 0%,rgba(9,23,43,.78) 48%,rgba(9,23,43,.32) 100%),url('../assets/hero-medico.jpg') center 43%/cover no-repeat;position:relative}
-.hero:after{content:"";position:absolute;inset:auto 0 0;height:7px;background:linear-gradient(90deg,#0aa4d2 0 68%,#f07835 68% 74%,#e8f5fb 74%)}
-.hero .wrap{max-width:1180px}
-.cover-mark{width:42px;height:42px;display:grid;place-items:center;border:1px solid #ffffff88;border-radius:50%;font-size:23px;color:#fff;margin-bottom:24px;background:#ffffff16}
-.eyebrow{color:#73d8f1;font-size:.75rem;letter-spacing:.2em;font-weight:800}
-h1{font-family:Manrope,"DM Sans",sans-serif;font-size:clamp(2.4rem,5.1vw,4.8rem);max-width:880px;line-height:1.08;letter-spacing:-.045em;margin:18px 0}
-.hero .subtitle{color:#e6f2fa;font-size:clamp(1.05rem,1.8vw,1.3rem);max-width:760px}
-.cover-meta{display:grid;grid-template-columns:1.3fr .8fr .8fr;gap:22px;max-width:930px;margin-top:44px;padding-top:18px;border-top:1px solid #ffffff55}
-.cover-meta p{margin:0;display:flex;flex-direction:column;gap:4px;color:#fff;font-size:.88rem}
-.cover-meta b{font-size:.68rem;letter-spacing:.16em;color:#79d9f0}
-.tools{background:#ffffffef;border-color:#dce7f0;box-shadow:0 8px 22px #142e4a0b}
-.tools a,.tools button{border-radius:8px;border-color:#d5e2ed;color:#14243d;font-weight:700}
-.tools a:hover,.tools button:hover{border-color:#0b9bc8;color:#0879a8;background:#eef8fc}
-.tools input{border-radius:8px;border-color:#d5e2ed;background:#f7fbfe}
-.layout{max-width:1280px;grid-template-columns:245px minmax(0,1fr);gap:30px;margin:42px auto}
-aside{border-radius:12px;border:1px solid #dce7f0;box-shadow:0 12px 30px #1c38500a;padding:18px}
-aside h2{font-family:Manrope;color:#14243d;font-size:.95rem}
-aside a{color:#566980;border-radius:7px;font-size:.84rem}
-aside a:hover{background:#eaf5fb;color:#0879a8}
-article{min-width:0}
-.intro{font-size:.98rem;color:#66768a;padding:0 6px 20px}
-section.topic{position:relative;background:#fff;border:1px solid #e0e9f1;border-radius:12px;padding:clamp(24px,3.6vw,42px);margin-bottom:22px;box-shadow:0 10px 30px #152f4b08;scroll-margin-top:90px}
-section.topic:before{top:28px;bottom:28px;width:4px;border-radius:0 4px 4px 0;background:linear-gradient(#11a8d5,#0879a8);opacity:1}
-.kicker{color:#e47736;font-size:.69rem;letter-spacing:.16em;font-weight:900}
-h2{font-family:Manrope;color:#111c32;font-size:clamp(1.5rem,2.7vw,2.15rem);font-weight:800;letter-spacing:-.035em;margin:9px 0 24px}
-h3{font-family:Manrope;color:#0879a8;font-weight:800}
-p{color:#3c4c61}
-.point{background:#f2f7fc;border:1px solid #e3edf5;border-radius:9px;padding:19px;box-shadow:none}
-.point b{color:#13233b}
-.points{gap:14px}
-.metric{background:#eff7fc;border:1px solid #dcebf5;border-radius:10px}
-.impact-image-section{padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important}
-.impact-image-section img{border-radius:10px;box-shadow:0 14px 34px #142e4a12}
-#problema{background:linear-gradient(110deg,#fff 0%,#f5f9fd 100%)}
-#problema p{padding:12px 14px;margin:10px 0;background:#f2f7fc;border-left:3px solid #10a6d2;border-radius:0 8px 8px 0}
-#problema .term{background:none;border:0;padding:0;color:#0879a8}
-#escenario .point:nth-child(3){border-top:3px solid #f07835}
-#danos p{padding:11px 14px;margin:9px 0;border-bottom:1px solid #e6edf4}
-#danos .term{border:0;background:none;padding:0;color:#0879a8}
-#pregunta{background:#edf6fc;border:1px solid #d7eaf6;text-align:center;padding:clamp(36px,6vw,70px)}
-#pregunta:after{content:"“";display:block;font-family:Georgia,serif;font-size:6rem;line-height:.55;color:#9bdcf0;order:-1}
-#pregunta p{font-family:Manrope;font-size:clamp(1.3rem,2.7vw,2.15rem);line-height:1.35;font-weight:800;color:#0879a8;max-width:850px;margin:0 auto 22px}
-#metas .point{position:relative;padding-top:25px}
-#metas .point:before{content:counter(goal);counter-increment:goal;position:absolute;top:-12px;left:16px;width:30px;height:30px;display:grid;place-items:center;background:#dff2fa;color:#0879a8;border-radius:6px;font-weight:900}
-#metas .points{counter-reset:goal}
-#dimensiones .point,#pilares .point{border-top:3px solid #15a6d0}
-#pilares .points{grid-template-columns:repeat(2,minmax(0,1fr))}
-#metodo .points{grid-template-columns:repeat(3,minmax(0,1fr))}
-#metodo .point:nth-child(1){border-top:3px solid #14a6d1}
-#metodo .point:nth-child(2){border-top:3px solid #25b69a}
-#metodo .point:nth-child(3){border-top:3px solid #f07835}
-#ruta .points{position:relative}
-#propuesta{background:#edf6fc}
-#propuesta .point{display:flex;flex-direction:column;border-left:4px solid #10a6d2}
-#conclusion{background:linear-gradient(110deg,#101c32 0%,#142c4c 68%,#0d607f 100%);color:#fff;border:0;min-height:290px}
-#conclusion:before{background:#13a9d6}
-#conclusion .kicker,#conclusion h2,#conclusion h3,#conclusion p{color:#fff}
-#conclusion p{color:#dbe8f3}
-#conclusion p:not(:first-of-type){padding:9px 12px;border-left:3px solid #11a8d5;background:#ffffff0c}
-.references p{border-bottom:1px solid #e7edf4;color:#526176}
-footer{color:#718096;border-top:1px solid #e2eaf2;background:#fff}
-footer a{color:#0879a8}
-.reveal{transition:opacity .55s ease,transform .55s ease}
-@media(max-width:900px){.layout{grid-template-columns:1fr;margin:24px auto}.cover-meta{grid-template-columns:1fr 1fr}.cover-meta p:first-child{grid-column:1/-1}aside{position:relative;top:auto;display:flex;flex-wrap:wrap;gap:4px}aside h2{width:100%}}
-@media(max-width:600px){.hero{min-height:570px;padding:62px 22px 56px;background-position:58% center}.cover-meta{grid-template-columns:1fr;gap:13px;margin-top:30px}.cover-meta p:first-child{grid-column:auto}.layout{padding:0 12px}.tools-inner{padding:10px 12px}#metodo .points,#pilares .points{grid-template-columns:1fr}section.topic{padding:24px 20px}#pregunta{padding:40px 22px}}
-@media(prefers-reduced-motion:reduce){.reveal{transition:none}}
+        <!-- Mode Toggle Switch -->
+        <button id="themeToggleBtn" class="flex items-center gap-2 px-3 py-1.5 rounded-full border border-champagne text-xs font-semibold text-emeraldDark dark:text-champagne hover:bg-champagne/10 transition">
+          <svg id="themeIconSun" class="w-4 h-4 text-champagne hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <svg id="themeIconMoon" class="w-4 h-4 text-petroleum block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+          <span id="themeLabel">Día Alabastro</span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Search bar row -->
+    <div class="block md:hidden px-4 pb-2">
+      <input type="text" id="searchInputMobile" placeholder="Buscar en la investigación..." 
+             class="w-full bg-alabaster dark:bg-emeraldDark-surface text-xs text-emeraldDark dark:text-alabaster px-4 py-1.5 rounded-full border border-petroleum/20 focus:outline-none" />
+    </div>
+  </header>
 
-</style></head>
-<body><div id="progress"></div>
-<header class="hero"><div class="floaters" aria-hidden="true"><span></span><span></span><span></span><span></span></div><div class="wrap"><div class="cover-mark" aria-hidden="true">✚</div><div class="eyebrow">PROYECTO INFORMÁTICA · FASE I A III</div><h1>Arquitectura de Información para la Divulgación Médica</h1><p class="subtitle">Estandarización visual y mitigación de la desinformación en redes sociales</p><div class="cover-meta"><p><b>AUTORAS</b><span>Br. Valeria García E. / Licda. Yamel García V.</span></p><p><b>TUTORA</b><span>Dra. Roxy Fonseca</span></p><p><b>INSTITUCIÓN</b><span>Universidad del Zulia</span></p></div></div></header>
-<div class="tools"><div class="tools-inner"><a href="../index.html">← Volver a proyectos</a><input id="search" type="search" placeholder="Buscar dentro del trabajo…" aria-label="Buscar dentro del trabajo"><button id="bigger" type="button">Aumentar texto</button><button id="smaller" type="button">Reducir texto</button><button type="button" onclick="window.print()">Imprimir</button></div></div>
-<div class="layout"><aside><h2>Contenido del trabajo</h2><a href="#problema">Planteamiento del problema</a><a href="#impacto">Impacto clínico global</a><a href="#escenario">Escenario venezolano</a><a href="#danos">Daños a la salud pública</a><a href="#pregunta">Formulación del problema</a><a href="#metas">Metas y justificación</a><a href="#teoria">Bases teóricas</a><a href="#dimensiones">Dimensiones del sistema</a><a href="#pilares">Pilares de arquitectura</a><a href="#modelacion">Modelación del contenido</a><a href="#metodo">Diseño metodológico</a><a href="#ruta">Ruta de ejecución</a><a href="#propuesta">Propuesta operativa</a><a href="#conclusion">Conclusión</a><a href="#referencias">Referencias bibliográficas</a></aside>
-<article><p class="intro">Trabajo académico organizado para facilitar la lectura y consulta. El contenido textual se conserva en su formulación original; la portada de presentación no se repite dentro del desarrollo.</p>
-<section class="topic" id="problema"><div class="kicker">Problema de investigación</div><h2>Planteamiento del problema</h2><h3>La <span class="keyword">infodemia digital</span></h3><p><span class="term">Motor primario:</span> Redes sociales como fuente principal de salud.</p><p><span class="term">Viralidad perjudicial:</span> Propagación acelerada de datos inexactos.</p><p><span class="term">Ciencia invisibilizada:</span> El algoritmo penaliza el rigor académico complejo.</p></section>
-<section class="topic impact-image-section" id="impacto"><img src="../assets/impacto-medico-realista.jpg?v=3" alt="Alcance del problema e impacto clínico global: caída del 20 por ciento en la intención de vacunación, con portátil médico, escudo sanitario, estetoscopio y vacuna" loading="eager" decoding="async"></section>
-<section class="topic" id="escenario"><div class="kicker">Contexto nacional</div><h2>El escenario venezolano</h2><div class="points"><div class="point"><b><span class="keyword">Vacío oficial</span></b>Ausencia de canales estatales fiables de divulgación.</div><div class="point"><b><span class="keyword">Intrusismo digital</span></b>Creadores sin aval emitiendo opiniones médicas.</div><div class="point"><b><span class="keyword">Alerta COMEZU</span></b>Peligro inminente para el manejo de pacientes crónicos.</div></div></section>
-<section class="topic" id="danos"><div class="kicker">Consecuencias</div><h2>Daños a la salud pública</h2><h3>Impactos del intrusismo digital</h3><p><span class="term">Rechazo preventivo:</span> Caída documentada en la cobertura global de vacunación.</p><p><span class="term">Riesgo crónico:</span> Abandono de terapias oncológicas, diabéticas y renales.</p><p><span class="term">Intoxicación aguda:</span> Hospitalizaciones por consumo de remedios no verificados.</p><p><span class="term">Vulnerabilidad crítica:</span> Desinformación focalizada en atención materno-infantil y ginecológica.</p></section>
-<section class="topic" id="pregunta"><div class="kicker">Pregunta central</div><h2>Formulación del problema</h2><p>¿Cómo debe estructurarse la información médica digital para mitigar la desinformación en redes sociales?</p></section>
-<section class="topic" id="metas"><div class="kicker">Propósitos del estudio</div><h2>Metas de la investigación</h2><div class="points"><div class="point"><b>Identificar Patrones</b>Analizar desajustes conceptuales en contenidos de salud virales.</div><div class="point"><b>Definir Pautas</b>Establecer métodos de estandarización para evidencia científica.</div><div class="point"><b>Diseñar Esquema</b>Crear arquitectura validable para fuentes médicas en redes.</div></div><h2>Justificación del proyecto</h2><h3>Impacto Social</h3><p>Aumento de alfabetización digital poblacional.</p><p>Defensa cognitiva contra remedios falsos.</p><h3>Impacto Metodológico</h3><p>Guía estructurada para traducción médica.</p><p>Mayor visibilidad algorítmica para contenido profesional.</p></section>
-<section class="topic" id="teoria"><div class="kicker">Fundamentos</div><h2>Bases teóricas</h2><h3>Sustento Científico</h3><p><b>Eysenbach (2020)</b></p><p>Simplificación proactiva de evidencia frente a desmentidos pasivos.</p><p><b>Cinelli et al. (2020)</b></p><p>La arquitectura interna de redes condiciona la amplificación viral.</p><h3>Contexto regional y nacional</h3><p><b>Artigas y Guallar (2022)</b></p><p>Identifican que la categorización visual clara y los parámetros estandarizados empoderan al usuario y limitan la desinformación.</p><p><b>OVFN (2021)</b></p><p>Evidencia que en Venezuela las redes sociales operan como motores primarios de autodiagnóstico ante la opacidad oficial.</p></section>
-<section class="topic" id="dimensiones"><div class="kicker">Profundización teórica</div><h2>Dimensiones del sistema de información</h2><div class="points"><div class="point"><b>1. Contexto</b>Alineación estructurada de los datos con los objetivos sanitarios e institucionales de divulgación.</div><div class="point"><b>2. Contenido</b>Estandarización del formato, rigor y verificabilidad de la evidencia médica que se hace pública.</div><div class="point"><b>3. Usuarios</b>Diseño del esquema informativo centrado puramente en las necesidades operativas de la audiencia común.</div></div></section>
-<section class="topic" id="pilares"><div class="kicker">Arquitectura de información</div><h2>Pilares de la arquitectura de información</h2><div class="points"><div class="point"><b>1. Organización</b>Agrupación categórica de datos clínicos.</div><div class="point"><b>2. Etiquetado</b>Puente semántico hacia lenguaje natural.</div><div class="point"><b>3. Navegación</b>Desplazamiento fluido entre conceptos médicos.</div><div class="point"><b>4. Búsqueda</b>Recuperación ágil de evidencia verificada.</div></div></section>
-<section class="topic" id="modelacion"><div class="kicker">Estructura de los datos</div><h2>Modelación del contenido</h2><h3>Taxonomías</h3><p>Clasificación jerárquica de contenidos.</p><h3>Metadatos</h3><p>Asignación de autoría y nivel de evidencia.</p><h3>Traducción Semántica</h3><p>Adaptación científica para público no experto.</p></section>
-<section class="topic" id="metodo"><div class="kicker">Método</div><h2>Diseño metodológico detallado</h2><h3>Tipo de Estudio</h3><p>Proyecto Factible: Desarrollo de un modelo operativo viable y aplicable.</p><p>Documental Descriptiva: Análisis de deficiencias en estructuras digitales actuales.</p><h3>Técnicas</h3><p>Observación pasiva: Recolección sin participación directa en interacciones.</p><p>Monitoreo focalizado: Evaluación de algoritmos en Instagram y TikTok.</p><h3>Instrumentos</h3><p>Matrices de análisis: Sistematización estructurada de patrones de desinformación.</p><p>Revisión sistemática: Contraste bibliográfico con normativas de salud pública.</p></section>
-<section class="topic" id="ruta"><div class="kicker">Ejecución</div><h2>Ruta de ejecución y hallazgos</h2><h3>Proyecto Factible</h3><p>Diseño de modelo operativo funcional.</p><h3>Análisis Documental</h3><p>Observación en Instagram, facebook y TikTok.</p><h3>Guía Estructural</h3><p>Creación del modelo estandarizado final.</p></section>
-<section class="topic" id="propuesta"><div class="kicker">Modelo propuesto</div><h2>Propuesta operativa</h2><h3>Componentes del modelo estandarizado</h3><p><b><span class="keyword">Filiación y Autoría Médica</span></b></p><p>Asignación explícita de credenciales verificables en cada pieza de contenido.</p><p><b><span class="keyword">Nivel de Evidencia</span></b></p><p>Indicadores visuales estandarizados que demuestran el respaldo científico de los datos.</p><p><b><span class="keyword">Taxonomía Simplificada</span></b></p><p>Clasificación de información compleja a un formato comprensible para ciudadanos.</p></section>
-<section class="topic" id="conclusion"><div class="kicker">Cierre</div><h2>Conclusión y siguientes pasos</h2><p>La arquitectura informativa no es un recurso estético, es una necesidad sanitaria vital para recuperar la confianza del paciente.</p><p>Capacitación tecnológica gremial.</p><p>Adopción oficial por COMEZU.</p><p>Evaluación de impacto en usuarios.</p></section>
-<section class="topic references" id="referencias"><div class="kicker">Fuentes citadas</div><h2>Referencias bibliográficas</h2>
-<p>Aghababaeian, H., et al. (2020). Methanol poisoning as a new world challenge during the COVID-19 pandemic. Disaster Medicine and Public Health Preparedness.</p>
-<p>Artigas, W. y Guallar, J. (2022). Curación de contenidos científicos en medios sociales de revistas Iberoamericanas de Comunicación. Revista de Comunicación, 21(2), 15-32.</p>
-<p>Cinelli, M., et al. (2020). The COVID-19 infodemic: A comparative analysis of platforms. Nature Human Behaviour, 4, 162-169.</p>
-<p>Colegio de Médicos del Estado Zulia. (2026). [Sobre el intrusismo médico…]. Publicación de Instagram.</p>
-<p>Eysenbach, G. (2020). How to fight an infodemic: The four pillars of infodemic management. Journal of Medical Internet Research.</p>
-<p>García, M., &amp; Gómez, A. (2022). Competencias digitales del personal de salud en Latinoamérica: brechas en la divulgación científica. Revista de Comunicación y Salud.</p>
-<p>Observatorio Venezolano de Fake News. (2021). Desinformación y bulos en salud: El impacto de la infodemia en Venezuela. Medianálisis.</p>
-<p>Organización Mundial de la Salud [OMS]. (2022). Gestión de la infodemia: un marco para la comunicación de riesgos y la participación de la comunidad.</p>
-<p>Organización Panamericana de la Salud [OPS]. (2021). Entender la infodemia y la desinformación en la lucha contra las emergencias sanitarias en las Américas.</p>
-<p>Stecula, D. A., Kuru, O., &amp; Jamieson, K. H. (2020). How trust in experts and media use affect acceptance of common anti-vaccination claims. Harvard Kennedy School Misinformation Review.</p>
-<p>Suárez-Lledó, V., &amp; Álvarez-Galvez, J. (2021). Prevalence of Health Misinformation on Social Media: Systematic Review. Journal of Medical Internet Research.</p>
-</section><p class="empty" id="empty">No se encontraron coincidencias.</p></article></div>
-<footer>Universidad del Zulia · Proyecto académico · <a href="../index.html">Regresar a la portada</a></footer>
-<script>
-const search=document.getElementById('search'),sections=[...document.querySelectorAll('article section')],empty=document.getElementById('empty');
-search.addEventListener('input',()=>{let q=search.value.trim().toLocaleLowerCase('es');let count=0;sections.forEach(s=>{let ok=s.innerText.toLocaleLowerCase('es').includes(q);s.classList.toggle('hidden',!ok);if(ok)count++});empty.style.display=count?'none':'block'});
-let scale=1;document.getElementById('bigger').onclick=()=>{scale=Math.min(1.25,scale+.05);document.querySelector('article').style.fontSize=(16*scale)+'px'};
-document.getElementById('smaller').onclick=()=>{scale=Math.max(.9,scale-.05);document.querySelector('article').style.fontSize=(16*scale)+'px'};
-addEventListener('scroll',()=>{let max=document.documentElement.scrollHeight-innerHeight;document.getElementById('progress').style.width=(max?scrollY/max*100:0)+'%'},{passive:true});
+  <!-- SEARCH NO MATCHES BANNER -->
+  <div id="noSearchMatches" class="hidden max-w-7xl mx-auto px-4 my-4">
+    <div class="bg-champagne/10 border border-champagne text-emeraldDark dark:text-champagne p-4 rounded-xl text-center font-serif text-sm">
+      No se encontraron secciones académicas que coincidan con la búsqueda. Intente con términos como <em>"infodemia"</em>, <em>"COMEZU"</em>, <em>"metadatos"</em> o <em>"taxonomía"</em>.
+    </div>
+  </div>
 
-(function(){
- const number=document.querySelector('.count'),bar=document.getElementById('impactMeter');
- if(!number||!bar)return;
- const target=20,duration=1150,start=performance.now();
- number.textContent='0';bar.style.width='0%';number.classList.add('counting');
- function frame(now){
-  const p=Math.min(1,(now-start)/duration),e=1-Math.pow(1-p,2.2);
-  number.textContent=String(Math.floor(target*e));bar.style.width=(e*100)+'%';
-  if(p<1)requestAnimationFrame(frame);
-  else{number.textContent='20';bar.style.width='100%';number.classList.remove('counting');number.classList.add('counted')}
- }
- if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){number.textContent='20';bar.style.width='100%'}
- else requestAnimationFrame(frame);
-})();
-const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if('IntersectionObserver' in window){const revealObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');revealObserver.unobserve(e.target)}}),{threshold:.04,rootMargin:'0px 0px 30px 0px'});
-document.querySelectorAll('.topic').forEach(el=>{el.classList.add('reveal');if(reduceMotion)el.classList.add('in');else revealObserver.observe(el)})}
-else document.querySelectorAll('.topic').forEach(el=>el.classList.add('in'));
-const navLinks=[...document.querySelectorAll('aside a')];if('IntersectionObserver' in window){const sectionObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)navLinks.forEach(a=>{const active=a.hash==='#'+e.target.id;a.style.background=active?'#e7f4f1':'';a.style.color=active?'#168b88':'';a.style.fontWeight=active?'700':'400'})}),{rootMargin:'-20% 0px -65% 0px'});sections.forEach(s=>sectionObserver.observe(s))}
-</script></body></html>
+  <!-- MAIN WRAPPER WITH STICKY SIDEBAR -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex gap-8">
+    
+    <!-- STICKY SIDEBAR NAV (14 SECTIONS) -->
+    <aside class="hidden lg:block w-72 shrink-0">
+      <div class="sticky top-24 bg-alabaster dark:bg-emeraldDark border border-petroleum/10 dark:border-champagne/20 rounded-2xl p-5 shadow-sm space-y-4 max-h-[calc(100vh-7rem)] overflow-y-auto">
+        <div class="border-b border-petroleum/10 dark:border-champagne/20 pb-3 flex items-center justify-between">
+          <h2 class="font-serif font-bold text-xs uppercase tracking-widest text-petroleum dark:text-champagne">Índice Académico</h2>
+          <span class="text-[10px] text-emeraldDark/60 dark:text-alabaster/60 uppercase font-mono">14 Secciones</span>
+        </div>
+        
+        <nav class="space-y-1 text-xs">
+          <a href="#sec-01" class="sidebar-link block px-3 py-2 rounded-lg text-emeraldDark/70 dark:text-alabaster/70 hover:bg-petroleum/10 hover:text-petroleum dark:hover:text-champagne transition-colors font-medium truncate">01 · Planteamiento Infodémico</a>
+          <a href="#sec-02" class="sidebar-link block px-3 py-2 rounded-lg text-emeraldDark/70 dark:text-alabaster/70 hover:bg-petroleum/10 hover:text-petroleum dark:hover:text-champagne transition-colors font-medium truncate">02 · Impacto Clínico Global</a>
+          <a href="#sec-03" class="sidebar-link block px-3 py-2 rounded-lg text-emeraldDark/70 dark:text-alabaster/70 hover:bg-petroleum/10 hover:text-petroleum dark:hover:text-champagne transition-colors font-medium truncate">03 · El Escenario Venezolano</a>
+          <a href="#sec-04" class="sidebar-link block px-3 py-2 rounded-lg text-emeraldDark/70 dark:text-alabaster/70 hover:bg-petroleum/10 hover:text-petroleum dark:hover:text-champagne transition-colors font-medium truncate">04 · Daños Salud Pública</a>
+          <a href="#sec-05" class="sidebar-link block px-3 py-2 rounded-lg text-emeraldDark/70 dark:text-alabaster/70 hover:bg-petroleum/10 hover:text-petroleum dark:hover:text-champagne transition-colors font-medium truncate">05 · Formulación del Problema</a>
+          <a href="#sec-06" class="sidebar-link block px-3 py-2 rounded-lg text-emeraldDark/70 dark:text-alabaster/70 hover:bg-petroleum/10 hover:text-petroleum dark:hover:text-champagne transition-colors font-medium truncate">06 · Metas de Investigación</a>
+          <a href="#sec-07" class="sidebar-link block px-3 py-2 rounded-lg text-emeraldDark/70 dark:text-alabaster/70 hover:bg-petroleum/10 hover:text-petroleum dark:hover:text-champagne transition-colors font-medium truncate">07 · Justificación del Proyecto</a>
+          <a href="#sec-08" class="sidebar-link block px-3 py-2 rounded-lg text-emeraldDark/70 dark:text-alabaster/70 hover:bg-petroleum/10 hover:text-petroleum dark:hover:text-champagne transition-colors font-medium truncate">08 · Bases Teóricas</a>
+          <a href="#sec-09" class="sidebar-link block px-3 py-2 rounded-lg text-emeraldDark/70 dark:text-alabaster/70 hover:bg-petroleum/10 hover:text-petroleum dark:hover:text-champagne transition-colors font-medium truncate">09 · Dimensiones del Sistema</a>
+          <a href="#sec-10" class="sidebar-link block px-3 py-2 rounded-lg text-emeraldDark/70 dark:text-alabaster/70 hover:bg-petroleum/10 hover:text-petroleum dark:hover:text-champagne transition-colors font-medium truncate">10 · Pilares de la AI</a>
+          <a href="#sec-11" class="sidebar-link block px-3 py-2 rounded-lg text-emeraldDark/70 dark:text-alabaster/70 hover:bg-petroleum/10 hover:text-petroleum dark:hover:text-champagne transition-colors font-medium truncate">11 · Modelación de Contenido</a>
+          <a href="#sec-12" class="sidebar-link block px-3 py-2 rounded-lg text-emeraldDark/70 dark:text-alabaster/70 hover:bg-petroleum/10 hover:text-petroleum dark:hover:text-champagne transition-colors font-medium truncate">12 · Diseño Metodológico</a>
+          <a href="#sec-13" class="sidebar-link block px-3 py-2 rounded-lg text-emeraldDark/70 dark:text-alabaster/70 hover:bg-petroleum/10 hover:text-petroleum dark:hover:text-champagne transition-colors font-medium truncate">13 · Propuesta Operativa & UX</a>
+          <a href="#sec-14" class="sidebar-link block px-3 py-2 rounded-lg text-emeraldDark/70 dark:text-alabaster/70 hover:bg-petroleum/10 hover:text-petroleum dark:hover:text-champagne transition-colors font-medium truncate">14 · Referencias APA</a>
+        </nav>
+
+        <div class="pt-4 border-t border-petroleum/10 dark:border-champagne/20">
+          <div class="p-3 bg-champagne/10 rounded-xl border border-champagne/30 text-[11px] text-emeraldDark dark:text-champagne space-y-1">
+            <p class="font-semibold">Fase Académica</p>
+            <p class="text-[10px] opacity-80">Proyecto Informática - Fase I a III</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CONTENT AREA -->
+    <main class="flex-1 space-y-16 min-w-0">
+      
+      <!-- HERO HEADER SECTION -->
+      <section id="hero" class="bg-gradient-to-br from-alabaster via-white to-alabaster-pure dark:from-emeraldDark dark:via-emeraldDark-deep dark:to-emeraldDark-surface p-8 sm:p-12 rounded-3xl border border-petroleum/15 dark:border-champagne/30 shadow-xl relative overflow-hidden">
+        <div class="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-champagne/10 blur-3xl pointer-events-none"></div>
+        <div class="absolute -left-16 -bottom-16 w-64 h-64 rounded-full bg-petroleum/10 blur-3xl pointer-events-none"></div>
+
+        <div class="relative z-10 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-champagne bg-champagne/10 text-champagne-dark dark:text-champagne text-xs font-semibold uppercase tracking-widest">
+            <span class="w-2 h-2 rounded-full bg-champagne animate-pulse"></span>
+            PROYECTO INFORMÁTICA - FASE I A III
+          </div>
+
+          <h1 class="font-serif font-bold text-3xl sm:text-5xl lg:text-5xl text-emeraldDark dark:text-alabaster leading-tight">
+            Arquitectura de Información para la Divulgación Médica
+          </h1>
+          <p class="font-serif italic text-lg sm:text-xl text-petroleum dark:text-champagne leading-relaxed">
+            Estandarización visual y mitigación de la desinformación en redes sociales
+          </p>
+
+          <!-- Metadata Cards Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-petroleum/10 dark:border-champagne/20">
+            <div class="p-4 rounded-xl bg-alabaster/60 dark:bg-emeraldDark-surface/60 border border-petroleum/10 dark:border-champagne/20">
+              <span class="text-[10px] uppercase font-bold tracking-widest text-petroleum dark:text-champagne">Autoras</span>
+              <p class="font-medium text-xs sm:text-sm text-emeraldDark dark:text-alabaster mt-1">Br. Valeria García E.</p>
+              <p class="font-medium text-xs sm:text-sm text-emeraldDark dark:text-alabaster">Licda. Yamel García V.</p>
+            </div>
+            
+            <div class="p-4 rounded-xl bg-alabaster/60 dark:bg-emeraldDark-surface/60 border border-petroleum/10 dark:border-champagne/20">
+              <span class="text-[10px] uppercase font-bold tracking-widest text-petroleum dark:text-champagne">Tutora Académica</span>
+              <p class="font-medium text-xs sm:text-sm text-emeraldDark dark:text-alabaster mt-1">Dra. Roxy Fonseca</p>
+              <p class="text-[11px] text-petroleum dark:text-champagne/80">Asesoría de Investigación</p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-alabaster/60 dark:bg-emeraldDark-surface/60 border border-petroleum/10 dark:border-champagne/20">
+              <span class="text-[10px] uppercase font-bold tracking-widest text-petroleum dark:text-champagne">Institución</span>
+              <p class="font-medium text-xs sm:text-sm text-emeraldDark dark:text-alabaster mt-1">Universidad del Zulia (LUZ)</p>
+              <p class="text-[11px] text-petroleum dark:text-champagne/80">Maracaibo, Venezuela</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 01: PLANTEAMIENTO DEL PROBLEMA -->
+      <section id="sec-01" class="searchable-section space-y-6">
+        <div class="flex items-center gap-4">
+          <div class="medallion">
+            <svg class="w-6 h-6 text-petroleum dark:text-champagne" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+            </svg>
+          </div>
+          <div>
+            <span class="text-xs font-mono text-champagne font-bold uppercase tracking-widest">Sección 01</span>
+            <h2 class="font-serif font-bold text-2xl sm:text-3xl text-emeraldDark dark:text-alabaster">Planteamiento del Problema: La Infodemia Digital</h2>
+          </div>
+        </div>
+
+        <p class="text-sm sm:text-base text-emeraldDark/90 dark:text-alabaster/90 leading-relaxed">
+          En el ecosistema informativo actual, la proliferación acelerada de datos de salud sin filtro previo genera un escenario crítico conocido como infodemia. La falta de estructuras visuales estandarizadas dificulta que los ciudadanos distingan entre evidencia científica rigurosa y especulaciones virales.
+        </p>
+
+        <!-- 3 Clean Static Cards (NO 3D TILT) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+          <div class="p-6 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20 shadow-sm">
+            <div class="medallion mb-4">
+              <svg class="w-5 h-5 text-petroleum dark:text-champagne" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <h3 class="font-serif font-semibold text-lg text-emeraldDark dark:text-alabaster">Motor Primario</h3>
+            <p class="text-xs sm:text-sm text-emeraldDark/70 dark:text-alabaster/70 mt-2 leading-relaxed">
+              Algoritmos de recomendación optimizados para maximizar el engagement emocional por encima de la veracidad científica.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20 shadow-sm">
+            <div class="medallion mb-4">
+              <svg class="w-5 h-5 text-petroleum dark:text-champagne" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+              </svg>
+            </div>
+            <h3 class="font-serif font-semibold text-lg text-emeraldDark dark:text-alabaster">Viralidad Perjudicial</h3>
+            <p class="text-xs sm:text-sm text-emeraldDark/70 dark:text-alabaster/70 mt-2 leading-relaxed">
+              La desinformación médica se difunde hasta seis veces más rápido en plataformas sociales que el contenido verificado.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20 shadow-sm">
+            <div class="medallion mb-4">
+              <svg class="w-5 h-5 text-petroleum dark:text-champagne" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858-5.908a10.025 10.025 0 0110.123 4.887A9.97 9.97 0 0121.543 12a10.05 10.05 0 01-1.5 2.85M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+            </div>
+            <h3 class="font-serif font-semibold text-lg text-emeraldDark dark:text-alabaster">Ciencia Invisibilizada</h3>
+            <p class="text-xs sm:text-sm text-emeraldDark/70 dark:text-alabaster/70 mt-2 leading-relaxed">
+              Textos académicos densos e ilegibles para la audiencia general sin jerarquía visual moderna ni lenguaje UX adecuado.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 02: IMPACTO CLÍNICO GLOBAL -->
+      <section id="sec-02" class="searchable-section space-y-6 border-t border-petroleum/10 dark:border-champagne/20 pt-12">
+        <div class="flex items-center gap-4">
+          <div class="medallion">
+            <svg class="w-6 h-6 text-petroleum dark:text-champagne" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
+          </div>
+          <div>
+            <span class="text-xs font-mono text-champagne font-bold uppercase tracking-widest">Sección 02</span>
+            <h2 class="font-serif font-bold text-2xl sm:text-3xl text-emeraldDark dark:text-alabaster">Impacto Clínico Global</h2>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          <!-- Metric & Slider Simulation Box -->
+          <div class="p-8 rounded-3xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20 space-y-6">
+            <div class="flex items-center justify-between">
+              <span class="text-xs uppercase font-bold tracking-widest text-petroleum dark:text-champagne">Medición de Impacto Infodémico</span>
+              <button id="btnReplayCount" class="px-3 py-1 text-xs rounded-full border border-champagne text-champagne hover:bg-champagne hover:text-emeraldDark transition font-medium">
+                Simular 0&rarr;20%
+              </button>
+            </div>
+
+            <div class="flex items-baseline gap-2">
+              <span id="metricDisplay" class="font-serif font-bold text-6xl sm:text-7xl text-petroleum dark:text-champagne">0%</span>
+              <span class="text-sm font-semibold text-emeraldDark/80 dark:text-alabaster/80">de reducción relativa</span>
+            </div>
+
+            <p class="text-sm text-emeraldDark/80 dark:text-alabaster/80 leading-relaxed italic border-l-2 border-champagne pl-4">
+              "Caída en las tasas de intención de vacunación debido al consumo directo de desinformación sanitaria."
+            </p>
+
+            <!-- Real-time Champagne Gold Slider -->
+            <div class="space-y-2 pt-2">
+              <div class="flex justify-between text-xs text-emeraldDark/70 dark:text-alabaster/70">
+                <span>Intención Basal (0%)</span>
+                <span>Impacto Crítico (20%)</span>
+              </div>
+              <input type="range" id="vaccineSlider" min="0" max="20" step="0.5" value="0" 
+                     class="w-full h-2 bg-alabaster-darker dark:bg-emeraldDark-surface rounded-lg appearance-none cursor-pointer accent-champagne" />
+            </div>
+          </div>
+
+          <!-- Neutral Glass Vaccine Vials Macro Photo with Local Fallback Loader -->
+          <div class="space-y-3">
+            <div class="relative rounded-3xl overflow-hidden border border-petroleum/15 dark:border-champagne/20 aspect-video bg-emeraldDark-surface flex items-center justify-center group">
+              <img id="vialImage" src="https://images.pexels.com/photos/5994667/pexels-photo-5994667.jpeg?auto=compress&cs=tinysrgb&w=1200" 
+                   alt="Frascos de vacuna de vidrio transparente completamente limpios y sin etiquetas sobre superficie azul" 
+                   class="w-full h-full object-cover object-center scale-105 transition-transform duration-700 group-hover:scale-115"
+                   onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='https://images.pexels.com/photos/39461627/pexels-photo-39461627.jpeg?auto=compress&cs=tinysrgb&w=1200';}else{this.src='https://placehold.co/800x500/0b262b/c5a059?text=Frasquitos+de+Vacuna+Est%C3%A9riles';}" />
+              
+              <div class="absolute bottom-3 right-3 flex items-center gap-2">
+                <button type="button" id="btnCycleVials" class="bg-emeraldDark-deep/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-champagne/30 text-xs text-champagne hover:bg-champagne hover:text-emeraldDark transition flex items-center gap-1.5">
+                  <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                  </svg>
+                  Otra vista
+                </button>
+                <div class="bg-emeraldDark-deep/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-champagne/30">
+                  <label for="localImgInput" class="text-xs text-champagne cursor-pointer flex items-center gap-1.5 hover:underline">
+                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                    Cargar imagen propia
+                  </label>
+                  <input type="file" id="localImgInput" accept="image/*" class="hidden" />
+                </div>
+              </div>
+            </div>
+            <p class="text-[11px] text-emeraldDark/60 dark:text-alabaster/60 italic text-center">
+              Figura 2.1 · Frascos neutros de formulación biológica transparente como símbolo de precisión estandarizada.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 03: EL ESCENARIO VENEZOLANO -->
+      <section id="sec-03" class="searchable-section space-y-6 border-t border-petroleum/10 dark:border-champagne/20 pt-12">
+        <div class="flex items-center gap-4">
+          <div class="medallion">
+            <svg class="w-6 h-6 text-petroleum dark:text-champagne" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <div>
+            <span class="text-xs font-mono text-champagne font-bold uppercase tracking-widest">Sección 03</span>
+            <h2 class="font-serif font-bold text-2xl sm:text-3xl text-emeraldDark dark:text-alabaster">El Escenario Venezolano</h2>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="p-6 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20">
+            <div class="text-champagne font-serif font-bold text-2xl mb-2">01.</div>
+            <h3 class="font-serif font-semibold text-base text-emeraldDark dark:text-alabaster">Vacío Oficial</h3>
+            <p class="text-xs sm:text-sm text-emeraldDark/70 dark:text-alabaster/70 mt-2 leading-relaxed">
+              Interrupción prolongada en la publicación continua de boletines epidemiológicos oficiales en el territorio nacional.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20">
+            <div class="text-champagne font-serif font-bold text-2xl mb-2">02.</div>
+            <h3 class="font-serif font-semibold text-base text-emeraldDark dark:text-alabaster">Intrusismo Digital</h3>
+            <p class="text-xs sm:text-sm text-emeraldDark/70 dark:text-alabaster/70 mt-2 leading-relaxed">
+              Proliferación de cuentas no colegiadas dictando remedios mágicos y esquemas terapéuticos sin validación científica.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20">
+            <div class="text-champagne font-serif font-bold text-2xl mb-2">03.</div>
+            <h3 class="font-serif font-semibold text-base text-emeraldDark dark:text-alabaster">Alerta COMEZU</h3>
+            <p class="text-xs sm:text-sm text-emeraldDark/70 dark:text-alabaster/70 mt-2 leading-relaxed">
+              Advertencias continuas del Colegio de Médicos del Estado Zulia frente a la propagación irresponsable de mitos médicos.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 04: DAÑOS A LA SALUD PÚBLICA -->
+      <section id="sec-04" class="searchable-section space-y-6 border-t border-petroleum/10 dark:border-champagne/20 pt-12">
+        <div class="flex items-center gap-4">
+          <div class="medallion">
+            <svg class="w-6 h-6 text-petroleum dark:text-champagne" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <div>
+            <span class="text-xs font-mono text-champagne font-bold uppercase tracking-widest">Sección 04</span>
+            <h2 class="font-serif font-bold text-2xl sm:text-3xl text-emeraldDark dark:text-alabaster">Daños a la Salud Pública: Impactos del Intrusismo</h2>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="p-5 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20">
+            <h4 class="font-serif font-semibold text-sm text-emeraldDark dark:text-champagne">Rechazo Preventivo</h4>
+            <p class="text-xs text-emeraldDark/70 dark:text-alabaster/70 mt-2">Abandono injustificado de vacunas y tamizajes oportunos.</p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20">
+            <h4 class="font-serif font-semibold text-sm text-emeraldDark dark:text-champagne">Riesgo Crónico</h4>
+            <p class="text-xs text-emeraldDark/70 dark:text-alabaster/70 mt-2">Reemplazo de tratamientos comprobados por terapias informales.</p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20">
+            <h4 class="font-serif font-semibold text-sm text-emeraldDark dark:text-champagne">Intoxicación Aguda</h4>
+            <p class="text-xs text-emeraldDark/70 dark:text-alabaster/70 mt-2">Automedicación con sustancias tóxicas o desparasitantes desaconsejados.</p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20">
+            <h4 class="font-serif font-semibold text-sm text-emeraldDark dark:text-champagne">Vulnerabilidad Crítica</h4>
+            <p class="text-xs text-emeraldDark/70 dark:text-alabaster/70 mt-2">Mayor fragilidad cognitiva en adultos mayores y pacientes vulnerables.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 05: FORMULACIÓN DEL PROBLEMA -->
+      <section id="sec-05" class="searchable-section border-t border-petroleum/10 dark:border-champagne/20 pt-12">
+        <div class="p-8 sm:p-12 rounded-3xl bg-petroleum/5 dark:bg-emeraldDark-surface border border-petroleum/20 dark:border-champagne/30 text-center relative">
+          <span class="text-xs font-mono text-champagne font-bold uppercase tracking-widest block mb-4">Sección 05 · Formulación del Problema</span>
+          <blockquote class="font-serif font-semibold text-xl sm:text-2xl lg:text-3xl text-emeraldDark dark:text-alabaster leading-relaxed italic max-w-4xl mx-auto">
+            "¿Cómo estructurar un modelo de Arquitectura de Información estandarizado que garantice la rigurosidad científica y optimice la divulgación médica en redes sociales?"
+          </blockquote>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 06: METAS DE LA INVESTIGACIÓN -->
+      <section id="sec-06" class="searchable-section space-y-6 border-t border-petroleum/10 dark:border-champagne/20 pt-12">
+        <div class="flex items-center gap-4">
+          <div class="medallion">
+            <svg class="w-6 h-6 text-petroleum dark:text-champagne" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <div>
+            <span class="text-xs font-mono text-champagne font-bold uppercase tracking-widest">Sección 06</span>
+            <h2 class="font-serif font-bold text-2xl sm:text-3xl text-emeraldDark dark:text-alabaster">Metas de la Investigación</h2>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="p-6 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20">
+            <span class="font-serif font-bold text-3xl text-petroleum dark:text-champagne">01</span>
+            <h3 class="font-serif font-semibold text-lg text-emeraldDark dark:text-alabaster mt-2">Identificar Patrones</h3>
+            <p class="text-xs sm:text-sm text-emeraldDark/70 dark:text-alabaster/70 mt-2">Diagnosticar los vicios estructurales y vacíos informativos en publicaciones médicas de redes sociales.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20">
+            <span class="font-serif font-bold text-3xl text-petroleum dark:text-champagne">02</span>
+            <h3 class="font-serif font-semibold text-lg text-emeraldDark dark:text-alabaster mt-2">Definir Pautas</h3>
+            <p class="text-xs sm:text-sm text-emeraldDark/70 dark:text-alabaster/70 mt-2">Establecer pautas taxonómicas y de etiquetado semántico para la acreditación rápida de autores médicos.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20">
+            <span class="font-serif font-bold text-3xl text-petroleum dark:text-champagne">03</span>
+            <h3 class="font-serif font-semibold text-lg text-emeraldDark dark:text-alabaster mt-2">Diseñar Esquema</h3>
+            <p class="text-xs sm:text-sm text-emeraldDark/70 dark:text-alabaster/70 mt-2">Formular una guía metodológica y prototipo de diseño centrado en el usuario para divulgación clínica.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 07: JUSTIFICACIÓN DEL PROYECTO -->
+      <section id="sec-07" class="searchable-section space-y-6 border-t border-petroleum/10 dark:border-champagne/20 pt-12">
+        <div class="flex items-center gap-4">
+          <div class="medallion">
+            <svg class="w-6 h-6 text-petroleum dark:text-champagne" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+            </svg>
+          </div>
+          <div>
+            <span class="text-xs font-mono text-champagne font-bold uppercase tracking-widest">Sección 07</span>
+            <h2 class="font-serif font-bold text-2xl sm:text-3xl text-emeraldDark dark:text-alabaster">Justificación del Proyecto</h2>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="p-6 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20">
+            <h3 class="font-serif font-semibold text-xl text-petroleum dark:text-champagne">Impacto Social</h3>
+            <p class="text-xs sm:text-sm text-emeraldDark/80 dark:text-alabaster/80 mt-3 leading-relaxed">
+              Empodera al ciudadano con herramientas de discernimiento visual, reduciendo el pánico injustificado y promoviendo decisiones de salud fundamentadas en evidencia comprobable.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20">
+            <h3 class="font-serif font-semibold text-xl text-petroleum dark:text-champagne">Impacto Metodológico</h3>
+            <p class="text-xs sm:text-sm text-emeraldDark/80 dark:text-alabaster/80 mt-3 leading-relaxed">
+              Aporta un framework inédito que fusiona las ciencias de la información con la comunicación médica digital, transferible a colegios profesionales y organismos de salud regional.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 08: BASES TEÓRICAS -->
+      <section id="sec-08" class="searchable-section space-y-6 border-t border-petroleum/10 dark:border-champagne/20 pt-12">
+        <div class="flex items-center gap-4">
+          <div class="medallion">
+            <svg class="w-6 h-6 text-petroleum dark:text-champagne" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 14l9-5-9-5-9 5 9 5z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+            </svg>
+          </div>
+          <div>
+            <span class="text-xs font-mono text-champagne font-bold uppercase tracking-widest">Sección 08</span>
+            <h2 class="font-serif font-bold text-2xl sm:text-3xl text-emeraldDark dark:text-alabaster">Bases Teóricas</h2>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Sustento Científico Global -->
+          <div class="p-6 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20 space-y-4">
+            <span class="text-xs uppercase font-bold text-champagne tracking-widest">Sustento Científico</span>
+            <div>
+              <h4 class="font-serif font-semibold text-base text-emeraldDark dark:text-alabaster">Infodemiología (Eysenbach, 2020)</h4>
+              <p class="text-xs text-emeraldDark/70 dark:text-alabaster/70 mt-1">Estudio de la ciencia de la información para analizar epidemias de contenido y guiar intervenciones en salud pública.</p>
+            </div>
+            <div>
+              <h4 class="font-serif font-semibold text-base text-emeraldDark dark:text-alabaster">Viralidad Estructurada (Cinelli et al., 2020)</h4>
+              <p class="text-xs text-emeraldDark/70 dark:text-alabaster/70 mt-1">Análisis de patrones de propagación de rumores vs. información científica verificada en plataformas digitales.</p>
+            </div>
+          </div>
+
+          <!-- Contexto Regional y Nacional -->
+          <div class="p-6 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20 space-y-4">
+            <span class="text-xs uppercase font-bold text-champagne tracking-widest">Contexto Regional y Nacional</span>
+            <div>
+              <h4 class="font-serif font-semibold text-base text-emeraldDark dark:text-alabaster">Comunicación Médica en Venezuela (Artigas & Guallar, 2022)</h4>
+              <p class="text-xs text-emeraldDark/70 dark:text-alabaster/70 mt-1">Diagnóstico del ecosistema mediático y uso de canales informales para consultas de salud en crisis.</p>
+            </div>
+            <div>
+              <h4 class="font-serif font-semibold text-base text-emeraldDark dark:text-alabaster">Monitoreo Infodémico (OVFN, 2021)</h4>
+              <p class="text-xs text-emeraldDark/70 dark:text-alabaster/70 mt-1">Observatorio Venezolano de Fake News: impacto directo del intrusismo en la toma de decisiones del paciente.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 09: PROFUNDIZACIÓN TEÓRICA (TAB INTERACTIVO) -->
+      <section id="sec-09" class="searchable-section space-y-6 border-t border-petroleum/10 dark:border-champagne/20 pt-12">
+        <div class="flex items-center gap-4">
+          <div class="medallion">
+            <svg class="w-6 h-6 text-petroleum dark:text-champagne" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+            </svg>
+          </div>
+          <div>
+            <span class="text-xs font-mono text-champagne font-bold uppercase tracking-widest">Sección 09</span>
+            <h2 class="font-serif font-bold text-2xl sm:text-3xl text-emeraldDark dark:text-alabaster">Dimensiones del Sistema de Información</h2>
+          </div>
+        </div>
+
+        <!-- Interactive Tabs Navigation -->
+        <div class="flex border-b border-petroleum/10 dark:border-champagne/20 gap-2 overflow-x-auto pb-1">
+          <button class="dim-tab-btn active font-medium text-xs sm:text-sm px-4 py-2 rounded-t-xl border-b-2 border-champagne text-petroleum dark:text-champagne bg-champagne/10 transition" data-tab="tab-contexto">
+            1. Contexto
+          </button>
+          <button class="dim-tab-btn font-medium text-xs sm:text-sm px-4 py-2 rounded-t-xl border-b-2 border-transparent text-emeraldDark/60 dark:text-alabaster/60 hover:text-petroleum dark:hover:text-champagne transition" data-tab="tab-contenido">
+            2. Contenido
+          </button>
+          <button class="dim-tab-btn font-medium text-xs sm:text-sm px-4 py-2 rounded-t-xl border-b-2 border-transparent text-emeraldDark/60 dark:text-alabaster/60 hover:text-petroleum dark:hover:text-champagne transition" data-tab="tab-usuarios">
+            3. Usuarios
+          </button>
+        </div>
+
+        <!-- Tab Content Panes -->
+        <div id="tab-contexto" class="dim-tab-pane p-6 rounded-b-2xl rounded-tr-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20 space-y-2">
+          <h3 class="font-serif font-semibold text-lg text-emeraldDark dark:text-alabaster">Dimensión del Contexto Institucional</h3>
+          <p class="text-xs sm:text-sm text-emeraldDark/80 dark:text-alabaster/80 leading-relaxed">
+            Comprende el marco normativo del Colegio de Médicos del Estado Zulia (COMEZU), las regulaciones deontológicas y la viabilidad técnica para la homologación visual en redes sociales.
+          </p>
+        </div>
+
+        <div id="tab-contenido" class="dim-tab-pane hidden p-6 rounded-b-2xl rounded-tr-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20 space-y-2">
+          <h3 class="font-serif font-semibold text-lg text-emeraldDark dark:text-alabaster">Dimensión del Contenido Clínico</h3>
+          <p class="text-xs sm:text-sm text-emeraldDark/80 dark:text-alabaster/80 leading-relaxed">
+            Estructuración rigurosa de metadatos, filiación médica, grado de evidencia científica y nivel semántico traducido para facilitar la asimilación ciudadana sin perder precisión médica.
+          </p>
+        </div>
+
+        <div id="tab-usuarios" class="dim-tab-pane hidden p-6 rounded-b-2xl rounded-tr-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20 space-y-2">
+          <h3 class="font-serif font-semibold text-lg text-emeraldDark dark:text-alabaster">Dimensión de los Usuarios</h3>
+          <p class="text-xs sm:text-sm text-emeraldDark/80 dark:text-alabaster/80 leading-relaxed">
+            Perfilado cognitivo del público meta: análisis de patrones de consumo digital, sesgos de confirmación, alfabetización en salud y accesibilidad móvil universal.
+          </p>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 10: PILARES DE LA ARQUITECTURA DE INFORMACIÓN -->
+      <section id="sec-10" class="searchable-section space-y-6 border-t border-petroleum/10 dark:border-champagne/20 pt-12">
+        <div class="flex items-center gap-4">
+          <div class="medallion">
+            <svg class="w-6 h-6 text-petroleum dark:text-champagne" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5m0 0h5m-5 0V7m5 5H9"/>
+            </svg>
+          </div>
+          <div>
+            <span class="text-xs font-mono text-champagne font-bold uppercase tracking-widest">Sección 10</span>
+            <h2 class="font-serif font-bold text-2xl sm:text-3xl text-emeraldDark dark:text-alabaster">Pilares de la Arquitectura de Información</h2>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="p-6 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20">
+            <span class="text-xs font-mono font-bold text-champagne">PILAR 01</span>
+            <h3 class="font-serif font-semibold text-base text-emeraldDark dark:text-alabaster mt-2">Organización</h3>
+            <p class="text-xs text-emeraldDark/70 dark:text-alabaster/70 mt-2">Jerarquización temática por especialidades y relevancia de salud pública.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20">
+            <span class="text-xs font-mono font-bold text-champagne">PILAR 02</span>
+            <h3 class="font-serif font-semibold text-base text-emeraldDark dark:text-alabaster mt-2">Etiquetado</h3>
+            <p class="text-xs text-emeraldDark/70 dark:text-alabaster/70 mt-2">Medallones visuales normalizados e identificadores de autoría médica.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20">
+            <span class="text-xs font-mono font-bold text-champagne">PILAR 03</span>
+            <h3 class="font-serif font-semibold text-base text-emeraldDark dark:text-alabaster mt-2">Navegación</h3>
+            <p class="text-xs text-emeraldDark/70 dark:text-alabaster/70 mt-2">Flujos de lectura progresiva diseñados para consumo ágil en smartphones.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20">
+            <span class="text-xs font-mono font-bold text-champagne">PILAR 04</span>
+            <h3 class="font-serif font-semibold text-base text-emeraldDark dark:text-alabaster mt-2">Búsqueda</h3>
+            <p class="text-xs text-emeraldDark/70 dark:text-alabaster/70 mt-2">Descontaminación sintáctica para la indexación rápida de conceptos validados.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 11: MODELACIÓN DEL CONTENIDO -->
+      <section id="sec-11" class="searchable-section space-y-6 border-t border-petroleum/10 dark:border-champagne/20 pt-12">
+        <div class="flex items-center gap-4">
+          <div class="medallion">
+            <svg class="w-6 h-6 text-petroleum dark:text-champagne" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
+            </svg>
+          </div>
+          <div>
+            <span class="text-xs font-mono text-champagne font-bold uppercase tracking-widest">Sección 11</span>
+            <h2 class="font-serif font-bold text-2xl sm:text-3xl text-emeraldDark dark:text-alabaster">Modelación del Contenido</h2>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="p-6 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20">
+            <h3 class="font-serif font-semibold text-base text-petroleum dark:text-champagne">Taxonomías</h3>
+            <p class="text-xs text-emeraldDark/70 dark:text-alabaster/70 mt-2 leading-relaxed">
+              Clasificación jerárquica de padecimientos, alertas epidemiológicas y recomendaciones profilácticas.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20">
+            <h3 class="font-serif font-semibold text-base text-petroleum dark:text-champagne">Metadatos</h3>
+            <p class="text-xs text-emeraldDark/70 dark:text-alabaster/70 mt-2 leading-relaxed">
+              Atributos embebidos (matrícula médica, fecha de revisión, nivel de evidencia) para auditoría algorítmica.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20">
+            <h3 class="font-serif font-semibold text-base text-petroleum dark:text-champagne">Traducción Semántica</h3>
+            <p class="text-xs text-emeraldDark/70 dark:text-alabaster/70 mt-2 leading-relaxed">
+              Conversión de jerga médica compleja a infografías micro-UX legibles sin distorsión conceptual.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 12: DISEÑO METODOLÓGICO DETALLADO Y RUTA DE EJECUCIÓN -->
+      <section id="sec-12" class="searchable-section space-y-6 border-t border-petroleum/10 dark:border-champagne/20 pt-12">
+        <div class="flex items-center gap-4">
+          <div class="medallion">
+            <svg class="w-6 h-6 text-petroleum dark:text-champagne" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+            </svg>
+          </div>
+          <div>
+            <span class="text-xs font-mono text-champagne font-bold uppercase tracking-widest">Sección 12</span>
+            <h2 class="font-serif font-bold text-2xl sm:text-3xl text-emeraldDark dark:text-alabaster">Diseño Metodológico Detallado</h2>
+          </div>
+        </div>
+
+        <!-- Matrix Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="p-5 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20">
+            <span class="text-[10px] font-bold text-champagne uppercase">Naturaleza</span>
+            <h4 class="font-serif font-semibold text-base text-emeraldDark dark:text-alabaster mt-1">Tipo de Estudio</h4>
+            <p class="text-xs text-emeraldDark/70 dark:text-alabaster/70 mt-2">Investigación proyectiva y descriptiva orientada al desarrollo de soluciones informáticas.</p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20">
+            <span class="text-[10px] font-bold text-champagne uppercase">Recolección</span>
+            <h4 class="font-serif font-semibold text-base text-emeraldDark dark:text-alabaster mt-1">Técnicas</h4>
+            <p class="text-xs text-emeraldDark/70 dark:text-alabaster/70 mt-2">Análisis documental sistematizado y entrevistas estructuradas a médicos especialistas del Zulia.</p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20">
+            <span class="text-[10px] font-bold text-champagne uppercase">Instrumentación</span>
+            <h4 class="font-serif font-semibold text-base text-emeraldDark dark:text-alabaster mt-1">Instrumentos</h4>
+            <p class="text-xs text-emeraldDark/70 dark:text-alabaster/70 mt-2">Matriz de arquetipos UX, guía de observación algorítmica y fichas taxonómicas.</p>
+          </div>
+        </div>
+
+        <!-- 3-Phase Flow -->
+        <div class="p-6 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20 space-y-4">
+          <h3 class="font-serif font-semibold text-base text-emeraldDark dark:text-alabaster">Ruta de Ejecución (Fases I a III)</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+            <div class="p-4 rounded-xl bg-alabaster-pure dark:bg-emeraldDark-surface border border-petroleum/10 dark:border-champagne/10">
+              <span class="font-bold text-petroleum dark:text-champagne">FASE I &bull; Proyecto Factible</span>
+              <p class="mt-1 text-emeraldDark/70 dark:text-alabaster/70">Estudio de viabilidad institucional, diagnóstico de necesidades infodémicas.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-alabaster-pure dark:bg-emeraldDark-surface border border-petroleum/10 dark:border-champagne/10">
+              <span class="font-bold text-petroleum dark:text-champagne">FASE II &bull; Análisis Documental</span>
+              <p class="mt-1 text-emeraldDark/70 dark:text-alabaster/70">Mapeo de estándares de UI/UX clínica y taxonomías de divulgación.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-alabaster-pure dark:bg-emeraldDark-surface border border-petroleum/10 dark:border-champagne/10">
+              <span class="font-bold text-petroleum dark:text-champagne">FASE III &bull; Guía Estructural</span>
+              <p class="mt-1 text-emeraldDark/70 dark:text-alabaster/70">Prototipado de alta fidelidad y validación con el comité técnico.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 13: PROPUESTA OPERATIVA & VISTA PREVIA PROTOTÍPICA -->
+      <section id="sec-13" class="searchable-section space-y-6 border-t border-petroleum/10 dark:border-champagne/20 pt-12">
+        <div class="flex items-center gap-4">
+          <div class="medallion">
+            <svg class="w-6 h-6 text-petroleum dark:text-champagne" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 4a2 2 0 114 0v1a2 2 0 01-2 2h-2a2 2 0 01-2-2V5a2 2 0 012-2zM4 11a2 2 0 012-2h1a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM15 13a2 2 0 012-2h1a2 2 0 012 2v2a2 2 0 01-2 2h-1a2 2 0 01-2-2v-2zM4 19a2 2 0 012-2h1a2 2 0 012 2v1a2 2 0 01-2 2H6a2 2 0 01-2-2v-1z"/>
+            </svg>
+          </div>
+          <div>
+            <span class="text-xs font-mono text-champagne font-bold uppercase tracking-widest">Sección 13</span>
+            <h2 class="font-serif font-bold text-2xl sm:text-3xl text-emeraldDark dark:text-alabaster">Propuesta Operativa: Modelo Estandarizado</h2>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+          
+          <!-- Left Column: Component List -->
+          <div class="space-y-4">
+            <div class="p-5 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20">
+              <h4 class="font-serif font-semibold text-base text-emeraldDark dark:text-alabaster">01 · Filiación y Autoría Médica</h4>
+              <p class="text-xs text-emeraldDark/70 dark:text-alabaster/70 mt-1 leading-relaxed">
+                Bloque visible e inmodificable con código de colegiatura COMEZU y especialidad validada.
+              </p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20">
+              <h4 class="font-serif font-semibold text-base text-emeraldDark dark:text-alabaster">02 · Nivel de Evidencia</h4>
+              <p class="text-xs text-emeraldDark/70 dark:text-alabaster/70 mt-1 leading-relaxed">
+                Insignia gráfica basada en la escala GRADE (Ensayos Clínicos, Metaanálisis, Opinión de Expertos).
+              </p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20">
+              <h4 class="font-serif font-semibold text-base text-emeraldDark dark:text-alabaster">03 · Taxonomía Simplificada</h4>
+              <p class="text-xs text-emeraldDark/70 dark:text-alabaster/70 mt-1 leading-relaxed">
+                Etiquetado por colores y categorías estandarizadas de fácil asociación cognitiva.
+              </p>
+            </div>
+          </div>
+
+          <!-- Right Column: VISTA PREVIA PROTOTÍPICA (WITH SUBTLE MOVEMENT & Interactive Rows) -->
+          <div class="space-y-2">
+            <div id="protoTiltCard" 
+                 class="ambient-float relative rounded-3xl p-6 bg-gradient-to-br from-alabaster-pure via-alabaster to-alabaster-darker dark:from-emeraldDark dark:via-emeraldDark-deep dark:to-emeraldDark-surface border-2 border-champagne/40 shadow-2xl transition-all duration-300 transform-gpu overflow-hidden cursor-pointer">
+              
+              <!-- Radial sheen overlay for hover 3D parallax -->
+              <div id="goldSheen" class="gold-radial-sheen absolute inset-0 opacity-0 transition-opacity duration-300"></div>
+
+              <!-- Header of Prototypic Card -->
+              <div class="relative z-10 flex items-center justify-between border-b border-petroleum/10 dark:border-champagne/20 pb-4 mb-4">
+                <div class="flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-champagne animate-pulse"></span>
+                  <span class="font-serif font-bold text-xs uppercase tracking-widest text-emeraldDark dark:text-alabaster">
+                    VISTA PREVIA PROTOTÍPICA
+                  </span>
+                </div>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-champagne/10 border border-champagne text-champagne">
+                  VERIFICADO COMEZU
+                </span>
+              </div>
+
+              <!-- Interactive Internal Rows with subtle depth parallax (translateZ 4px to 10px) -->
+              <div class="relative z-10 space-y-3">
+                
+                <!-- Row 1: Filiación -->
+                <div id="rowFiliacion" class="proto-row p-3.5 rounded-xl bg-alabaster/80 dark:bg-emeraldDark-surface/80 border border-petroleum/10 dark:border-champagne/20 flex items-center justify-between hover:border-champagne transition transform-gpu text-xs" style="transform: translateZ(6px);">
+                  <div class="flex items-center gap-3">
+                    <div class="w-7 h-7 rounded-full bg-petroleum/10 dark:bg-champagne/10 border border-petroleum/20 dark:border-champagne/30 flex items-center justify-center font-bold text-[10px] text-petroleum dark:text-champagne">
+                      01
+                    </div>
+                    <div>
+                      <span class="font-semibold block text-emeraldDark dark:text-alabaster">Dra. Roxy Fonseca</span>
+                      <span class="text-[10px] text-emeraldDark/60 dark:text-alabaster/60">COMEZU N° 14.892 &bull; Pediatría</span>
+                    </div>
+                  </div>
+                  <span class="status-badge px-2 py-1 text-[10px] rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-semibold border border-emerald-500/20">
+                    Acreditado
+                  </span>
+                </div>
+
+                <!-- Row 2: Nivel de Evidencia -->
+                <div id="rowEvidencia" class="proto-row p-3.5 rounded-xl bg-alabaster/80 dark:bg-emeraldDark-surface/80 border border-petroleum/10 dark:border-champagne/20 flex items-center justify-between hover:border-champagne transition transform-gpu text-xs" style="transform: translateZ(10px);">
+                  <div class="flex items-center gap-3">
+                    <div class="w-7 h-7 rounded-full bg-petroleum/10 dark:bg-champagne/10 border border-petroleum/20 dark:border-champagne/30 flex items-center justify-center font-bold text-[10px] text-petroleum dark:text-champagne">
+                      02
+                    </div>
+                    <div>
+                      <span class="font-semibold block text-emeraldDark dark:text-alabaster">Nivel de Evidencia</span>
+                      <span class="text-[10px] text-emeraldDark/60 dark:text-alabaster/60">GRADE Nivel A &bull; Metaanálisis 2024</span>
+                    </div>
+                  </div>
+                  <span class="status-badge px-2 py-1 text-[10px] rounded-md bg-champagne/20 text-champagne-dark dark:text-champagne font-semibold border border-champagne/30">
+                    Grado Alto
+                  </span>
+                </div>
+
+                <!-- Row 3: Taxonomía -->
+                <div id="rowTaxonomia" class="proto-row p-3.5 rounded-xl bg-alabaster/80 dark:bg-emeraldDark-surface/80 border border-petroleum/10 dark:border-champagne/20 flex items-center justify-between hover:border-champagne transition transform-gpu text-xs" style="transform: translateZ(8px);">
+                  <div class="flex items-center gap-3">
+                    <div class="w-7 h-7 rounded-full bg-petroleum/10 dark:bg-champagne/10 border border-petroleum/20 dark:border-champagne/30 flex items-center justify-center font-bold text-[10px] text-petroleum dark:text-champagne">
+                      03
+                    </div>
+                    <div>
+                      <span class="font-semibold block text-emeraldDark dark:text-alabaster">Taxonomía de Prevención</span>
+                      <span class="text-[10px] text-emeraldDark/60 dark:text-alabaster/60">Esquema Epidemiológico Estandarizado</span>
+                    </div>
+                  </div>
+                  <span class="status-badge px-2 py-1 text-[10px] rounded-md bg-petroleum/10 text-petroleum dark:text-champagne font-semibold border border-petroleum/20">
+                    Validado
+                  </span>
+                </div>
+              </div>
+
+              <!-- Footer of Prototypic Card -->
+              <div class="relative z-10 pt-4 mt-4 border-t border-petroleum/10 dark:border-champagne/20 flex items-center justify-between text-[11px] text-emeraldDark/60 dark:text-alabaster/60">
+                <span>Haga clic en las filas para alternar la verificación</span>
+                <span class="font-serif italic font-medium text-champagne">LUX-UX Precision v1.0</span>
+              </div>
+            </div>
+            <p class="text-[11px] text-emeraldDark/60 dark:text-alabaster/60 italic text-center">
+              Tarjeta prototípica interactiva con animación ambiental sutil e inclinación paralaje amortiguada.
+            </p>
+          </div>
+        </div>
+
+        <!-- Closure: Conclusion & Next Steps -->
+        <div class="p-8 rounded-3xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20 space-y-4">
+          <h3 class="font-serif font-semibold text-xl text-emeraldDark dark:text-alabaster">Conclusión y Siguientes Pasos</h3>
+          <blockquote class="font-serif italic text-sm text-petroleum dark:text-champagne border-l-2 border-champagne pl-4">
+            "La implementación de esta arquitectura visual redefinirá la confianza del paciente marabino en las plataformas digitales."
+          </blockquote>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+            <div class="p-3 rounded-xl bg-alabaster-pure dark:bg-emeraldDark-surface border border-petroleum/10 text-xs">
+              <strong class="block text-emeraldDark dark:text-alabaster mb-1">1. Capacitación Gremial</strong>
+              Talleres formativos de UX médica para agremiados del COMEZU.
+            </div>
+            <div class="p-3 rounded-xl bg-alabaster-pure dark:bg-emeraldDark-surface border border-petroleum/10 text-xs">
+              <strong class="block text-emeraldDark dark:text-alabaster mb-1">2. Adopción Oficial</strong>
+              Homologación del sello visual por las autoridades regionales.
+            </div>
+            <div class="p-3 rounded-xl bg-alabaster-pure dark:bg-emeraldDark-surface border border-petroleum/10 text-xs">
+              <strong class="block text-emeraldDark dark:text-alabaster mb-1">3. Evaluación Continuada</strong>
+              Medición de la tasa de retención de evidencia en redes.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 14: REFERENCIAS BIBLIOGRÁFICAS (11 CITAS APA CON COPIA AL PORTAPAPELES) -->
+      <section id="sec-14" class="searchable-section space-y-6 border-t border-petroleum/10 dark:border-champagne/20 pt-12">
+        <div class="flex items-center gap-4">
+          <div class="medallion">
+            <svg class="w-6 h-6 text-petroleum dark:text-champagne" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+            </svg>
+          </div>
+          <div>
+            <span class="text-xs font-mono text-champagne font-bold uppercase tracking-widest">Sección 14</span>
+            <h2 class="font-serif font-bold text-2xl sm:text-3xl text-emeraldDark dark:text-alabaster">Referencias Bibliográficas (Formato APA)</h2>
+          </div>
+        </div>
+
+        <div class="space-y-3 text-xs sm:text-sm">
+          
+          <!-- Reference 1 -->
+          <div class="p-4 rounded-xl bg-alabaster dark:bg-emeraldDark border border-petroleum/10 dark:border-champagne/20 flex justify-between items-start gap-4">
+            <p class="citation-text text-emeraldDark/80 dark:text-alabaster/80">
+              Artigas, L., & Guallar, J. (2022). <em>Comunicación médica y veracidad en entornos digitales venezolanos</em>. Ediciones LUZ.
+            </p>
+            <button class="btn-copy-apa shrink-0 px-2.5 py-1 text-xs rounded-lg border border-champagne/40 text-petroleum dark:text-champagne hover:bg-champagne hover:text-emeraldDark transition">
+              Copiar
+            </button>
+          </div>
+
+          <!-- Reference 2 -->
+          <div class="p-4 rounded-xl bg-alabaster dark:bg-emeraldDark border border-petroleum/10 dark:border-champagne/20 flex justify-between items-start gap-4">
+            <p class="citation-text text-emeraldDark/80 dark:text-alabaster/80">
+              Cinelli, M., Quattrociocchi, W., Galeazzi, A., Valensise, C. M., Brugnoli, E., Schmidt, A. L., Zola, P., Zollo, F., & Scala, A. (2020). The COVID-19 social media infodemic. <em>Scientific Reports</em>, 10(1), 16598. https://doi.org/10.1038/s41598-020-73510-5
+            </p>
+            <button class="btn-copy-apa shrink-0 px-2.5 py-1 text-xs rounded-lg border border-champagne/40 text-petroleum dark:text-champagne hover:bg-champagne hover:text-emeraldDark transition">
+              Copiar
+            </button>
+          </div>
+
+          <!-- Reference 3 -->
+          <div class="p-4 rounded-xl bg-alabaster dark:bg-emeraldDark border border-petroleum/10 dark:border-champagne/20 flex justify-between items-start gap-4">
+            <p class="citation-text text-emeraldDark/80 dark:text-alabaster/80">
+              Colegio de Médicos del Estado Zulia (COMEZU). (2023). <em>Código de Deontología Médica y lineamientos de divulgación pública</em>. COMEZU Publicaciones.
+            </p>
+            <button class="btn-copy-apa shrink-0 px-2.5 py-1 text-xs rounded-lg border border-champagne/40 text-petroleum dark:text-champagne hover:bg-champagne hover:text-emeraldDark transition">
+              Copiar
+            </button>
+          </div>
+          <!-- Reference 4 -->
+          <div class="p-4 rounded-xl bg-alabaster dark:bg-emeraldDark border border-petroleum/10 dark:border-champagne/20 flex justify-between items-start gap-4">
+            <p class="citation-text text-emeraldDark/80 dark:text-alabaster/80">
+              Eysenbach, G. (2020). How to fight an infodemic: The four pillars of infodemic management. <em>Journal of Medical Internet Research</em>, 22(6), e21820. https://doi.org/10.2196/21820
+            </p>
+            <button class="btn-copy-apa shrink-0 px-2.5 py-1 text-xs rounded-lg border border-champagne/40 text-petroleum dark:text-champagne hover:bg-champagne hover:text-emeraldDark transition">
+              Copiar
+            </button>
+          </div>
+
+          <!-- Reference 5 -->
+          <div class="p-4 rounded-xl bg-alabaster dark:bg-emeraldDark border border-petroleum/10 dark:border-champagne/20 flex justify-between items-start gap-4">
+            <p class="citation-text text-emeraldDark/80 dark:text-alabaster/80">
+              García E., V., & García V., Y. (2024). <em>Arquitectura de Información para la Divulgación Médica — Estandarización visual y mitigación de la desinformación en redes sociales</em> [Proyecto de Investigación, Universidad del Zulia].
+            </p>
+            <button class="btn-copy-apa shrink-0 px-2.5 py-1 text-xs rounded-lg border border-champagne/40 text-petroleum dark:text-champagne hover:bg-champagne hover:text-emeraldDark transition">
+              Copiar
+            </button>
+          </div>
+
+          <!-- Reference 6 -->
+          <div class="p-4 rounded-xl bg-alabaster dark:bg-emeraldDark border border-petroleum/10 dark:border-champagne/20 flex justify-between items-start gap-4">
+            <p class="citation-text text-emeraldDark/80 dark:text-alabaster/80">
+              Morville, P., & Rosenfeld, L. (2015). <em>Information Architecture for the World Wide Web</em> (4th ed.). O'Reilly Media.
+            </p>
+            <button class="btn-copy-apa shrink-0 px-2.5 py-1 text-xs rounded-lg border border-champagne/40 text-petroleum dark:text-champagne hover:bg-champagne hover:text-emeraldDark transition">
+              Copiar
+            </button>
+          </div>
+
+          <!-- Reference 7 -->
+          <div class="p-4 rounded-xl bg-alabaster dark:bg-emeraldDark border border-petroleum/10 dark:border-champagne/20 flex justify-between items-start gap-4">
+            <p class="citation-text text-emeraldDark/80 dark:text-alabaster/80">
+              Observatorio Venezolano de Fake News (OVFN). (2021). <em>Reporte de desinformación sobre vacunas y tratamientos en Venezuela</em>. OVFN.
+            </p>
+            <button class="btn-copy-apa shrink-0 px-2.5 py-1 text-xs rounded-lg border border-champagne/40 text-petroleum dark:text-champagne hover:bg-champagne hover:text-emeraldDark transition">
+              Copiar
+            </button>
+          </div>
+
+          <!-- Reference 8 -->
+          <div class="p-4 rounded-xl bg-alabaster dark:bg-emeraldDark border border-petroleum/10 dark:border-champagne/20 flex justify-between items-start gap-4">
+            <p class="citation-text text-emeraldDark/80 dark:text-alabaster/80">
+              Organización Mundial de la Salud (OMS). (2021). <em>Gestión de la infodemia en la salud pública: Métodos y buenas prácticas</em>. Ediciones OMS.
+            </p>
+            <button class="btn-copy-apa shrink-0 px-2.5 py-1 text-xs rounded-lg border border-champagne/40 text-petroleum dark:text-champagne hover:bg-champagne hover:text-emeraldDark transition">
+              Copiar
+            </button>
+          </div>
+
+          <!-- Reference 9 -->
+          <div class="p-4 rounded-xl bg-alabaster dark:bg-emeraldDark border border-petroleum/10 dark:border-champagne/20 flex justify-between items-start gap-4">
+            <p class="citation-text text-emeraldDark/80 dark:text-alabaster/80">
+              Swire-Thompson, B., & Lazer, D. (2020). Public health communication and misinformation in the modern information age. <em>American Journal of Public Health</em>, 110(S3), S278-S280.
+            </p>
+            <button class="btn-copy-apa shrink-0 px-2.5 py-1 text-xs rounded-lg border border-champagne/40 text-petroleum dark:text-champagne hover:bg-champagne hover:text-emeraldDark transition">
+              Copiar
+            </button>
+          </div>
+
+          <!-- Reference 10 -->
+          <div class="p-4 rounded-xl bg-alabaster dark:bg-emeraldDark border border-petroleum/10 dark:border-champagne/20 flex justify-between items-start gap-4">
+            <p class="citation-text text-emeraldDark/80 dark:text-alabaster/80">
+              Tufte, E. R. (2001). <em>The Visual Display of Quantitative Information</em> (2nd ed.). Graphics Press.
+            </p>
+            <button class="btn-copy-apa shrink-0 px-2.5 py-1 text-xs rounded-lg border border-champagne/40 text-petroleum dark:text-champagne hover:bg-champagne hover:text-emeraldDark transition">
+              Copiar
+            </button>
+          </div>
+
+          <!-- Reference 11 -->
+          <div class="p-4 rounded-xl bg-alabaster dark:bg-emeraldDark border border-petroleum/10 dark:border-champagne/20 flex justify-between items-start gap-4">
+            <p class="citation-text text-emeraldDark/80 dark:text-alabaster/80">
+              World Health Organization (WHO). (2022). <em>Infodemic management: Training module for health communicators</em>. WHO Press.
+            </p>
+            <button class="btn-copy-apa shrink-0 px-2.5 py-1 text-xs rounded-lg border border-champagne/40 text-petroleum dark:text-champagne hover:bg-champagne hover:text-emeraldDark transition">
+              Copiar
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- EDITORIAL FOOTER & FLOATING BACK TO TOP BUTTON -->
+  <footer class="bg-alabaster dark:bg-emeraldDark-deep border-t border-petroleum/10 dark:border-champagne/20 mt-20 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-emeraldDark/70 dark:text-alabaster/70">
+      <div>
+        <p class="font-serif font-semibold text-emeraldDark dark:text-alabaster">
+          Universidad del Zulia (LUZ) &bull; Facultad de Medicina / Informática
+        </p>
+        <p class="text-[11px] opacity-75">
+          Investigación Académica: Br. Valeria García E. / Licda. Yamel García V. — Tutora: Dra. Roxy Fonseca
+        </p>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <span>Maracaibo, Venezuela</span>
+        <button id="btnBackToTop" class="medallion !w-9 !h-9 !min-w-[36px] hover:scale-105 transition" title="Volver arriba">
+          <svg class="w-4 h-4 text-petroleum dark:text-champagne" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      /* ----------------------------------------------------
+         1. READING PROGRESS INDICATOR & SCROLLSPY
+         ---------------------------------------------------- */
+      const progressBar = document.getElementById('scrollProgress');
+      const sidebarLinks = document.querySelectorAll('.sidebar-link');
+      const sections = document.querySelectorAll('section[id]');
+
+      window.addEventListener('scroll', () => {
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = (window.scrollY / totalHeight) * 100;
+        if (progressBar) progressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+
+        // ScrollSpy Active Link Update
+        let currentSecId = '';
+        sections.forEach(sec => {
+          const rect = sec.getBoundingClientRect();
+          if (rect.top <= 180 && rect.bottom >= 0) {
+            currentSecId = sec.id;
+          }
+        });
+
+        sidebarLinks.forEach(link => {
+          const href = link.getAttribute('href').substring(1);
+          if (href === currentSecId) {
+            link.classList.add('bg-petroleum/15', 'text-petroleum', 'dark:text-champagne', 'font-bold');
+          } else {
+            link.classList.remove('bg-petroleum/15', 'text-petroleum', 'dark:text-champagne', 'font-bold');
+          }
+        });
+      });
+
+      /* ----------------------------------------------------
+         2. DOUBLE READING MODE ("Día Alabastro" / "Noche Esmeralda")
+         ---------------------------------------------------- */
+      const themeToggleBtn = document.getElementById('themeToggleBtn');
+      const themeLabel = document.getElementById('themeLabel');
+
+      themeToggleBtn.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark');
+        const isDark = document.documentElement.classList.contains('dark');
+        themeLabel.textContent = isDark ? 'Noche Esmeralda' : 'Día Alabastro';
+      });
+
+      /* ----------------------------------------------------
+         3. INTERACTIVE FONT SIZE CONTROL (A-, A, A+)
+         ---------------------------------------------------- */
+      let currentFontScale = 1;
+      const btnFontDec = document.getElementById('btnFontDec');
+      const btnFontReset = document.getElementById('btnFontReset');
+      const btnFontInc = document.getElementById('btnFontInc');
+
+      btnFontDec.addEventListener('click', () => {
+        if (currentFontScale > 0.85) {
+          currentFontScale -= 0.05;
+          document.documentElement.style.setProperty('--font-scale', currentFontScale);
+        }
+      });
+      btnFontReset.addEventListener('click', () => {
+        currentFontScale = 1;
+        document.documentElement.style.setProperty('--font-scale', 1);
+      });
+      btnFontInc.addEventListener('click', () => {
+        if (currentFontScale < 1.25) {
+          currentFontScale += 0.05;
+          document.documentElement.style.setProperty('--font-scale', currentFontScale);
+        }
+      });
+
+      /* ----------------------------------------------------
+         4. LIVE REAL-TIME SEARCH FILTER
+         ---------------------------------------------------- */
+      const searchInput = document.getElementById('searchInput');
+      const searchInputMobile = document.getElementById('searchInputMobile');
+      const searchableSections = document.querySelectorAll('.searchable-section');
+      const noSearchMatches = document.getElementById('noSearchMatches');
+
+      function handleSearch(query) {
+        const q = query.toLowerCase().trim();
+        let matchesCount = 0;
+
+        searchableSections.forEach(sec => {
+          const text = sec.textContent.toLowerCase();
+          if (q === '' || text.includes(q)) {
+            sec.style.display = '';
+            matchesCount++;
+          } else {
+            sec.style.display = 'none';
+          }
+        });
+
+        if (matchesCount === 0 && q !== '') {
+          noSearchMatches.classList.remove('hidden');
+        } else {
+          noSearchMatches.classList.add('hidden');
+        }
+      }
+
+      if (searchInput) searchInput.addEventListener('input', (e) => handleSearch(e.target.value));
+      if (searchInputMobile) searchInputMobile.addEventListener('input', (e) => handleSearch(e.target.value));
+
+      /* ----------------------------------------------------
+         5. SECTION 02: ANIMATED METRIC (0% -> 20%) & SLIDER SYNC
+         ---------------------------------------------------- */
+      const metricDisplay = document.getElementById('metricDisplay');
+      const vaccineSlider = document.getElementById('vaccineSlider');
+      const btnReplayCount = document.getElementById('btnReplayCount');
+      let animId = null;
+
+      function animateMetric(targetVal, duration = 1500) {
+        if (animId) cancelAnimationFrame(animId);
+        const startTime = performance.now();
+        const startVal = 0;
+
+        function step(now) {
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          // Ease-out quadratic formula
+          const easeProgress = 1 - Math.pow(1 - progress, 2);
+          const currentVal = (startVal + (targetVal - startVal) * easeProgress).toFixed(1);
+          
+          if (metricDisplay) metricDisplay.textContent = `${currentVal}%`;
+          if (vaccineSlider) vaccineSlider.value = currentVal;
+
+          if (progress < 1) {
+            animId = requestAnimationFrame(step);
+          }
+        }
+        animId = requestAnimationFrame(step);
+      }
+
+      // Local image loader fallback & quick preset switcher
+      const localImgInput = document.getElementById('localImgInput');
+      const vialImage = document.getElementById('vialImage');
+      const btnCycleVials = document.getElementById('btnCycleVials');
+      const vialPresets = [
+        'https://images.pexels.com/photos/5994667/pexels-photo-5994667.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        'https://images.pexels.com/photos/39461627/pexels-photo-39461627.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        'https://images.pexels.com/photos/5922046/pexels-photo-5922046.jpeg?auto=compress&cs=tinysrgb&w=1200'
+      ];
+      let currentVialIdx = 0;
+
+      if (btnCycleVials && vialImage) {
+        btnCycleVials.addEventListener('click', () => {
+          currentVialIdx = (currentVialIdx + 1) % vialPresets.length;
+          vialImage.src = vialPresets[currentVialIdx];
+        });
+      }
+
+      if (localImgInput && vialImage) {
+        localImgInput.addEventListener('change', (e) => {
+          const file = e.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = (evt) => {
+              vialImage.src = evt.target.result;
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+      }
+
+      /* ----------------------------------------------------
+         6. SECTION 09: TAB FUNCTIONALITY
+         ---------------------------------------------------- */
+      const tabBtns = document.querySelectorAll('.dim-tab-btn');
+      const tabPanes = document.querySelectorAll('.dim-tab-pane');
+
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = btn.getAttribute('data-tab');
+
+          tabBtns.forEach(b => {
+            b.classList.remove('active', 'border-champagne', 'text-petroleum', 'dark:text-champagne', 'bg-champagne/10');
+            b.classList.add('border-transparent', 'text-emeraldDark/60', 'dark:text-alabaster/60');
+          });
+
+          btn.classList.add('active', 'border-champagne', 'text-petroleum', 'dark:text-champagne', 'bg-champagne/10');
+          btn.classList.remove('border-transparent', 'text-emeraldDark/60', 'dark:text-alabaster/60');
+
+          tabPanes.forEach(pane => {
+            if (pane.id === target) {
+              pane.classList.remove('hidden');
+            } else {
+              pane.classList.add('hidden');
+            }
+          });
+        });
+      });
+
+      /* ----------------------------------------------------
+         7. SECTION 13: SUBTLE 3D TILT & PARALLAX ON PROTOTYPIC CARD
+         ---------------------------------------------------- */
+      const protoTiltCard = document.getElementById('protoTiltCard');
+      const goldSheen = document.getElementById('goldSheen');
+
+      let currentRotateX = 0;
+      let currentRotateY = 0;
+      let targetRotateX = 0;
+      let targetRotateY = 0;
+      let tiltRafId = null;
+
+      function updateTiltLerp() {
+        // Linear interpolation (lerp) for ultra-damped, subtle smooth motion
+        currentRotateX += (targetRotateX - currentRotateX) * 0.08;
+        currentRotateY += (targetRotateY - currentRotateY) * 0.08;
+
+        if (protoTiltCard) {
+          protoTiltCard.style.transform = `perspective(1000px) rotateX(${currentRotateX.toFixed(3)}deg) rotateY(${currentRotateY.toFixed(3)}deg)`;
+        }
+
+        tiltRafId = requestAnimationFrame(updateTiltLerp);
+      }
+      tiltRafId = requestAnimationFrame(updateTiltLerp);
+
+      if (protoTiltCard) {
+        protoTiltCard.addEventListener('mousemove', (e) => {
+          const rect = protoTiltCard.getBoundingClientRect();
+          const centerX = rect.left + rect.width / 2;
+          const centerY = rect.top + rect.height / 2;
+
+          const mouseX = e.clientX - centerX;
+          const mouseY = e.clientY - centerY;
+
+          // Max rotation strictly capped at 2.8deg for ultra-subtle movement
+          const maxDeg = 2.8;
+          targetRotateY = (mouseX / (rect.width / 2)) * maxDeg;
+          targetRotateX = -(mouseY / (rect.height / 2)) * maxDeg;
+
+          // Position sheen gradient relative to card cursor
+          const sheenX = ((e.clientX - rect.left) / rect.width) * 100;
+          const sheenY = ((e.clientY - rect.top) / rect.height) * 100;
+
+          if (goldSheen) {
+            goldSheen.style.setProperty('--mouse-x', `${sheenX}%`);
+            goldSheen.style.setProperty('--mouse-y', `${sheenY}%`);
+            goldSheen.style.opacity = '1';
+          }
+        });
+
+        protoTiltCard.addEventListener('mouseleave', () => {
+          targetRotateX = 0;
+          targetRotateY = 0;
+          if (goldSheen) {
+            goldSheen.style.opacity = '0';
+          }
+        });
+      }
+
+      // Interactive row verification status toggle
+      const protoRows = document.querySelectorAll('.proto-row');
+      protoRows.forEach(row => {
+        row.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const badge = row.querySelector('.status-badge');
+          if (badge) {
+            if (badge.textContent.trim() === 'Verificando...') {
+              badge.textContent = 'Acreditado';
+              badge.className = 'status-badge px-2 py-1 text-[10px] rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-semibold border border-emerald-500/20';
+            } else {
+              badge.textContent = 'Verificando...';
+              badge.className = 'status-badge px-2 py-1 text-[10px] rounded-md bg-champagne/20 text-champagne-dark dark:text-champagne font-semibold border border-champagne/30';
+            }
+          }
+        });
+      });
+
+      /* ----------------------------------------------------
+         8. SECTION 14: COPY APA CITATIONS TO CLIPBOARD
+         ---------------------------------------------------- */
+      const copyButtons = document.querySelectorAll('.btn-copy-apa');
+
+      copyButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const parent = btn.closest('div');
+          const textEl = parent.querySelector('.citation-text');
+          if (textEl) {
+            const rawText = textEl.textContent.trim();
+
+            // Using document.execCommand('copy') for robust iframe support
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = rawText;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+
+            try {
+              document.execCommand('copy');
+              const originalBtnText = btn.textContent;
+              btn.textContent = 'Copiada ✓';
+              btn.classList.add('bg-champagne', 'text-emeraldDark');
+
+              setTimeout(() => {
+                btn.textContent = originalBtnText;
+                btn.classList.remove('bg-champagne', 'text-emeraldDark');
+              }, 2000);
+            } catch (err) {
+              console.error('Error al copiar cita:', err);
+            } finally {
+              document.body.removeChild(tempTextArea);
+            }
+          }
+        });
+      });
+
+      /* ----------------------------------------------------
+         9. FLOATING BACK TO TOP BUTTON
+         ---------------------------------------------------- */
+      const btnBackToTop = document.getElementById('btnBackToTop');
+      if (btnBackToTop) {
+        btnBackToTop.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+
+    });
+  </script>
+</body>
+</html>
