@@ -130,6 +130,13 @@ aside a:hover{transform:translateX(3px)}
 @media(max-width:560px){.impact-showcase .impact-art img{max-width:260px!important;max-height:165px!important}}
 @media(prefers-reduced-motion:reduce){.impact-showcase .impact-art img{animation:none!important}}
 
+
+/* Ajuste definitivo de la fotografía: sin mezcla de color ni aspecto de icono */
+.impact-showcase{grid-template-columns:minmax(105px,18%) minmax(0,1fr) minmax(205px,36%)!important;gap:16px!important}
+.impact-showcase .impact-art{display:flex!important;align-items:center!important;justify-content:center!important;min-height:180px!important;overflow:visible!important}
+.impact-showcase .impact-art img{display:block!important;visibility:visible!important;opacity:1!important;width:100%!important;max-width:340px!important;height:auto!important;max-height:205px!important;object-fit:contain!important;object-position:center!important;border:0!important;border-radius:14px!important;mix-blend-mode:normal!important;background:transparent!important;filter:drop-shadow(0 12px 16px #153f4a20)!important;animation:photoFloat 7s ease-in-out infinite}
+@media(max-width:560px){.impact-showcase{grid-template-columns:88px minmax(0,1fr)!important}.impact-showcase .impact-art{grid-column:1/-1!important;min-height:165px!important}.impact-showcase .impact-art img{max-width:310px!important;max-height:180px!important}}
+
 </style></head>
 <body><div id="progress"></div>
 <header class="hero"><div class="floaters" aria-hidden="true"><span></span><span></span><span></span><span></span></div><div class="wrap"><div class="eyebrow">Universidad del Zulia · Proyecto de informática · Fases I a III</div><h1>Arquitectura de Información para la Divulgación Médica</h1><p class="subtitle">Estandarización visual y mitigación de la desinformación en redes sociales</p><p class="authors">Autoras: Br. Valeria García E. / Licda. Yamel García V. · Tutora: Dra. Roxy Fonseca</p></div></header>
@@ -141,7 +148,7 @@ aside a:hover{transform:translateX(3px)}
 <strong class="impact-number"><span class="count" data-target="20">0</span><span>%</span></strong>
 <div class="metric-copy"><div class="micro-label">Impacto clínico global</div><p>Caída en las tasas de intención de vacunación debido al consumo directo de desinformación sanitaria.</p><div class="meter" aria-label="Indicador visual hasta 20 por ciento"><i id="impactMeter"></i></div></div>
 <div class="impact-art" aria-hidden="true">
-<img src="../assets/impacto-medico-realista.jpg" alt="" loading="eager" decoding="async"></div></div></section>
+<img src="../assets/impacto-medico-realista.jpg?v=2" alt="Escena médica realista con portátil de diagnóstico, vial de vacuna, estetoscopio y escudo sanitario" loading="eager" decoding="async"></div></div></section>
 <section class="topic" id="escenario"><div class="kicker">Contexto nacional</div><h2>El escenario venezolano</h2><div class="points"><div class="point"><b><span class="keyword">Vacío oficial</span></b>Ausencia de canales estatales fiables de divulgación.</div><div class="point"><b><span class="keyword">Intrusismo digital</span></b>Creadores sin aval emitiendo opiniones médicas.</div><div class="point"><b><span class="keyword">Alerta COMEZU</span></b>Peligro inminente para el manejo de pacientes crónicos.</div></div></section>
 <section class="topic" id="danos"><div class="kicker">Consecuencias</div><h2>Daños a la salud pública</h2><h3>Impactos del intrusismo digital</h3><p><span class="term">Rechazo preventivo:</span> Caída documentada en la cobertura global de vacunación.</p><p><span class="term">Riesgo crónico:</span> Abandono de terapias oncológicas, diabéticas y renales.</p><p><span class="term">Intoxicación aguda:</span> Hospitalizaciones por consumo de remedios no verificados.</p><p><span class="term">Vulnerabilidad crítica:</span> Desinformación focalizada en atención materno-infantil y ginecológica.</p></section>
 <section class="topic" id="pregunta"><div class="kicker">Pregunta central</div><h2>Formulación del problema</h2><p>¿Cómo debe estructurarse la información médica digital para mitigar la desinformación en redes sociales?</p></section>
