@@ -359,16 +359,16 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <!-- Metric & Slider Simulation Box -->
-          <div class="p-8 rounded-3xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20 space-y-6">
+          <div id="impactCard" class="p-8 rounded-3xl bg-alabaster dark:bg-emeraldDark border border-petroleum/15 dark:border-champagne/20 space-y-6 transition-all duration-300 hover:border-champagne/60 hover:shadow-xl hover:-translate-y-1">
             <div class="flex items-center justify-between">
               <span class="text-xs uppercase font-bold tracking-widest text-petroleum dark:text-champagne">Medición de Impacto Infodémico</span>
-              <button id="btnReplayCount" class="px-3 py-1 text-xs rounded-full border border-champagne text-champagne hover:bg-champagne hover:text-emeraldDark transition font-medium">
+              <button id="btnReplayCount" type="button" class="px-3 py-1 text-xs rounded-full border border-champagne text-champagne hover:bg-champagne hover:text-emeraldDark transition font-medium cursor-pointer active:scale-95">
                 Simular 0&rarr;20%
               </button>
             </div>
 
             <div class="flex items-baseline gap-2">
-              <span id="metricDisplay" class="font-serif font-bold text-6xl sm:text-7xl text-petroleum dark:text-champagne">0%</span>
+              <span id="metricDisplay" class="font-serif font-bold text-6xl sm:text-7xl text-petroleum dark:text-champagne tabular-nums transition-transform duration-150">0%</span>
               <span class="text-sm font-semibold text-emeraldDark/80 dark:text-alabaster/80">de reducción relativa</span>
             </div>
 
@@ -387,31 +387,13 @@
             </div>
           </div>
 
-          <!-- Neutral Glass Vaccine Vials Macro Photo with Local Fallback Loader -->
+          <!-- Vaccine Vials Photo -->
           <div class="space-y-3">
             <div class="relative rounded-3xl overflow-hidden border border-petroleum/15 dark:border-champagne/20 aspect-video bg-emeraldDark-surface flex items-center justify-center group">
-              <img id="vialImage" src="https://images.pexels.com/photos/5994667/pexels-photo-5994667.jpeg?auto=compress&cs=tinysrgb&w=1200" 
-                   alt="Frascos de vacuna de vidrio transparente completamente limpios y sin etiquetas sobre superficie azul" 
-                   class="w-full h-full object-cover object-center scale-105 transition-transform duration-700 group-hover:scale-115"
-                   onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='https://images.pexels.com/photos/39461627/pexels-photo-39461627.jpeg?auto=compress&cs=tinysrgb&w=1200';}else{this.src='https://placehold.co/800x500/0b262b/c5a059?text=Frasquitos+de+Vacuna+Est%C3%A9riles';}" />
-              
-              <div class="absolute bottom-3 right-3 flex items-center gap-2">
-                <button type="button" id="btnCycleVials" class="bg-emeraldDark-deep/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-champagne/30 text-xs text-champagne hover:bg-champagne hover:text-emeraldDark transition flex items-center gap-1.5">
-                  <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-                  </svg>
-                  Otra vista
-                </button>
-                <div class="bg-emeraldDark-deep/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-champagne/30">
-                  <label for="localImgInput" class="text-xs text-champagne cursor-pointer flex items-center gap-1.5 hover:underline">
-                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                    </svg>
-                    Cargar imagen propia
-                  </label>
-                  <input type="file" id="localImgInput" accept="image/*" class="hidden" />
-                </div>
-              </div>
+              <img id="vialImage" src="https://www.bbva.com/wp-content/uploads/2021/01/BBVA-vacunas-doctor-larraga-apertura-getty-22012021-1920x1180.jpg" 
+                   alt="Frascos de vacuna e inmunización" 
+                   class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                   onerror="this.src='https://placehold.co/800x500/0b262b/c5a059?text=Vacunaci%C3%B3n+y+Rigor+M%C3%A9dico';" />
             </div>
             <p class="text-[11px] text-emeraldDark/60 dark:text-alabaster/60 italic text-center">
               Figura 2.1 · Frascos neutros de formulación biológica transparente como símbolo de precisión estandarizada.
@@ -997,6 +979,7 @@
               Copiar
             </button>
           </div>
+
           <!-- Reference 4 -->
           <div class="p-4 rounded-xl bg-alabaster dark:bg-emeraldDark border border-petroleum/10 dark:border-champagne/20 flex justify-between items-start gap-4">
             <p class="citation-text text-emeraldDark/80 dark:text-alabaster/80">
@@ -1014,8 +997,7 @@
             </p>
             <button class="btn-copy-apa shrink-0 px-2.5 py-1 text-xs rounded-lg border border-champagne/40 text-petroleum dark:text-champagne hover:bg-champagne hover:text-emeraldDark transition">
               Copiar
-            </button>
-          </div>
+            </button>          </div>
 
           <!-- Reference 6 -->
           <div class="p-4 rounded-xl bg-alabaster dark:bg-emeraldDark border border-petroleum/10 dark:border-champagne/20 flex justify-between items-start gap-4">
@@ -1211,10 +1193,12 @@
       /* ----------------------------------------------------
          5. SECTION 02: ANIMATED METRIC (0% -> 20%) & SLIDER SYNC
          ---------------------------------------------------- */
+      const impactCard = document.getElementById('impactCard');
       const metricDisplay = document.getElementById('metricDisplay');
       const vaccineSlider = document.getElementById('vaccineSlider');
       const btnReplayCount = document.getElementById('btnReplayCount');
       let animId = null;
+      let hasAutoAnimated = false;
 
       function animateMetric(targetVal, duration = 1500) {
         if (animId) cancelAnimationFrame(animId);
@@ -1233,40 +1217,44 @@
 
           if (progress < 1) {
             animId = requestAnimationFrame(step);
+          } else if (metricDisplay) {
+            metricDisplay.textContent = `${Number(targetVal).toFixed(0)}%`;
           }
         }
         animId = requestAnimationFrame(step);
       }
 
-      // Local image loader fallback & quick preset switcher
-      const localImgInput = document.getElementById('localImgInput');
-      const vialImage = document.getElementById('vialImage');
-      const btnCycleVials = document.getElementById('btnCycleVials');
-      const vialPresets = [
-        'https://images.pexels.com/photos/5994667/pexels-photo-5994667.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://images.pexels.com/photos/39461627/pexels-photo-39461627.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://images.pexels.com/photos/5922046/pexels-photo-5922046.jpeg?auto=compress&cs=tinysrgb&w=1200'
-      ];
-      let currentVialIdx = 0;
-
-      if (btnCycleVials && vialImage) {
-        btnCycleVials.addEventListener('click', () => {
-          currentVialIdx = (currentVialIdx + 1) % vialPresets.length;
-          vialImage.src = vialPresets[currentVialIdx];
+      // Sincronización en vivo al arrastrar el control deslizante
+      if (vaccineSlider) {
+        vaccineSlider.addEventListener('input', (e) => {
+          if (animId) cancelAnimationFrame(animId);
+          const val = parseFloat(e.target.value);
+          if (metricDisplay) {
+            metricDisplay.textContent = `${Number.isInteger(val) ? val : val.toFixed(1)}%`;
+          }
         });
       }
 
-      if (localImgInput && vialImage) {
-        localImgInput.addEventListener('change', (e) => {
-          const file = e.target.files[0];
-          if (file) {
-            const reader = new FileReader();
-            reader.onload = (evt) => {
-              vialImage.src = evt.target.result;
-            };
-            reader.readAsDataURL(file);
-          }
+      // Botón para volver a ejecutar la animación de 0% a 20%
+      if (btnReplayCount) {
+        btnReplayCount.addEventListener('click', () => {
+          animateMetric(20, 1400);
         });
+      }
+
+      // Disparar animación automáticamente al desplazarse hasta la tarjeta
+      if (impactCard && 'IntersectionObserver' in window) {
+        const impactObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && !hasAutoAnimated) {
+              hasAutoAnimated = true;
+              animateMetric(20, 1600);
+            }
+          });
+        }, { threshold: 0.35 });
+        impactObserver.observe(impactCard);
+      } else {
+        animateMetric(20, 1600);
       }
 
       /* ----------------------------------------------------
