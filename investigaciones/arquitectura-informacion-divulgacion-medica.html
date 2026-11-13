@@ -78,6 +78,13 @@ section.topic:hover{transform:translateY(-3px);box-shadow:0 20px 48px #0d2e4014;
 aside a{transition:background .2s ease,color .2s ease,transform .2s ease}
 aside a:hover{transform:translateX(3px)}
 
+/* Corrección visual del porcentaje: cifra y símbolo en una sola línea */
+.metric{display:flex;align-items:center;gap:24px;min-height:126px;padding:22px 26px}
+.metric>strong{display:flex!important;flex:0 0 126px;width:126px;min-width:126px;align-items:center;justify-content:flex-start;flex-wrap:nowrap;white-space:nowrap;gap:0;font-size:3.7rem;line-height:1!important;letter-spacing:-.055em}
+.metric>strong .count,.metric>strong span:last-child{display:inline-block;white-space:nowrap;line-height:1}
+.metric-copy{flex:1;min-width:0}
+.metric:before{display:none}
+@media(max-width:520px){.metric{gap:12px;padding:18px 14px}.metric>strong{flex-basis:90px;width:90px;min-width:90px;font-size:2.7rem}}
 </style></head>
 <body><div id="progress"></div>
 <header class="hero"><div class="floaters" aria-hidden="true"><span></span><span></span><span></span><span></span></div><div class="wrap"><div class="eyebrow">Universidad del Zulia · Proyecto de informática · Fases I a III</div><h1>Arquitectura de Información para la Divulgación Médica</h1><p class="subtitle">Estandarización visual y mitigación de la desinformación en redes sociales</p><p class="authors">Autoras: Br. Valeria García E. / Licda. Yamel García V. · Tutora: Dra. Roxy Fonseca</p></div></header>
@@ -119,31 +126,21 @@ let scale=1;document.getElementById('bigger').onclick=()=>{scale=Math.min(1.25,s
 document.getElementById('smaller').onclick=()=>{scale=Math.max(.9,scale-.05);document.querySelector('article').style.fontSize=(16*scale)+'px'};
 addEventListener('scroll',()=>{let max=document.documentElement.scrollHeight-innerHeight;document.getElementById('progress').style.width=(max?scrollY/max*100:0)+'%'},{passive:true});
 
-const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const counter=document.querySelector('.count'),meter=document.getElementById('impactMeter');
-let counted=false;
-function animateImpact(){
- if(counted||!counter||!meter)return;
- counted=true;
- const target=Number(counter.getAttribute('data-target'))||20;
- counter.textContent='0';
- meter.style.width='0%';
- if(reduceMotion){counter.textContent=String(target);meter.style.width='100%';return}
- const start=performance.now(),duration=2600;
- counter.classList.add('counting');
- function tick(now){
-  const t=Math.min((now-start)/duration,1);
-  const ease=1-Math.pow(1-t,3);
-  counter.textContent=String(Math.min(target,Math.floor(target*ease)));
-  meter.style.width=(ease*100)+'%';
-  if(t<1)requestAnimationFrame(tick);
-  else{counter.textContent=String(target);meter.style.width='100%';counter.classList.remove('counting');counter.classList.add('counted')}
+(function(){
+ const number=document.querySelector('.count'),bar=document.getElementById('impactMeter');
+ if(!number||!bar)return;
+ const target=20,duration=2400,start=performance.now();
+ number.textContent='0';bar.style.width='0%';number.classList.add('counting');
+ function frame(now){
+  const p=Math.min(1,(now-start)/duration),e=1-Math.pow(1-p,3);
+  number.textContent=String(Math.floor(target*e));bar.style.width=(e*100)+'%';
+  if(p<1)requestAnimationFrame(frame);
+  else{number.textContent='20';bar.style.width='100%';number.classList.remove('counting');number.classList.add('counted')}
  }
- requestAnimationFrame(()=>requestAnimationFrame(tick));
-}
-// El contador arranca al cargar la página: no depende del scroll ni de observadores.
-if(document.readyState==='complete')setTimeout(animateImpact,350);
-else window.addEventListener('load',()=>setTimeout(animateImpact,350),{once:true});
+ if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){number.textContent='20';bar.style.width='100%'}
+ else requestAnimationFrame(frame);
+})();
+const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if('IntersectionObserver' in window){const revealObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');revealObserver.unobserve(e.target)}}),{threshold:.04,rootMargin:'0px 0px 30px 0px'});
 document.querySelectorAll('.topic').forEach(el=>{el.classList.add('reveal');if(reduceMotion)el.classList.add('in');else revealObserver.observe(el)})}
 else document.querySelectorAll('.topic').forEach(el=>el.classList.add('in'));
