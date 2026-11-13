@@ -111,6 +111,17 @@ aside a:hover{transform:translateX(3px)}
 @media(max-width:430px){.impact-showcase{grid-template-columns:1fr;gap:12px}.impact-showcase>.impact-number{font-size:3.2rem!important}.impact-art{grid-column:auto;max-height:175px}.impact-art svg{max-height:175px}}
 @media(prefers-reduced-motion:reduce){.impact-art svg{animation:none}}
 
+
+/* Corrección de composición: reservar espacio real para la ilustración */
+.impact-showcase{display:grid!important;grid-template-columns:minmax(88px,19%) minmax(0,1fr) minmax(155px,32%)!important;gap:12px!important;align-items:center!important;padding:18px 16px!important;min-height:210px!important;overflow:hidden!important}
+.impact-showcase>.impact-number{width:auto!important;min-width:0!important;flex:none!important;font-size:clamp(2.35rem,5vw,3.5rem)!important;letter-spacing:-.06em}
+.impact-showcase .metric-copy{display:block!important;min-width:0!important;max-width:none!important}
+.impact-showcase .metric-copy p{font-size:.88rem!important;line-height:1.5!important;overflow-wrap:anywhere}
+.impact-showcase .meter{width:100%!important;max-width:100%!important}
+.impact-showcase .impact-art{display:flex!important;visibility:visible!important;opacity:1!important;position:relative!important;z-index:3!important;min-width:0!important;width:100%!important;height:100%!important;min-height:150px!important;align-items:center!important;justify-content:center!important;grid-column:auto!important}
+.impact-showcase .impact-art svg{display:block!important;visibility:visible!important;opacity:1!important;width:100%!important;height:auto!important;max-width:100%!important;max-height:205px!important;overflow:visible!important}
+@media(max-width:560px){.impact-showcase{grid-template-columns:88px minmax(0,1fr)!important;gap:12px!important;padding:16px!important}.impact-showcase .impact-art{grid-column:1/-1!important;min-height:150px!important;max-height:175px!important}.impact-showcase .impact-art svg{max-width:320px!important;max-height:175px!important}.impact-showcase>.impact-number{font-size:2.65rem!important}}
+
 </style></head>
 <body><div id="progress"></div>
 <header class="hero"><div class="floaters" aria-hidden="true"><span></span><span></span><span></span><span></span></div><div class="wrap"><div class="eyebrow">Universidad del Zulia · Proyecto de informática · Fases I a III</div><h1>Arquitectura de Información para la Divulgación Médica</h1><p class="subtitle">Estandarización visual y mitigación de la desinformación en redes sociales</p><p class="authors">Autoras: Br. Valeria García E. / Licda. Yamel García V. · Tutora: Dra. Roxy Fonseca</p></div></header>
