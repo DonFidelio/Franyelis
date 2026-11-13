@@ -331,6 +331,18 @@
       color: #0c4a6e;
     }
 
+    .kw-underline.amber {
+      background: linear-gradient(120deg, rgba(217, 119, 6, 0.2) 0%, rgba(217, 119, 6, 0.2) 100%);
+      background-repeat: no-repeat;
+      background-size: 100% 38%;
+      background-position: 0 90%;
+    }
+
+    .kw-underline.amber:hover {
+      background-size: 100% 100%;
+      color: #78350f;
+    }
+
     .kw-box {
       display: inline-block;
       padding: 0.08rem 0.5rem;
@@ -416,10 +428,10 @@
       display: flex;
       align-items: center;
       gap: 0.55rem;
-      padding: 0.5rem 0.75rem;
+      padding: 0.55rem 0.85rem;
       color: var(--text-muted);
       text-decoration: none;
-      font-size: 0.85rem;
+      font-size: 0.86rem;
       border-radius: 8px;
       transition: all 0.2s ease;
       border-left: 3px solid transparent;
@@ -808,27 +820,70 @@
       color: var(--accent-blue);
     }
 
-    /* Sopa de Letras de la Página 10 */
-    .wordsearch-container {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 1.75rem;
-      align-items: center;
-      background: #f8fafc;
+    /* Sopa de Letras Elegante y Sin Desbordamiento */
+    .wordsearch-wrapper {
+      background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
       border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 1.5rem;
-      margin: 1.25rem 0;
+      border-radius: 20px;
+      padding: 2rem;
+      margin: 1.5rem 0;
+      box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.06);
+    }
+
+    .ws-header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px dashed var(--card-border);
+    }
+
+    .ws-header span {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-blue);
+      background: var(--accent-blue-soft);
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      margin-bottom: 0.45rem;
+    }
+
+    .ws-header h3 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: 0.03em;
+    }
+
+    .wordsearch-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.75rem;
+    }
+
+    .ws-grid-scroll {
+      width: 100%;
+      overflow-x: auto;
+      display: flex;
+      justify-content: center;
+      padding: 0.25rem;
     }
 
     .ws-grid {
       display: grid;
-      grid-template-columns: repeat(15, 1fr);
-      gap: 3px;
-      max-width: 460px;
-      font-family: monospace;
-      font-weight: 800;
-      font-size: 0.82rem;
+      grid-template-columns: repeat(20, minmax(26px, 31px));
+      gap: 4px;
+      background: #f1f5f9;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid #cbd5e1;
+      box-shadow: inset 0 2px 4px rgba(15, 23, 42, 0.04);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
     }
 
     .ws-cell {
@@ -837,21 +892,59 @@
       align-items: center;
       justify-content: center;
       background: #ffffff;
-      border: 1px solid #cbd5e1;
-      border-radius: 4px;
-      color: var(--text-main);
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      color: #334155;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      user-select: none;
+    }
+
+    .ws-cell:hover {
+      transform: scale(1.08);
+      z-index: 2;
+      box-shadow: 0 3px 8px rgba(15, 23, 42, 0.1);
     }
 
     .ws-cell.hl {
-      background: #93c5fd;
-      color: #0f172a;
-      border-color: #3b82f6;
+      background: linear-gradient(135deg, #bae6fd 0%, #7dd3fc 100%);
+      color: #0c4a6e;
+      border-color: #38bdf8;
+      font-weight: 800;
+      box-shadow: 0 2px 5px rgba(2, 132, 199, 0.15);
+    }
+
+    .ws-legend {
+      width: 100%;
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 1.25rem;
+    }
+
+    .ws-legend-title {
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 0.85rem;
     }
 
     .ws-words {
       display: flex;
-      flex-direction: column;
-      gap: 0.45rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem;
+    }
+
+    .ws-words .kw-box {
+      padding: 0.35rem 0.85rem;
+      font-size: 0.82rem;
+      letter-spacing: 0.02em;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
     }
 
     /* Footer */
@@ -894,10 +987,14 @@
       aside {
         display: none;
       }
-      .header-hero-grid, .wordsearch-container {
+      .header-hero-grid {
         grid-template-columns: 1fr;
       }
-      section {        padding: 1.85rem 1.35rem;
+      section {
+        padding: 1.85rem 1.35rem;
+      }
+      .ws-grid-scroll {
+        justify-content: flex-start;
       }
     }
   </style>
@@ -926,7 +1023,7 @@
     </div>
   </div>
 
-  <!-- Cabecera Principal (Página 1) -->
+  <!-- Cabecera Principal -->
   <header>
     <div class="header-container">
       <div class="header-meta">
@@ -992,8 +1089,8 @@
     <aside>
       <div class="toc-progress-card">
         <div class="toc-progress-header">
-          <span>Avance del documento</span>
-          <span><span class="count-up" data-target="12">0</span> páginas</span>
+          <span>Avance de lectura</span>
+          <span><span id="asidePercentText">0</span>%</span>
         </div>
         <div class="progress-track">
           <div class="progress-fill" id="asideProgressFill" style="width: 10%;"></div>
@@ -1002,14 +1099,14 @@
 
       <nav aria-label="Contenido del proyecto">
         <ul class="toc-list">
-          <li><a href="#sec-problematica">Pág. 02 · Problemática encontrada</a></li>
-          <li><a href="#sec-proposito">Pág. 03 · Propósito de la sistematización</a></li>
-          <li><a href="#sec-justificacion">Pág. 04 · Justificación y Tipo de investigación</a></li>
-          <li><a href="#sec-objetivos-gral">Pág. 05 · Objetivo General y Patrón</a></li>
-          <li><a href="#sec-obj-1">Págs. 06-07 · Objetivo específico N°1</a></li>
-          <li><a href="#sec-obj-2">Págs. 08-09 · Objetivo específico N°2</a></li>
-          <li><a href="#sec-obj-3">Págs. 10-11 · Objetivo específico N°3</a></li>
-          <li><a href="#sec-cierre">Pág. 12 · Cierre y Proverbios 3:16</a></li>
+          <li><a href="#sec-problematica">Problemática encontrada</a></li>
+          <li><a href="#sec-proposito">Propósito de la sistematización</a></li>
+          <li><a href="#sec-justificacion">Justificación y Tipo de investigación</a></li>
+          <li><a href="#sec-objetivos-gral">Objetivo General y Patrón</a></li>
+          <li><a href="#sec-obj-1">Objetivo específico N°1</a></li>
+          <li><a href="#sec-obj-2">Objetivo específico N°2</a></li>
+          <li><a href="#sec-obj-3">Objetivo específico N°3</a></li>
+          <li><a href="#sec-cierre">Cierre y Proverbios 3:16</a></li>
         </ul>
       </nav>
     </aside>
@@ -1017,7 +1114,7 @@
     <!-- Contenido -->
     <main id="mainContent">
 
-      <!-- PÁGINA 02: PROBLEMÁTICA ENCONTRADA -->
+      <!-- PROBLEMÁTICA ENCONTRADA -->
       <section id="sec-problematica">
         <div class="section-top-row">
           <div class="section-header">
@@ -1025,7 +1122,7 @@
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
             </div>
             <div>
-              <span class="section-tag orange">Página 2 · DIAGNÓSTICO INICIAL</span>
+              <span class="section-tag orange">DIAGNÓSTICO INICIAL</span>
               <h2>Problemática encontrada.</h2>
             </div>
           </div>
@@ -1098,7 +1195,7 @@
         </div>
       </section>
 
-      <!-- PÁGINA 03: PROPÓSITO DE LA SISTEMATIZACIÓN -->
+      <!-- PROPÓSITO DE LA SISTEMATIZACIÓN -->
       <section id="sec-proposito">
         <div class="section-top-row">
           <div class="section-header">
@@ -1106,7 +1203,7 @@
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
             </div>
             <div>
-              <span class="section-tag">Página 3 · ENFOQUE LÚDICO</span>
+              <span class="section-tag">ENFOQUE LÚDICO</span>
               <h2>Propósito de la sistematización.</h2>
             </div>
           </div>
@@ -1128,7 +1225,7 @@
         </div>
       </section>
 
-      <!-- PÁGINA 04: JUSTIFICACIÓN Y TIPO DE INVESTIGACIÓN -->
+      <!-- JUSTIFICACIÓN Y TIPO DE INVESTIGACIÓN -->
       <section id="sec-justificacion">
         <div class="section-top-row">
           <div class="section-header">
@@ -1136,7 +1233,7 @@
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
             </div>
             <div>
-              <span class="section-tag blue">Página 4 · FUNDAMENTACIÓN</span>
+              <span class="section-tag blue">FUNDAMENTACIÓN</span>
               <h2>Justificación y Tipo de investigación.</h2>
             </div>
           </div>
@@ -1175,7 +1272,7 @@
         </div>
       </section>
 
-      <!-- PÁGINA 05: OBJETIVOS DE LA INVESTIGACIÓN -->
+      <!-- OBJETIVOS DE LA INVESTIGACIÓN -->
       <section id="sec-objetivos-gral">
         <div class="section-top-row">
           <div class="section-header">
@@ -1183,7 +1280,7 @@
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
             </div>
             <div>
-              <span class="section-tag">Página 5 · HORIZONTE DEL PROYECTO</span>
+              <span class="section-tag">HORIZONTE DEL PROYECTO</span>
               <h2>Objetivos de la investigación.</h2>
             </div>
           </div>
@@ -1230,7 +1327,7 @@
         </ul>
       </section>
 
-      <!-- PÁGINAS 06-07: OBJETIVO ESPECÍFICO N°1 -->
+      <!-- OBJETIVO ESPECÍFICO N°1 -->
       <section id="sec-obj-1">
         <div class="section-top-row">
           <div class="section-header">
@@ -1238,7 +1335,7 @@
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/></svg>
             </div>
             <div>
-              <span class="section-tag">Páginas 6 - 7 · OBJETIVO ESPECÍFICO N°1</span>
+              <span class="section-tag">OBJETIVO ESPECÍFICO N°1</span>
               <h2>Objetivo específico N°1: Determinar los hábitos alimentarios de malnutrición.</h2>
             </div>
           </div>
@@ -1296,7 +1393,7 @@
         </div>
       </section>
 
-      <!-- PÁGINAS 08-09: OBJETIVO ESPECÍFICO N°2 -->
+      <!-- OBJETIVO ESPECÍFICO N°2 -->
       <section id="sec-obj-2">
         <div class="section-top-row">
           <div class="section-header">
@@ -1304,7 +1401,7 @@
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
             <div>
-              <span class="section-tag orange">Páginas 8 - 9 · OBJETIVO ESPECÍFICO N°2</span>
+              <span class="section-tag orange">OBJETIVO ESPECÍFICO N°2</span>
               <h2>Objetivo específico N°2: Identificar los factores de riesgo de malnutrición.</h2>
             </div>
           </div>
@@ -1379,7 +1476,7 @@
         </ul>
       </section>
 
-      <!-- PÁGINAS 10-11: OBJETIVO ESPECÍFICO N°3 -->
+      <!-- OBJETIVO ESPECÍFICO N°3 -->
       <section id="sec-obj-3">
         <div class="section-top-row">
           <div class="section-header">
@@ -1387,26 +1484,37 @@
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="6" x2="10" y1="12" y2="12"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="15" x2="15.01" y1="13" y2="13"/><line x1="18" x2="18.01" y1="11" y2="11"/><rect width="20" height="12" x="2" y="6" rx="2"/></svg>
             </div>
             <div>
-              <span class="section-tag blue">Páginas 10 - 11 · OBJETIVO ESPECÍFICO N°3</span>
+              <span class="section-tag blue">OBJETIVO ESPECÍFICO N°3</span>
               <h2>Objetivo específico N°3: Elaborar juego didáctico.</h2>
             </div>
           </div>
           <img id="png-juego" class="png-mini" alt="PNG Sopa de letras didáctica">
         </div>
 
-        <h3 style="text-align: center; font-size: 1.25rem; margin-bottom: 0.5rem;">LA MALNUTRICIÓN INFANTIL.</h3>
+        <!-- Sopa de Letras Elegante -->
+        <div class="wordsearch-wrapper">
+          <div class="ws-header">
+            <span>Recurso Didáctico · Sopa de Letras</span>
+            <h3>LA MALNUTRICIÓN INFANTIL.</h3>
+          </div>
 
-        <!-- Sopa de Letras fiel de la Página 10 -->
-        <div class="wordsearch-container">
-          <div class="ws-grid" id="wordsearchGrid" aria-label="Sopa de letras La Malnutrición Infantil"></div>
-          <div class="ws-words">
-            <span class="kw-box">• MALNUTRICIÓN INFANTIL.</span>
-            <span class="kw-box blue">• ALIMENTOS.</span>
-            <span class="kw-box orange">• DESNUTRICIÓN.</span>
-            <span class="kw-box orange">• SOBREPESO.</span>
-            <span class="kw-box orange">• OBESIDAD.</span>
-            <span class="kw-box">• HÁBITOS ALIMENTARIOS.</span>
-            <span class="kw-box amber">• RIESGO.</span>
+          <div class="wordsearch-container">
+            <div class="ws-grid-scroll">
+              <div class="ws-grid" id="wordsearchGrid" aria-label="Sopa de letras La Malnutrición Infantil"></div>
+            </div>
+
+            <div class="ws-legend">
+              <div class="ws-legend-title">Palabras clave incluidas en la sopa de letras (7)</div>
+              <div class="ws-words">
+                <span class="kw-box">• MALNUTRICIÓN INFANTIL.</span>
+                <span class="kw-box blue">• ALIMENTOS.</span>
+                <span class="kw-box orange">• DESNUTRICIÓN.</span>
+                <span class="kw-box orange">• SOBREPESO.</span>
+                <span class="kw-box orange">• OBESIDAD.</span>
+                <span class="kw-box">• HÁBITOS ALIMENTARIOS.</span>
+                <span class="kw-box amber">• RIESGO.</span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -1440,7 +1548,7 @@
         </ul>
       </section>
 
-      <!-- PÁGINA 12: CIERRE Y PROVERBIOS 3:16 -->
+      <!-- CIERRE Y PROVERBIOS 3:16 -->
       <section id="sec-cierre">
         <div class="section-top-row">
           <div class="section-header">
@@ -1448,7 +1556,7 @@
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
             <div>
-              <span class="section-tag amber">Página 12 · CIERRE DE PRESENTACIÓN</span>
+              <span class="section-tag amber">CIERRE DE PRESENTACIÓN</span>
               <h2>¡Muchas gracias por su atención!</h2>
             </div>
           </div>
@@ -1495,7 +1603,6 @@
       ctx.beginPath(); ctx.roundRect(8, 8, 144, 144, 28); ctx.fill();
 
       if (kind === 'hero' || kind === 'habitos') {
-        // Manzana saludable
         ctx.fillStyle = '#ef4444';
         ctx.beginPath(); ctx.arc(70, 88, 28, 0, Math.PI * 2); ctx.arc(92, 88, 28, 0, Math.PI * 2); ctx.fill();
         ctx.fillStyle = '#16a34a';
@@ -1503,20 +1610,17 @@
         ctx.strokeStyle = '#78350f'; ctx.lineWidth = 4;
         ctx.beginPath(); ctx.moveTo(81, 64); ctx.lineTo(81, 44); ctx.stroke();
       } else if (kind === 'problema') {
-        // Balanza / alerta
         ctx.fillStyle = '#ea580c';
         ctx.beginPath(); ctx.moveTo(80, 34); ctx.lineTo(126, 118); ctx.lineTo(34, 118); ctx.closePath(); ctx.fill();
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(76, 62, 8, 28);
         ctx.beginPath(); ctx.arc(80, 102, 5, 0, Math.PI * 2); ctx.fill();
       } else if (kind === 'proposito') {
-        // Diana / objetivo lúdico
         ['#16a34a', '#ffffff', '#0284c7', '#ffffff', '#ea580c'].forEach((col, i) => {
           ctx.fillStyle = col;
           ctx.beginPath(); ctx.arc(80, 80, 46 - i * 9, 0, Math.PI * 2); ctx.fill();
         });
       } else {
-        // Cuadrícula sopa de letras
         for (let r = 0; r < 3; r++) {
           for (let col = 0; col < 3; col++) {
             ctx.fillStyle = (r === col) ? '#0284c7' : '#ffffff';
@@ -1534,7 +1638,7 @@
     document.getElementById('png-juego').src = makePng('juego');
     document.getElementById('png-cierre').src = makePng('hero');
 
-    // 2. Renderizado exacto de la Sopa de Letras de la Página 10
+    // 2. Renderizado exacto y completo de la Sopa de Letras
     const wsRows = [
       "AFLSOBREPESOWQMYRGÓJ",
       "RXSFCOVOLULJWUSAVFED",
@@ -1551,20 +1655,23 @@
       "OCZMRAWNEBEFAXUSAÍOF",
       "DESNUTRICIÓNUMBALYOA"
     ];
+
+    const highlightedCoords = new Set([
+      ...Array.from({length: 9}, (_, i) => `0-${3 + i}`),
+      ...Array.from({length: 19}, (_, i) => `2-${i}`),
+      ...Array.from({length: 20}, (_, i) => `5-${i}`),
+      ...Array.from({length: 12}, (_, i) => `13-${i}`),
+      ...Array.from({length: 9}, (_, i) => `${3 + i}-7`),
+      ...Array.from({length: 6}, (_, i) => `${4 + i}-18`),
+      ...Array.from({length: 8}, (_, i) => `${11 - i}-${9 + i}`)
+    ]);
+
     const wsGridEl = document.getElementById('wordsearchGrid');
-    wsGridEl.style.gridTemplateColumns = 'repeat(20, 1fr)';
     wsRows.forEach((row, rIdx) => {
       [...row].forEach((ch, cIdx) => {
         const cell = document.createElement('div');
         cell.className = 'ws-cell';
-        if (
-          (rIdx === 0 && cIdx >= 3 && cIdx <= 11) ||
-          (rIdx === 2 && cIdx >= 0 && cIdx <= 6) ||
-          (rIdx === 5 && cIdx <= 19) ||
-          (rIdx === 13 && cIdx <= 11) ||
-          (cIdx === 7 && rIdx >= 3 && rIdx <= 11) ||
-          (cIdx === 18 && rIdx >= 4 && rIdx <= 9)
-        ) {
+        if (highlightedCoords.has(`${rIdx}-${cIdx}`)) {
           cell.classList.add('hl');
         }
         cell.textContent = ch;
@@ -1579,6 +1686,7 @@
       const progress = docHeight > 0 ? Math.min(100, Math.round((scrollTop / docHeight) * 100)) : 0;
       document.getElementById('readingProgress').style.width = progress + '%';
       document.getElementById('readPercentText').textContent = progress;
+      document.getElementById('asidePercentText').textContent = progress;
       document.getElementById('asideProgressFill').style.width = Math.max(10, progress) + '%';
     });
 
