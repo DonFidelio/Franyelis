@@ -488,32 +488,7 @@
   </script>
 
 
-  <script>
-    (function () {
-      const output = document.getElementById('visitsCount');
-      if (!output) return;
-
-      // Contador público de visitas de la portada.
-      // Cada carga registra una visita y devuelve el total actualizado.
-      const endpoint = 'https://countapi.mileshilliard.com/api/v1/hit/tuespaciosaludable-home-views-20261113';
-
-      fetch(endpoint, { method: 'GET', cache: 'no-store' })
-        .then(response => {
-          if (!response.ok) throw new Error('HTTP ' + response.status);
-          return response.json();
-        })
-        .then(data => {
-          const total = Number(data.value);
-          if (!Number.isFinite(total) || total < 1) throw new Error('Respuesta de contador inválida');
-          output.textContent = new Intl.NumberFormat('es-VE').format(total);
-          output.title = total + ' visitas registradas';
-        })
-        .catch(error => {
-          output.textContent = 'No disponible';
-          output.title = 'El servicio de visitas no respondió. ' + error.message;
-        });
-    })();
-  </script>
+  
 
   <!-- CONTADOR DE VISITAS FLOTANTE -->
   <style>
@@ -616,6 +591,33 @@
     </span>
     <a class="visits-corner-credit" href="https://counterapi.com/" target="_blank" rel="noopener noreferrer" aria-label="Servicio de contador CounterAPI">contador web</a>
   </div>
+
+  <script>
+    (function () {
+      const output = document.getElementById('visitsCount');
+      if (!output) return;
+
+      // Contador público de visitas de la portada.
+      // Cada carga registra una visita y devuelve el total actualizado.
+      const endpoint = 'https://countapi.mileshilliard.com/api/v1/hit/tuespaciosaludable-home-views-20261113';
+
+      fetch(endpoint, { method: 'GET', cache: 'no-store' })
+        .then(response => {
+          if (!response.ok) throw new Error('HTTP ' + response.status);
+          return response.json();
+        })
+        .then(data => {
+          const total = Number(data.value);
+          if (!Number.isFinite(total) || total < 1) throw new Error('Respuesta de contador inválida');
+          output.textContent = new Intl.NumberFormat('es-VE').format(total);
+          output.title = total + ' visitas registradas';
+        })
+        .catch(error => {
+          output.textContent = 'No disponible';
+          output.title = 'El servicio de visitas no respondió. ' + error.message;
+        });
+    })();
+  </script>
 
 
 
