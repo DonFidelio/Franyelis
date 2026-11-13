@@ -573,6 +573,13 @@
         flex-basis: 32px;
       }
     }
+  
+    .visits-counter-badge {
+      display: block;
+      width: 112px;
+      height: 28px;
+      object-fit: contain;
+    }
   </style>
 
   <div class="visits-corner-widget" id="visitsCornerWidget" aria-label="Contador de visitas">
@@ -584,12 +591,12 @@
     </span>
     <span class="visits-corner-copy">
       <span class="visits-corner-label">Visitas</span>
-      <div class="visits-corner-number counterapi" id="visitsCount" key="franyelis-home" action="view" noCss="true" noIcon="true" noLink="true" aria-live="polite">Cargando…</div>
+      <img class="visits-counter-badge" src="https://hits.sh/donfidelio.github.io/tuespaciosaludable.svg?label=visitas&amp;color=087f80&amp;labelColor=e6f4f1" alt="Contador de visitas de Tu espacio saludable" loading="eager">
     </span>
     <a class="visits-corner-credit" href="https://counterapi.com/" target="_blank" rel="noopener noreferrer" aria-label="Servicio de contador CounterAPI">contador web</a>
   </div>
 
-  <script async src="https://counterapi.com/c.js?ns=donfidelio.github.io"></script>
+
 
 </body>
 </html>
